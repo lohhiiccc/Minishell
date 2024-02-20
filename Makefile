@@ -6,15 +6,15 @@ include comp/lib.mk
 all: $(NAME)
 
 $(NAME): $(LIBS) $(OBJS) $(TRACE)
-	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -I$(LIBPRINTF)header/ -Iincludes/ $(OBJS) -L$(LIBFT) -L$(LIBPRINTF) -lft -lftprintf -o $(NAME)
-	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBFT)includes/ -I$(LIBPRINTF)header/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) -L$(LIBPRINTF)$(YELLOW) -lft -lftprintf$(END) -o $(GREEN)$(NAME)$(END)"
+	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -Iincludes/ $(OBJS) -L$(LIBFT) -L$(LIBPRINTF) -lft -o $(NAME)
+	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBFT)includes/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) -L$(LIBPRINTF)$(YELLOW) -lft $(END) -o $(GREEN)$(NAME)$(END)"
 	@echo "📚 $(CYAN)$(NAME) done\n$(END)"
 
 $(BUILDDIR)%.o: $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@mkdir -p $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%$(@F)=%)
-	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -I$(LIBPRINTF)header/ -I$(INCLUDEDIR) -MMD -MP -c $< -o $@
-	@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBFT)includes/ -I$(LIBPRINTF)header/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< -o $@ $(END)"
+	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -I$(INCLUDEDIR) -MMD -MP -c $< -o $@
+	@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBFT)includes/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< -o $@ $(END)"
 	@mv $(@:%.o=%.d) $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%.o=%.d)
 
 -include $(DEPS)
@@ -37,7 +37,6 @@ norminette:
 clean:
 	@echo "$(UNDERLINE)$(GREEN)$(NAME)$(END) => $(YELLOW)clean$(END)"
 	@rm -rf $(BUILDDIR)
-	@$(MAKE) -C $(LIBPRINTF) $@
 	@$(MAKE) -C $(LIBFT) $@
 
 fclean: clean
@@ -45,7 +44,6 @@ fclean: clean
 	@rm -f $(NAME)
 	@rm -f infile out
 	@$(MAKE) -C $(LIBFT) $@
-	@$(MAKE) -C $(LIBPRINTF) $@
 
 re: fclean
 	@$(MAKE) all
