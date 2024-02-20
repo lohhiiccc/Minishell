@@ -2,52 +2,38 @@ include comp/srcs.mk
 include comp/vars.mk
 include comp/color.mk
 include comp/lib.mk
+-include $(DEPS)
 
 all: $(NAME)
 
-$(NAME): $(LIBS) $(OBJS) $(TRACE)
-	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -Iincludes/ $(OBJS) -L$(LIBFT) -L$(LIBPRINTF) -lft -o $(NAME)
-	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBFT)includes/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) -L$(LIBPRINTF)$(YELLOW) -lft $(END) -o $(GREEN)$(NAME)$(END)"
+$(NAME): $(LIBS) $(OBJS)
+	@$(CC) $(CFLAGS) -I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -Iincludes/ $(OBJS) -L$(LIBFT) -L$(LIBPRINTF) -lft -o $(NAME)
+	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) -L$(LIBPRINTF)$(YELLOW) -lft $(END) -o $(GREEN)$(NAME)$(END)"
 	@echo "📚 $(CYAN)$(NAME) done\n$(END)"
 
 $(BUILDDIR)%.o: $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@mkdir -p $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%$(@F)=%)
-	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -I$(INCLUDEDIR) -MMD -MP -c $< -o $@
-	@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBFT)includes/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< -o $@ $(END)"
+	@$(CC) $(CFLAGS) -I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -I$(INCLUDEDIR) -MMD -MP -c $< -o $@
+	@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< -o $@ $(END)"
 	@mv $(@:%.o=%.d) $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%.o=%.d)
-
--include $(DEPS)
-
-norminette:
-	@$(MAKE) $@ -C $(LIBFT)
-	@echo "$(UNDERLINE)$(GREEN)norminette: $(shell pwd)$(END)"
-	@mkdir -p $(BUILDDIR)
-	@norminette $(INCLUDEDIR) $(SRCDIR) > $(BUILDDIR)norminette.log ; echo -n
-	@while IFS= read -r line; do \
-		if echo $$line | grep -q "Error!"; then \
-			echo '$(UNDERLINE)''$(YELLOW)'$$line'$(END)'; \
-		elif echo $$line | grep -q "OK!"; then \
-			echo -n '$(WHITE)''$(END)'; \
-		else \
-			echo '$(RED)'$$line'$(END)'; \
-		fi; \
-	done < $(BUILDDIR)norminette.log
 
 clean:
 	@echo "$(UNDERLINE)$(GREEN)$(NAME)$(END) => $(YELLOW)clean$(END)"
 	@rm -rf $(BUILDDIR)
 	@$(MAKE) -C $(LIBFT) $@
+	@$(MAKE) -C $(LIBPRINTF) $@
 
 fclean: clean
 	@echo "$(UNDERLINE)$(GREEN)$(NAME)$(END) => $(RED)fclean$(END)"
 	@rm -f $(NAME)
-	@rm -f infile out
 	@$(MAKE) -C $(LIBFT) $@
+	@$(MAKE) -C $(LIBPRINTF) $@
 
 re: fclean
 	@$(MAKE) all
 
 FORCE:
 
-.PHONY: all clean fclean re FORCE norminette
+.PHONY: all clean fclean re FORCE
+.DEFAULT_GOAL := all
