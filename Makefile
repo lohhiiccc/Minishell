@@ -7,8 +7,8 @@ include comp/lib.mk
 all: $(NAME)
 
 $(NAME): $(LIBS) $(OBJS)
-	@$(CC) $(CFLAGS) -I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -Iincludes/ $(OBJS) -L$(LIBFT) -L$(LIBPRINTF) -lft -o $(NAME)
-	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) -L$(LIBPRINTF)$(YELLOW) -lft $(END) -o $(GREEN)$(NAME)$(END)"
+	@$(CC) $(CFLAGS) -I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -Iincludes/ $(OBJS) -L$(LIBFT) -L$(LIBPRINTF) -lft -lreadline -o $(NAME)
+	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) -L$(LIBPRINTF)$(YELLOW) -lft -lreadline $(END) -o $(GREEN)$(NAME)$(END)"
 	@echo "📚 $(CYAN)$(NAME) done\n$(END)"
 
 $(BUILDDIR)%.o: $(SRCDIR)%.c
