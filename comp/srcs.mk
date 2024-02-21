@@ -1,3 +1,7 @@
 SRCDIR = srcs/
+PROMPTDIR = $(SRCDIR)prompt/
 
-SRCS =  $(SRCDIR)main.c
+SRCPROMT = prompt
+
+SRCS =  $(SRCDIR)main.c \
+	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT)))
