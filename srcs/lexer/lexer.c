@@ -5,9 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/23 20:37:03 by lrio             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:35:59 by lrio              #+#    #+#             */
 /*   Updated: 2024/02/23 18:35:59 by lrio             ###   ########.fr       */
 /*                                                                            */
+#include <stddef.h>
+#include <stdio.h>
+#include "libft.h"
+
 /* ************************************************************************** */
 
 enum e_quote
@@ -17,7 +33,7 @@ enum e_quote
 	DOUBLE_QUOTE = '"',
 };
 
-enum e_quote is_quote(char c)
+static enum e_quote is_quote(char c)
 {
 	static const char tab[] = {QUOTE, DOUBLE_QUOTE};
 	int i;
@@ -32,62 +48,40 @@ enum e_quote is_quote(char c)
 	return (NONE);
 }
 
-int	quote_lexer(char *str)
+static void	skip_quote(char *str, int *i)
 {
-	int i;
-	enum e_quote last;
+	char	start;
 
-	i = 0;
-	while (str[i])
-	{
-		if (NONE != is_quote(str[i]))
-		{
-			last = is_quote(str[i]);
-			i++;
-			while (str[i] && last != is_quote(str[i]))
-				i++;
-			if (!str[i])
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-int parent_lexer(char *str)
-{
-	int i;
-	enum e_quote last_quote;
-	int parent_start;
-
-	i = 0;
-	parent_start = 0;
-	while (str[i])
-	{
-		if (str[i] == '(')
-			parent_start = 1;
-		if (str[i] == ')')
-		{
-			if (1 == parent_start)
-				parent_start = 0;
-			else
-				return (0);
-		}
-		if (NONE != is_quote(str[i]))
-		{
-			last_quote = is_quote(str[i]);
-			while (str[i] && last_quote != is_quote(str[i]))
-				i++;
-		}
-		if (str[i])
-			i++;
-	}
-	return (!parent_start);
+	start = str[*i];
+	printf("%d:", *i);
+	(*i)++;
+	while (str[*i] && str[*i] != start)
+		(*i)++;
+	printf("%d\n", *i);
 }
 
 int lexer(char *str)
 {
-	if (quote_lexer(str) && parent_lexer(str))
-		return (1);
-	return (0);
+	int		i;
+	int		parenthese[2];
+
+	ft_memset(parenthese, 0, sizeof(int) * 2);
+	i = 0;
+	while (str[i])
+	{
+		if ('(' == str[i])
+			parenthese[0]++;
+		if (')' == str[i])
+			parenthese[1]++;
+		if (NONE != is_quote(str[i]))
+			skip_quote(str, &i);
+		if (!str[i])
+			return (0);
+		i++;
+	}
+	if (parenthese[0] != parenthese[1])
+		return (0);
+//	if (quote_lexer(str) && parent_lexer(str))
+//		return (1);
+	return (1);
 }
