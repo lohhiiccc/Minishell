@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 20:37:03 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/23 20:37:43 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,9 @@ static void	skip_quote(char *str, int *i)
 	char	start;
 
 	start = str[*i];
-	printf("%d:", *i);
 	(*i)++;
 	while (str[*i] && str[*i] != start)
 		(*i)++;
-	printf("%d\n", *i);
 }
 
 int lexer(char *str)
