@@ -6,16 +6,14 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 18:39:45 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/25 15:14:02 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline/readline.h>
-#include <stdio.h>
 #include <readline/history.h>
 #include <stdlib.h>
 #include "libft.h"
-#include "exec.h"
 #include "minishell.h"
 
 void prompt(void)
@@ -25,10 +23,13 @@ void prompt(void)
 	while (1)
 	{
 		str = readline("minichel>");
+		if (ft_strncmp("exit", str, -1) == 0)
+			break;
 		if (str)
 			add_history(str);
 		if (!lexer(str))
 			write(2, "syntax error\n", 14);
 		free(str);
 	}
+	rl_clear_history();
 }
