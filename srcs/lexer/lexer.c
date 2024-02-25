@@ -6,12 +6,12 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/25 18:00:21 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/25 20:02:29 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
-#include "exec.h"
 #include "lexer.h"
 
 static enum e_type get_type(char c)
@@ -29,28 +29,32 @@ int lexer(char *str)
 {
 	int			i;
 	int			parenthese[2];
-	enum e_type	last;
+	enum e_type	type;
+	enum e_type last;
 
+	last = NONE;
 	ft_memset(parenthese, 0, sizeof(int) * 2);
 	i = 0;
 	while (str[i])
 	{
-		last = get_type(str[i]);
-		if (last == T_PARENT && !ft_parenthese(str[i], parenthese))
+		type = get_type(str[i]);
+		if (type == T_PARENT && !ft_parenthese(str[i], parenthese))
 			return (0);
 
-//		if (last == T_OPERATOR)
-//		{
-//
-//		}
+		if (type == T_OPERATOR)
+		{
+			if (last == T_OPERATOR || last == NONE)
+				return (0);
+		}
 
-		if (last == T_QUOTE)
+		if (type == T_QUOTE)
 			skip_quote(str, &i);
 		if (!str[i])
 			return (0);
+		last = type;
 		i++;
 	}
-	if (parenthese[0] != parenthese[1])
+	if (parenthese[0] != parenthese[1] || last == T_OPERATOR)
 		return (0);
 	return (1);
 }
