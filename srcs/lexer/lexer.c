@@ -6,25 +6,11 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 20:37:43 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/25 14:22:09 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 18:35:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 18:35:59 by lrio             ###   ########.fr       */
-/*                                                                            */
-#include <stddef.h>
-#include <stdio.h>
 #include "libft.h"
-
-/* ************************************************************************** */
 
 enum e_quote
 {
@@ -69,8 +55,12 @@ int lexer(char *str)
 	{
 		if ('(' == str[i])
 			parenthese[0]++;
-		if (')' == str[i])
+		if (')' == str[i] && parenthese[0] >= parenthese[1] + 1)
+		{
 			parenthese[1]++;
+		}
+		else if (')' == str[i])
+			return 0;
 		if (NONE != is_quote(str[i]))
 			skip_quote(str, &i);
 		if (!str[i])
@@ -79,7 +69,5 @@ int lexer(char *str)
 	}
 	if (parenthese[0] != parenthese[1])
 		return (0);
-//	if (quote_lexer(str) && parent_lexer(str))
-//		return (1);
 	return (1);
 }
