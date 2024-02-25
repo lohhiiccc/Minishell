@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/25 20:02:29 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/25 20:10:41 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,12 @@ int lexer(char *str)
 		if (type == T_OPERATOR)
 		{
 			if (last == T_OPERATOR || last == NONE)
-				return (0);
+				return (0);//TODO gerer <<
+			if (str[i + 1] && str[i + 2] && str[i] == str[i + 1] && (str[i] == '>' ||str[i] == '<' || str[i] == '|' || str[i] == '&'))
+			{
+				i +=2 ;
+				type = get_type(str[i]);
+			}
 		}
 
 		if (type == T_QUOTE)
