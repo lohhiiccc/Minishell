@@ -4,7 +4,10 @@ LEXERDIR = $(SRCDIR)lexer/
 
 
 SRCPROMT = prompt
-SRCLEXER = lexer
+SRCLEXER = lexer \
+		   operator \
+		   parenthese \
+		   quote
 
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
