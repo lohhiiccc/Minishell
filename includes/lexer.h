@@ -6,12 +6,13 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:58:03 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 15:13:38 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/26 15:31:53 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
+
 enum e_type
 {
 	NONE,
@@ -23,6 +24,8 @@ enum e_type
 };
 
 
-void	skip_quote(char *str, int *i);
-int ft_parenthese(char c, int parenthese[2]);
+int			lexer_operator(enum e_type *last, enum e_type *type, char *str, int *i);
+enum		e_type get_type(char c);
+void		skip_quote(char *str, int *i);
+int			ft_parenthese(char c, int parenthese[2]);
 #endif

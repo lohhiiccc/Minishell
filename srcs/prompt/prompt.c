@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/25 15:14:02 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/26 15:50:28 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void prompt(void)
 			add_history(str);
 		if (!lexer(str))
 			write(2, "syntax error\n", 14);
-		free(str);
 	}
 	rl_clear_history();
 }

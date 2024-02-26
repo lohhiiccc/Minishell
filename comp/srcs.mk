@@ -7,7 +7,8 @@ SRCPROMT = prompt
 SRCLEXER = lexer \
 		   operator \
 		   parenthese \
-		   quote
+		   quote \
+		   get_type
 
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \

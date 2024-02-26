@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 15:23:01 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/26 15:51:49 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 #include "libft.h"
 #include "lexer.h"
 
-static enum e_type get_type(char c)
+char	*format(char *str)
 {
-	if ('\'' == c || '"' == c)
-		return T_QUOTE;
-	if (c == '|' || c == '&')
-		return T_OPERATOR;
-	if (c == '>' || c == '<')
-		return T_REDIRECTION;
-	if ('(' == c || ')' == c)
-		return T_PARENT;
-	return (T_TOKEN);
-}
-
-void	test(char *str) {
 	int i;
+	char *res;
 
-	i = ft_strlen(str) - 1;
-	while (i >0 && (str[i] == ' ' || str[i] == '\t'))
+	res = ft_strdup(str);
+	free (str);
+	i = ft_strlen(res) - 1;
+	while (i > 0 && (res[i] == ' ' || res[i] == '\t'))
 	{
-		str[i] = '\0';
+		res[i] = '\0';
 		i--;
 	}
+	return res;
+}
+
+int lexer_ret(char *str, int res)
+{
+	free(str);
+	return (res);
 }
 
 int lexer(char *str)
@@ -45,37 +43,27 @@ int lexer(char *str)
 	enum e_type	type;
 	enum e_type last;
 
-	test(str);
+	str = format(str);
+	if (NULL == str)
+		return (0);
 	last = NONE;
 	ft_memset(parenthese, 0, sizeof(int) * 2);
 	i = 0;
 	while (str[i])
 	{
 		type = get_type(str[i]);
-		if (type == T_PARENT && !ft_parenthese(str[i], parenthese))
-			return (0);
+		if ((type == T_PARENT && !ft_parenthese(str[i], parenthese)) || (type == T_OPERATOR && lexer_operator(&last, &type, str, &i)))
+			return (lexer_ret(str, 0));
 
-		if (type == T_OPERATOR)
-		{
-			if (last == T_OPERATOR || last == NONE)
-				return (0);//TODO gerer <<
-			if (str[i + 1] && str[i + 2] && str[i] == str[i + 1] && (str[i] == '|' || str[i] == '&'))
-			{
-				i +=2 ;
-				type = get_type(str[i]);
-			}
-			if (str[i + 1] && (str[i] == '&' && str[i + 1] != '&'))
-				return (0);
-		}
 
 		if (type == T_QUOTE)
 			skip_quote(str, &i);
 		if (!str[i])
-			return (0);
+			return (lexer_ret(str, 0));
 		last = type;
 		i++;
 	}
 	if (parenthese[0] != parenthese[1] || last == T_OPERATOR)
-		return (0);
-	return (1);
+		return (lexer_ret(str, 0));
+	return (lexer_ret(str, 1));
 }
