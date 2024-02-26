@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 15:51:49 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/26 19:00:25 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,25 @@
 char	*format(char *str)
 {
 	int i;
+	int j;
 	char *res;
 
-	res = ft_strdup(str);
-	free (str);
-	i = ft_strlen(res) - 1;
-	while (i > 0 && (res[i] == ' ' || res[i] == '\t'))
+	res = malloc(sizeof(char) * ft_strlen(str));
+	if (NULL == res)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (str[i])
 	{
-		res[i] = '\0';
-		i--;
+		if (!(str[i] == ' ' || str[i] == '\t'))
+		{
+			res[j] = str[i];
+			j++;
+		}
+		i++;
 	}
-	return res;
+	res[j] = '\0';
+	return (res);
 }
 
 int lexer_ret(char *str, int res)
@@ -55,8 +63,7 @@ int lexer(char *str)
 		if ((type == T_PARENT && !ft_parenthese(str[i], parenthese)) || (type == T_OPERATOR && lexer_operator(&last, &type, str, &i)))
 			return (lexer_ret(str, 0));
 
-
-		if (type == T_QUOTE)
+		else if (type == T_QUOTE)
 			skip_quote(str, &i);
 		if (!str[i])
 			return (lexer_ret(str, 0));

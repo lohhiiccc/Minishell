@@ -25,7 +25,7 @@ enum e_type
 
 
 int			lexer_operator(enum e_type *last, enum e_type *type, char *str, int *i);
-enum		e_type get_type(char c);
+enum e_type get_type(char c);
 void		skip_quote(char *str, int *i);
 int			ft_parenthese(char c, int parenthese[2]);
 #endif
