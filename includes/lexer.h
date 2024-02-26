@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:58:03 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/25 20:00:28 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/26 15:13:38 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ enum e_type
 	T_TOKEN,
 	T_QUOTE,
 	T_PARENT,
-	T_OPERATOR
+	T_OPERATOR,
+	T_REDIRECTION
 };
 
 

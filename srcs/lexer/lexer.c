@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/25 20:10:41 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/26 15:23:01 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,24 @@ static enum e_type get_type(char c)
 {
 	if ('\'' == c || '"' == c)
 		return T_QUOTE;
-	if (c == '|' || c == '&' || c == '<' || c == '>')
+	if (c == '|' || c == '&')
 		return T_OPERATOR;
+	if (c == '>' || c == '<')
+		return T_REDIRECTION;
 	if ('(' == c || ')' == c)
 		return T_PARENT;
 	return (T_TOKEN);
+}
+
+void	test(char *str) {
+	int i;
+
+	i = ft_strlen(str) - 1;
+	while (i >0 && (str[i] == ' ' || str[i] == '\t'))
+	{
+		str[i] = '\0';
+		i--;
+	}
 }
 
 int lexer(char *str)
@@ -32,6 +45,7 @@ int lexer(char *str)
 	enum e_type	type;
 	enum e_type last;
 
+	test(str);
 	last = NONE;
 	ft_memset(parenthese, 0, sizeof(int) * 2);
 	i = 0;
@@ -45,11 +59,13 @@ int lexer(char *str)
 		{
 			if (last == T_OPERATOR || last == NONE)
 				return (0);//TODO gerer <<
-			if (str[i + 1] && str[i + 2] && str[i] == str[i + 1] && (str[i] == '>' ||str[i] == '<' || str[i] == '|' || str[i] == '&'))
+			if (str[i + 1] && str[i + 2] && str[i] == str[i + 1] && (str[i] == '|' || str[i] == '&'))
 			{
 				i +=2 ;
 				type = get_type(str[i]);
 			}
+			if (str[i + 1] && (str[i] == '&' && str[i + 1] != '&'))
+				return (0);
 		}
 
 		if (type == T_QUOTE)
