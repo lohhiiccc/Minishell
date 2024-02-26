@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 19:00:25 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/26 20:26:48 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,28 @@ char	*format(char *str)
 	int j;
 	char *res;
 
+	if (ft_strlen(str) == 0)
+		return (str);
 	res = malloc(sizeof(char) * ft_strlen(str));
 	if (NULL == res)
 		return (NULL);
+	ft_bzero(res, sizeof(char ) * ft_strlen(str));
 	i = 0;
 	j = 0;
 	while (str[i])
 	{
 		if (!(str[i] == ' ' || str[i] == '\t'))
 		{
+			if (j > 0 && res[j - 1] == '|' && str[i] == '|')
+			{
+				free(str);
+				return (NULL);
+			}
 			res[j] = str[i];
 			j++;
 		}
 		i++;
 	}
-	res[j] = '\0';
 	return (res);
 }
 
@@ -54,10 +61,11 @@ int lexer(char *str)
 	str = format(str);
 	if (NULL == str)
 		return (0);
+//	printf(":%s:\n", str);
 	last = NONE;
 	ft_memset(parenthese, 0, sizeof(int) * 2);
 	i = 0;
-	while (str[i])
+	while (NULL != str && str[i])
 	{
 		type = get_type(str[i]);
 		if ((type == T_PARENT && !ft_parenthese(str[i], parenthese)) || (type == T_OPERATOR && lexer_operator(&last, &type, str, &i)))
