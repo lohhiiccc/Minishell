@@ -12,7 +12,7 @@
 
 #include "lexer.h"
 
-enum e_type get_type(char c)
+enum e_str_type get_type(char c)
 {
 	if ('\'' == c || '"' == c)
 		return (T_QUOTE);

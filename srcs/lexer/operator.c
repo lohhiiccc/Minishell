@@ -31,7 +31,7 @@ int pipe_or_check(char *str, const char *op)
 	return count;
 }
 
-int lexer_operator(enum e_type *last, enum e_type *type, char *str, int *i)
+int lexer_operator(enum e_str_type *last, enum e_str_type *type, char *str, int *i)
 {
 	if (*last == T_OPERATOR || *last == NONE)
 		return (1);
