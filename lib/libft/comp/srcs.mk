@@ -5,7 +5,6 @@ MEMDIR = mem/
 PUT_FDDIR = put_fd/
 STRDIR = str/
 WHODIR = who/
-TREEDIR = tree/
 VECTORDIR = vector/
 
 
@@ -61,10 +60,6 @@ SRCWHO = ft_isalnum \
 		 ft_isdigit \
 		 ft_isprint
 
-SRCTREE = ft_clean_tree \
-		  ft_join_tree \
-		  ft_new_tree
-
 SRCVECTOR = ft_vector_add \
 			ft_vector_init \
 			ft_vector_resize
@@ -75,4 +70,3 @@ SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(PUT_FDDIR), $(addsuffix .c, $(SRCPUTFD))) \
 	   $(addprefix $(SRCDIR)$(STRDIR), $(addsuffix .c, $(SRCSTR))) \
 	   $(addprefix $(SRCDIR)$(VECTORDIR), $(addsuffix .c, $(SRCVECTOR))) \
-	   $(addprefix $(SRCDIR)$(TREEDIR), $(addsuffix .c, $(SRCTREE)))

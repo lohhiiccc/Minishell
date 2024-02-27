@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_join_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 13:12:01 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/20 13:39:22 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/02/27 17:41:29 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/27 17:44:43 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tree.h"
 
 t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content)
 {
@@ -20,8 +20,8 @@ t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content)
 	tree->left = left;
 	tree->right = right;
 	if (left)
-		left->parent = tree;
+		left->structur = tree;
 	if (right)
-		right->parent = tree;
+		right->structur = tree;
 	return (tree);
 }
