@@ -6,14 +6,14 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 16:05:35 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/27 16:38:25 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "libft.h"
 
-int count_ocurence(char *str, const char *op)
+int count_str(char *str, const char *op)
 {
 	size_t	i;
 	size_t	count;

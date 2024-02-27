@@ -24,7 +24,7 @@ enum e_str_type
 };
 
 
-int			count_ocurence(char *str, const char *op);
+int			count_str(char *str, const char *op);
 int lexer_redirection(enum e_str_type *last, enum e_str_type *type, char *str, int *i);
 int			lexer_operator(enum e_str_type *last, enum e_str_type *type, char *str, int *i);
 enum e_str_type get_type(char c);

@@ -91,8 +91,8 @@ static char	*format(char *str)
 		}
 		i++;
 	}
-	if (count_ocurence(str, "||") != count_ocurence(res, "||") || count_ocurence(str, "&&") != count_ocurence(res, "&&") ||
-			count_ocurence(str, ">>") != count_ocurence(res, ">>") || count_ocurence(str, "<<") != count_ocurence(res, "<<") )
+	if (count_str(str, "||") != count_str(res, "||") || count_str(str, "&&") != count_str(res, "&&") ||
+			count_str(str, ">>") != count_str(res, ">>") || count_str(str, "<<") != count_str(res, "<<") )
 		return (NULL);
 	return (res);
 }
