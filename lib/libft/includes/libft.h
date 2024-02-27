@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/21 00:30:04 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/22 15:45:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ typedef struct s_vector
 
 typedef struct s_tree
 {
-	void			*content;
 	struct s_tree	*left;
 	struct s_tree	*right;
-	struct s_tree	*parent;
+	void			*content;
 }	t_tree;
 
 int		ft_vector_add(t_vector *vector, void *elem);
