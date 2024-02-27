@@ -8,7 +8,8 @@ SRCLEXER = lexer \
 		   operator \
 		   parenthese \
 		   quote \
-		   get_type
+		   get_type \
+		   redirection
 
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \

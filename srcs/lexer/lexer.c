@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 15:36:27 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/27 15:54:23 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	lexer(char *str)
 	while (lex_str[i])
 	{
 		type = get_type(lex_str[i]);
-		if ((type == T_PARENT && !ft_parenthese(lex_str[i], parenthese)) || (type == T_OPERATOR && lexer_operator(&last, &type, lex_str, &i)))
+		if ((type == T_PARENT && !ft_parenthese(lex_str[i], parenthese)) || (type == T_OPERATOR && lexer_operator(&last, &type, lex_str, &i)) || (type == T_REDIRECTION &&
+				lexer_redirection(&last, &type, lex_str, &i)))
 			return (lexer_ret(lex_str, 0));
 		else if (type == T_QUOTE)
 			skip_quote(lex_str, &i);
@@ -43,7 +44,7 @@ int	lexer(char *str)
 		last = type;
 		i++;
 	}
-	if (parenthese[0] != parenthese[1] || last == T_OPERATOR)
+	if (parenthese[0] != parenthese[1] || last == T_OPERATOR || last == T_REDIRECTION)
 		return (lexer_ret(lex_str, 0));
 	return (lexer_ret(lex_str, 1));
 }
@@ -70,7 +71,8 @@ static char	*format(char *str)
 		}
 		i++;
 	}
-	if (pipe_or_check(str, "||") != pipe_or_check(res, "||") || pipe_or_check(str, "&&") != pipe_or_check(res, "&&") )
+	if (count_ocurence(str, "||") != count_ocurence(res, "||") || count_ocurence(str, "&&") != count_ocurence(res, "&&") ||
+			count_ocurence(str, ">>") != count_ocurence(res, ">>") || count_ocurence(str, "<<") != count_ocurence(res, "<<") )
 		return (NULL);
 	return (res);
 }
