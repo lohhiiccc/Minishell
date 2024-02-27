@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 15:54:23 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/27 16:25:31 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,24 @@
 
 static int	lexer_ret(char *str, int res);
 static char	*format(char *str);
+
+int fast_check(char *str)
+{
+	int i;
+	enum e_str_type value[3];
+
+	i = 0;
+	while (str[i] && str[i + 1] && str[i + 2])
+	{
+		value[0] = get_type(str[i]);
+		value[1] = get_type(str[i + 1]);
+		value[2] = get_type(str[i + 2]);
+		if ((value[0] == T_OPERATOR || value[0] == T_REDIRECTION) && value[0] == value[1] && (value[2] == T_OPERATOR || value[2] == T_REDIRECTION))
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	lexer(char *str)
 {
@@ -31,6 +49,8 @@ int	lexer(char *str)
 	last = NONE;
 	ft_memset(parenthese, 0, sizeof(int) * 2);
 	i = 0;
+	if (fast_check(lex_str))
+		return (lexer_ret(lex_str, 0));
 	while (lex_str[i])
 	{
 		type = get_type(lex_str[i]);
