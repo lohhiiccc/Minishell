@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:34:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 17:41:03 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/27 19:27:45 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ typedef struct s_cmd
 	int		fd_in;
 	int		fd_out;
 }	t_cmd;
-
-typedef struct s_red
-{
-	enum e_redirect	type;
-	char			*file;
-}	t_red;
 
 t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content);
 void	ft_clean_tree(t_tree *tree);
