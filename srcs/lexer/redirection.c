@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 15:36:49 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/27 15:42:20 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/27 16:37:33 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "lexer.h"
 
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
-#include "libft.h"
-#include "minishell.h"
-
-void prompt(void)
+int lexer_redirection(enum e_str_type *last, enum e_str_type *type, char *str, int *i)
 {
-	char *str;
-
-	while (1)
+	if ((*last == T_REDIRECTION) || *last == T_OPERATOR || (*last == NONE && *i != 0))
+		return (1);
+	if (str[*i + 1] && str[*i + 2] && str[*i] == str[*i + 1] && (str[*i] == '<' || str[*i] == '>'))
 	{
-		str = readline("minichel>");
-		if (ft_strncmp("exit", str, -1) == 0)
-		{
-			free(str);
-			break;
-		}
-		if (str)
-			add_history(str);
-		if (!lexer(str))
-			write(2, "syntax error\n", 14);
-		free(str);
+		*i +=2 ;
+		*type = get_type(str[*i]);
 	}
-	rl_clear_history();
+	return (0);
 }
