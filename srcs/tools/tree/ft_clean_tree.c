@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_join_tree.c                                     :+:      :+:    :+:   */
+/*   ft_clean_tree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 13:12:01 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/22 15:46:06 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/02/27 17:38:53 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/27 17:39:47 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "tree.h"
+#include "stdlib.h"
 
-t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content)
+void	ft_clean_tree(t_tree *tree)
 {
-	t_tree	*tree;
-
-	tree = ft_new_tree(content);
-	tree->left = left;
-	tree->right = right;
-	return (tree);
+	if (!tree)
+		return ;
+	ft_clean_tree(tree->left);
+	ft_clean_tree(tree->right);
+	free(tree);
 }

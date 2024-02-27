@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_tree.c                                      :+:      :+:    :+:   */
+/*   ft_join_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 12:46:08 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/20 13:03:50 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/02/20 13:12:01 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/02/27 17:59:47 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_tree	*ft_new_tree(void *content)
+t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content)
 {
-	t_tree	*new_tree;
+	t_tree	*tree;
 
-	new_tree = malloc(sizeof(t_tree));
-	new_tree->content = content;
-	return (new_tree);
+	tree = ft_new_tree(content);
+	tree->left = left;
+	tree->right = right;
+	if (left)
+		left->parent = tree;
+	if (right)
+		right->parent = tree;
+	return (tree);
 }

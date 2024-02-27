@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clean_tree.c                                    :+:      :+:    :+:   */
+/*   ft_new_tree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 13:06:44 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/20 13:10:17 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/02/27 17:41:16 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/27 17:45:10 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <malloc.h>
+#include "tree.h"
 
-void	ft_clean_tree(t_tree *tree)
+t_tree	*ft_new_tree(void *content)
 {
-	if (!tree)
-		return ;
-	ft_clean_tree(tree->left);
-	ft_clean_tree(tree->right);
-	free(tree);
+	t_tree	*new_tree;
+
+	new_tree = malloc(sizeof(t_tree));
+	new_tree->structur = content;
+	return (new_tree);
 }
