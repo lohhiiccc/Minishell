@@ -6,11 +6,30 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 17:53:51 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/27 02:06:15 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "libft.h"
+
+int pipe_or_check(char *str, const char *op)
+{
+	size_t	i;
+	size_t	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (ft_strlen(str) >= i + count && NULL != ft_strnstr(str + i + count, op, 2))
+		{
+			count++;
+		}
+		i++;
+	}
+	return count;
+}
 
 int lexer_operator(enum e_type *last, enum e_type *type, char *str, int *i)
 {

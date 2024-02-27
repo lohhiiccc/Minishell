@@ -38,9 +38,9 @@ typedef struct s_tree
 	struct s_tree	*parent;
 }	t_tree;
 
-int	ft_vector_add(t_vector *vector, void *elem);
-int	vector_init(t_vector *vector, size_t size);
-int	ft_vector_resize(t_vector *vector, size_t new_size);
+int		ft_vector_add(t_vector *vector, void *elem);
+int		vector_init(t_vector *vector, size_t size);
+int		ft_vector_resize(t_vector *vector, size_t new_size);
 t_tree	*ft_new_tree(void *content);
 t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content);
 void	ft_clean_tree(t_tree *tree);
