@@ -6,7 +6,7 @@
 /*   By: lrio <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/21 00:30:04 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/27 17:35:56 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,9 @@ typedef struct s_vector
 	size_t	size;
 }	t_vector;
 
-typedef struct s_tree
-{
-	void			*content;
-	struct s_tree	*left;
-	struct s_tree	*right;
-	struct s_tree	*parent;
-}	t_tree;
-
 int		ft_vector_add(t_vector *vector, void *elem);
 int		vector_init(t_vector *vector, size_t size);
 int		ft_vector_resize(t_vector *vector, size_t new_size);
-t_tree	*ft_new_tree(void *content);
-t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content);
-void	ft_clean_tree(t_tree *tree);
 size_t	ft_strclen(const char *str, int c);
 size_t	ft_count_word(const char *str, char c);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
