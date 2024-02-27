@@ -6,42 +6,57 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:18:06 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/21 03:52:04 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/26 21:17:29 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
-#include <stdbool.h>
+# include <stdbool.h>
 
-enum e_operator
+typedef enum e_operator
 {
-	OR,
-	AND,
-	PIPE,
-	HERE_DOC,
-	APPEND,
-	OUTPUT,
-	INPUT
+	OR,			// ||
+	AND,		// &&
+	PIPE,		// |
+}	t_operator;
+
+typedef enum e_redirect
+{
+	HERE_DOC,	// <<
+	APPEND,		// >>
+	OUTPUT,		// >
+	INPUT,		// <
+}	t_redirect;
+
+enum	e_node
+{
+	REDIRECT,
+	CMD,
+	OPE,
 };
 
-typedef struct s_type
+typedef struct s_tree
 {
-	bool	type;
-	void	*structure;
-}	t_type;
+	struct s_tree	*left;
+	struct s_tree	*right;
+	enum e_node		type;
+	void			*structur;
+}	t_tree;
 
 typedef struct s_cmd
 {
 	char	*path;
 	char	**arg;
+	int		fd_in;
+	int		fd_out;
 }	t_cmd;
 
-typedef struct s_ope
+typedef struct s_red
 {
-	enum e_operator	type;
+	enum e_redirect	type;
 	char			*file;
-}	t_ope;
+}	t_red;
 
 #endif
