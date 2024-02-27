@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:16:15 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/27 17:31:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/27 18:03:12 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 Executer commande de l'arbre de bas gauche vers droite.
 */
 
-#include "exec.h"
+#include "tree.h"
 
 t_tree	*next_exec(t_tree *tree)
 {
