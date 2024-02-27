@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:31:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 18:36:47 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/25 17:57:49 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/25 17:59:51 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+void	skip_quote(char *str, int *i)
+{
+	char	start;
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-void prompt(void);
-int	lexer(char *str);
-#endif
+	start = str[*i];
+	(*i)++;
+	while (str[*i] && str[*i] != start)
+		(*i)++;
+}

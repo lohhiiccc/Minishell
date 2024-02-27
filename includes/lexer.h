@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:31:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 18:36:47 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/25 17:58:03 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/27 02:07:44 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LEXER_H
+# define LEXER_H
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-void prompt(void);
-int	lexer(char *str);
+enum e_type
+{
+	NONE,
+	T_TOKEN,
+	T_QUOTE,
+	T_PARENT,
+	T_OPERATOR,
+	T_REDIRECTION
+};
+
+
+int			pipe_or_check(char *str, const char *op);
+int			lexer_operator(enum e_type *last, enum e_type *type, char *str, int *i);
+enum e_type get_type(char c);
+void		skip_quote(char *str, int *i);
+int			ft_parenthese(char c, int parenthese[2]);
 #endif

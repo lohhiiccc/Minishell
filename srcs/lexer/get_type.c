@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   get_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:31:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 18:36:47 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/26 15:29:56 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/26 17:54:58 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lexer.h"
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-void prompt(void);
-int	lexer(char *str);
-#endif
+enum e_type get_type(char c)
+{
+	if ('\'' == c || '"' == c)
+		return (T_QUOTE);
+	else if (c == '|' || c == '&')
+		return (T_OPERATOR);
+	else if (c == '>' || c == '<')
+		return (T_REDIRECTION);
+	else if ('(' == c || ')' == c)
+		return (T_PARENT);
+	return (T_TOKEN);
+}
+

@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parenthese.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:31:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/23 18:36:47 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/25 17:57:38 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-void prompt(void);
-int	lexer(char *str);
-#endif
+int ft_parenthese(char c, int parenthese[2])
+{
+	if ('(' == c)
+		parenthese[0]++;
+	if (')' == c && parenthese[0] >= parenthese[1] + 1)
+		parenthese[1]++;
+	else if (')' == c)
+		return (0);
+	return (1);
+}
