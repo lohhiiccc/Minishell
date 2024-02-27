@@ -12,26 +12,26 @@ $(NAME): $(LIBS) $(OBJS)
 	@echo "📚 $(CYAN)$(NAME) done\n$(END)"
 
 $(BUILDDIR)%.o: $(SRCDIR)%.c
-	@mkdir -p $(@D)
-	@mkdir -p $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%$(@F)=%)
-	@$(CC) $(CFLAGS) -I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -I$(INCLUDEDIR) -MMD -MP -c $< -o $@
-	@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< -o $@ $(END)"
-	@mv $(@:%.o=%.d) $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%.o=%.d)
+		@mkdir -p $(@D)
+		@mkdir -p $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%$(@F)=%)
+		@$(CC) $(CFLAGS) -I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -I$(INCLUDEDIR) -MMD -MP -c $< -o $@
+		@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY)-I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< -o $@ $(END)"
+		@mv $(@:%.o=%.d) $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%.o=%.d)
 
 clean:
-	@echo "$(UNDERLINE)$(GREEN)$(NAME)$(END) => $(YELLOW)clean$(END)"
-	@rm -rf $(BUILDDIR)
-	@$(MAKE) -C $(LIBFT) $@
-	@$(MAKE) -C $(LIBPRINTF) $@
+		@echo "$(UNDERLINE)$(GREEN)$(NAME)$(END) => $(YELLOW)clean$(END)"
+		@rm -rf $(BUILDDIR)
+		@$(MAKE) -C $(LIBFT) $@
+		@$(MAKE) -C $(LIBPRINTF) $@
 
 fclean: clean
-	@echo "$(UNDERLINE)$(GREEN)$(NAME)$(END) => $(RED)fclean$(END)"
-	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT) $@
-	@$(MAKE) -C $(LIBPRINTF) $@
+		@echo "$(UNDERLINE)$(GREEN)$(NAME)$(END) => $(RED)fclean$(END)"
+		@rm -f $(NAME)
+		@$(MAKE) -C $(LIBFT) $@
+		@$(MAKE) -C $(LIBPRINTF) $@
 
 re: fclean
-	@$(MAKE) all
+		@$(MAKE) all
 
 FORCE:
 
