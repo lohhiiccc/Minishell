@@ -13,7 +13,7 @@
 
 int lexer_redirection(enum e_str_type *last, enum e_str_type *type, char *str, int *i)
 {
-	if ((*last == T_REDIRECTION) || *last == T_OPERATOR || (*last == NONE && *i != 0))
+	if ((*last == T_REDIRECTION) || *last == T_OPERATOR || (*last == NONE && *i != 0) || (*i > 0 && str[*i - 1] == '('))
 		return (1);
 	if (str[*i + 1] && str[*i + 2] && str[*i] == str[*i + 1] && (str[*i] == '<' || str[*i] == '>'))
 	{
