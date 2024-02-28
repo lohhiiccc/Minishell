@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 17:59:37 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/02/28 15:54:31 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/28 15:54:37 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -82,5 +81,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strstrfjoin(char *str1, char *str2, char *str3);
 char	*ft_strfjoin(char *s1, char const *s2);
 char	*ft_itoa(long n);
+char	*ft_strndup(const char *src, size_t n);
 
 #endif
