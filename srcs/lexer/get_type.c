@@ -6,22 +6,49 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:29:56 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 17:54:58 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/28 23:27:28 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "lexer.h"
 
-enum e_str_type get_type(char c)
+void	fill_token(char *str, t_token *token, size_t i, const t_token *type);
+
+t_token	get_next_token(char *str)
 {
-	if ('\'' == c || '"' == c)
-		return (T_QUOTE);
-	else if (c == '|' || c == '&')
-		return (T_OPERATOR);
-	else if (c == '>' || c == '<')
-		return (T_REDIRECTION);
-	else if ('(' == c || ')' == c)
-		return (T_PARENT);
-	return (T_TOKEN);
+	t_token					token;
+	size_t					i;
+	static const t_token	type[] = {{"(", PARENTESE_OP}, \
+	{")", PARENTESE_CL}, {"<<", RED_IN}, {"<", RED_IN}, {">>", RED_OUT}, \
+	{">", RED_OUT}, {"||", LOGICAL_OP}, {"&&", LOGICAL_OP}, {"|", PIPE}, \
+	{"\"", QUOTE}, {"'", QUOTE}, {" ", IS_SPACE}, {"\t", IS_SPACE}};
+
+	i = 0;
+	while (i < 13)
+	{
+		if (0 == ft_strncmp(type[i].str, str, ft_strlen(type[i].str)))
+		{
+			fill_token(str, &token, i, type);
+			return (token);
+		}
+		i++;
+	}
+	i = 0;
+	while (str[i] && str[i] != '|' && str[i] != '&' && str[i] != '>' && \
+	str[i] != '>' && str[i] != ' ' && str[i] != '\t' && str[i] != '(' && \
+	str[i] != ')' && str[i] != '\'' && str[i] != '"')
+		i++;
+	token.type = CHAR;
+	token.str = ft_strndup(str, i);
+	return (token);
 }
 
+void	fill_token(char *str, t_token *token, size_t i, const t_token *type)
+{
+	token->type = type[i].type;
+	if (type[i].type == QUOTE)
+		token->str = get_quote(str);
+	else
+		token->str = ft_strndup(str, ft_strlen(type[i].str));
+}

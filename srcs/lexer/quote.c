@@ -5,17 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 17:57:49 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/25 17:59:51 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 18:21:54 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/28 20:08:43 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stddef.h>
+#include "libft.h"
 
-void	skip_quote(char *str, int *i)
+char	*get_quote(char *str)
 {
-	char	start;
+	size_t	i;
+	char	*res;
 
-	start = str[*i];
-	(*i)++;
-	while (str[*i] && str[*i] != start)
-		(*i)++;
+	i = 0;
+	if (str[1])
+		i++;
+	while (str[i] && str[i] != str[0])
+		i++;
+	res = ft_calloc((i + 2), sizeof(char));
+	if (NULL == res)
+		return (NULL);
+	ft_memcpy(res, str, sizeof(char) * i + 1);
+	return (res);
 }
