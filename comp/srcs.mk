@@ -9,11 +9,11 @@ TOKENDIR = $(SRCDIR)token/
 SRCPROMT = prompt
 
 SRCLEXER = lexer \
-		   operator \
-		   parenthese \
-		   redirection \
-		   pipe \
-		   string
+		   lex_pipe \
+		   lex_string \
+		   lex_operator \
+		   lex_parenthese \
+		   lex_redirection \
 
 SRCPARSING = parsing
 
