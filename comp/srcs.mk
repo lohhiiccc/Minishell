@@ -11,7 +11,8 @@ SRCPROMT = prompt
 SRCLEXER = lexer \
 		   operator \
 		   parenthese \
-		   redirection
+		   redirection \
+		   pipe
 
 SRCPARSING = parsing
 
