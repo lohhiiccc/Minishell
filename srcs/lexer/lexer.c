@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:38:46 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 04:45:42 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "lexer.h"
 
 static unsigned char	lex_last(const size_t *parent, t_token_type type);
-static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent, \
-									t_token_type type);
+static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent,
+							t_token_type type);
 
 int	lexer(char *str)
 {
@@ -48,18 +48,18 @@ int	lexer(char *str)
 static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent, \
 									t_token_type type)
 {
-	return ((type == PARENTESE_OP && lex_parenthese_op(vector, parent, i)) || \
-			(type == PARENTESE_CL && lex_parenthese_cl(vector, parent, i)) || \
-			(type == LOGICAL_OP && lex_operator(vector, i)) || \
-			(type == RED_OUT && lex_redirect_out(vector, i)) || \
-			(type == RED_IN && lex_redirect_in(vector, i)) || \
-			(type == PIPE && lex_pipe(vector, i)) || \
-			(type == CHAR && lex_string(vector, i)));
+	return ((type == PARENTESE_OP && lex_parenthese_op(vector, parent, i))
+		|| (type == PARENTESE_CL && lex_parenthese_cl(vector, parent, i))
+		|| (type == LOGICAL_OP && lex_operator(vector, i))
+		|| (type == RED_OUT && lex_redirect_out(vector, i))
+		|| (type == RED_IN && lex_redirect_in(vector, i))
+		|| (type == PIPE && lex_pipe(vector, i))
+		|| (type == CHAR && lex_string(vector, i)));
 }
 
 static	unsigned char	lex_last(const size_t *parent, t_token_type type)
 {
-	return (parent[0] != parent[1] || !(type == CHAR || \
-			type == QUOTE || type == PARENTESE_CL || \
-			type == IS_SPACE || type == NONE));
+	return (parent[0] != parent[1] || !(type == CHAR
+			|| type == QUOTE || type == PARENTESE_CL
+			|| type == IS_SPACE || type == NONE));
 }
