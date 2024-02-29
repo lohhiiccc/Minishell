@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 03:06:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:37:01 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 17:33:17 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 #include "libft.h"
 #include "token.h"
 
-int	lex_pipe(t_vector *vector, size_t i)
+int	lex_string(t_vector *vector, size_t i)
 {
-	t_token_type	type;
+	size_t			j;
+	t_token_type	last;
 
 	if (i > 0)
-		type = ((t_token *)vector->addr)[i - 1].type;
+		last = ((t_token *)vector->addr)[i - 1].type;
 	else
-		type = NONE;
-	if (type == CHAR || type == NONE || type == PARENTESE_CL || type == QUOTE)
-		return (0);
-	return (1);
+		last = T_NONE;
+	j = 0;
+	if (last == T_PARENTESE_CL)
+		return (1);
+	while (((t_token *)vector->addr)[i].str[j])
+	{
+		if (((t_token *)vector->addr)[i].str[j] == '&')
+			return (1);
+		j++;
+	}
+	return (0);
 }
