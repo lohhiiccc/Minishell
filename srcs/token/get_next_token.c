@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 15:30:57 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 15:31:40 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_token	get_next_token(char *str)
 {
 	t_token					token;
 	size_t					i;
-	static const t_token	type[] = {{"(", PARENTESE_OP}, \
-	{")", PARENTESE_CL}, {"<<", RED_IN}, {"<", RED_IN}, {">>", RED_OUT}, \
-	{">", RED_OUT}, {"||", LOGICAL_OP}, {"&&", LOGICAL_OP}, {"|", PIPE}, \
+	static const t_token	type[] = {{"(", PARENTESE_OP},
+	{")", PARENTESE_CL}, {"<<", RED_IN}, {"<", RED_IN}, {">>", RED_OUT},
+	{">", RED_OUT}, {"||", LOGICAL_OP}, {"&&", LOGICAL_OP}, {"|", PIPE},
 	{"\"", QUOTE}, {"'", QUOTE}, {" ", IS_SPACE}, {"\t", IS_SPACE}};
 
 	i = 0;
