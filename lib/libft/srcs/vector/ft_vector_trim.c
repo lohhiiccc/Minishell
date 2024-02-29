@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_init.c                                   :+:      :+:    :+:   */
+/*   ft_vector_trim.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 00:56:22 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/27 20:23:48 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/02/29 00:24:17 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/02/29 00:46:29 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_vector_init(t_vector *vector, size_t size)
+void	ft_vector_trim(t_vector *vector)
 {
-	vector->addr = malloc(8 * size);
-	if (!vector->addr)
-		return (-1);
-	vector->size = size;
-	vector->nbr_elem = 0;
-	vector->capacity = 8;
-	return (0);
+	free(vector->addr + ((vector->nbr_elem - 1)* vector->size));
 }

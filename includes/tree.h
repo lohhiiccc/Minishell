@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:34:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 19:27:45 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/29 03:19:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_cmd
 {
 	char	*path;
 	char	**arg;
+	char	**env;
 	int		fd_in;
 	int		fd_out;
 }	t_cmd;

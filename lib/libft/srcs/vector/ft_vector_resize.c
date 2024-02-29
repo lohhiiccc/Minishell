@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 01:14:38 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/20 12:14:44 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/28 21:09:04 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_vector_resize(t_vector *vector, size_t new_size)
 	temp = malloc(new_size * vector->size);
 	if (!temp)
 		return (-1);
-	ft_memcpy(temp, vector->addr, vector->nbr_elem);
+	ft_memcpy(temp, vector->addr, vector->nbr_elem * vector->size);
 	free(vector->addr);
 	vector->addr = temp;
 	vector->capacity = new_size;

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 17:59:37 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/29 00:46:55 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct s_vector
 	size_t	size;
 }	t_vector;
 
+void	ft_vector_trim(t_vector *vector);
+void	ft_vector_delete_last(t_vector *vector);
 int		ft_vector_add(t_vector *vector, void *elem);
-int		vector_init(t_vector *vector, size_t size);
+int		ft_vector_init(t_vector *vector, size_t size);
 int		ft_vector_resize(t_vector *vector, size_t new_size);
 size_t	ft_strclen(const char *str, int c);
 size_t	ft_count_word(const char *str, char c);
