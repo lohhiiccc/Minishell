@@ -4,7 +4,7 @@ LEXERDIR = $(SRCDIR)lexer/
 PARSINGDIR = $(SRCDIR)parsing/
 TOOLSDIR = $(SRCDIR)tools/
 TREEDIR = $(TOOLSDIR)tree/
-TOKENDIR = $(SRCDIR)token/
+TOKENDIR = $(TOOLSDIR)token/
 
 SRCPROMT = prompt
 
