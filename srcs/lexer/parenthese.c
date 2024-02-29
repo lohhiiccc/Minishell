@@ -6,10 +6,11 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:39:28 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 15:23:53 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 #include "token.h"
 
@@ -21,7 +22,7 @@ int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = NONE;
-	if (type == CHAR)
+	if (type == CHAR || type == PARENTESE_CL)
 		return (1);
 	parent[0]++;
 	return (0);
@@ -36,9 +37,7 @@ int	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 	else
 		type = NONE;
 	parent[1]++;
-	if (parent[0] != parent[1] || type == PARENTESE_OP \
-	|| type == LOGICAL_OP || type == PIPE || type == RED_IN \
-	|| type == RED_OUT)
-		return (1);
-	return (0);
+	if ((type == CHAR || type == PARENTESE_CL))
+		return (0);
+	return (1);
 }
