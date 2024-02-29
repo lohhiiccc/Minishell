@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 01:39:33 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 01:59:20 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int	lexer(char *str)
 	ft_memset(parent, 0, sizeof(size_t) * 2);
 	while (i < vector.nbr_elem)
 	{
-		if ((((t_token *)vector.addr)[i].type == PARENTESE_OP && parenthese_op(&vector, parent, i)) || \
-			(((t_token *)vector.addr)[i].type == PARENTESE_CL && parenthese_cl(parent)))
+		if ((((t_token *)vector.addr)[i].type == PARENTESE_OP && lex_parenthese_op(&vector, parent, i)) || \
+			(((t_token *)vector.addr)[i].type == PARENTESE_CL && lex_parenthese_cl(&vector, parent, i)) || \
+			(((t_token *)vector.addr)[i].type == LOGICAL_OP && lex_operator(&vector, i)))
 			return (free_token(&vector), 1);
 
 		i++;
