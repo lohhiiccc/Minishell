@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 00:45:22 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/29 03:06:57 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 15:04:58 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
 #include "libft.h"
-#include "minishell.h"
-#include "lexer.h"
+#include "token.h"
 
-void prompt(void)
+int	lex_pipe(t_vector *vector, size_t i)
 {
-	char *str;
+	t_token_type	type;
 
-	while (1)
-	{
-		str = readline("minichel>");
-		if (ft_strncmp("exit", str, -1) == 0)
-		{
-			free(str);
-			break;
-		}
-		if (str)
-			add_history(str);
-		if (lexer(str))
-			write(2, "syntax error\n", 14);
-		free(str);
-	}
-	rl_clear_history();
+	if (i > 0)
+		type = ((t_token *)vector->addr)[i - 1].type;
+	else
+		type = T_NONE;
+	if (type == T_CHAR || type == T_PARENTESE_CL || type == T_QUOTE)
+		return (0);
+	return (1);
 }

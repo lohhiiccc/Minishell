@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 00:45:22 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 18:21:54 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/28 20:08:43 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
+#include <stddef.h>
 #include "libft.h"
-#include "minishell.h"
-#include "lexer.h"
 
-void prompt(void)
+char	*get_quote(char *str)
 {
-	char *str;
+	size_t	i;
+	char	*res;
 
-	while (1)
-	{
-		str = readline("minichel>");
-		if (ft_strncmp("exit", str, -1) == 0)
-		{
-			free(str);
-			break;
-		}
-		if (str)
-			add_history(str);
-		if (lexer(str))
-			write(2, "syntax error\n", 14);
-		free(str);
-	}
-	rl_clear_history();
+	i = 0;
+	if (str[1])
+		i++;
+	while (str[i] && str[i] != str[0])
+		i++;
+	res = ft_calloc((i + 2), sizeof(char));
+	if (NULL == res)
+		return (NULL);
+	ft_memcpy(res, str, sizeof(char) * i + 1);
+	return (res);
 }

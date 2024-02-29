@@ -6,11 +6,10 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 19:16:57 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/29 19:35:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>
@@ -85,5 +84,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strstrfjoin(char *str1, char *str2, char *str3);
 char	*ft_strfjoin(char *s1, char const *s2);
 char	*ft_itoa(long n);
+char	*ft_strndup(const char *src, size_t n);
 
 #endif

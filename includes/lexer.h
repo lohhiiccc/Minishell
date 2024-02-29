@@ -6,28 +6,21 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:58:03 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 15:49:29 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 17:29:52 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
+# include "stddef.h"
 
-enum e_str_type
-{
-	NONE,
-	T_TOKEN,
-	T_QUOTE,
-	T_PARENT,
-	T_OPERATOR,
-	T_REDIRECTION
-};
+int	lex_string(t_vector *vector, size_t i);
+int	lex_pipe(t_vector *vector, size_t i);
+int	lex_redirect_in(t_vector *vector, size_t i);
+int	lex_redirect_out(t_vector *vector, size_t i);
+int	lex_operator(t_vector *vector, size_t i);
+int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i);
+int	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i);
+int	lex_quote(t_vector *vector, size_t i);
 
-
-int			count_str(char *str, const char *op);
-int lexer_redirection(enum e_str_type *last, enum e_str_type *type, char *str, int *i);
-int			lexer_operator(enum e_str_type *last, enum e_str_type *type, char *str, int *i);
-enum e_str_type get_type(char c);
-void		skip_quote(char *str, int *i);
-int			ft_parenthese(char c, int parenthese[2]);
 #endif

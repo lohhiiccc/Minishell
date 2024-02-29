@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   get_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 00:45:22 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 03:24:58 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
-#include "minishell.h"
-#include "lexer.h"
+#include "token.h"
 
-void prompt(void)
+int	get_tokens(char *str, t_vector *vector)
 {
-	char *str;
+	char	*string;
+	t_token	tmp_token;
+	size_t	i;
 
-	while (1)
+	i = 0;
+	string = str;
+	while (string[i])
 	{
-		str = readline("minichel>");
-		if (ft_strncmp("exit", str, -1) == 0)
-		{
-			free(str);
-			break;
-		}
-		if (str)
-			add_history(str);
-		if (lexer(str))
-			write(2, "syntax error\n", 14);
-		free(str);
+		tmp_token = get_next_token(string + i);
+		if (tmp_token.type != T_IS_SPACE && \
+			-1 == ft_vector_add(vector, &tmp_token))
+			return (-1);
+		i += ft_strlen(tmp_token.str);
+		if (tmp_token.type == T_IS_SPACE)
+			free(tmp_token.str);
 	}
-	rl_clear_history();
+	return (1);
 }

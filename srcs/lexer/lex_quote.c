@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   lex_quote.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 00:45:22 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/29 17:28:53 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 17:43:51 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
 #include "libft.h"
-#include "minishell.h"
-#include "lexer.h"
+#include "token.h"
 
-void prompt(void)
+int	lex_quote(t_vector *vector, size_t i)
 {
-	char *str;
+	t_token_type	last;
+	size_t 			len;
 
-	while (1)
-	{
-		str = readline("minichel>");
-		if (ft_strncmp("exit", str, -1) == 0)
-		{
-			free(str);
-			break;
-		}
-		if (str)
-			add_history(str);
-		if (lexer(str))
-			write(2, "syntax error\n", 14);
-		free(str);
-	}
-	rl_clear_history();
+	len = ft_strlen(((t_token *)vector->addr)[i].str) - 1;
+	if (i > 0)
+		last = ((t_token *)vector->addr)[i - 1].type;
+	else
+		last = T_NONE;
+	if (last == T_PARENTESE_CL || len == 0
+	|| ((t_token *)vector->addr)[i].str[len] != ((t_token *)vector->addr)[i].str[0])
+		return (1);
+	return (0);
 }

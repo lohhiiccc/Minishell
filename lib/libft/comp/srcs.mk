@@ -53,7 +53,7 @@ SRCSTR = ft_count_word \
 		 ft_strfjoin \
 		 ft_strstrfjoin \
 		 ft_strcdup \
-		 ft_strcmp
+		 ft_strndup
 
 SRCWHO = ft_isalnum \
 		 ft_isalpha \
@@ -72,4 +72,5 @@ SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(MEMDIR), $(addsuffix .c, $(SRCMEM))) \
 	   $(addprefix $(SRCDIR)$(PUT_FDDIR), $(addsuffix .c, $(SRCPUTFD))) \
 	   $(addprefix $(SRCDIR)$(STRDIR), $(addsuffix .c, $(SRCSTR))) \
+	   $(addprefix $(SRCDIR)$(WHODIR), $(addsuffix .c, $(SRCWHO))) \
 	   $(addprefix $(SRCDIR)$(VECTORDIR), $(addsuffix .c, $(SRCVECTOR))) \

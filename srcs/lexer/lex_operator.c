@@ -6,41 +6,22 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 16:38:25 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 15:28:49 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "lexer.h"
 #include "libft.h"
+#include "token.h"
 
-int count_str(char *str, const char *op)
+int	lex_operator(t_vector *vector, size_t i)
 {
-	size_t	i;
-	size_t	count;
+	t_token_type	type;
 
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (ft_strlen(str) >= i + count && NULL != ft_strnstr(str + i + count, op, 2))
-		{
-			count++;
-		}
-		i++;
-	}
-	return count;
-}
-
-int lexer_operator(enum e_str_type *last, enum e_str_type *type, char *str, int *i)
-{
-	if (*last == T_OPERATOR || *last == T_REDIRECTION || *last == NONE)
-		return (1);
-	if (str[*i + 1] && str[*i + 2] && str[*i] == str[*i + 1] && (str[*i] == '|' || str[*i] == '&'))
-	{
-		*i +=2 ;
-		*type = get_type(str[*i]);
-	}
-	if (str[*i + 1] && (str[*i] == '&' && str[*i + 1] != '&'))
+	if (i > 0)
+		type = ((t_token *)vector->addr)[i - 1].type;
+	else
+		type = T_NONE;
+	if (type == T_LOGICAL_OP || type == T_RED_OUT || type == T_RED_IN
+		|| type == T_PIPE || type == T_NONE || type == T_PARENTESE_OP)
 		return (1);
 	return (0);
 }

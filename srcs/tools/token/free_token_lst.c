@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   free_token_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 00:45:22 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 23:42:54 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/28 23:52:48 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
 #include "libft.h"
-#include "minishell.h"
-#include "lexer.h"
+#include "token.h"
 
-void prompt(void)
+void	free_token(t_vector *vector)
 {
-	char *str;
+	size_t	i;
 
-	while (1)
+	i = 0;
+	while (i < vector->nbr_elem)
 	{
-		str = readline("minichel>");
-		if (ft_strncmp("exit", str, -1) == 0)
-		{
-			free(str);
-			break;
-		}
-		if (str)
-			add_history(str);
-		if (lexer(str))
-			write(2, "syntax error\n", 14);
-		free(str);
+		free(((t_token *)vector->addr)[i].str);
+		i++;
 	}
-	rl_clear_history();
+	free(vector->addr);
 }

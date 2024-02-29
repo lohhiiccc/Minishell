@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_type.c                                         :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:56 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 17:54:58 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 15:12:37 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/28 18:33:38 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "libft.h"
 
-enum e_str_type get_type(char c)
+char	*ft_strndup(const char *src, size_t n)
 {
-	if ('\'' == c || '"' == c)
-		return (T_QUOTE);
-	else if (c == '|' || c == '&')
-		return (T_OPERATOR);
-	else if (c == '>' || c == '<')
-		return (T_REDIRECTION);
-	else if ('(' == c || ')' == c)
-		return (T_PARENT);
-	return (T_TOKEN);
-}
+	size_t			width;
+	char			*cpy;
 
+	if (!src)
+		return (ft_calloc(1, sizeof(char)));
+	width = ft_strlen(src) + 1;
+	if (width > n)
+		width = n + 1;
+	cpy = malloc((sizeof(char) * width));
+	if (!cpy)
+		return (0);
+	ft_strlcpy(cpy, (char *)src, width);
+	return ((char *)cpy);
+}
