@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_type.c                                         :+:      :+:    :+:   */
+/*   get_next_token.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:56 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/28 23:27:28 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/28 23:51:21 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include "token.h"
 #include "libft.h"
-#include "lexer.h"
 
-void	fill_token(char *str, t_token *token, size_t i, const t_token *type);
+static void	fill_token(char *str, t_token *token, size_t i, const t_token *type);
 
 t_token	get_next_token(char *str)
 {
@@ -44,7 +45,7 @@ t_token	get_next_token(char *str)
 	return (token);
 }
 
-void	fill_token(char *str, t_token *token, size_t i, const t_token *type)
+static void	fill_token(char *str, t_token *token, size_t i, const t_token *type)
 {
 	token->type = type[i].type;
 	if (type[i].type == QUOTE)
