@@ -11,6 +11,7 @@ SRCPROMT = prompt
 
 SRCLEXER = lexer \
 		   lex_pipe \
+		   lex_quote \
 		   lex_string \
 		   lex_operator \
 		   lex_parenthese \
