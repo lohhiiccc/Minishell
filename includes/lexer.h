@@ -16,6 +16,6 @@
 
 
 int	parenthese_op(t_vector *vector, size_t *parent, size_t i);
-int	parenthese_cl(t_vector *vector, size_t *parent, size_t i);
+int parenthese_cl(size_t *parent);
 
 #endif
