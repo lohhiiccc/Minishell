@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 15:28:54 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 18:56:44 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 	else
 		type = T_NONE;
 	parent[1]++;
-	if ((type == T_CHAR || type == T_PARENTESE_CL))
+	if ((type == T_CHAR || type == T_QUOTE || type == T_PARENTESE_CL))
 		return (0);
 	return (1);
 }
