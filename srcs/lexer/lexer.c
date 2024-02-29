@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 02:20:27 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 03:25:19 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 #include "token.h"
 #include "lexer.h"
 
-//todo: si type == CHAR verifier quil ny a pas de &
+//todo: si type == CHAR verifier quil ny a pas de &a
+//todo: fix &
+//todo: check type[last]
 int	lexer(char *str)
 {
-	t_vector	vector;
-	size_t 		i;
-	size_t 		parent[2];
+	t_vector		vector;
+	size_t 			i;
+	size_t 			parent[2];
+	t_token_type	type;
 
 	if (-1 == vector_init(&vector, sizeof(t_token)))
 		return (0);
@@ -29,10 +32,13 @@ int	lexer(char *str)
 	ft_memset(parent, 0, sizeof(size_t) * 2);
 	while (i < vector.nbr_elem)
 	{
-		if ((((t_token *)vector.addr)[i].type == PARENTESE_OP && lex_parenthese_op(&vector, parent, i)) || \
-			(((t_token *)vector.addr)[i].type == PARENTESE_CL && lex_parenthese_cl(&vector, parent, i)) || \
-			(((t_token *)vector.addr)[i].type == LOGICAL_OP && lex_operator(&vector, i)) || \
-			(((t_token *)vector.addr)[i].type == RED_OUT && lex_redirect_out(&vector, i)))
+		type = ((t_token *)vector.addr)[i].type;
+		if ((type == PARENTESE_OP && lex_parenthese_op(&vector, parent, i)) || \
+			(type == PARENTESE_CL && lex_parenthese_cl(&vector, parent, i)) || \
+			(type == LOGICAL_OP && lex_operator(&vector, i)) || \
+			(type == RED_OUT && lex_redirect_out(&vector, i)) || \
+			(type == RED_IN && lex_redirect_in(&vector, i)) || \
+			(type == PIPE && lex_pipe(&vector, i)))
 			return (free_token(&vector), 1);
 
 		i++;
