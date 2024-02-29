@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_type.c                                         :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:56 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/26 17:54:58 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/29 03:06:57 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 04:37:01 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
+#include "token.h"
 
-#include "lexer.h"
-
-enum e_str_type get_type(char c)
+int	lex_pipe(t_vector *vector, size_t i)
 {
-	if ('\'' == c || '"' == c)
-		return (T_QUOTE);
-	else if (c == '|' || c == '&')
-		return (T_OPERATOR);
-	else if (c == '>' || c == '<')
-		return (T_REDIRECTION);
-	else if ('(' == c || ')' == c)
-		return (T_PARENT);
-	return (T_TOKEN);
-}
+	t_token_type	type;
 
+	if (i > 0)
+		type = ((t_token *)vector->addr)[i - 1].type;
+	else
+		type = NONE;
+	if (type == CHAR || type == NONE || type == PARENTESE_CL || type == QUOTE)
+		return (0);
+	return (1);
+}

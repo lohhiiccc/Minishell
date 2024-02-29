@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   get_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:39:02 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 03:24:58 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 #include "libft.h"
 #include "token.h"
 
-int	lex_operator(t_vector *vector, size_t i)
+int	get_tokens(char *str, t_vector *vector)
 {
-	t_token_type	type;
+	char	*string;
+	t_token	tmp_token;
+	size_t	i;
 
-	if (i > 0)
-		type = ((t_token *)vector->addr)[i - 1].type;
-	else
-		return (0);
-	if (type == LOGICAL_OP || type == RED_OUT || type == RED_IN || type == PIPE)
-		return (1);
-	return (0);
+	i = 0;
+	string = str;
+	while (string[i])
+	{
+		tmp_token = get_next_token(string + i);
+		if (tmp_token.type != IS_SPACE && \
+			-1 == ft_vector_add(vector, &tmp_token))
+			return (-1);
+		i += ft_strlen(tmp_token.str);
+		if (tmp_token.type == IS_SPACE)
+			free(tmp_token.str);
+	}
+	return (1);
 }

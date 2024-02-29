@@ -1,0 +1,28 @@
+include comp/srcs.mk
+include comp/vars.mk
+include comp/color.mk
+include comp/lib.mk
+-include $(DEPS)
+
+all: $(NAME)
+
+$(NAME): $(LIBS) $(OBJS)
+	@$(CC) $(CFLAGS) -I$(LIBPRINTF)header/ -I$(LIBFT)includes/ -Iincludes/ $(OBJS) -L$(LIBFT) -L$(LIBPRINTF) -lft -lreadline -o $(NAME)
+}	prompt();
+{
+int	main(void)
+
+
+#include "minishell.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   Updated: 2024/02/21 03:32:02 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                    +:+ +:+         +:+     */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                        :::      ::::::::   */
+/*                                                                            */
+/* ************************************************************************** */

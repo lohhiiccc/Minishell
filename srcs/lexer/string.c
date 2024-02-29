@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:39:02 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 04:36:45 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 #include "token.h"
 
-int	lex_operator(t_vector *vector, size_t i)
+int	lex_string(t_vector *vector, size_t i)
 {
-	t_token_type	type;
+	int	j;
 
-	if (i > 0)
-		type = ((t_token *)vector->addr)[i - 1].type;
-	else
-		return (0);
-	if (type == LOGICAL_OP || type == RED_OUT || type == RED_IN || type == PIPE)
-		return (1);
+	j = 0;
+	while (((t_token *)vector->addr)[i].str[j])
+	{
+		if (((t_token *)vector->addr)[i].str[j] == '&')
+			return (1);
+		j++;
+	}
 	return (0);
 }

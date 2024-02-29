@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   free_token_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:39:02 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 23:42:54 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/28 23:52:48 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 #include "token.h"
 
-int	lex_operator(t_vector *vector, size_t i)
+void	free_token(t_vector *vector)
 {
-	t_token_type	type;
+	size_t	i;
 
-	if (i > 0)
-		type = ((t_token *)vector->addr)[i - 1].type;
-	else
-		return (0);
-	if (type == LOGICAL_OP || type == RED_OUT || type == RED_IN || type == PIPE)
-		return (1);
-	return (0);
+	i = 0;
+	while (i < vector->nbr_elem)
+	{
+		free(((t_token *)vector->addr)[i].str);
+		i++;
+	}
+	free(vector->addr);
 }

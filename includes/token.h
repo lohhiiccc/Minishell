@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:39:02 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/28 23:47:51 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 04:34:56 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-#include "token.h"
 
-int	lex_operator(t_vector *vector, size_t i)
+#ifndef TOKEN_H
+# define TOKEN_H
+
+# include "libft.h"
+
+typedef enum e_token_type
 {
-	t_token_type	type;
+	NONE,
+	PARENTESE_OP,
+	PARENTESE_CL,
+	RED_IN,
+	RED_OUT,
+	PIPE,
+	LOGICAL_OP,
+	QUOTE,
+	IS_SPACE,
+	CHAR
+}	t_token_type;
 
-	if (i > 0)
-		type = ((t_token *)vector->addr)[i - 1].type;
-	else
-		return (0);
-	if (type == LOGICAL_OP || type == RED_OUT || type == RED_IN || type == PIPE)
-		return (1);
-	return (0);
-}
+typedef struct s_token
+{
+	char			*str;
+	t_token_type	type;
+}					t_token;
+
+int		get_tokens(char *str, t_vector *vector);
+void	free_token(t_vector *vector);
+t_token	get_next_token(char *str);
+char	*get_quote(char *str);
+
+#endif
