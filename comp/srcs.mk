@@ -5,6 +5,7 @@ PARSINGDIR = $(SRCDIR)parsing/
 TOOLSDIR = $(SRCDIR)tools/
 TREEDIR = $(TOOLSDIR)tree/
 TOKENDIR = $(TOOLSDIR)token/
+BUILD_INDIR= $(SRCDIR)build-in/
 
 SRCPROMT = prompt
 
@@ -26,9 +27,18 @@ SRCTOKEN = free_token_lst \
 		   get_next_token \
 		   get_tokens
 
+SRCBUILD_IN = cd \
+			  env \
+			  pwd \
+			  exit \
+			  echo \
+			  unset \
+			  export_\
+
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
 	   $(addprefix $(PARSINGDIR), $(addsuffix .c, $(SRCPARSING))) \
 	   $(addprefix $(TREEDIR), $(addsuffix .c, $(SRCTREE))) \
 	   $(addprefix $(TOKENDIR), $(addsuffix .c, $(SRCTOKEN))) \
+	   $(addprefix $(BUILD_INDIR), $(addsuffix .c, $(SRCBUILD_IN))) \
 	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER)))
