@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 15:54:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/28 15:54:37 by lrio             ###   ########.fr       */
+/*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
+/*   Updated: 2024/02/29 19:39:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -29,8 +30,10 @@ typedef struct s_vector
 	size_t	size;
 }	t_vector;
 
+void	ft_vector_trim(t_vector *vector);
+void	ft_vector_delete_last(t_vector *vector);
 int		ft_vector_add(t_vector *vector, void *elem);
-int		vector_init(t_vector *vector, size_t size);
+int		ft_vector_init(t_vector *vector, size_t size);
 int		ft_vector_resize(t_vector *vector, size_t new_size);
 size_t	ft_strclen(const char *str, int c);
 size_t	ft_count_word(const char *str, char c);
@@ -45,6 +48,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(void *content);
 int		ft_putfloat_fd(double num, int fd);
 int		ft_putnbr_fd(long n, int fd);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_putchar_fd(char c, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

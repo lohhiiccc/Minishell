@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 17:30:22 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 19:41:35 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	lexer(char *str)
 	size_t			parent[2];
 	t_token_type	type;
 
-	if (!str[0] || -1 == vector_init(&vector, sizeof(t_token)))
+	if (!str[0] || -1 == ft_vector_init(&vector, sizeof(t_token)))
 		return (0);
 	if (-1 == get_tokens(str, &vector))
 		return (0);

@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_init.c                                   :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 00:56:22 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/27 20:23:48 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/02/29 19:14:41 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/02/29 19:16:29 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_vector_init(t_vector *vector, size_t size)
+int	ft_strcmp(char *s1, char *s2)
 {
-	vector->addr = malloc(8 * size);
-	if (!vector->addr)
-		return (-1);
-	vector->size = size;
-	vector->nbr_elem = 0;
-	vector->capacity = 8;
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s1[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
 }
