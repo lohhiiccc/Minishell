@@ -19,8 +19,8 @@ int	lex_pipe(t_vector *vector, size_t i)
 	if (i > 0)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
-		type = NONE;
-	if (type == CHAR || type == PARENTESE_CL || type == QUOTE)
+		type = T_NONE;
+	if (type == T_CHAR || type == T_PARENTESE_CL || type == T_QUOTE)
 		return (0);
 	return (1);
 }

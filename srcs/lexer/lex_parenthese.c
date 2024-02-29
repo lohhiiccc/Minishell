@@ -20,8 +20,8 @@ int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 	if (i > 0)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
-		type = NONE;
-	if (type == CHAR || type == PARENTESE_CL)
+		type = T_NONE;
+	if (type == T_CHAR || type == T_PARENTESE_CL)
 		return (1);
 	parent[0]++;
 	return (0);
@@ -34,9 +34,9 @@ int	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 	if (i > 0)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
-		type = NONE;
+		type = T_NONE;
 	parent[1]++;
-	if ((type == CHAR || type == PARENTESE_CL))
+	if ((type == T_CHAR || type == T_PARENTESE_CL))
 		return (0);
 	return (1);
 }

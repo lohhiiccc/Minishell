@@ -20,9 +20,9 @@ int	lex_string(t_vector *vector, size_t i)
 	if (i > 0)
 		last = ((t_token *)vector->addr)[i - 1].type;
 	else
-		last = NONE;
+		last = T_NONE;
 	j = 0;
-	if (last == PARENTESE_CL)
+	if (last == T_PARENTESE_CL)
 		return (1);
 	while (((t_token *)vector->addr)[i].str[j])
 	{

@@ -19,9 +19,9 @@ int	lex_operator(t_vector *vector, size_t i)
 	if (i > 0)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
-		type = NONE;
-	if (type == LOGICAL_OP || type == RED_OUT || type == RED_IN
-		|| type == PIPE || type == NONE || type == PARENTESE_OP)
+		type = T_NONE;
+	if (type == T_LOGICAL_OP || type == T_RED_OUT || type == T_RED_IN
+		|| type == T_PIPE || type == T_NONE || type == T_PARENTESE_OP)
 		return (1);
 	return (0);
 }
