@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:16:15 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/29 03:27:41 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/29 19:24:01 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,35 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		close_vector_fd(fd_in);
 		close_vector_fd(fd_out);
 		if (!((t_cmd *)tree->structur)->path)
-			//exec builtin
+			exec_builtin(((t_cmd *)tree->structur)->arg[0]);
 		else
 			execve(((t_cmd *)tree->structur)->path, ((t_cmd *)tree->structur)->arg, ((t_cmd *)tree->structur)->env);
 	}
 }
+
+int	exec_builtin(char *str)
+{
+	if (!ft_strcmp(str, "echo"))
+		ft_exit();
+	else if (!ft_strcmp(str, "cd"))
+		ft_cd();
+	else if (!ft_strcmp(str, "pwd"))
+		ft_pwd();
+	else if (!ft_strcmp(str, "export"))
+		ft_export();
+	else if (!ft_strcmp(str, "unset"))
+		ft_unset();
+	else if (!ft_strcmp(str, "env"))
+		ft_env();
+	else if (!ft_strcmp(str, "exit"))
+		ft_exit();
+}
+
+//echo
+//cd
+//pwd
+//export
+//unset
+//env
+//exit
+

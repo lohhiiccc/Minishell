@@ -6,10 +6,11 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 19:35:09 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/02/29 19:39:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>
