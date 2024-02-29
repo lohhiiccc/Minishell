@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:58:03 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 03:09:39 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 04:00:45 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEXER_H
 # include "stddef.h"
 
+int	lex_string(t_vector *vector, size_t i);
 int	lex_pipe(t_vector *vector, size_t i);
 int	lex_redirect_in(t_vector *vector, size_t i);
 int	lex_redirect_out(t_vector *vector, size_t i);

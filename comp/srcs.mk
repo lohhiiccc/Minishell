@@ -12,7 +12,8 @@ SRCLEXER = lexer \
 		   operator \
 		   parenthese \
 		   redirection \
-		   pipe
+		   pipe \
+		   string
 
 SRCPARSING = parsing
 

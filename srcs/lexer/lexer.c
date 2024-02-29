@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 03:25:19 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 04:01:09 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	lexer(char *str)
 			(type == LOGICAL_OP && lex_operator(&vector, i)) || \
 			(type == RED_OUT && lex_redirect_out(&vector, i)) || \
 			(type == RED_IN && lex_redirect_in(&vector, i)) || \
-			(type == PIPE && lex_pipe(&vector, i)))
+			(type == PIPE && lex_pipe(&vector, i)) || \
+			(type == CHAR && lex_string(&vector, i)))
 			return (free_token(&vector), 1);
 
 		i++;

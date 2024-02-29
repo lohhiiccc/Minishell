@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:42:20 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 03:03:02 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 03:58:12 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
@@ -24,6 +24,7 @@ int	lex_redirect_in(t_vector *vector, size_t i)
 	return (0);
 
 }
+
 int	lex_redirect_out(t_vector *vector, size_t i)
 {
 	t_token_type type;
