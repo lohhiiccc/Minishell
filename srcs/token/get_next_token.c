@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 03:29:47 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 04:36:08 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "token.h"
 #include "libft.h"
 
-static t_token fill_token(char *str, t_token *token, size_t i, const t_token *type);
+static t_token	fill_token(char *str, t_token *token, size_t i, \
+							const t_token *type);
 
 t_token	get_next_token(char *str)
 {
@@ -44,7 +45,8 @@ t_token	get_next_token(char *str)
 	return (token);
 }
 
-static t_token fill_token(char *str, t_token *token, size_t i, const t_token *type)
+static t_token	fill_token(char *str, t_token *token, size_t i, \
+							const t_token *type)
 {
 	token->type = type[i].type;
 	if (type[i].type == QUOTE)

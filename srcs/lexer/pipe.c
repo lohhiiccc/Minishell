@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:06:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 03:09:34 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 04:37:01 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -14,7 +14,7 @@
 
 int	lex_pipe(t_vector *vector, size_t i)
 {
-	t_token_type type;
+	t_token_type	type;
 
 	if (i > 0)
 		type = ((t_token *)vector->addr)[i - 1].type;

@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 03:55:27 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 04:39:28 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 {
-	t_token_type type;
+	t_token_type	type;
 
 	if (i > 0)
 		type = ((t_token *)vector->addr)[i - 1].type;
@@ -27,9 +27,9 @@ int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 	return (0);
 }
 
-int lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
+int	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 {
-	t_token_type type;
+	t_token_type	type;
 
 	if (i > 0)
 		type = ((t_token *)vector->addr)[i - 1].type;
