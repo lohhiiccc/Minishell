@@ -6,10 +6,11 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 04:01:09 by lrio             ###   ########.fr       */
+/*   Updated: 2024/02/29 04:26:46 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 #include "token.h"
 #include "lexer.h"
@@ -24,7 +25,7 @@ int	lexer(char *str)
 	size_t 			parent[2];
 	t_token_type	type;
 
-	if (-1 == vector_init(&vector, sizeof(t_token)))
+	if (!str[0] || -1 == vector_init(&vector, sizeof(t_token)))
 		return (0);
 	if (-1 == get_tokens(str, &vector))
 		return (0);
@@ -41,12 +42,11 @@ int	lexer(char *str)
 			(type == PIPE && lex_pipe(&vector, i)) || \
 			(type == CHAR && lex_string(&vector, i)))
 			return (free_token(&vector), 1);
-
 		i++;
 	}
-	if (parent[0] != parent[1])
+	type = ((t_token *)vector.addr)[vector.nbr_elem - 1].type;
+	if (parent[0] != parent[1] || !(type == CHAR || type == QUOTE || type == PARENTESE_CL || type == IS_SPACE || type == NONE))
 		return (free_token(&vector), 1);
-
 	free_token(&vector);
 	return (0);
 }
