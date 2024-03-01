@@ -6,6 +6,7 @@ TOOLSDIR = $(SRCDIR)tools/
 TREEDIR = $(TOOLSDIR)tree/
 TOKENDIR = $(TOOLSDIR)token/
 BUILD_INDIR= $(SRCDIR)build-in/
+EXECDIR= $(SRCDIR)exec/
 
 SRCPROMT = prompt
 
@@ -36,10 +37,13 @@ SRCBUILD_IN = cd \
 			  unset \
 			  export_\
 
+SRCEXEC = exec
+
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
 	   $(addprefix $(PARSINGDIR), $(addsuffix .c, $(SRCPARSING))) \
 	   $(addprefix $(TREEDIR), $(addsuffix .c, $(SRCTREE))) \
 	   $(addprefix $(TOKENDIR), $(addsuffix .c, $(SRCTOKEN))) \
 	   $(addprefix $(BUILD_INDIR), $(addsuffix .c, $(SRCBUILD_IN))) \
-	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER)))
+	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER))) \
+	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC)))

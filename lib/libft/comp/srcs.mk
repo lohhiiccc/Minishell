@@ -53,7 +53,8 @@ SRCSTR = ft_count_word \
 		 ft_strfjoin \
 		 ft_strstrfjoin \
 		 ft_strcdup \
-		 ft_strndup
+		 ft_strndup \
+		 ft_strcmp
 
 SRCWHO = ft_isalnum \
 		 ft_isalpha \
