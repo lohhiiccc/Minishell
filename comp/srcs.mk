@@ -34,7 +34,7 @@ SRCBUILD_IN = cd \
 			  exit \
 			  echo \
 			  unset \
-			  export_\
+			  export \
 
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
