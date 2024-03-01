@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/01 14:47:52 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/01 15:31:04 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_echo(char **arg)
 		ft_putstr_fd(arg[i], 1);
 		i++;
 	}
-	if (ft_strcmp(arg[1] && !arg[1], "-n"))
+	if (arg[1] && !ft_strcmp(arg[1], "-n"))
 		return (0);
 	write(1, "\n", 1);
 	return (0);
