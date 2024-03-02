@@ -6,19 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/01 05:28:51 by lrio             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 19:46:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 19:41:35 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/02 02:34:14 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +46,8 @@ int lexer(char *str, t_vector *tokens)
 static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent, \
 									t_token_type type)
 {
-	return ((type == T_PARENTESE_OP && lex_parenthese_op(vector, parent, i))
-		|| (type == T_PARENTESE_CL && lex_parenthese_cl(vector, parent, i))
+	return ((type == T_PARENTHESE_OP && lex_parenthese_op(vector, parent, i))
+		|| (type == T_PARENTHESE_CL && lex_parenthese_cl(vector, parent, i))
 		|| (type == T_LOGICAL_OP && lex_operator(vector, i))
 		|| (type == T_RED_OUT && lex_redirect_out(vector, i))
 		|| (type == T_RED_IN && lex_redirect_in(vector, i))
@@ -71,6 +59,6 @@ static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent, \
 static	unsigned char	lex_last(const size_t *parent, t_token_type type)
 {
 	return (parent[0] != parent[1] || !(type == T_CHAR
-			|| type == T_QUOTE || type == T_PARENTESE_CL
+			|| type == T_QUOTE || type == T_PARENTHESE_CL
 			|| type == T_IS_SPACE || type == T_NONE));
 }

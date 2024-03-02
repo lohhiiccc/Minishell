@@ -18,7 +18,8 @@ SRCLEXER = lexer \
 		   lex_parenthese \
 		   lex_redirection \
 
-SRCPARSING = parsing
+SRCPARSING = parsing \
+			 pars_parenthese
 
 SRCTREE =  ft_clean_tree \
 		   ft_join_tree \
