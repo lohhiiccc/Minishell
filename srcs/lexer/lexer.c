@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 07:19:13 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 20:24:45 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ int lexer(char *str, t_vector *tokens)
 	t_token_type	type;
 
 	if (!str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
-		return (0);
+		return (-1);
 	if (-1 == get_tokens(str, tokens)) //todo: a verifier car " ok
-		return (0);
+		return (write(2, "error\n", 6), -1);
 	i = 0;
 	ft_memset(parent, 0, sizeof(size_t) * 2);
 	while (i < tokens->nbr_elem)
 	{
 		type = ((t_token *)tokens->addr)[i].type;
 		if (lex_global(tokens, i, parent, type))
-			return (1);
+			return (write(2, "error\n", 6));
 		i++;
 	}
 	type = ((t_token *)tokens->addr)[tokens->nbr_elem - 1].type;
 	if (lex_last(parent, type))
-		return (1);
+		return (write(2, "error\n", 6));
 	return (0);
 }
 

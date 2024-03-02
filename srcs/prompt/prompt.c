@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 05:32:55 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 19:27:23 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,8 @@ void prompt(void)
 		}
 		if (str)
 			add_history(str);
-		if (lexer(str, &tokens))
-		{
-			free(str);
-			free_token(&tokens);
-			write(2, "syntax error\n", 14);
-			continue ;
-		}
+		if (lexer(str, &tokens) == -1)
+			continue;
 //		next_parent(&tokens);
 		free(str);
 		free_token(&tokens);

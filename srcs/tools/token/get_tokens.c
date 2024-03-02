@@ -6,14 +6,14 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 07:20:11 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 20:03:07 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include "libft.h"
 #include "token.h"
 
-//todo: link les quote
+//todo: link les quote (en cour de travaille)
 int get_tokens(char *str, t_vector *vector)
 {
 	char	*string;

@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:21:54 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 07:17:48 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 20:25:44 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stddef.h>
@@ -28,7 +28,7 @@ static size_t	get_len(char *str, unsigned char *error)
 		return (i + 1 + get_len(str + 1 + i, error));
 	return (i + 1);
 }
-
+//todo : revoir la gestion d'erreur
 char	*get_quote(char *str)
 {
 	size_t			i;
@@ -39,9 +39,10 @@ char	*get_quote(char *str)
 	i = get_len(str, &error);
 	if (error || (str[i - 1] != '\'' && str[i - 1] != '"'))
 		return (NULL);
-	res = malloc(sizeof(char) * i + 1);
+	res = malloc((i + 1) * sizeof(char));
 	if (NULL == res)
 		return (NULL);
-	ft_memcpy(res, str, sizeof(char ) * i + 1);
+	ft_memcpy(res, str, sizeof(char ) * i);
+	res[i] = '\0';
 	return (res);
 }
