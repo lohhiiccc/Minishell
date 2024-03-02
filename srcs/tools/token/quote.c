@@ -6,25 +6,40 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:21:54 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/28 20:08:43 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 05:42:23 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stddef.h>
 #include "libft.h"
 
-char	*get_quote(char *str)
+static size_t get_len(char *str, unsigned char *error)
 {
-	size_t	i;
-	char	*res;
+	size_t i;
 
-	i = 0;
-	if (str[1])
+	i = 1;
+	if (str[0] != '\'' && str[0] != '"')
+		return 0;
+	while (str[i - 1] && str[i] && str[i] != str[0])
 		i++;
-	while (str[i] && str[i] != str[0])
-		i++;
-	res = ft_calloc((i + 2), sizeof(char));
-	if (NULL == res)
-		return (NULL);
-	ft_memcpy(res, str, sizeof(char) * i + 1);
+	if (str[i] != str[0])
+		*error = 1;
+	if (str[i] == '\'' || str[i] == '"')
+		return (i + 1 + get_len(str + 1 + i, error));
+	return (i + 1);
+}
+//
+char *get_quote(char *str)
+{
+	size_t i;
+	char *res;
+	unsigned char error;
+
+	error = 0;
+	i = get_len(str, &error);
+	res = malloc(sizeof(char) * i);
+	if (NULL == res || error)
+		return (free(res), NULL);
+
+	ft_memcpy(res, str, sizeof(char ) * i + 1);
 	return (res);
 }

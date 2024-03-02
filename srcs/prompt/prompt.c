@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 02:36:23 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 05:32:55 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void prompt(void)
 {
 	char *str;
 	t_vector tokens;
-
 	tokens.nbr_elem = 0;
 	while (1)
 	{
@@ -42,7 +41,7 @@ void prompt(void)
 			write(2, "syntax error\n", 14);
 			continue ;
 		}
-		next_parent(&tokens);
+//		next_parent(&tokens);
 		free(str);
 		free_token(&tokens);
 	}

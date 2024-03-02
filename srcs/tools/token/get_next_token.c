@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 02:41:04 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 05:34:01 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_token get_next_token(char *str, char prev)
 			return (fill_token(str, &token, &i, type));
 		i++;
 	}
-	i = 0;
+	i = 0;//may enlever les quote de la boucle while
 	while (str[i] && str[i] != '|' && str[i] != '&' && str[i] != '>'
 		&& str[i] != '>' && str[i] != ' ' && str[i] != '\t' && str[i] != '('
 		&& str[i] != ')' && str[i] != '\'' && str[i] != '"')

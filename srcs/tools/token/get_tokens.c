@@ -12,7 +12,7 @@
 #include "libft.h"
 #include "token.h"
 
-//todo remettre les isspace avec une option de facon a ne pas en avoir plus de un a la suite
+//todo: link les quote
 int get_tokens(char *str, t_vector *vector)
 {
 	char	*string;
