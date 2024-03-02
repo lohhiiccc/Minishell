@@ -38,7 +38,7 @@ typedef struct s_token
 
 int get_tokens(char *str, t_vector *vector);
 void	free_token(t_vector *vector);
-t_token get_next_token(char *str, char prev);
+int get_next_token(char *str, char prev, t_token *tkn);
 char	*get_quote(char *str);
 
 #endif

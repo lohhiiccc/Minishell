@@ -6,11 +6,10 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 05:42:34 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 07:19:13 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 #include "token.h"
 #include "lexer.h"
@@ -18,7 +17,7 @@
 static unsigned char	lex_last(const size_t *parent, t_token_type type);
 static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent,
 							t_token_type type);
-
+//todo: trouver un moyen de faire en sorte que 'mak'e soit different de 'mak' e	peut etre remettre les token isspace a la fin de la verife de syntax
 int lexer(char *str, t_vector *tokens)
 {
 	size_t			i;
@@ -27,7 +26,7 @@ int lexer(char *str, t_vector *tokens)
 
 	if (!str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
 		return (0);
-	if (-1 == get_tokens(str, tokens))
+	if (-1 == get_tokens(str, tokens)) //todo: a verifier car " ok
 		return (0);
 	i = 0;
 	ft_memset(parent, 0, sizeof(size_t) * 2);
