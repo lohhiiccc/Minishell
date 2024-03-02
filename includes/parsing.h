@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 16:40:48 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/01 20:56:20 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/01 21:08:11 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/01 21:08:24 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
-#include "tree.h"
 #include "libft.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-/*
- * (ls || cat) > "file"
- * 3-2-8-2-4-6-1
- * 1 1 1 1 1 0 0
- *
- * (ls || ((cat && rm out) > test)) | grep ls
- * 3-2-8-3-3-2-8-3-3-4-6-2-4-4-7-2-2
- * 1 1 1 2 3 3 3 3 3 2 2 2 1 0 0 0 0
- *
- *
- * (ls || ((cat && rm out) > test)) | grep ls
- * (ls || ((cat && rm out) > test))
- * ((cat && rm out) > test)
- * (cat && rm out)
- *
- *
- *
- *
- */
-
-//t_tree *parsing(t_vector *tokens)
-//{
-//
-//}
+t_vector *next_parent(t_vector *tokens);
+#endif
