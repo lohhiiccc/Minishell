@@ -6,14 +6,14 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 03:24:58 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/02 02:39:13 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 #include "libft.h"
 #include "token.h"
 
-int	get_tokens(char *str, t_vector *vector)
+//todo remettre les isspace avec une option de facon a ne pas en avoir plus de un a la suite
+int get_tokens(char *str, t_vector *vector)
 {
 	char	*string;
 	t_token	tmp_token;
@@ -23,7 +23,10 @@ int	get_tokens(char *str, t_vector *vector)
 	string = str;
 	while (string[i])
 	{
-		tmp_token = get_next_token(string + i);
+		if (i == 0)
+			tmp_token = get_next_token(string + i, str[i]);
+		else
+			tmp_token = get_next_token(string + i, str[i - 1]);
 		if (tmp_token.type != T_IS_SPACE && \
 			-1 == ft_vector_add(vector, &tmp_token))
 			return (-1);
