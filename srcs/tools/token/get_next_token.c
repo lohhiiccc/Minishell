@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 20:53:10 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 22:24:38 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int get_next_token(char *str, t_token *tkn)
 	tkn->str = ft_strndup(str, i);
 	return (0);
 }
+
 static int	fill_token(char *str, t_token *token,
 							t_token_type type, char *s)
 {

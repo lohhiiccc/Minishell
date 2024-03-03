@@ -1,6 +1,7 @@
 SRCDIR = srcs/
 PROMPTDIR = $(SRCDIR)prompt/
 LEXERDIR = $(SRCDIR)lexer/
+LEXSYNTAXDIR = $(LEXERDIR)syntax_checker/
 PARSINGDIR = $(SRCDIR)parsing/
 TOOLSDIR = $(SRCDIR)tools/
 TREEDIR = $(TOOLSDIR)tree/
@@ -11,12 +12,13 @@ EXECDIR= $(SRCDIR)exec/
 SRCPROMT = prompt
 
 SRCLEXER = lexer \
-		   lex_pipe \
-		   lex_quote \
-		   lex_string \
-		   lex_operator \
-		   lex_parenthese \
-		   lex_redirection \
+
+SRCLEXSYNTAX = lex_pipe \
+			   lex_quote \
+			   lex_string \
+			   lex_operator \
+			   lex_parenthese \
+		   	   lex_redirection
 
 SRCPARSING = parsing \
 			 pars_parenthese
@@ -47,4 +49,5 @@ SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(TOKENDIR), $(addsuffix .c, $(SRCTOKEN))) \
 	   $(addprefix $(BUILD_INDIR), $(addsuffix .c, $(SRCBUILD_IN))) \
 	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER))) \
+	   $(addprefix $(LEXSYNTAXDIR), $(addsuffix .c, $(SRCLEXSYNTAX))) \
 	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC)))

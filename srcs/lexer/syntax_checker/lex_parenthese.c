@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection.c                                      :+:      :+:    :+:   */
+/*   parenthese.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 15:42:20 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 00:06:38 by lrio             ###   ########.fr       */
+/*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/03 22:18:03 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 #include "token.h"
 
-int	lex_redirect_in(t_vector *vector, size_t i)
+int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 
@@ -19,12 +21,13 @@ int	lex_redirect_in(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (type == T_RED_IN || type == T_RED_OUT)
+	if (type == T_CMD || type == T_FILES || type == T_PARENTHESE_CL)
 		return (1);
+	parent[0]++;
 	return (0);
 }
 
-int	lex_redirect_out(t_vector *vector, size_t i)
+int	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 
@@ -32,7 +35,8 @@ int	lex_redirect_out(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if ( type == T_RED_OUT || type == T_RED_IN)
-		return (1);
-	return (0);
+	parent[1]++;
+	if ((type == T_CMD || type == T_FILES || type == T_QUOTE || type == T_PARENTHESE_CL))
+		return (0);
+	return (1);
 }
