@@ -20,7 +20,7 @@ int	lex_pipe(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (type == T_CHAR || type == T_PARENTHESE_CL || type == T_QUOTE)
+	if (type == T_CMD || type == T_PARENTHESE_CL || type == T_QUOTE)
 		return (0);
 	return (1);
 }

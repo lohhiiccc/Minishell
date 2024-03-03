@@ -6,43 +6,30 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:21:54 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 20:25:44 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 19:12:39 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stddef.h>
-#include <stdio.h>
-#include "libft.h"
 
-static size_t	get_len(char *str, unsigned char *error)
+int quote_started(unsigned char reset, char c)
 {
-	size_t	i;
+	static char	lastquote = 0;
 
-	i = 1;
-	if (str[0] != '\'' && str[0] != '"')
-		return 0;
-	while (str[i - 1] && str[i] && str[i] != str[0])
-		i++;
-	if (str[i] != str[0])
-		*error = 1;
-	if (str[i] == '\'' || str[i] == '"')
-		return (i + 1 + get_len(str + 1 + i, error));
-	return (i + 1);
-}
-//todo : revoir la gestion d'erreur
-char	*get_quote(char *str)
-{
-	size_t			i;
-	char			*res;
-	unsigned char	error;
-
-	error = 0;
-	i = get_len(str, &error);
-	if (error || (str[i - 1] != '\'' && str[i - 1] != '"'))
-		return (NULL);
-	res = malloc((i + 1) * sizeof(char));
-	if (NULL == res)
-		return (NULL);
-	ft_memcpy(res, str, sizeof(char ) * i);
-	res[i] = '\0';
-	return (res);
+	if (reset || c == '\0')
+	{
+		lastquote = 0;
+		return (0);
+	}
+	if ((c == '\'' || c == '"') && lastquote == 0)
+		lastquote = c;
+	else if ((c == '\'' || c == '"') && lastquote != 0)
+	{
+		if (lastquote == c)
+		{
+			lastquote = 0;
+			return (0);
+		}
+	}
+	if (lastquote)
+		return (1);
+	return (0);
 }
