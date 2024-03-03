@@ -6,15 +6,13 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 23:56:14 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:51:36 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include "token.h"
 
-//todo: link les quote (en cour de travaille)
-
-int get_tokens(char *str, t_vector *vector)
+int	get_tokens(char *str, t_vector *vector)
 {
 	char	*string;
 	t_token	tmp_token;
@@ -32,7 +30,7 @@ int get_tokens(char *str, t_vector *vector)
 		if (tmp_token.type != T_IS_SPACE && \
 			-1 == ft_vector_add(vector, &tmp_token))
 			return (-1);
-		i += ft_strlen(tmp_token.str); // a verifier
+		i += ft_strlen(tmp_token.str);
 		if (tmp_token.type == T_IS_SPACE)
 			free(tmp_token.str);
 	}
@@ -42,5 +40,3 @@ int get_tokens(char *str, t_vector *vector)
 	}
 	return (1);
 }
-
-

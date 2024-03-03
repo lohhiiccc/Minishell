@@ -6,12 +6,12 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 15:28:49 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:45:51 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
 
-unsigned char lex_operator(t_vector *vector, size_t i)
+unsigned char	lex_operator(t_vector *vector, size_t i)
 {
 	t_token_type	type;
 

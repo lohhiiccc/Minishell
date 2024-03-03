@@ -6,11 +6,11 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:21:54 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 19:12:39 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:58:50 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int quote_started(unsigned char reset, char c)
+int	quote_started(unsigned char reset, char c)
 {
 	static char	lastquote = 0;
 

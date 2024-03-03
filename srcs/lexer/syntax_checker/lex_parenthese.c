@@ -6,13 +6,13 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 00:16:27 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:46:03 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 
-unsigned char lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
+unsigned char	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 
@@ -26,7 +26,7 @@ unsigned char lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 	return (0);
 }
 
-unsigned char lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
+unsigned char	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 

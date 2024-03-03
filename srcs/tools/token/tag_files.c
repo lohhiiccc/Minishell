@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 23:57:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 23:57:57 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:58:56 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	tag_files(t_vector *tokens)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < tokens->nbr_elem)

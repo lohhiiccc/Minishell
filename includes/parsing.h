@@ -6,13 +6,14 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:08:11 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/01 21:08:24 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:45:23 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #ifndef PARSING_H
 # define PARSING_H
 
-t_vector *next_parent(t_vector *tokens);
+# include "libft.h"
+
+t_vector	*next_parent(t_vector *tokens);
 #endif
