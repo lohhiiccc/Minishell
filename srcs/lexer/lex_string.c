@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 18:12:52 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 20:48:31 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -28,28 +28,34 @@ static size_t	get_quote_len(char *str, unsigned char *error)
 	return (i + 1);
 }
 
+static unsigned char check_str(t_vector *vector, size_t i)
+{
+	unsigned char	backup;
+	size_t	j;
+
+	j = 0;
+	while (((t_token *)vector->addr)[i].str[j])
+	{
+		backup = 0;
+		if (((t_token *)vector->addr)[i].str[j] == '\'' || ((t_token *)vector->addr)[i].str[j] == '"')
+			j += get_quote_len(((t_token *) vector->addr)[i].str + j, &backup);
+		if (((t_token *)vector->addr)[i].str[j] == '&' || backup)
+			return (1);
+		if (((t_token *)vector->addr)[i].str[j])
+			j++;
+	}
+	return (0);
+}
+
 int	lex_string(t_vector *vector, size_t i)
 {
-	size_t			j;
-	unsigned char	backup;
 	t_token_type	last;
 
 	if (i > 0)
 		last = ((t_token *)vector->addr)[i - 1].type;
 	else
 		last = T_NONE;
-	j = 0;
-	if (last == T_PARENTHESE_CL)
+	if (last == T_PARENTHESE_CL || check_str(vector, i))
 		return (1);
-	while (((t_token *)vector->addr)[i].str[j])
-	{
-		backup = 0;
-		if (((t_token *)vector->addr)[i].str[j] == '\'' || ((t_token *)vector->addr)[i].str[j] == '"')
-			j += get_quote_len(((t_token *) vector->addr)[i].str + j, &backup);
-		if (backup)
-			return (1);
-		if (((t_token *)vector->addr)[i].str[j])
-			j++;
-	}
 	return (0);
 }

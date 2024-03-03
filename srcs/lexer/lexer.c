@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 20:24:45 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 20:50:00 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 static unsigned char	lex_last(const size_t *parent, t_token_type type);
 static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent,
 							t_token_type type);
-//todo: trouver un moyen de faire en sorte que 'mak'e soit different de 'mak' e	peut etre remettre les token isspace a la fin de la verife de syntax
 int lexer(char *str, t_vector *tokens)
 {
 	size_t			i;

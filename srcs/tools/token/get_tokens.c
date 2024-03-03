@@ -22,12 +22,12 @@ int get_tokens(char *str, t_vector *vector)
 
 	i = 0;
 	string = str;
-	if (-1 == get_next_token(string + i, str[i], &tmp_token))
+	if (-1 == get_next_token(string + i, &tmp_token))
 		return (-1);
 	while (string[i])
 	{
 		if (i != 0)
-			if (-1 == get_next_token(string + i, str[i - 1], &tmp_token))
+			if (-1 == get_next_token(string + i, &tmp_token))
 				return (-1);
 		if (tmp_token.type != T_IS_SPACE && \
 			-1 == ft_vector_add(vector, &tmp_token))

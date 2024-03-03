@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 20:08:14 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 20:53:10 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@
 static unsigned char	is_sep(char c);
 static int	fill_token(char *str, t_token *token, \
 							enum e_token_type type, char *s);
-//todo: securiser malloc
-int get_next_token(char *str, char prev, t_token *tkn)
+int get_next_token(char *str, t_token *tkn)
 {
 	size_t					i;
-	static const t_token	type[] = {{"(", 0, T_PARENTHESE_OP},
-	{")", 0, T_PARENTHESE_CL}, {"<<", 0, T_RED_IN}, {"<", 0, T_RED_IN}, {">>", 0, T_RED_OUT},
-	{">", 0,  T_RED_OUT}, {"||", 0, T_LOGICAL_OP}, {"&&", 0, T_LOGICAL_OP}, {"|", 0, T_PIPE},
-	{" ", 0, T_IS_SPACE}, {"\t", 0, T_IS_SPACE}};
+	static const t_token	type[] = {{"(", T_PARENTHESE_OP},
+	{")", T_PARENTHESE_CL}, {"<<", T_RED_IN}, {"<", T_RED_IN}, {">>", T_RED_OUT},
+	{">",  T_RED_OUT}, {"||", T_LOGICAL_OP}, {"&&", T_LOGICAL_OP}, {"|", T_PIPE},
+	{" ", T_IS_SPACE}, {"\t", T_IS_SPACE}};
 
 	i = 0;
 	quote_started(1, 0);
-	tkn->previous = prev;
 	while (i < 11)
 	{
 		if (0 == ft_strncmp(type[i].str, str, ft_strlen(type[i].str)))
@@ -48,7 +46,6 @@ int get_next_token(char *str, char prev, t_token *tkn)
 	tkn->str = ft_strndup(str, i);
 	return (0);
 }
-//todo: securiser malloc
 static int	fill_token(char *str, t_token *token,
 							t_token_type type, char *s)
 {

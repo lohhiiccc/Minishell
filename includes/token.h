@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:47:51 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 19:15:34 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 20:50:05 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ typedef enum e_token_type
 typedef struct s_token
 {
 	char			*str;
-	char 			previous;
 	t_token_type	type;
 }					t_token;
 
 int get_tokens(char *str, t_vector *vector);
 void	free_token(t_vector *vector);
-int get_next_token(char *str, char prev, t_token *tkn);
+int get_next_token(char *str, t_token *tkn);
 int quote_started(unsigned char reset, char c);
 
 #endif
