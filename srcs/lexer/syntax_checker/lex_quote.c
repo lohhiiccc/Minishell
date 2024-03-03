@@ -9,7 +9,6 @@
 /*   Updated: 2024/03/03 22:23:17 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 #include "token.h"
 // a suprimer ?
 unsigned char lex_quote(t_vector *vector, size_t i)

@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:37:08 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 22:40:13 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:02:53 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent, \
 
 static	unsigned char	lex_last(const size_t *parent, t_token_type type)
 {
-	return (parent[0] != parent[1] || !(type == T_CMD
-			|| type == T_QUOTE || type == T_PARENTHESE_CL
-			|| type == T_IS_SPACE || type == T_NONE));
+	return (parent[0] != parent[1]
+			|| !(type == T_CMD
+			|| type == T_FILES
+			|| type == T_QUOTE
+			|| type == T_PARENTHESE_CL
+			|| type == T_IS_SPACE
+			|| type == T_NONE));
 }
