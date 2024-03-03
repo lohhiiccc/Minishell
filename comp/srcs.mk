@@ -15,7 +15,6 @@ SRCLEXER = lexer \
 		   launch_checker
 
 SRCLEXSYNTAX = lex_pipe \
-			   lex_quote \
 			   lex_string \
 			   lex_operator \
 			   lex_parenthese \

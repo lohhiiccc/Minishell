@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:47:51 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 23:57:17 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:15:18 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 typedef enum e_token_type
 {
 	T_NONE = 0,
-	T_QUOTE = 1, //todo: delet T_QUOTE
 	T_CMD = 2,
 	T_PARENTHESE_OP = 3,
 	T_PARENTHESE_CL = 4,
