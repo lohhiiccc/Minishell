@@ -9,7 +9,6 @@
 /*   Updated: 2024/03/03 20:48:31 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 #include "token.h"
 
 static size_t	get_quote_len(char *str, unsigned char *error)

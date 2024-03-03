@@ -12,7 +12,6 @@
 
 #include <stdio.h>
 #include "token.h"
-#include "libft.h"
 
 static unsigned char	is_sep(char c);
 static int	fill_token(char *str, t_token *token, \

@@ -12,7 +12,6 @@
 
 #include "token.h"
 #include "tree.h"
-#include "libft.h"
 
 /*
  * (ls || cat) > "file"

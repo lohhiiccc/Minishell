@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
-#include "libft.h"
 #include "token.h"
 
 //todo: link les quote (en cour de travaille)

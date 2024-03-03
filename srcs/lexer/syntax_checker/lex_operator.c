@@ -9,7 +9,6 @@
 /*   Updated: 2024/02/29 15:28:49 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 #include "token.h"
 
 unsigned char lex_operator(t_vector *vector, size_t i)

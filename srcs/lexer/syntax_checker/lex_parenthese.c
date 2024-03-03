@@ -6,11 +6,10 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 00:11:12 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:12:03 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "token.h"
 
 unsigned char lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)

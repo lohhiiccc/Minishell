@@ -9,7 +9,6 @@
 /*   Updated: 2024/03/03 22:18:53 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 #include "token.h"
 
 unsigned char lex_pipe(t_vector *vector, size_t i)

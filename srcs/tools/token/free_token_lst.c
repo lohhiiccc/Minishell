@@ -9,7 +9,6 @@
 /*   Updated: 2024/03/01 05:32:41 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 #include "token.h"
 
 void	free_token(t_vector *vector)
