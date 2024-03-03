@@ -6,13 +6,12 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 23:24:40 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:38:37 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "lexer.h"
-
 int lexer(char *str, t_vector *tokens)
 {
 

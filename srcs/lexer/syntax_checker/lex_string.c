@@ -6,10 +6,30 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 20:48:31 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:39:46 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 #include "token.h"
+
+static unsigned char	search_cmd(t_vector *vector, size_t i);
+static size_t	get_quote_len(char *str, unsigned char *error);
+static unsigned char check_str(t_vector *vector, size_t i);
+
+unsigned char lex_string(t_vector *vector, size_t i)
+{
+	t_token_type	last;
+
+	if (i > 0)
+		last = ((t_token *)vector->addr)[i - 1].type;
+	else
+		last = T_NONE;
+	if (last == T_PARENTHESE_CL || check_str(vector, i))
+		return (1);
+	if (last == T_FILES)
+		return (search_cmd(vector, i));
+	return (0);
+}
 
 static size_t	get_quote_len(char *str, unsigned char *error)
 {
@@ -46,15 +66,20 @@ static unsigned char check_str(t_vector *vector, size_t i)
 	return (0);
 }
 
-unsigned char lex_string(t_vector *vector, size_t i)
+static unsigned char	search_cmd(t_vector *vector, size_t i)
 {
-	t_token_type	last;
+	ssize_t parent;
 
-	if (i > 0)
-		last = ((t_token *)vector->addr)[i - 1].type;
-	else
-		last = T_NONE;
-	if (last == T_PARENTHESE_CL || check_str(vector, i))
-		return (1);
+	parent = 0;
+	while (i > 0)
+	{
+		if (((t_token *)vector->addr)[i].type == T_PARENTHESE_OP)
+			parent--;
+		if (((t_token *)vector->addr)[i].type == T_PARENTHESE_CL)
+			parent++;
+		if (((t_token *)vector->addr)[i].type == T_CMD && 0 != parent)
+			return (1);
+		i--;
+	}
 	return (0);
 }
