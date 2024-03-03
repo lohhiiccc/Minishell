@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/02 20:03:07 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 23:56:14 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -14,6 +14,7 @@
 #include "token.h"
 
 //todo: link les quote (en cour de travaille)
+
 int get_tokens(char *str, t_vector *vector)
 {
 	char	*string;
@@ -36,6 +37,7 @@ int get_tokens(char *str, t_vector *vector)
 		if (tmp_token.type == T_IS_SPACE)
 			free(tmp_token.str);
 	}
+	tag_files(vector);
 	for (size_t j = 0; j < vector->nbr_elem; ++j) {
 		printf("type\t:%d | %s\n", ((t_token *)vector->addr)[j].type, ((t_token *)vector->addr)[j].str);
 	}

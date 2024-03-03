@@ -12,7 +12,7 @@
 #include "libft.h"
 #include "token.h"
 // a suprimer ?
-int	lex_quote(t_vector *vector, size_t i)
+unsigned char lex_quote(t_vector *vector, size_t i)
 {
 	t_token_type	last;
 

@@ -47,7 +47,7 @@ static unsigned char check_str(t_vector *vector, size_t i)
 	return (0);
 }
 
-int	lex_string(t_vector *vector, size_t i)
+unsigned char lex_string(t_vector *vector, size_t i)
 {
 	t_token_type	last;
 

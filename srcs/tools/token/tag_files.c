@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   tag_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 15:28:49 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/03 23:57:37 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/03 23:57:57 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
 #include "token.h"
 
-unsigned char lex_operator(t_vector *vector, size_t i)
+void	tag_files(t_vector *tokens)
 {
-	t_token_type	type;
+	size_t i;
 
-	if (i > 0)
-		type = ((t_token *)vector->addr)[i - 1].type;
-	else
-		type = T_NONE;
-	if (type == T_LOGICAL_OP || type == T_RED_OUT || type == T_RED_IN
-		|| type == T_PIPE || type == T_NONE || type == T_PARENTHESE_OP)
-		return (1);
-	return (0);
+	i = 0;
+	while (i < tokens->nbr_elem)
+	{
+		if (i + 1 < tokens->nbr_elem
+			&& (T_RED_OUT == ((t_token *)tokens->addr)[i].type
+			|| T_RED_IN == ((t_token *)tokens->addr)[i].type)
+			&& T_CMD == ((t_token *)tokens->addr)[i + 1].type)
+			((t_token *)tokens->addr)[i + 1].type = T_FILES;
+		i++;
+	}
 }

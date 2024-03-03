@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "token.h"
 //<< and <
-int	lex_redirect_in(t_vector *vector, size_t i)
+unsigned char lex_redirect_in(t_vector *vector, size_t i)
 {
 	t_token_type	type;
 
@@ -24,7 +24,7 @@ int	lex_redirect_in(t_vector *vector, size_t i)
 	return (0);
 }
 //> and >>
-int	lex_redirect_out(t_vector *vector, size_t i)
+unsigned char lex_redirect_out(t_vector *vector, size_t i)
 {
 	t_token_type	type;
 

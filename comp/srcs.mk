@@ -12,6 +12,7 @@ EXECDIR= $(SRCDIR)exec/
 SRCPROMT = prompt
 
 SRCLEXER = lexer \
+		   launch_checker
 
 SRCLEXSYNTAX = lex_pipe \
 			   lex_quote \
@@ -27,10 +28,11 @@ SRCTREE =  ft_clean_tree \
 		   ft_join_tree \
 		   ft_new_tree
 
-SRCTOKEN = free_token_lst \
-		   quote \
+SRCTOKEN = quote \
+		   tag_files \
+		   get_tokens \
 		   get_next_token \
-		   get_tokens
+		   free_token_lst \
 
 SRCBUILD_IN = cd \
 			  env \

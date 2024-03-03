@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "token.h"
 
-int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
+unsigned char lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 
@@ -27,7 +27,7 @@ int	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 	return (0);
 }
 
-int	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
+unsigned char lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 
