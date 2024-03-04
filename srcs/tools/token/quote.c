@@ -6,25 +6,30 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:21:54 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/28 20:08:43 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:58:50 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stddef.h>
-#include "libft.h"
 
-char	*get_quote(char *str)
+int	quote_started(unsigned char reset, char c)
 {
-	size_t	i;
-	char	*res;
+	static char	lastquote = 0;
 
-	i = 0;
-	if (str[1])
-		i++;
-	while (str[i] && str[i] != str[0])
-		i++;
-	res = ft_calloc((i + 2), sizeof(char));
-	if (NULL == res)
-		return (NULL);
-	ft_memcpy(res, str, sizeof(char) * i + 1);
-	return (res);
+	if (reset || c == '\0')
+	{
+		lastquote = 0;
+		return (0);
+	}
+	if ((c == '\'' || c == '"') && lastquote == 0)
+		lastquote = c;
+	else if ((c == '\'' || c == '"') && lastquote != 0)
+	{
+		if (lastquote == c)
+		{
+			lastquote = 0;
+			return (0);
+		}
+	}
+	if (lastquote)
+		return (1);
+	return (0);
 }

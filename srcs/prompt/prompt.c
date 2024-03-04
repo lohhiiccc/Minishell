@@ -6,34 +6,38 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 00:45:22 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/03 22:13:19 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
-#include "libft.h"
 #include "minishell.h"
+#include "token.h"
 #include "lexer.h"
+#include "parsing.h"
 
 void prompt(void)
 {
 	char *str;
-
+	t_vector tokens;
+	tokens.nbr_elem = 0;
 	while (1)
 	{
 		str = readline("minichel>");
-		if (ft_strncmp("exit", str, -1) == 0)
+		if (NULL == str || ft_strncmp("exit", str, -1) == 0)
 		{
+			rl_clear_history();
 			free(str);
 			break;
 		}
-		if (str)
+		if (str && str[0] != '\0')
 			add_history(str);
-		if (lexer(str))
-			write(2, "syntax error\n", 14);
+		if (lexer(str, &tokens) == -1)
+			continue;
 		free(str);
+		free_token(&tokens);
 	}
 	rl_clear_history();
 }

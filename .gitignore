@@ -8,6 +8,7 @@
 *.elf
 build
 .idea
+test
 
 # Linker output
 *.ilk
