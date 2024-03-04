@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:47:51 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 15:45:53 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 14:27:24 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 typedef enum e_token_type
 {
 	T_NONE,
-	T_PARENTESE_OP,
-	T_PARENTESE_CL,
+	T_CMD,
+	T_PARENTHESE_OP,
+	T_PARENTHESE_CL,
 	T_RED_IN,
 	T_RED_OUT,
 	T_PIPE,
 	T_LOGICAL_OP,
-	T_QUOTE,
 	T_IS_SPACE,
-	T_CHAR
+	T_FILES
 }	t_token_type;
 
 typedef struct s_token
@@ -37,7 +37,8 @@ typedef struct s_token
 
 int		get_tokens(char *str, t_vector *vector);
 void	free_token(t_vector *vector);
-t_token	get_next_token(char *str);
-char	*get_quote(char *str);
+int		get_next_token(char *str, t_token *tkn);
+int		quote_started(unsigned char reset, char c);
+void	tag_files(t_vector *tokens);
 
 #endif
