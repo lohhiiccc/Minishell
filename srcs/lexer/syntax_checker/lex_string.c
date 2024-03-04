@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 00:47:32 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 14:02:29 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -69,18 +69,15 @@ static unsigned char	check_str(t_vector *vector, size_t i)
 
 static unsigned char	search_cmd(t_vector *vector, size_t i)
 {
-	ssize_t	parent;
-
-	parent = 0;
 	while (i > 0)
 	{
-		if (((t_token *)vector->addr)[i].type == T_PARENTHESE_OP)
-			parent--;
-		if (((t_token *)vector->addr)[i].type == T_PARENTHESE_CL)
-			parent++;
-		if (((t_token *)vector->addr)[i].type == T_CMD && 0 != parent)
+		if (((t_token *)vector->addr)[i].type == T_LOGICAL_OP
+			|| ((t_token *)vector->addr)[i].type == T_PARENTHESE_OP
+			|| ((t_token *)vector->addr)[i].type == T_PARENTHESE_CL)
 			return (1);
+		if (((t_token *)vector->addr)[i].type == T_CMD)
+			return (0);
 		i--;
 	}
-	return (0);
+	return (1);
 }
