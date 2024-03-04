@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 16:25:12 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 17:12:44 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
@@ -69,11 +69,13 @@ static unsigned char	check_str(t_vector *vector, size_t i)
 static unsigned char	search_cmd(t_vector *vector, size_t i)
 {
 	i--;
-	while (i >= 0)
+	while (1)
 	{
 		if (((t_token *)vector->addr)[i].type == T_PARENTHESE_CL)
 			return (1);
-		if (((t_token *)vector->addr)[i].type == T_CMD || ((t_token *)vector->addr)[i].type == T_LOGICAL_OP)
+		if (((t_token *)vector->addr)[i].type == T_CMD || ((t_token *)vector->addr)[i].type == T_LOGICAL_OP || ((t_token *)vector->addr)[i].type == T_PIPE)
+			return (0);
+		if (i == 0)
 			return (0);
 		i--;
 	}
