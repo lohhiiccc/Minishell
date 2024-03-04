@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 17:12:44 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 17:19:41 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
@@ -79,5 +79,4 @@ static unsigned char	search_cmd(t_vector *vector, size_t i)
 			return (0);
 		i--;
 	}
-	return (1);
 }
