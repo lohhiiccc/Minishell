@@ -6,10 +6,9 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 14:19:12 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 16:25:12 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 #include "token.h"
 
 static unsigned char	search_cmd(t_vector *vector, size_t i);
@@ -72,11 +71,9 @@ static unsigned char	search_cmd(t_vector *vector, size_t i)
 	i--;
 	while (i >= 0)
 	{
-		if (((t_token *)vector->addr)[i].type == T_LOGICAL_OP
-			|| ((t_token *)vector->addr)[i].type == T_PARENTHESE_OP
-			|| ((t_token *)vector->addr)[i].type == T_PARENTHESE_CL)
+		if (((t_token *)vector->addr)[i].type == T_PARENTHESE_CL)
 			return (1);
-		if (((t_token *)vector->addr)[i].type == T_CMD)
+		if (((t_token *)vector->addr)[i].type == T_CMD || ((t_token *)vector->addr)[i].type == T_LOGICAL_OP)
 			return (0);
 		i--;
 	}
