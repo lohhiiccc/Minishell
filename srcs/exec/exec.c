@@ -18,7 +18,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:16:15 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/01 18:50:53 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/04 18:15:44 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,101 +34,89 @@ Executer commande de l'arbre de bas gauche vers droite.
 #include <stdio.h>
 #include <sys/wait.h>
 
-int	exec_args(t_tree *tree)
+int	exec_args(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	static t_vector	*fd_in = NULL;
-	static t_vector	*fd_out = NULL;
 	int				ret;
 
-	if (!fd_in)
-		ft_vector_init(fd_in, sizeof(int));
-	if (!fd_out)
-		ft_vector_init(fd_out, sizeof(int));
-	if (tree->type == OPE)
-	{
-		if (*(t_operator *)tree->structur == O_OR)
-			ret = exec_or(tree);
-		if (*(t_operator *)tree->structur == O_AND)
-			ret = exec_and(tree);
-		if (*(t_operator *)tree->structur == O_PIPE)
-			ret = exec_pipe(tree, fd_in, fd_out);
-	}
-	if (tree->type == REDIRECT)
-	{
-		if (*(t_redirect *)tree->structur == HERE_DOC)
-			ret = exec_here_doc(tree, fd_in);
-		if (*(t_redirect *)tree->structur == APPEND)
-			ret = exec_apend(tree, fd_out);
-		if (*(t_redirect *)tree->structur == OUTPUT)
-			ret = exec_output(tree, fd_out);
-		if (*(t_redirect *)tree->structur == INPUT)
-			ret = exec_input(tree, fd_in);
-	}
+	if (tree->type == O_OR)
+		ret = exec_or(tree, fd_in, fd_out);
+	if (tree->type == O_AND)
+		ret = exec_and(tree, fd_in, fd_out);
+	if (tree->type == O_PIPE)
+		ret = exec_pipe(tree, fd_in, fd_out);
+	if (tree->type == HERE_DOC)
+		ret = exec_here_doc(tree, fd_in, fd_out);
+	if (tree->type == APPEND)
+		ret = exec_apend(tree, fd_in, fd_out);
+	if (tree->type == OUTPUT)
+		ret = exec_output(tree, fd_in, fd_out);
+	if (tree->type == INPUT)
+		ret = exec_input(tree, fd_in, fd_out);
 	if (tree->type == CMD)
 		ret = exec_cmd(tree, fd_in, fd_out);
 	return (ret);
 }
 
-int	exec_or(t_tree *tree)
+int	exec_or(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	ret;
 
-	ret = exec_args(tree->left);
+	ret = exec_args(tree->left, fd_in, fd_out);
 	if (ret != 0)
-		ret = exec_args(tree->right);
+		ret = exec_args(tree->right, fd_in, fd_out);
 	return (ret);
 }
 
-int	exec_and(t_tree *tree)
+int	exec_and(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	ret;
 
-	ret = exec_args(tree->left);
+	ret = exec_args(tree->left, fd_in, fd_out);
 	if (ret == 0)
-		ret = exec_args(tree->right);
+		ret = exec_args(tree->right, fd_in, fd_out);
 	return (ret);
 }
 
-int	exec_input(t_tree *tree, t_vector *fd_in)
+int	exec_input(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	fd;
 	int	ret;
 
 	fd = open((char *)tree->right, O_RDONLY);
 	ft_vector_add(fd_in, &fd);
-	ret = exec_args(tree->left);
+	ret = exec_args(tree->left, fd_in, fd_out);
 	close(fd);
 	ft_vector_delete_last(fd_in);
 	return (ret);
 }
 
-int	exec_output(t_tree *tree, t_vector *fd_out)
+int	exec_output(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	fd;
 	int	ret;
 
 	fd = open((char *)tree->right, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	ft_vector_add(fd_out, &fd);
-	ret = exec_args(tree->left);
+	ret = exec_args(tree->left, fd_in, fd_out);
 	close(fd);
 	ft_vector_delete_last(fd_out);
 	return (ret);
 }
 
-int	exec_apend(t_tree *tree, t_vector *fd_out)
+int	exec_apend(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	fd;
 	int ret;
 
 	fd = open((char *)tree->right, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	ft_vector_add(fd_out, &fd);
-	ret = exec_args(tree->left);
+	ret = exec_args(tree->left, fd_in, fd_out);
 	close(fd);
 	ft_vector_delete_last(fd_out);
 	return (ret);
 }
 
-int	exec_here_doc(t_tree *tree, t_vector *fd_in)
+int	exec_here_doc(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	fd;
 	int	ret;
@@ -136,7 +124,7 @@ int	exec_here_doc(t_tree *tree, t_vector *fd_in)
 	fd = open((char *)tree->right, O_RDONLY);
 	unlink((char *)tree->right);
 	ft_vector_add(fd_in, &fd);
-	ret = exec_args(tree->left);
+	ret = exec_args(tree->left, fd_in, fd_out);
 	close(fd);
 	ft_vector_delete_last(fd_in);
 	return (ret);
@@ -150,11 +138,11 @@ int	exec_pipe(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	if (pipe(fd) == -1)
 		return (1);
 	ft_vector_add(fd_out, &fd[1]);
-	exec_args(tree->left);
+	exec_args(tree->left, fd_in, fd_out);
 	close(fd[1]);
 	ft_vector_delete_last(fd_out);
 	ft_vector_add(fd_in, &fd[0]);
-	ret = exec_args(tree->right);
+	ret = exec_args(tree->right, fd_in, fd_out);
 	close(fd[0]);
 	ft_vector_delete_last(fd_in);
 	return (ret);
@@ -183,8 +171,10 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		return (1);
 	if (pid == 0)
 	{
-		dup2(*(int *)fd_in->addr + ((fd_in->nbr_elem - 1) * fd_in->size), STDIN_FILENO);
-		dup2(*(int *)fd_out->addr + ((fd_out->nbr_elem - 1) * fd_out->size), STDOUT_FILENO);
+		if (fd_in->nbr_elem > 0)
+			dup2(*(int *)fd_in->addr + ((fd_in->nbr_elem - 1) * fd_in->size), STDIN_FILENO);
+		if (fd_out->nbr_elem > 0)
+			dup2(*(int *)fd_out->addr + ((fd_out->nbr_elem - 1) * fd_out->size), STDOUT_FILENO);
 		close_vector_fd(fd_in);
 		close_vector_fd(fd_out);
 		if (!((t_cmd *)tree->structur)->path)
@@ -220,11 +210,4 @@ int	exec_builtin(char **arg)
 	return (0);
 }
 
-//echo
-//cd
-//pwd
-//export
-//unset
-//env
-//exit
 
