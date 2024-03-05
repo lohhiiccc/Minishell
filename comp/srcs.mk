@@ -1,6 +1,7 @@
 SRCDIR = srcs/
 PROMPTDIR = $(SRCDIR)prompt/
 LEXERDIR = $(SRCDIR)lexer/
+LEXSYNTAXDIR = $(LEXERDIR)syntax_checker/
 PARSINGDIR = $(SRCDIR)parsing/
 TOOLSDIR = $(SRCDIR)tools/
 TREEDIR = $(TOOLSDIR)tree/
@@ -11,23 +12,26 @@ EXECDIR= $(SRCDIR)exec/
 SRCPROMT = prompt
 
 SRCLEXER = lexer \
-		   lex_pipe \
-		   lex_quote \
-		   lex_string \
-		   lex_operator \
-		   lex_parenthese \
-		   lex_redirection \
+		   launch_checker
 
-SRCPARSING = parsing
+SRCLEXSYNTAX = lex_pipe \
+			   lex_string \
+			   lex_operator \
+			   lex_parenthese \
+		   	   lex_redirection
+
+SRCPARSING = parsing \
+			 pars_parenthese
 
 SRCTREE =  ft_clean_tree \
 		   ft_join_tree \
 		   ft_new_tree
 
-SRCTOKEN = free_token_lst \
-		   quote \
+SRCTOKEN = quote \
+		   tag_files \
+		   get_tokens \
 		   get_next_token \
-		   get_tokens
+		   free_token_lst \
 
 SRCBUILD_IN = cd \
 			  env \
@@ -35,7 +39,7 @@ SRCBUILD_IN = cd \
 			  exit \
 			  echo \
 			  unset \
-			  export_\
+			  export \
 
 SRCEXEC = exec
 
@@ -46,4 +50,5 @@ SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(TOKENDIR), $(addsuffix .c, $(SRCTOKEN))) \
 	   $(addprefix $(BUILD_INDIR), $(addsuffix .c, $(SRCBUILD_IN))) \
 	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER))) \
+	   $(addprefix $(LEXSYNTAXDIR), $(addsuffix .c, $(SRCLEXSYNTAX))) \
 	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC)))

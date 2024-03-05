@@ -12,6 +12,7 @@
 
 #include "libft.h"
 
+//todo: malloc est faire un seul print / utiliser printf
 int	ft_echo(char **arg)
 {
 	size_t	i;

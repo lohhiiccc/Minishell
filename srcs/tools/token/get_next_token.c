@@ -6,52 +6,74 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 17:42:44 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 00:58:26 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stdio.h>
 #include "token.h"
-#include "libft.h"
 
-static t_token	fill_token(char *str, t_token *token, size_t i, \
-							const t_token *type);
+static unsigned char	is_sep(char c);
+static char				set_cmd(const char *str, t_token *tkn);
+static int				fill_token(char *str, t_token *token,
+							enum e_token_type type, char *s);
 
-t_token	get_next_token(char *str)
+//todo : securiser strndup
+int	get_next_token(char *str, t_token *tkn)
 {
-	t_token					token;
 	size_t					i;
-	static const t_token	type[] = {{"(",  T_PARENTESE_OP},
-	{")",  T_PARENTESE_CL}, {"<<", T_RED_IN}, {"<", T_RED_IN}, {">>", T_RED_OUT},
-	{">",  T_RED_OUT}, {"||", T_LOGICAL_OP}, {"&&", T_LOGICAL_OP}, {"|", T_PIPE},
-	{"\"", T_QUOTE}, {"'", T_QUOTE}, {" ", T_IS_SPACE}, {"\t", T_IS_SPACE}};
+	static const t_token	type[] = {{"(", T_PARENTHESE_OP},
+	{")", T_PARENTHESE_CL}, {"<<", T_RED_IN}, {"<", T_RED_IN},
+	{">>", T_RED_OUT}, {">", T_RED_OUT}, {"||", T_LOGICAL_OP},
+	{"&&", T_LOGICAL_OP}, {"|", T_PIPE}, {" ", T_IS_SPACE}, {"\t", T_IS_SPACE}};
 
 	i = 0;
-	while (i < 13)
+	quote_started(1, 0);
+	while (i < 11)
 	{
 		if (0 == ft_strncmp(type[i].str, str, ft_strlen(type[i].str)))
-			return (fill_token(str, &token, i, type));
+		{
+			if (-1 == fill_token(str, tkn, type[i].type, type[i].str))
+				return (-1);
+			return (0);
+		}
 		i++;
 	}
+	if (-1 == set_cmd(str, tkn))
+		return (-1);
+	return (0);
+}
+
+static char	set_cmd(const char *str, t_token *tkn)
+{
+	size_t	i;
+
 	i = 0;
-	while (str[i] && str[i] != '|' && str[i] != '&' && str[i] != '>'
-		&& str[i] != '>' && str[i] != ' ' && str[i] != '\t' && str[i] != '('
-		&& str[i] != ')' && str[i] != '\'' && str[i] != '"')
+	while (is_sep(str[i]))
 		i++;
 	if (i == 0 && str[i] && str[i + 1] != '&')
 		i++;
-	token.type = T_CHAR;
-	token.str = ft_strndup(str, i);
-	return (token);
+	tkn->type = T_CMD;
+	tkn->str = ft_strndup(str, i);
+	if (NULL == tkn->str)
+		return (-1);
+	return (0);
 }
 
-static t_token	fill_token(char *str, t_token *token, size_t i,
-							const t_token *type)
+static int	fill_token(char *str, t_token *token,
+							t_token_type type, char *s)
 {
-	token->type = type[i].type;
-	if (type[i].type == T_QUOTE)
-		token->str = get_quote(str);
-	else
-		token->str = ft_strndup(str, ft_strlen(type[i].str));
-	return (*token);
+	token->type = type;
+	token->str = ft_strndup(str, ft_strlen(s));
+	if (token->str == NULL)
+		return (-1);
+	return (0);
+}
+
+static unsigned char	is_sep(char c)
+{
+	if (quote_started(0, c))
+		return (1);
+	return (c && c != '|' && c != '&' && c != '>' && c != '<'
+		&& c != '\t' && c != ' ' && c != '(' && c != ')');
 }
