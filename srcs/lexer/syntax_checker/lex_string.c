@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/05 00:52:02 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/05 20:11:20 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
@@ -58,7 +58,7 @@ static unsigned char	check_str(t_vector *vector, size_t i)
 		if (((t_token *)vector->addr)[i].str[j] == '\''
 			|| ((t_token *)vector->addr)[i].str[j] == '"')
 			j += get_quote_len(((t_token *) vector->addr)[i].str + j, &error);
-		if (((t_token *)vector->addr)[i].str[j] == '&' || error)
+		if (error || ((t_token *)vector->addr)[i].str[j] == '&')
 			return (1);
 		if (((t_token *)vector->addr)[i].str[j])
 			j++;

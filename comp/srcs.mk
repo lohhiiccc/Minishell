@@ -28,6 +28,7 @@ SRCTREE =  ft_clean_tree \
 		   ft_new_tree
 
 SRCTOKEN = quote \
+		   tag_args \
 		   tag_files \
 		   get_tokens \
 		   get_next_token \

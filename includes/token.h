@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:47:51 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 14:27:24 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/05 22:32:04 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef enum e_token_type
 {
 	T_NONE,
 	T_CMD,
+	T_ARG,
 	T_PARENTHESE_OP,
 	T_PARENTHESE_CL,
 	T_RED_IN,
@@ -40,5 +41,6 @@ void	free_token(t_vector *vector);
 int		get_next_token(char *str, t_token *tkn);
 int		quote_started(unsigned char reset, char c);
 void	tag_files(t_vector *tokens);
+void	tag_arg(t_vector *tokens);
 
 #endif
