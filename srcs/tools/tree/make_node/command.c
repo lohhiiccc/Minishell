@@ -6,14 +6,12 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 00:20:19 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/06 00:30:24 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "tree.h"
 #include "token.h"
-
 
 static void	*free_command(t_cmd *content, t_vector *cmd);
 t_tree *command(t_vector *tokens)
