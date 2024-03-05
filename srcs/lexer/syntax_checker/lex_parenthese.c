@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 17:57:36 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 00:46:03 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/04 18:22:26 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ unsigned char	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (type == T_CMD || type == T_FILES || type == T_PARENTHESE_CL)
+	if (type == T_CMD || type == T_FILES || type == T_PARENTHESE_CL || type == T_RED_OUT || type == T_RED_IN)
 		return (1);
 	parent[0]++;
 	return (0);
