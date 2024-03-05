@@ -15,6 +15,6 @@
 
 # include "libft.h"
 
-void	prompt(void);
+unsigned char prompt(void);
 int		lexer(char *str, struct s_vector *tokens);
 #endif

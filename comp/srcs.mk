@@ -43,7 +43,7 @@ SRCBUILD_IN = cd \
 
 SRCEXEC = exec
 
-SRCS =  $(SRCDIR)main.c \
+SRCS =  $(SRCDIR)main.c\
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
 	   $(addprefix $(PARSINGDIR), $(addsuffix .c, $(SRCPARSING))) \
 	   $(addprefix $(TREEDIR), $(addsuffix .c, $(SRCTREE))) \

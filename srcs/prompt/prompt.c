@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 22:13:19 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/05 18:44:19 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,19 @@
 #include "lexer.h"
 #include "parsing.h"
 
-void prompt(void)
+unsigned char prompt(void)
 {
 	char *str;
 	t_vector tokens;
+
 	tokens.nbr_elem = 0;
-	while (1)
-	{
-		str = readline("minichel>");
-		if (NULL == str || ft_strncmp("exit", str, -1) == 0)
-		{
-			rl_clear_history();
-			free(str);
-			break;
-		}
-		if (str && str[0] != '\0')
-			add_history(str);
-		if (lexer(str, &tokens) == -1)
-			continue;
-		free(str);
-		free_token(&tokens);
-	}
-	rl_clear_history();
+	str = readline("minichel>");
+	if (!str)
+		return (0);
+	lexer(str, &tokens);//pars
+	if (str && str[0])
+		add_history(str);
+	free_token(&tokens);
+	free(str);
+	return (1);
 }

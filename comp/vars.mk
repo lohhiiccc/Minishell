@@ -2,7 +2,7 @@ NAME = minishell
 
 MAKEFLAGS += --no-print-directory
 
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address,
+CFLAGS = -Wall -Wextra -Werror -g3
 BUILDDIRBACKUP = build/
 BUILDDIR = $(BUILDDIRBACKUP)
 INCLUDEDIR = includes/
