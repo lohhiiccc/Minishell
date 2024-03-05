@@ -18,7 +18,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:16:15 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/04 18:15:44 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/05 00:20:02 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	close_vector_fd(t_vector *fd)
 	i = 0;
 	while (i < fd->nbr_elem)
 	{
-		close(*(int *)fd->addr + (i * fd->size));
+		close(*(int *)(fd->addr + (i * fd->size)));
 		i++;
 	}
 	free(fd->addr);
@@ -171,12 +171,13 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		return (1);
 	if (pid == 0)
 	{
+		// printf("-->fd_out = %d\n-->fd_in = %d\n", *(int *)fd_out->addr, *(int *)fd_in->addr);
 		if (fd_in->nbr_elem > 0)
-			dup2(*(int *)fd_in->addr + ((fd_in->nbr_elem - 1) * fd_in->size), STDIN_FILENO);
+			dup2(*(int *)(fd_in->addr + ((fd_in->nbr_elem - 1) * fd_in->size)), STDIN_FILENO);
 		if (fd_out->nbr_elem > 0)
-			dup2(*(int *)fd_out->addr + ((fd_out->nbr_elem - 1) * fd_out->size), STDOUT_FILENO);
-		close_vector_fd(fd_in);
-		close_vector_fd(fd_out);
+			dup2(*(int *)(fd_out->addr + ((fd_out->nbr_elem - 1) * fd_out->size)), STDOUT_FILENO);
+		// close_vector_fd(fd_in);
+		// close_vector_fd(fd_out);
 		if (!((t_cmd *)tree->structur)->path)
 			exec_builtin(((t_cmd *)tree->structur)->arg);
 		else
