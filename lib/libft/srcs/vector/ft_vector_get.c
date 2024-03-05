@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-t_vector	*ft_vector_get(t_vector *vector, size_t n)
+void	*ft_vector_get(t_vector *vector, size_t n)
 {
 	if (n > vector->nbr_elem)
 		return (NULL);
-	return (vector + ((n - 1) * vector->size));
+	return (vector->addr + ((n - 1) * vector->size));
 }

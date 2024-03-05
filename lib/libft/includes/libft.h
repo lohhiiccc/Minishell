@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/05 23:49:35 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/05 23:49:39 by lrio             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
@@ -30,6 +42,8 @@ typedef struct s_vector
 	size_t	size;
 }	t_vector;
 
+void	ft_vector_free(t_vector *vector, void (* content_free)(void *));
+void	*ft_vector_get(t_vector *vector, size_t n);
 void	ft_vector_trim(t_vector *vector);
 void	ft_vector_delete_last(t_vector *vector);
 int		ft_vector_add(t_vector *vector, void *elem);

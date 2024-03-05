@@ -35,5 +35,7 @@ int	get_tokens(char *str, t_vector *vector)
 			free(tmp_token.str);
 	}
 	tag_files(vector);
+	if (-1 == ft_vector_add(vector, &(t_token){"", T_NEWLINE}))
+		return (-1);
 	return (1);
 }
