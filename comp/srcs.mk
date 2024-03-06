@@ -46,6 +46,7 @@ SRCBUILD_IN = cd \
 SRCEXEC = exec
 
 SRCMAKE_NODE = command \
+			   operator \
 			   redirection
 
 SRCS =  $(SRCDIR)main.c\
