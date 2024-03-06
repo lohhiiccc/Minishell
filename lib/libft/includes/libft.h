@@ -62,7 +62,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(void *content);
 int		ft_putfloat_fd(double num, int fd);
 int		ft_putnbr_fd(long n, int fd);
-int		ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(const char *s1, char *s2);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_putchar_fd(char c, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
