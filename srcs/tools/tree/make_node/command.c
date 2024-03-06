@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 15:46:20 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/06 16:25:26 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include "token.h"
 
 static void	*free_command(t_cmd *content, t_vector *cmd);
-t_tree *make_command(t_vector *tokens)
+
+t_tree	*make_command(t_vector *tokens)
 {
-	t_cmd 		*content;
+	t_cmd		*content;
 	size_t		i;
 	t_vector	cmd;
 
@@ -29,9 +30,11 @@ t_tree *make_command(t_vector *tokens)
 	i = 0;
 	if (-1 == ft_vector_add(&cmd, ((t_token *)tokens->addr)[0].str))
 		return (free_command(content, &cmd));
-	while (((t_token *)tokens->addr)[i].type != T_CMD && ((t_token *)tokens->addr)[i].type != T_NEWLINE)
+	while (((t_token *)tokens->addr)[i].type != T_CMD
+			&& ((t_token *)tokens->addr)[i].type != T_NEWLINE)
 	{
-		if (((t_token *)tokens->addr)[i].type == T_ARG && -1 == ft_vector_add(&cmd, ((t_token *)tokens->addr)[i].str))
+		if (((t_token *)tokens->addr)[i].type == T_ARG
+			&& -1 == ft_vector_add(&cmd, ((t_token *)tokens->addr)[i].str))
 			return (free_command(content, &cmd));
 		i++;
 	}

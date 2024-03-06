@@ -22,8 +22,6 @@
  *
  */
 
-
-
 /*
  *
  * (ls || ((cat && rm out) > test)) | grep ls
