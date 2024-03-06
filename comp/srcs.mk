@@ -45,7 +45,8 @@ SRCBUILD_IN = cd \
 
 SRCEXEC = exec
 
-SRCMAKE_NODE = command
+SRCMAKE_NODE = command \
+			   redirection
 
 SRCS =  $(SRCDIR)main.c\
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
