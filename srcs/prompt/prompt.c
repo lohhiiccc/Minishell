@@ -6,13 +6,14 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 18:17:45 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/07 00:28:26 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 #include "token.h"
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "make_tree.h"
 
 static void print_token(t_vector *tokens)
 {
@@ -21,16 +22,20 @@ static void print_token(t_vector *tokens)
 	}
 }
 
-unsigned char prompt(void)
+t_tree * prompt(void)
 {
 	char *str;
 	t_vector tokens;
+	t_tree 	*tree;
 
 	tokens.nbr_elem = 0;
 	str = readline("minichel>");
 	if (!str)
-		return (0);
-	lexer(str, &tokens);//pars
+		return (NULL);
+	if (-1 != lexer(str, &tokens))
+	{
+		tree = make_tree(&tokens);
+	}
 	if (str && str[0])
 	{
 		add_history(str);
@@ -38,5 +43,5 @@ unsigned char prompt(void)
 	}
 	free_token(&tokens);
 	free(str);
-	return (1);
+	return (tree);
 }

@@ -14,7 +14,8 @@
 # define MINISHELL_H
 
 # include "libft.h"
+#include "tree.h"
 
-unsigned char prompt(void);
+t_tree * prompt(void);
 int		lexer(char *str, struct s_vector *tokens);
 #endif

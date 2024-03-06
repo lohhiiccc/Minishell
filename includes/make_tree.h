@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   make_tree.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 16:33:08 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 00:29:28 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/07 00:15:50 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/07 00:26:00 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
-#include "tree.h"
-#include "exec.h"
-#include "libft.h"
-#include <stdlib.h>
 
-int	main(int argc, char **argv, char **envp)
-{
-	t_tree *tree;
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	tree = prompt();
-	while(tree)
-	{
-		tree = prompt();
-		//free;
-	}
-}
+
+#ifndef MAKE_TREE_H
+# define MAKE_TREE_H
+#include "tree.h"
+#include "token.h"
+t_tree *make_tree(t_vector *tokens);
+
+t_tree	*make_command(t_vector *tokens);
+t_tree *make_operator(t_vector *tokens);
+t_tree	*make_redirection(t_vector *tokens);
+
+#endif
