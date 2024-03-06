@@ -6,10 +6,9 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 15:05:43 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/06 15:40:59 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 #include "token.h"
 
 int	get_tokens(char *str, t_vector *vector)
@@ -35,7 +34,7 @@ int	get_tokens(char *str, t_vector *vector)
 			free(tmp_token.str);
 	}
 	tag_files(vector);
-	if (-1 == ft_vector_add(vector, &(t_token){"", T_NEWLINE}))
+	if (-1 == ft_vector_add(vector, &(t_token){"\n", T_NEWLINE}))
 		return (-1);
 	return (1);
 }

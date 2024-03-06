@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 00:30:24 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/06 15:46:20 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "token.h"
 
 static void	*free_command(t_cmd *content, t_vector *cmd);
-t_tree *command(t_vector *tokens)
+t_tree *make_command(t_vector *tokens)
 {
 	t_cmd 		*content;
 	size_t		i;
@@ -36,7 +36,7 @@ t_tree *command(t_vector *tokens)
 		i++;
 	}
 	content->arg = tokens->addr;
-	content->env = NULL;
+	content->path = NULL;
 	content->env = NULL;
 	return (ft_new_tree(content, CMD));
 }
