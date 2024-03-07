@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_get.c                                    :+:      :+:    :+:   */
+/*   exec_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 16:15:57 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/05 23:46:37 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/07 01:44:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "exec.h"
+#include <fcntl.h>
 
-t_vector	*ft_vector_get(t_vector *vector, size_t n)
+int	exec_here_doc(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	if (n > vector->nbr_elem)
-		return (NULL);
-	return (vector->addr + ((n - 1) * vector->size));
+	int	fd;
+	int	ret;
+
+	fd = open((char *)tree->structur, O_RDONLY);
+	if (fd == -1)
+		return (1);
+	unlink((char *)tree->structur);
+	ft_vector_add(fd_in, &fd);
+	ret = exec_args(tree->left, fd_in, fd_out);
+	close(fd);
+	ft_vector_delete_elem(fd_in, fd_in->nbr_elem);
+	return (ret);
 }

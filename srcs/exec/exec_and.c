@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_get.c                                    :+:      :+:    :+:   */
+/*   exec_and.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 16:15:57 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/05 23:46:37 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/07 01:31:25 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/07 01:43:45 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "exec.h"
 
-t_vector	*ft_vector_get(t_vector *vector, size_t n)
+int	exec_and(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	if (n > vector->nbr_elem)
-		return (NULL);
-	return (vector->addr + ((n - 1) * vector->size));
+	int	ret;
+
+	ret = exec_args(tree->left, fd_in, fd_out);
+	if (ret == 0)
+		ret = exec_args(tree->right, fd_in, fd_out);
+	return (ret);
 }

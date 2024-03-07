@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/29 19:39:46 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/06 23:40:26 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_vector
 }	t_vector;
 
 void	ft_vector_trim(t_vector *vector);
-void	ft_vector_delete_last(t_vector *vector);
+void	ft_vector_delete_elem(t_vector *vector, size_t n);
 int		ft_vector_add(t_vector *vector, void *elem);
 int		ft_vector_init(t_vector *vector, size_t size);
 int		ft_vector_resize(t_vector *vector, size_t new_size);
