@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:40:48 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 00:51:06 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/07 15:12:11 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_tree *make_tree(t_vector *tokens)
 		new = NULL;
 		if (((t_token *)tokens->addr)[i].type == T_CMD)
 		{
-			new = make_command(tokens + (i + tokens->size));
+			new = make_command(ft_vector_get(tokens, i + 1));
 			root = add_tree(root, new);
 		}
 		else if (((t_token *)tokens->addr)[i].type == T_LOGICAL_OP || ((t_token *)tokens->addr)[i].type == T_PIPE)
