@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:04:27 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 17:33:27 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 01:43:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EXEC_H
 
 # include "tree.h"
-#include "libft.h"
+# include "libft.h"
 
 int		exec_args(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
 int		exec_or(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
@@ -26,6 +26,6 @@ int		exec_output(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
 int		exec_apend(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
 int		exec_here_doc(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
 void	close_vector_fd(t_vector *fd);
-int		exec_builtin(char **arg);
+int		exec_build_in(char **arg);
 
 #endif
