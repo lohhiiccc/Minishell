@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_tree.c                                      :+:      :+:    :+:   */
+/*   exec_or.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 17:41:16 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/05 16:53:46 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/07 01:32:18 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/07 01:45:05 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <malloc.h>
-#include "tree.h"
+#include "exec.h"
 
-t_tree	*ft_new_tree(void *content, t_node node)
+int	exec_or(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	t_tree	*new_tree;
+	int	ret;
 
-	new_tree = malloc(sizeof(t_tree));
-	new_tree->type = node;
-	new_tree->structur = content;
-	new_tree->left = NULL;
-	new_tree->right = NULL;
-	return (new_tree);
+	ret = exec_args(tree->left, fd_in, fd_out);
+	if (ret != 0)
+		ret = exec_args(tree->right, fd_in, fd_out);
+	return (ret);
 }

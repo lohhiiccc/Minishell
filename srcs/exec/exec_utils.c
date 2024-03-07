@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_tree.c                                      :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 17:41:16 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/05 16:53:46 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/07 01:43:34 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <malloc.h>
-#include "tree.h"
+#include "exec.h"
 
-t_tree	*ft_new_tree(void *content, t_node node)
+void	close_vector_fd(t_vector *fd)
 {
-	t_tree	*new_tree;
+	size_t	i;
 
-	new_tree = malloc(sizeof(t_tree));
-	new_tree->type = node;
-	new_tree->structur = content;
-	new_tree->left = NULL;
-	new_tree->right = NULL;
-	return (new_tree);
+	i = 0;
+	while (i < fd->nbr_elem)
+	{
+		close(*(int *)(fd->addr + (i * fd->size)));
+		i++;
+	}
 }

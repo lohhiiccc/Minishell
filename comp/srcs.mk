@@ -41,7 +41,17 @@ SRCBUILD_IN = cd \
 			  unset \
 			  export \
 
-SRCEXEC = exec
+SRCEXEC = exec \
+		  exec_and \
+		  exec_or \
+		  exec_apend \
+		  exec_build_in \
+		  exec_cmd \
+		  exec_here_doc \
+		  exec_input \
+		  exec_output \
+		  exec_pipe \
+		  exec_utils \
 
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
