@@ -3,15 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean_tree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:38:53 by lrio              #+#    #+#             */
-/*   Updated: 2024/02/27 17:39:47 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/07 23:15:23 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include "stdlib.h"
+
+static void	clean_cmd(t_tree *tree)
+{
+	size_t	i;
+
+	i = 0;
+	free(((t_cmd *)tree->structur)->path);
+	while (((t_cmd *)tree->structur)->arg[i])
+	{
+		free(((t_cmd *)tree->structur)->arg[i]);
+		i++;
+	}
+	free(((t_cmd *)tree->structur)->arg);
+	free(tree->structur);
+}
+
 
 void	ft_clean_tree(t_tree *tree)
 {
@@ -19,5 +35,10 @@ void	ft_clean_tree(t_tree *tree)
 		return ;
 	ft_clean_tree(tree->left);
 	ft_clean_tree(tree->right);
+	if (tree->type == CMD)
+		clean_cmd(tree);
+	if (tree->type == HERE_DOC || tree->type == APPEND || tree->type == OUTPUT \
+		|| tree->type == INPUT)
+		free(tree->structur);
 	free(tree);
 }
