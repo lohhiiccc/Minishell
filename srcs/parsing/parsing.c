@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:40:48 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 17:57:55 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/07 22:14:59 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ t_tree *make_tree(t_vector *tokens)
 		new = NULL;
 		if (((t_token *)tokens->addr)[i].type == T_CMD)
 		{
-			new = make_command(ft_vector_get(tokens, i + 1));
+			new = make_command(ft_vector_get(tokens, i));
 			root = add_tree(root, new);
 		}
 		else if (((t_token *)tokens->addr)[i].type == T_LOGICAL_OP || ((t_token *)tokens->addr)[i].type == T_PIPE)
 		{
-			new = make_operator(ft_vector_get(tokens, i + 1));
+			new = make_operator(ft_vector_get(tokens, i));
 			root = add_tree(root, new);
 		}
 		else if (((t_token *)tokens->addr)[i].type == T_RED_IN || ((t_token *)tokens->addr)[i].type == T_RED_OUT)
 		{
 			printf("%zu: %s\n", i, ((t_token *)tokens->addr)[i].str);
-			new = make_redirection(ft_vector_get(tokens, i + 1));
+			new = make_redirection(ft_vector_get(tokens, i));
 			root = add_tree(root, new);
 		}
 		i++;
