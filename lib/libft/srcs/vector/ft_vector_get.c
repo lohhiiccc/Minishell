@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector_get.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/07 22:09:37 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/07 22:09:37 by lrio             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_vector_get.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:15:57 by mjuffard          #+#    #+#             */
@@ -16,5 +28,5 @@ t_vector	*ft_vector_get(t_vector *vector, size_t n)
 {
 	if (n > vector->nbr_elem)
 		return (NULL);
-	return (vector + ((n - 1) * vector->size));
+	return (vector->addr + ((n) * vector->size));
 }
