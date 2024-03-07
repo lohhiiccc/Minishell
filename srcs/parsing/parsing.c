@@ -6,10 +6,11 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:40:48 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 15:12:11 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/07 17:57:55 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "make_tree.h"
 /*
  *
@@ -77,6 +78,7 @@ t_tree *make_tree(t_vector *tokens)
 		}
 		else if (((t_token *)tokens->addr)[i].type == T_RED_IN || ((t_token *)tokens->addr)[i].type == T_RED_OUT)
 		{
+			printf("%zu: %s\n", i, ((t_token *)tokens->addr)[i].str);
 			new = make_redirection(ft_vector_get(tokens, i + 1));
 			root = add_tree(root, new);
 		}

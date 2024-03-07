@@ -6,31 +6,34 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:00 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 16:26:38 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/07 17:52:43 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "tree.h"
 #include "token.h"
 
-static t_node	get_redirect_type(t_token *token);
+static t_node	get_redirect_type(t_vector *token);
 
 t_tree	*make_redirection(t_vector *tokens)
 {
+	printf("debug : %s\n", (((t_token *)tokens->addr)[0].str));
 	return (ft_new_tree(((t_token *)tokens->addr)[1].str,
-		get_redirect_type(((t_token *)tokens->addr))));
+		get_redirect_type(tokens)));
 }
 
-static t_node	get_redirect_type(t_token *token)
+static t_node	get_redirect_type(t_vector *token)
 {
 	static const t_node	node_tab[] = {HERE_DOC, APPEND, OUTPUT};
 	static const char	*str_tab[] = {"<<", ">>", ">"};
-	unsigned char		i;
+	int 				i;
 
 	i = 0;
-	while (i < 4)
+	printf("debug : %s\n", (((t_token *)token->addr)[0].str));
+	while (i < 3)
 	{
-		if (0 == ft_strcmp(str_tab[i], token->str))
+		if (0 == ft_strncmp(str_tab[i], ((t_token *)token->addr)[0].str, -1))
 			return (node_tab[i]);
 		i++;
 	}
