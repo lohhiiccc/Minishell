@@ -15,10 +15,10 @@
 #include "token.h"
 
 static void *free_command(t_cmd *content);
-static char	**get_cmd(t_vector *tokens);
-static size_t get_cmd_len(t_vector *tokens);
+static char	**get_cmd(t_token *tokens);
+static size_t get_cmd_len(t_token *tokens);
 
-t_tree	*make_command(t_vector *tokens)
+t_tree	*make_command(t_token *tokens)
 {
 	t_cmd		*content;
 
@@ -33,24 +33,24 @@ t_tree	*make_command(t_vector *tokens)
 	return (ft_new_tree(content, CMD));
 }
 
-static char	**get_cmd(t_vector *tokens)
+static char	**get_cmd(t_token *tokens)
 {
 	size_t	i;
 	size_t	len;
 	char 	**arg;
 
-	printf("%d\n", ((t_token *)tokens->addr)[0].type);
+	printf("%d\n", tokens[0].type);
 	arg = ft_calloc((get_cmd_len(tokens) + 1), sizeof(char *));
 	if (NULL == arg)
 		return (NULL);
 	i = 1;
-	arg[0] = ((t_token *)tokens->addr)[i].str;
+	arg[0] = tokens[i].str;
 	len = 1;
-	while (((t_token *)tokens->addr)[i].type != T_CMD && ((t_token *)tokens->addr)[i].type != T_NEWLINE)
+	while (tokens[i].type != T_CMD && tokens[i].type != T_NEWLINE)
 	{
-		if (((t_token *)tokens->addr)[i].type == T_ARG)
+		if (tokens[i].type == T_ARG)
 		{
-			arg[len] = ((t_token *)tokens->addr)[i].str;
+			arg[len] = tokens[i].str;
 			len++;
 		}
 		i++;
@@ -58,16 +58,16 @@ static char	**get_cmd(t_vector *tokens)
 	return (arg);
 }
 
-static size_t get_cmd_len(t_vector *tokens)
+static size_t get_cmd_len(t_token *tokens)
 {
 	size_t	len;
 	size_t	i;
 
 	i = 1;
 	len = 1;
-	while (((t_token *)tokens->addr)[i].type != T_CMD && ((t_token *)tokens->addr)[i].type != T_NEWLINE)
+	while (tokens[i].type != T_CMD && tokens[i].type != T_NEWLINE)
 	{
-		if (((t_token *)tokens->addr)[i].type == T_ARG)
+		if (tokens[i].type == T_ARG)
 			len++;
 		i++;
 	}
