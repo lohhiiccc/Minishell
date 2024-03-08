@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/07 01:49:29 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/07 01:56:45 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	exec_pipe(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	}
 	close(fd[0]);
 	close(fd[1]);
-	while(wait(0) != -1)
+	while (wait(0) != -1)
 		;
 	return (ret);
 }
