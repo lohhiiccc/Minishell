@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   make_tree.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 15:02:20 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/07 00:15:50 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/07 00:26:00 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "token.h"
-#include "lexer.h"
 
-int	lexer(char *str, t_vector *tokens)
-{
-	if (!str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
-		return (-1);
-	if (-1 == get_tokens(str, tokens))
-		return (write(2, "error\n", 6), -1);
-	if (1 == syntax_check(tokens))
-		return (write(2, "error\n", 6), -1);
-	tag_arg(tokens);
-	return (0);
-}
+#ifndef MAKE_TREE_H
+# define MAKE_TREE_H
+#include "tree.h"
+#include "token.h"
+t_tree *make_tree(t_vector *tokens);
+
+t_tree	*make_command(t_vector *tokens);
+t_tree *make_operator(t_vector *tokens);
+t_tree	*make_redirection(t_vector *tokens);
+
+#endif

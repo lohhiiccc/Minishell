@@ -8,6 +8,7 @@ TREEDIR = $(TOOLSDIR)tree/
 TOKENDIR = $(TOOLSDIR)token/
 BUILD_INDIR= $(SRCDIR)build-in/
 EXECDIR= $(SRCDIR)exec/
+MAKE_NODEDIR = $(TREEDIR)make_node/
 
 SRCPROMT = prompt
 
@@ -28,6 +29,7 @@ SRCTREE =  ft_clean_tree \
 		   ft_new_tree
 
 SRCTOKEN = quote \
+		   tag_args \
 		   tag_files \
 		   get_tokens \
 		   get_next_token \
@@ -53,7 +55,11 @@ SRCEXEC = exec \
 		  exec_pipe \
 		  exec_utils \
 
-SRCS =  $(SRCDIR)main.c \
+SRCMAKE_NODE = command \
+			   operator \
+			   redirection
+
+SRCS =  $(SRCDIR)main.c\
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
 	   $(addprefix $(PARSINGDIR), $(addsuffix .c, $(SRCPARSING))) \
 	   $(addprefix $(TREEDIR), $(addsuffix .c, $(SRCTREE))) \
@@ -61,4 +67,5 @@ SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(BUILD_INDIR), $(addsuffix .c, $(SRCBUILD_IN))) \
 	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER))) \
 	   $(addprefix $(LEXSYNTAXDIR), $(addsuffix .c, $(SRCLEXSYNTAX))) \
+	   $(addprefix $(MAKE_NODEDIR), $(addsuffix .c, $(SRCMAKE_NODE))) \
 	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC)))

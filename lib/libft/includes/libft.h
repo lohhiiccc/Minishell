@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/05 23:49:35 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/05 23:49:39 by lrio             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
@@ -30,6 +42,8 @@ typedef struct s_vector
 	size_t	size;
 }	t_vector;
 
+void	ft_vector_free(t_vector *vector, void (* content_free)(void *));
+void	*ft_vector_get(t_vector *vector, size_t n);
 void	ft_vector_trim(t_vector *vector);
 void	ft_vector_delete_elem(t_vector *vector, size_t n);
 int		ft_vector_add(t_vector *vector, void *elem);
@@ -48,7 +62,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(void *content);
 int		ft_putfloat_fd(double num, int fd);
 int		ft_putnbr_fd(long n, int fd);
-int		ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(const char *s1, char *s2);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_putchar_fd(char c, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
