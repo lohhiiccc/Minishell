@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:40:48 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 22:14:59 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/08 15:31:16 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ t_tree *make_tree(t_vector *tokens)
 		}
 		else if (((t_token *)tokens->addr)[i].type == T_RED_IN || ((t_token *)tokens->addr)[i].type == T_RED_OUT)
 		{
-			printf("%zu: %s\n", i, ((t_token *)tokens->addr)[i].str);
 			new = make_redirection(ft_vector_get(tokens, i));
 			root = add_tree(root, new);
 		}

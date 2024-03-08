@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:58:06 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 22:25:29 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/08 15:36:49 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_node get_operator(t_token *token);
 
 t_tree *make_operator(t_token *tokens)
 {
-	return (ft_new_tree(NULL, get_operator(tokens)));
+	return (ft_new_tree(ft_strdup(tokens[0].str), get_operator(tokens)));
 }
 
 static t_node get_operator(t_token *token)
