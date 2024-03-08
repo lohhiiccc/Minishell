@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:00 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 22:26:52 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/07 23:10:51 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static t_node	get_redirect_type(t_token *token);
 
 t_tree	*make_redirection(t_token *tokens)
 {
-	printf("debug : %s\n", (tokens)[0].str);
-	return (ft_new_tree(tokens[1].str,
+	return (ft_new_tree(ft_strdup(tokens[1].str),
 		get_redirect_type(tokens)));
 }
 
@@ -30,7 +29,6 @@ static t_node	get_redirect_type(t_token *token)
 	int 				i;
 
 	i = 0;
-	printf("debug : %s\n", (token[0].str));
 	while (i < 3)
 	{
 		if (0 == ft_strncmp(str_tab[i], token[0].str, -1))
@@ -38,4 +36,5 @@ static t_node	get_redirect_type(t_token *token)
 		i++;
 	}
 	return (INPUT);
+
 }

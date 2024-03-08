@@ -9,6 +9,7 @@ TOKENDIR = $(TOOLSDIR)token/
 BUILD_INDIR= $(SRCDIR)build-in/
 EXECDIR= $(SRCDIR)exec/
 MAKE_NODEDIR = $(TREEDIR)make_node/
+PRINTTREEDIR = $(TREEDIR)print_tree/
 
 SRCPROMT = prompt
 
@@ -59,6 +60,8 @@ SRCMAKE_NODE = command \
 			   operator \
 			   redirection
 
+SRCPRINTTREE = print
+
 SRCS =  $(SRCDIR)main.c\
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
 	   $(addprefix $(PARSINGDIR), $(addsuffix .c, $(SRCPARSING))) \
@@ -68,4 +71,5 @@ SRCS =  $(SRCDIR)main.c\
 	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER))) \
 	   $(addprefix $(LEXSYNTAXDIR), $(addsuffix .c, $(SRCLEXSYNTAX))) \
 	   $(addprefix $(MAKE_NODEDIR), $(addsuffix .c, $(SRCMAKE_NODE))) \
+	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
 	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC)))

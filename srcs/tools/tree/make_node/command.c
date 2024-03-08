@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 15:03:33 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/08 00:54:47 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ static char	**get_cmd(t_token *tokens)
 	size_t	len;
 	char 	**arg;
 
-	printf("%d\n", tokens[0].type);
 	arg = ft_calloc((get_cmd_len(tokens) + 1), sizeof(char *));
 	if (NULL == arg)
 		return (NULL);
 	i = 1;
-	arg[0] = tokens[i].str;
+	arg[0] = ft_strdup(tokens[i].str);
 	len = 1;
 	while (tokens[i].type != T_CMD && tokens[i].type != T_NEWLINE)
 	{
 		if (tokens[i].type == T_ARG)
 		{
-			arg[len] = tokens[i].str;
+			arg[len] = ft_strdup(tokens[i].str);
 			len++;
 		}
 		i++;
