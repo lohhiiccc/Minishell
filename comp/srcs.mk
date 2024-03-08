@@ -54,6 +54,7 @@ SRCEXEC = exec \
 		  exec_output \
 		  exec_pipe \
 		  exec_utils \
+		  clean_exit \
 
 SRCMAKE_NODE = command \
 			   operator \
