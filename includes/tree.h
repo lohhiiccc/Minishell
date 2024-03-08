@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:17:06 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 00:15:29 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/08 00:52:50 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_cmd
 	char	**env;
 }	t_cmd;
 
+void print2D(t_tree *root);
 t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content, t_node node);
 void	ft_clean_tree(t_tree *tree);
 t_tree	*ft_new_tree(void *content, t_node node);
