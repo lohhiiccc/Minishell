@@ -6,13 +6,13 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 00:47:02 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/08 15:41:29 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/09 00:31:42 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "tree.h"
-#define COUNT 10
+#define COUNT 8
 
 void print2DUtil(t_tree *root, int space)
 {
@@ -23,7 +23,7 @@ void print2DUtil(t_tree *root, int space)
 	// Increase distance between levels
 	space += COUNT;
 	// Process right child first
-	print2DUtil(root->left, space);
+	print2DUtil(root->right, space);
 
 	// Print current node after space
 	// count
@@ -33,23 +33,23 @@ void print2DUtil(t_tree *root, int space)
 	if (root->type == CMD)
 		printf("%s", ((t_cmd *)root->structur)->arg[0]);
 	if (root->type == INPUT)
-		printf(" < ");
+		printf(" < :%s", (char *)root->structur);
 	if (root->type == OUTPUT)
-		printf(" > ");
+		printf(" > :%s", (char *)root->structur);
 	if (root->type == HERE_DOC)
-		printf("<< ");
+		printf("<< :%s", (char *)root->structur);
 	if (root->type == APPEND)
-		printf(">> ");
+		printf(">> :%s", (char *)root->structur);
 	if(root->type == O_AND)
-		printf("&& ");
+		printf("&&");
 	if(root->type == O_OR)
-		printf("|| ");
+		printf("||");
 	if(root->type == O_PIPE)
-		printf("|  ");
+		printf("| ");
 //	printf("%d\n", (t_)root->structur);
 
 	// Process left child
-	print2DUtil(root->right, space);
+	print2DUtil(root->left, space);
 }
 
 // Wrapper over print2DUtil()
