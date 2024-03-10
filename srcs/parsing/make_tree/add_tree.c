@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:28:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/09 00:46:46 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/10 15:00:04 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,12 @@ t_tree *add_tree(t_tree *root, t_tree *new)
 {
 	if (NULL == root)
 		return (new);
-	if ((root->type != CMD && !is_operator(new->type))
-		|| root->type == O_PIPE)
-	{
-		if (root->left == NULL)
-			return (add_down(root, &root->left, new));
-		if (root->right == NULL)
-			return (add_down(root, &root->right, new));
-	}
-	return (add_up_right(root, new));
-//	if (root->left == NULL)
-//	{
-//		printf("/");
-//		return (add_down(root, &root->left, new));
-//	}
-//	if (root->right == NULL)
-//	{
-//		printf("\\");
-//		return (add_down(root, &root->right, new));
-//	}
+	if (is_operator(new->type))
+		return (add_up_right(root, new));
+	if (root->left == NULL)
+		return (add_down(root, &root->left, new));
+	if (root->right == NULL)
+		return (add_down(root, &root->right, new));
 	return (add_up_right(root, new));
 }
 
