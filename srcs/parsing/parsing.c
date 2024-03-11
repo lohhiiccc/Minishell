@@ -15,8 +15,11 @@
 /*
  *
  * (ls || ((cat && rm out) > test)) | grep ls
+ *
  * (ls || ((cat && rm out) > test))
+ *
  * ((cat && rm out) > test)
+ *
  * (cat && rm out)
  *
  */
@@ -56,3 +59,15 @@
 //
 //}
 //
+
+
+
+/*
+ *
+ *
+ *<<EOF ((ls || make) | (pwd && cat -e) > out)
+ *
+ *
+ *
+ *
+ */
