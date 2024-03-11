@@ -23,7 +23,7 @@ static void print_token(t_vector *tokens)
 //	}
 }
 
-t_tree * prompt(void)
+t_tree *prompt(char **env)
 {
 	char *str;
 	t_vector tokens;
@@ -35,7 +35,7 @@ t_tree * prompt(void)
 		return (NULL);
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = make_sub(ft_vector_get(&tokens, 0));
+		tree = make_sub(ft_vector_get(&tokens, 0), env);
 		print_tree(tree);
 	}
 	if (str && str[0])

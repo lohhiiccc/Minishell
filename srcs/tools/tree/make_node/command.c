@@ -18,7 +18,7 @@ static void		*free_command(t_cmd *content);
 static char		**get_cmd(t_token *tokens);
 static size_t	get_cmd_len(t_token *tokens);
 
-t_tree	*make_command(t_token *tokens)
+t_tree *make_command(t_token *tokens, char **env)
 {
 	t_cmd		*content;
 
@@ -29,7 +29,7 @@ t_tree	*make_command(t_token *tokens)
 	if (NULL == content->arg)
 		return (free_command(content));
 	content->path = NULL;
-	content->env = NULL;
+	content->env = env;
 	return (ft_new_tree(content, CMD));
 }
 

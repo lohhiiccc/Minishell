@@ -23,7 +23,7 @@
 //
 //}
 //
-t_tree	*make_sub(t_token *tokens)
+t_tree *make_sub(t_token *tokens, char **env)
 {
 	size_t	i;
 	t_tree	*root;
@@ -33,7 +33,7 @@ t_tree	*make_sub(t_token *tokens)
 	while (tokens[i].type != T_NEWLINE && tokens[i].type != T_PARENTHESE_CL)
 	{
 		if (tokens[i].type == T_CMD)
-			root = add_tree(root, make_command(tokens + i));
+			root = add_tree(root, make_command(tokens + i, env));
 		else if (tokens[i].type == T_LOGICAL_OP || tokens[i].type == T_PIPE)
 			root = add_tree(root, make_operator(tokens + i));
 		else if (tokens[i].type == T_RED_IN || tokens[i].type == T_RED_OUT)
