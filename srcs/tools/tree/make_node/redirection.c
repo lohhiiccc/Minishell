@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:00 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/08 15:36:11 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/11 13:09:27 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ static t_node	get_redirect_type(t_token *token);
 
 t_tree	*make_redirection(t_token *tokens)
 {
-	return (ft_new_tree(ft_strdup(tokens[1].str),
-		get_redirect_type(tokens)));
+	return (ft_new_tree(ft_strdup(tokens[1].str), get_redirect_type(tokens)));
 }
 
 static t_node	get_redirect_type(t_token *token)
 {
 	static const t_node	node_tab[] = {HERE_DOC, APPEND, OUTPUT};
 	static const char	*str_tab[] = {"<<", ">>", ">"};
-	int 				i;
+	int					i;
 
 	i = 0;
 	while (i < 3)
@@ -36,5 +35,4 @@ static t_node	get_redirect_type(t_token *token)
 		i++;
 	}
 	return (INPUT);
-
 }

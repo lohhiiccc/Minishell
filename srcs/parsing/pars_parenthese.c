@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 21:00:21 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/05 19:42:20 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/11 13:10:31 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static void	fill_index_range(t_vector *tokens, size_t *index_r);
 
 //todo: securiser vector add
-int next_parent(t_vector *tokens, t_vector *vector)
+int	next_parent(t_vector *tokens, t_vector *vector)
 {
 	size_t		index_r[2];
+
 	(void)vector;
 	fill_index_range(tokens, index_r);
-
 	return (0);
 }
 
