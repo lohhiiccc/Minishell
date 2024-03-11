@@ -36,7 +36,7 @@ t_tree * prompt(void)
 	if (-1 != lexer(str, &tokens))
 	{
 		tree = make_tree(&tokens);
-		print2D(tree);
+		print_tree(tree);
 	}
 	if (str && str[0])
 	{
