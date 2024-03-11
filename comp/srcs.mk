@@ -24,7 +24,6 @@ SRCLEXSYNTAX = lex_pipe \
 		   	   lex_redirection
 
 SRCPARSING = parsing \
-			 pars_parenthese
 
 SRCTREE =  ft_clean_tree \
 		   ft_join_tree \
