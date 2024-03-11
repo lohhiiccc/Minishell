@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 00:47:02 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/09 00:31:42 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/11 13:19:30 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 #include "tree.h"
 #define COUNT 8
 
-void print2DUtil(t_tree *root, int space)
+void _print_tree(t_tree *root, int space)
 {
-	// Base case
 	if (root == NULL)
 		return;
 
-	// Increase distance between levels
 	space += COUNT;
-	// Process right child first
-	print2DUtil(root->right, space);
+	_print_tree(root->right, space);
 
-	// Print current node after space
-	// count
 	printf("\n");
 	for (int i = COUNT; i < space; i++)
 		printf(" ");
@@ -46,16 +41,13 @@ void print2DUtil(t_tree *root, int space)
 		printf("||");
 	if(root->type == O_PIPE)
 		printf("| ");
-//	printf("%d\n", (t_)root->structur);
 
-	// Process left child
-	print2DUtil(root->left, space);
+	_print_tree(root->left, space);
 }
 
-// Wrapper over print2DUtil()
-void print2D(t_tree *root)
+// Wrapper over print_tree()
+void print_tree(t_tree *root)
 {
-	// Pass initial space count as 0
-	print2DUtil(root, 0);
+	_print_tree(root, 0);
 	printf("\n");
 }
