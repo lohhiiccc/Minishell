@@ -6,38 +6,44 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/03 22:13:19 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/08 19:10:26 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
 #include "minishell.h"
 #include "token.h"
-#include "lexer.h"
-#include "parsing.h"
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "make_tree.h"
 
-void prompt(void)
+static void print_token(t_vector *tokens)
+{
+	(void)tokens;
+//	for (size_t i = 0; i < tokens->nbr_elem; ++i) {
+		;//printf("\n%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
+//	}
+}
+
+t_tree * prompt(void)
 {
 	char *str;
 	t_vector tokens;
+	t_tree 	*tree;
+
 	tokens.nbr_elem = 0;
-	while (1)
+	str = readline("minichel>");
+	if (!str)
+		return (NULL);
+	if (-1 != lexer(str, &tokens))
 	{
-		str = readline("minichel>");
-		if (NULL == str || ft_strncmp("exit", str, -1) == 0)
-		{
-			rl_clear_history();
-			free(str);
-			break;
-		}
-		if (str && str[0] != '\0')
-			add_history(str);
-		if (lexer(str, &tokens) == -1)
-			continue;
-		free(str);
-		free_token(&tokens);
+		tree = make_sub(ft_vector_get(&tokens, 0));
+		print_tree(tree);
 	}
-	rl_clear_history();
+	if (str && str[0])
+	{
+		add_history(str);
+		print_token(&tokens);
+	}
+	free_token(&tokens);
+	free(str);
+	return (tree);
 }

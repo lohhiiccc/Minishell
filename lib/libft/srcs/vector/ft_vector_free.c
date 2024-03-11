@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_vector_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:31:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:06:20 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/05 23:49:24 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/05 23:49:28 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "libft.h"
-# include "tree.h"
+void ft_vector_free(t_vector *vector, void (* content_free)(void *))
+{
+	size_t	i;
 
-t_tree	*prompt(void);
-int		lexer(char *str, struct s_vector *tokens);
-#endif
+	i = 0;
+	while (i < vector->nbr_elem)
+	{
+		content_free(ft_vector_get(vector, i));
+		i++;
+	}
+	free(vector->addr);
+}

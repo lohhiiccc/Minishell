@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   is_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:31:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:06:20 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/08 23:27:16 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/11 13:16:19 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "make_tree.h"
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+unsigned char	is_redirection(t_node root_type)
+{
+	return (root_type == APPEND
+		|| root_type == HERE_DOC
+		|| root_type == INPUT
+		|| root_type == OUTPUT);
+}
 
-# include "libft.h"
-# include "tree.h"
-
-t_tree	*prompt(void);
-int		lexer(char *str, struct s_vector *tokens);
-#endif
+unsigned char	is_operator(t_node root_type)
+{
+	return ((root_type == O_OR || root_type == O_AND));
+}

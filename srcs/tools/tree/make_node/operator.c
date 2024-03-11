@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 03:31:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:06:20 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/06 18:58:06 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/11 13:08:59 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "tree.h"
+#include "token.h"
 
-# include "libft.h"
-# include "tree.h"
+static t_node	get_operator(t_token *token);
 
-t_tree	*prompt(void);
-int		lexer(char *str, struct s_vector *tokens);
-#endif
+t_tree	*make_operator(t_token *tokens)
+{
+	return (ft_new_tree(ft_strdup(tokens[0].str), get_operator(tokens)));
+}
+
+static t_node	get_operator(t_token *token)
+{
+	if (token[0].type == T_LOGICAL_OP)
+	{
+		if (token[0].str[0] == '&')
+			return (O_AND);
+		else
+			return (O_OR);
+	}
+	else
+		return (O_PIPE);
+}

@@ -20,7 +20,8 @@ void	free_token(t_vector *vector)
 	i = 0;
 	while (i < vector->nbr_elem)
 	{
-		free(((t_token *)vector->addr)[i].str);
+		if ((((t_token *)vector->addr)[i].type != T_NEWLINE))
+			free(((t_token *)vector->addr)[i].str);
 		i++;
 	}
 	free(vector->addr);

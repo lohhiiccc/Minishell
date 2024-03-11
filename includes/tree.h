@@ -5,16 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 13:21:14 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/11 13:21:14 by lrio             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tree.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:43:43 by lrio              #+#    #+#             */
 /*   Updated: 2024/03/04 18:20:50 by mjuffard         ###   ########lyon.fr   */
-
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_H
 # define TREE_H
 
-typedef enum	e_node
+typedef enum e_node
 {
 	O_OR,		// ||
 	O_AND,		// &&
@@ -41,6 +52,7 @@ typedef struct s_cmd
 	char	**env;
 }	t_cmd;
 
+void	print_tree(t_tree *root);
 t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content, t_node node);
 void	ft_clean_tree(t_tree *tree);
 t_tree	*ft_new_tree(void *content, t_node node);
