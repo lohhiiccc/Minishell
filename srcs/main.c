@@ -11,20 +11,17 @@
 /* ************************************************************************** */
 #include "minishell.h"
 #include "tree.h"
-#include "exec.h"
-#include "libft.h"
-#include <stdlib.h>
 
-int	main(/*int argc, char **argv, char **env*/)
+int	main(int argc, char **argv, char **env)
 {
 	t_tree *tree;
-//	(void)argc;
-//	(void)argv;
+	(void)argc;
+	(void)argv;
 //	(void)env;
-	tree = prompt();
+	tree = prompt(env);
 	while(1)
 	{
-		tree = prompt();
+		tree = prompt(env);
 		(void)tree;
 		//free;
 	}
