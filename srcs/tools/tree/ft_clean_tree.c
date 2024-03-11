@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:38:53 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/08 02:14:34 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 17:52:58 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ static void	clean_cmd(t_tree *tree)
 	size_t	i;
 
 	i = 0;
-	free(((t_cmd *)tree->structur)->path);
+	if (((t_cmd *)tree->structur)->path)
+		free(((t_cmd *)tree->structur)->path);
 	while (((t_cmd *)tree->structur)->arg[i])
 	{
 		free(((t_cmd *)tree->structur)->arg[i]);
 		i++;
 	}
-	free(((t_cmd *)tree->structur)->arg);
+	if (((t_cmd *)tree->structur)->arg)
+		free(((t_cmd *)tree->structur)->arg);
 	free(tree->structur);
 }
 
