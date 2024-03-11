@@ -15,7 +15,7 @@
 # include "tree.h"
 # include "token.h"
 
-t_tree			*make_tree(t_vector *tokens);
+t_tree			*make_sub(t_token *tokens);
 t_tree			*make_command(t_token *tokens);
 t_tree			*make_operator(t_token *tokens);
 t_tree			*make_redirection(t_token *tokens);

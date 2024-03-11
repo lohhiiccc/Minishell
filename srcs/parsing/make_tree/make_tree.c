@@ -13,23 +13,23 @@
 #include <stdio.h>
 #include "make_tree.h"
 
-t_tree	*make_tree(t_vector *tokens)
+t_tree	*make_sub(t_token *tokens)
 {
 	size_t	i;
 	t_tree	*root;
 
 	i = 0;
 	root = NULL;
-	while (i < tokens->nbr_elem)
+	while (tokens[i].type != T_NEWLINE && tokens[i].type != T_PARENTHESE_CL)
 	{
-		if (((t_token *)tokens->addr)[i].type == T_CMD)
-			root = add_tree(root, make_command(ft_vector_get(tokens, i)));
-		else if (((t_token *)tokens->addr)[i].type == T_LOGICAL_OP
-				|| ((t_token *)tokens->addr)[i].type == T_PIPE)
-			root = add_tree(root, make_operator(ft_vector_get(tokens, i)));
-		else if (((t_token *)tokens->addr)[i].type == T_RED_IN
-				|| ((t_token *)tokens->addr)[i].type == T_RED_OUT)
-			root = add_tree(root, make_redirection(ft_vector_get(tokens, i)));
+		if (tokens[i].type == T_CMD)
+			root = add_tree(root, make_command(tokens + i));
+		else if (tokens[i].type == T_LOGICAL_OP
+				|| tokens[i].type == T_PIPE)
+			root = add_tree(root, make_operator(tokens + i));
+		else if (tokens[i].type == T_RED_IN
+				|| tokens[i].type == T_RED_OUT)
+			root = add_tree(root, make_redirection(tokens + i));
 		i++;
 	}
 	return (root);

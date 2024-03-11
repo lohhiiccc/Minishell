@@ -35,7 +35,7 @@ t_tree * prompt(void)
 		return (NULL);
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = make_tree(&tokens);
+		tree = make_sub(ft_vector_get(&tokens, 0));
 		print_tree(tree);
 	}
 	if (str && str[0])
