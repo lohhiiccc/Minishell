@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/07 16:44:49 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/08 19:10:26 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -17,9 +17,10 @@
 
 static void print_token(t_vector *tokens)
 {
-	for (size_t i = 0; i < tokens->nbr_elem; ++i) {
-		printf("%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
-	}
+	(void)tokens;
+//	for (size_t i = 0; i < tokens->nbr_elem; ++i) {
+		;//printf("\n%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
+//	}
 }
 
 t_tree * prompt(void)
@@ -34,7 +35,8 @@ t_tree * prompt(void)
 		return (NULL);
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = make_tree(&tokens);
+		tree = make_sub(ft_vector_get(&tokens, 0));
+		print_tree(tree);
 	}
 	if (str && str[0])
 	{
