@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/08 19:10:26 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/11 19:06:55 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+
 #include "token.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "make_tree.h"
 
-static void print_token(t_vector *tokens)
+static void	print_token(t_vector *tokens)
 {
 	(void)tokens;
 //	for (size_t i = 0; i < tokens->nbr_elem; ++i) {
