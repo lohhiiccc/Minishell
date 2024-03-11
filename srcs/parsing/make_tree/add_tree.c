@@ -6,7 +6,7 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:28:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 12:46:04 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/11 12:55:08 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ t_tree *add_tree(t_tree *root, t_tree *new)
 		return (down(root, new));
 	if (is_redirection(new->type) && root->type == CMD)
 		return (add_up_right(root, new));
-	if (is_redirection(new->type) && (is_redirection(root->type)|| is_operator(root->type)))
+	if (is_redirection(new->type) && is_redirection(root->type))
+		return (add_up_right(root, new));
+	if (is_redirection(new->type) && (is_operator(root->type)))
 		return (down(root, new));
 	return (add_up_right(root, new));
 }
