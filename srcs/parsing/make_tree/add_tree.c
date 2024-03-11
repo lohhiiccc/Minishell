@@ -42,7 +42,6 @@ t_tree	*add_tree(t_tree *root, t_tree *new)
 
 static t_tree	*add_up_right(t_tree *root, t_tree *new)
 {
-	printf("|");
 	new->left = root;
 	return (new);
 }

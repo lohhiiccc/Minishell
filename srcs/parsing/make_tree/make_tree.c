@@ -41,8 +41,6 @@ t_tree	*make_tree(t_vector *tokens)
 			new = make_redirection(ft_vector_get(tokens, i));
 			root = add_tree(root, new);
 		}
-		print_tree(root);
-		printf("\n--------------------------------\n");
 		i++;
 	}
 	return (root);

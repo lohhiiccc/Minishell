@@ -48,5 +48,11 @@
  *
  * 1: cmd
  *
- *
- */
+// *
+// */
+//
+//unsigned char	parsing(t_vector *tokens, t_tree *root)
+//{
+//
+//}
+//
