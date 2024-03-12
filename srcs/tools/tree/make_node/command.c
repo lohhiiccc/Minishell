@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:08:30 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/11 23:56:19 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		*free_command(t_cmd *content);
 static char		**get_cmd(t_token *tokens);
 static size_t	get_cmd_len(t_token *tokens);
 
-t_tree *make_command(t_token *tokens, char **env)
+t_tree *make_command(t_token *tokens, t_vector *env)
 {
 	t_cmd		*content;
 

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:17:06 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 17:55:54 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 23:57:10 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 #ifndef TREE_H
 # define TREE_H
+
+# include "libft.h"
 
 typedef enum e_node
 {
@@ -47,9 +49,9 @@ typedef struct s_tree
 
 typedef struct s_cmd
 {
-	char	*path;
-	char	**arg;
-	char	**env;
+	char		*path;
+	char		**arg;
+	t_vector	*env;
 }	t_cmd;
 
 void	print_tree(t_tree *root);

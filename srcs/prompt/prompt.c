@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 19:06:55 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 23:55:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "make_tree.h"
+#include "minishell.h"
 
 static void	print_token(t_vector *tokens)
 {
@@ -23,7 +24,7 @@ static void	print_token(t_vector *tokens)
 //	}
 }
 
-t_tree *prompt(char **env)
+t_tree *prompt(t_vector *env)
 {
 	char *str;
 	t_vector tokens;

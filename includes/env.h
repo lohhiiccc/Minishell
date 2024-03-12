@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_tree.h                                        :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 00:15:50 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 23:58:19 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/11 22:26:51 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/11 23:54:36 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAKE_TREE_H
-# define MAKE_TREE_H
-# include "tree.h"
-# include "token.h"
+#ifndef ENV_H
+# define ENV_H
 
-t_tree *make_sub(t_token *tokens, t_vector *env);
-t_tree *make_command(t_token *tokens, t_vector *env);
-t_tree			*make_operator(t_token *tokens);
-t_tree			*make_redirection(t_token *tokens);
-t_tree			*add_tree(t_tree *root, t_tree *new);
-unsigned char	is_redirection(t_node root_type);
-unsigned char	is_operator(t_node root_type);
+# include "libft.h"
+
+typedef struct s_env
+{
+	char	*var_name;
+	char	*var;
+}	t_env;
+
+int	init_env(char **env, t_vector *new_env);
+
 #endif

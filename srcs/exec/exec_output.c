@@ -6,13 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:34:56 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/08 03:46:41 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/11 22:12:06 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include <fcntl.h>
-
+#include <stdio.h>
 int	exec_output(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	fd;

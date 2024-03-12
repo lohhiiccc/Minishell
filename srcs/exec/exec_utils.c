@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/11 18:58:12 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/12 00:12:54 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+#include "env.h"
 
 void	close_vector_fd(t_vector *fd)
 {
@@ -24,25 +25,47 @@ void	close_vector_fd(t_vector *fd)
 	}
 }
 
-static char	**list_path(char **env)
+int		is_build_in(char *str)
 {
-	size_t	i;
+	if (!ft_strcmp(str, "cd"))
+		return (1);
+	if (!ft_strcmp(str, "echo"))
+		return (1);
+	if (!ft_strcmp(str, "env"))
+		return (1);
+	if (!ft_strcmp(str, "exit"))
+		return (1);
+	if (!ft_strcmp(str, "export"))
+		return (1);
+	if (!ft_strcmp(str, "pwd"))
+		return (1);
+	if (!ft_strcmp(str, "unset"))
+		return (1);
+	return (0);
+}
+
+static char	**list_path(t_vector *env)
+{
 	char	**ret;
+	t_env	*temp;
+	size_t	i;
 
 	i = 0;
-	while (env[i])
+	temp = ft_vector_get(env, i);
+	while (temp)
 	{
-		if (!ft_strncmp(env[i], "PATH=", 5))
+		if (!ft_strcmp(temp->var_name, "PATH"))
 		{
-			ret = ft_split(env[i] + 5, ':');
+			ret = ft_split(temp->var, ':');
 			return (ret);
 		}
 		i++;
+		temp = ft_vector_get(env, i);
 	}
 	return (NULL);
 }
 
-char	*find_path(char *cmd, char **env)
+char	*find_path(char *cmd, t_vector *env)
 {
 	char	*ret;
 	char	*temp;
