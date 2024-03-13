@@ -54,9 +54,18 @@ static t_tree	*add_up_right(t_tree *root, t_tree *new)
 
 static t_tree	*down_right(t_tree *root, t_tree *branch,t_tree *new)
 {
-	if (branch->right == NULL)
-		return (add_down(root, &branch->right, new));
-	return (down_left(root, branch->right, new));
+	t_tree *tmp;
+	(void)branch;
+//	if (branch->right == NULL)
+//		return (add_down(root, &branch->right, new));
+	if (new->type == CMD)
+		return add_down(root, &branch->right, new);
+	tmp = root->right;
+	root->right = new;
+	new->left = tmp;
+	return (root);
+//	return (down_left(root, branch->right, new));
+//	branch->left = add_up_right(root, new);//TODO: insserer entre root et branch->right new
 }
 
 static t_tree	*down_left(t_tree *root,t_tree *branch, t_tree *new)
