@@ -15,29 +15,28 @@
 
 static t_tree	*add_down(t_tree *root, t_tree **branch, t_tree *leaf);
 static t_tree	*add_up_right(t_tree *root, t_tree *new);
-static t_tree	*down(t_tree *root, t_tree *new);
+static t_tree	*down_left(t_tree *root, t_tree *branch, t_tree *new);
+static t_tree	*down_right(t_tree *root, t_tree *branch, t_tree *new);
 
-/*
- * si new == operator : up
- * si new == cmd: down
- * si new == redirection && root == cmd : up
- * si new == redirection && (root == operator) : down
- */
 t_tree	*add_tree(t_tree *root, t_tree *new)
 {
 	if (NULL == root)
 		return (new);
-	if (is_operator(new->type))
+	if (CMD == root->type)
 		return (add_up_right(root, new));
-	if (new->type == CMD)
-		return (down(root, new));
-	if (is_redirection(new->type) && root->type == CMD)
+	if (is_operator(root->type) || O_PIPE == root->type)
+	{
+		if (is_operator(new->type) || O_PIPE == new->type)
+			return (add_up_right(root, new));
+		return (down_right(root, root, new));
+	}
+	if (is_redirection(root->type))
+	{
+		if (CMD == new->type)
+			return (down_left(root, root, new));
 		return (add_up_right(root, new));
-	if (is_redirection(new->type) && is_redirection(root->type))
-		return (add_up_right(root, new));
-	if (is_redirection(new->type) && (is_operator(root->type)))
-		return (down(root, new));
-	return (add_up_right(root, new));
+	}
+	return (root);
 }
 
 static t_tree	*add_up_right(t_tree *root, t_tree *new)
@@ -46,11 +45,23 @@ static t_tree	*add_up_right(t_tree *root, t_tree *new)
 	return (new);
 }
 
-static t_tree	*down(t_tree *root, t_tree *new)
+static t_tree	*down_right(t_tree *root, t_tree *branch, t_tree *new)
 {
-	if (root->left == NULL)
-		return (add_down(root, &root->left, new));
-	return (add_down(root, &root->right, new));
+	t_tree	*tmp;
+
+	if (new->type == CMD)
+		return (add_down(root, &branch->right, new));
+	tmp = root->right;
+	root->right = new;
+	new->left = tmp;
+	return (root);
+}
+
+static t_tree	*down_left(t_tree *root, t_tree *branch, t_tree *new)
+{
+	if (branch->left == NULL)
+		return (add_down(root, &branch->left, new));
+	return (down_left(root, branch->left, new));
 }
 
 static t_tree	*add_down(t_tree *root, t_tree **branch, t_tree *leaf)

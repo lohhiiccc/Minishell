@@ -19,11 +19,11 @@ static void print_token(t_vector *tokens)
 {
 	(void)tokens;
 //	for (size_t i = 0; i < tokens->nbr_elem; ++i) {
-		;//printf("\n%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
+//		printf("\n%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
 //	}
 }
 
-t_tree * prompt(void)
+t_tree *prompt(char **env)
 {
 	char *str;
 	t_vector tokens;
@@ -35,7 +35,7 @@ t_tree * prompt(void)
 		return (NULL);
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = make_sub(ft_vector_get(&tokens, 0));
+		tree = make_sub(ft_vector_get(&tokens, 0), env);
 		print_tree(tree);
 	}
 	if (str && str[0])
