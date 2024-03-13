@@ -35,7 +35,7 @@ t_tree *prompt(char **env)
 		return (NULL);
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = make_sub(ft_vector_get(&tokens, 0), env);
+		tree = make_tree(ft_vector_get(&tokens, 0), env);
 		print_tree(tree);
 	}
 	if (str && str[0])
