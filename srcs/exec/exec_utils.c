@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/12 00:12:54 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/13 15:19:01 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,24 @@ int		is_build_in(char *str)
 	return (0);
 }
 
+#include<stdio.h>
+#include <string.h>
 static char	**list_path(t_vector *env)
 {
 	char	**ret;
-	t_env	*temp;
+	char	**temp;
 	size_t	i;
 
 	i = 0;
 	temp = ft_vector_get(env, i);
 	while (temp)
 	{
-		if (!ft_strcmp(temp->var_name, "PATH"))
+		if (!ft_strncmp(*temp, "PATH=", 5))
 		{
-			ret = ft_split(temp->var, ':');
+			ret = ft_split(*temp + 5, ':');
 			return (ret);
 		}
-		i++;
-		temp = ft_vector_get(env, i);
+		temp = ft_vector_get(env, ++i);
 	}
 	return (NULL);
 }
@@ -74,6 +75,8 @@ char	*find_path(char *cmd, t_vector *env)
 
 	i = 0;
 	path_list = list_path(env);
+	if (path_list == NULL)
+		return (NULL);
 	while (path_list[i])
 	{
 		ret = ft_strjoin(path_list[i], "/");

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/12 01:18:10 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/12 19:38:02 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,11 @@
 #include "env.h"
 #include <sys/wait.h>
 
-static char	**create_env_tab(t_vector *env)
-{
-	char	**ret;
-	t_env	*temp_env;
-	char	*temp_str;
-	size_t	i;
-
-	i = 0;
-	ret = malloc(sizeof(char *) * (env->nbr_elem + 1));
-	temp_env = ft_vector_get(env, i);
-	while (temp_env)
-	{
-		temp_str = ft_strjoin(temp_env->var_name, "=");
-		ret[i] = ft_strjoin(temp_str, temp_env->var);
-		free(temp_str);
-		i++;
-		temp_env = ft_vector_get(env, i);
-	}
-	ret[i] = NULL;
-	return (ret);
-}
-
 static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	pid;
 	int	ret;
-	char	**env_tab;
 
-	env_tab = create_env_tab(((t_cmd *)tree->structur)->env);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -57,7 +33,8 @@ static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		close_vector_fd(fd_in);
 		close_vector_fd(fd_out);
 		execve(((t_cmd *)tree->structur)->path, \
-			((t_cmd *)tree->structur)->arg, env_tab);
+			((t_cmd *)tree->structur)->arg, ft_vector_get(((t_cmd *)tree-> \
+				structur)->env, 0));
 	}
 	waitpid(pid, &ret, 0);
 	return (ret);
@@ -68,12 +45,18 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	int		ret;
 
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
-		ret = exec_build_in(((t_cmd *)tree->structur)->arg);
+		ret = exec_build_in(tree->structur);
 	else
 	{
 		((t_cmd *)tree->structur)->path = find_path(((t_cmd *)\
 			tree->structur)->arg[0], ((t_cmd *)tree->structur)->env);
-		ret = exec_child_cmd(tree, fd_in, fd_out);
+		if (!((t_cmd *)tree->structur)->path)
+		{
+			write(2, "NOOB\n", 5);
+			return (127);
+		}
+		else
+			ret = exec_child_cmd(tree, fd_in, fd_out);
 	}
 	return (ret);
 }

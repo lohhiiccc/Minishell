@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strfjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <rio@student.42lyon.fr>               +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:20:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/01/21 17:44:10 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/12 16:47:31 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strfjoin(char *s1, char const *s2)
 
 	if (!s1)
 		return (free(s1), NULL);
-	totallen = (ft_strclen(s1, '\0') + ft_strclen(s2, '\n'));
+	totallen = (ft_strclen(s1, '\0') + ft_strlen(s2));
 	str = malloc((totallen + 1) * sizeof(char));
 	if (!str)
 		return (free(s1), NULL);
@@ -48,10 +48,8 @@ char	*ft_strfjoin(char *s1, char const *s2)
 		i++;
 	}
 	j = 0;
-	while (s2 && s2[j] && s2[j] != '\n')
+	while (s2 && s2[j])
 		str[i++] = s2[j++];
-	if (s2[j] == '\n')
-		str[i++] = '\n';
 	str[i] = '\0';
 	return (free(s1), str);
 }

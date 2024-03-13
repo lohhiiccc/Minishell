@@ -20,7 +20,7 @@ static void	print_token(t_vector *tokens)
 {
 	(void)tokens;
 //	for (size_t i = 0; i < tokens->nbr_elem; ++i) {
-		;//printf("\n%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
+//		printf("\n%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
 //	}
 }
 

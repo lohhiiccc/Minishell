@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:00:13 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 23:56:05 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/13 17:37:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 
 //static size_t	cmd_count(t_token *tokens);
 
-//ajouter un sous arbre: down
-//ajouter operateur : up
-//ajouter redirection : up sauf si operatuer : down
-//t_tree *make_tree(t_token *token)
-//{
-//
-//}
-//
 t_tree *make_sub(t_token *tokens, t_vector *env)
 {
 	size_t	i;

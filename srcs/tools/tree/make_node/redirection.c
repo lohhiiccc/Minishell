@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:00 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:09:27 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/13 17:45:34 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_node	get_redirect_type(t_token *token)
 	i = 0;
 	while (i < 3)
 	{
-		if (0 == ft_strncmp(str_tab[i], token[0].str, -1))
+		if (0 == ft_strcmp(str_tab[i], token[0].str))
 			return (node_tab[i]);
 		i++;
 	}
