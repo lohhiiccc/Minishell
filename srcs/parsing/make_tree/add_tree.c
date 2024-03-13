@@ -15,36 +15,35 @@
 
 static t_tree	*add_down(t_tree *root, t_tree **branch, t_tree *leaf);
 static t_tree	*add_up_right(t_tree *root, t_tree *new);
-static t_tree	*down(t_tree *root, t_tree *new);
+static t_tree	*down_right(t_tree *root, t_tree *new);
+static t_tree	*down_left(t_tree *root, t_tree *new);
 
-/*
- * si new == operator : up
- * si new == cmd: down
- * si new == redirection && root == cmd : up
- * si new == redirection && (root == operator) : down
- */
 t_tree	*add_tree(t_tree *root, t_tree *new)
 {
 	if (NULL == root)
 		return (new);
-	if (is_redirection(root->type) && new->type == CMD)
+	print_tree(root);
+	printf("\n------------------------------------\n");
+	if (CMD == root->type)
 	{
-		t_tree *tmp = root;
-		while (tmp->left != NULL)
-			tmp = tmp->left;
-		return (add_down(root, &tmp->left, new));
+		printf("test1-->%d", root->type);
+		return (add_up_right(root,new));
 	}
-	if (is_operator(new->type))
+	if (is_operator(root->type) || O_PIPE == root->type)
+	{
+		printf("test2-->%d", root->type);
+		if (is_operator(new->type) || O_PIPE == new->type)
+			return (add_up_right(root, new));
+		return (down_right(root, new));
+	}
+	if (is_redirection(root->type))
+	{
+		printf("test3-->%d", root->type);
+		if (CMD == new->type)
+			return (down_left(root, new));
 		return (add_up_right(root, new));
-	if (new->type == CMD)
-		return (down(root, new));
-	if (is_redirection(new->type) && root->type == CMD)
-		return (add_up_right(root, new));
-	if (is_redirection(new->type) && is_redirection(root->type))
-		return (add_up_right(root, new));
-	if (is_redirection(new->type) && (is_operator(root->type)))
-		return (down(root, new));
-	return (add_up_right(root, new));
+	}
+	return (root);
 }
 
 static t_tree	*add_up_right(t_tree *root, t_tree *new)
@@ -53,13 +52,18 @@ static t_tree	*add_up_right(t_tree *root, t_tree *new)
 	return (new);
 }
 
-static t_tree	*down(t_tree *root, t_tree *new)
+static t_tree	*down_right(t_tree *root, t_tree *new)
+{
+	if (root->right == NULL)
+		return (add_down(root, &root->right, new));
+	return (down_right(root->right, new));
+}
+
+static t_tree	*down_left(t_tree *root, t_tree *new)
 {
 	if (root->left == NULL)
 		return (add_down(root, &root->left, new));
-	if (root->right == NULL)
-		return (add_down(root, &root->right, new));
-	return (add_up_right(root, new));
+	return (down_left(root->left, new));
 }
 
 static t_tree	*add_down(t_tree *root, t_tree **branch, t_tree *leaf)

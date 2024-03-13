@@ -15,14 +15,6 @@
 
 //static size_t	cmd_count(t_token *tokens);
 
-//ajouter un sous arbre: down
-//ajouter operateur : up
-//ajouter redirection : up sauf si operatuer : down
-//t_tree *make_tree(t_token *token)
-//{
-//
-//}
-//
 t_tree *make_sub(t_token *tokens, char **env)
 {
 	size_t	i;
