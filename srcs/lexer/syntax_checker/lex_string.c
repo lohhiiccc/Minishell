@@ -23,9 +23,9 @@ unsigned char	lex_string(t_vector *vector, size_t i)
 		last = ((t_token *)vector->addr)[i - 1].type;
 	else
 		last = T_NONE;
-	if (last == T_PARENTHESE_CL || check_str(vector, i))
+	if (T_PARENTHESE_CL == last || check_str(vector, i))
 		return (1);
-	if (last == T_FILES)
+	if (T_FILES == last)
 		return (search_cmd(vector, i));
 	return (0);
 }
@@ -35,13 +35,13 @@ static size_t	get_quote_len(char *str, unsigned char *error)
 	size_t	i;
 
 	i = 1;
-	if (str[0] != '\'' && str[0] != '"')
+	if ('\'' != str[0] && '"' != str[0])
 		return (0);
 	while (str[i - 1] && str[i] && str[i] != str[0])
 		i++;
 	if (str[i] != str[0])
 		*error = 1;
-	if (str[i] == '\'' || str[i] == '"')
+	if ('\'' == str[i] || '"' == str[i])
 		return (i + 1 + get_quote_len(str + 1 + i, error));
 	return (i + 1);
 }
@@ -55,10 +55,10 @@ static unsigned char	check_str(t_vector *vector, size_t i)
 	while (((t_token *)vector->addr)[i].str[j])
 	{
 		error = 0;
-		if (((t_token *)vector->addr)[i].str[j] == '\''
-			|| ((t_token *)vector->addr)[i].str[j] == '"')
+		if ('\'' == ((t_token *)vector->addr)[i].str[j]
+			||'"' == ((t_token *)vector->addr)[i].str[j])
 			j += get_quote_len(((t_token *) vector->addr)[i].str + j, &error);
-		if (error || ((t_token *)vector->addr)[i].str[j] == '&')
+		if (error || '&' == ((t_token *)vector->addr)[i].str[j])
 			return (1);
 		if (((t_token *)vector->addr)[i].str[j])
 			j++;
@@ -71,11 +71,11 @@ static unsigned char	search_cmd(t_vector *vector, size_t i)
 	i--;
 	while (1)
 	{
-		if (((t_token *)vector->addr)[i].type == T_PARENTHESE_CL)
+		if (T_PARENTHESE_CL == ((t_token *)vector->addr)[i].type)
 			return (1);
-		if (((t_token *)vector->addr)[i].type == T_CMD
-			|| ((t_token *)vector->addr)[i].type == T_LOGICAL_OP
-			|| ((t_token *)vector->addr)[i].type == T_PIPE)
+		if (T_CMD == ((t_token *)vector->addr)[i].type
+			|| T_LOGICAL_OP == ((t_token *)vector->addr)[i].type
+			|| T_PIPE == ((t_token *)vector->addr)[i].type)
 			return (0);
 		if (i == 0)
 			return (0);
