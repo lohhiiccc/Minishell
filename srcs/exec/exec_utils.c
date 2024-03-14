@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/13 15:19:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/13 20:49:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int		is_build_in(char *str)
 	return (0);
 }
 
-#include<stdio.h>
-#include <string.h>
 static char	**list_path(t_vector *env)
 {
 	char	**ret;
