@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:00:13 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:15:14 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/13 17:37:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 //static size_t	cmd_count(t_token *tokens);
 
-t_tree	*make_tree(t_token *tokens, char **env)
+t_tree	*make_tree(t_token *tokens, t_vector *env)
 {
 
 	return (make_subtree(tokens, env));
 }
 
 //todo: check makecommand makeoperator ou makeredirection
-t_tree *make_subtree(t_token *tokens, char **env)
+t_tree *make_subtree(t_token *tokens, t_vector *env)
 {
 	size_t	i;
 	t_tree	*root;

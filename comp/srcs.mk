@@ -11,6 +11,7 @@ EXECDIR= $(SRCDIR)exec/
 MAKE_NODEDIR = $(TREEDIR)make_node/
 PRINTTREEDIR = $(TREEDIR)print_tree/
 MAKETREEDIR = $(PARSINGDIR)make_tree/
+ENVDIR = $(SRCDIR)env/
 
 SRCPROMT = prompt
 
@@ -55,6 +56,7 @@ SRCEXEC = exec \
 		  exec_output \
 		  exec_pipe \
 		  exec_utils \
+		  clean_exit \
 
 SRCMAKE_NODE = command \
 			   operator \
@@ -65,6 +67,8 @@ SRCPRINTTREE = print
 SRCMAKE_TREE = make_tree \
 			   is_type \
 			   add_tree
+
+SRCENV = init_env \
 
 SRCS =  $(SRCDIR)main.c\
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
@@ -77,4 +81,5 @@ SRCS =  $(SRCDIR)main.c\
 	   $(addprefix $(MAKE_NODEDIR), $(addsuffix .c, $(SRCMAKE_NODE))) \
 	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
 	   $(addprefix $(MAKETREEDIR), $(addsuffix .c, $(SRCMAKE_TREE))) \
-	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC)))
+	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC))) \
+	   $(addprefix $(ENVDIR), $(addsuffix .c, $(SRCENV)))

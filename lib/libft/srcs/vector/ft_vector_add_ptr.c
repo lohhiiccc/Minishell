@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_vector_add_ptr.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:38:03 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 17:56:02 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/12 16:36:15 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/12 17:03:31 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_vector_add_ptr(t_vector *vector, void *elem)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while (i < n - 1)
+	if (vector->capacity == vector->nbr_elem)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		if (ft_vector_resize(vector, vector->capacity * 2) == -1)
+		{
+			free(vector->addr);
+			return (-1);
+		}
 	}
-	return (s1[i] - s2[i]);
+	*(void **)(vector->addr + vector->nbr_elem * vector->size) = elem;
+	vector->nbr_elem++;
+	return (1);
 }

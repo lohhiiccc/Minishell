@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:32 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/07 01:44:39 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 03:44:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 int	exec_apend(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	fd;
-	int ret;
+	int	ret;
 
 	fd = open((char *)tree->structur, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
-		return (1);
+		clean_exit(tree, fd_in, fd_out, 1);
 	ft_vector_add(fd_out, &fd);
 	ret = exec_args(tree->left, fd_in, fd_out);
-	close(fd);
+	if (close(fd) == -1)
+		clean_exit(tree, fd_in, fd_out, 1);
 	ft_vector_delete_elem(fd_out, fd_out->nbr_elem);
 	return (ret);
 }

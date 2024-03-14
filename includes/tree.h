@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 13:21:14 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:21:14 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/06 16:17:06 by lrio              #+#    #+#             */
+/*   Updated: 2024/03/11 23:57:10 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 /*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:43:43 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 18:20:50 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/08 02:41:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_H
 # define TREE_H
+
+# include "libft.h"
 
 typedef enum e_node
 {
@@ -47,9 +49,9 @@ typedef struct s_tree
 
 typedef struct s_cmd
 {
-	char	*path;
-	char	**arg;
-	char	**env;
+	char		*path;
+	char		**arg;
+	t_vector	*env;
 }	t_cmd;
 
 void	print_tree(t_tree *root);
