@@ -15,26 +15,33 @@
 
 //static size_t	cmd_count(t_token *tokens);
 
-t_tree *make_sub(t_token *tokens, t_vector *env)
+t_tree	*make_tree(t_token *tokens, t_vector *env)
+{
+
+	return (make_subtree(tokens, env));
+}
+
+//todo: check makecommand makeoperator ou makeredirection
+t_tree *make_subtree(t_token *tokens, t_vector *env)
 {
 	size_t	i;
 	t_tree	*root;
 
 	i = 0;
 	root = NULL;
-	while (tokens[i].type != T_NEWLINE && tokens[i].type != T_PARENTHESE_CL)
+	while (T_NEWLINE != tokens[i].type && T_PARENTHESE_CL != tokens[i].type)
 	{
-		if (tokens[i].type == T_CMD)
-			root = add_tree(root, make_command(tokens + i, env));
-		else if (tokens[i].type == T_LOGICAL_OP || tokens[i].type == T_PIPE)
-			root = add_tree(root, make_operator(tokens + i));
-		else if (tokens[i].type == T_RED_IN || tokens[i].type == T_RED_OUT)
-			root = add_tree(root, make_redirection(tokens + i));
+		if (T_CMD == tokens[i].type)
+			root = add_in_subtree(root, make_command(tokens + i, env));
+		else if (T_LOGICAL_OP == tokens[i].type || T_PIPE == tokens[i].type)
+			root = add_in_subtree(root, make_operator(tokens + i));
+		else if (T_RED_OUT == tokens[i].type || T_RED_IN == tokens[i].type)
+			root = add_in_subtree(root, make_redirection(tokens + i));
 		i++;
 	}
 	return (root);
 }
-//
+
 //static size_t	cmd_count(t_token *tokens)
 //{
 //	size_t	i;

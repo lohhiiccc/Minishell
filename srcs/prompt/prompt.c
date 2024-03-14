@@ -15,36 +15,52 @@
 #include <readline/history.h>
 #include "make_tree.h"
 #include "minishell.h"
+#include "exec.h"
 
-static void	print_token(t_vector *tokens)
+static unsigned char init_fd(t_vector *fd);
+static unsigned char free_fd(t_vector *fd, unsigned char ret);
+
+int prompt(t_vector *env)
 {
-	(void)tokens;
-//	for (size_t i = 0; i < tokens->nbr_elem; ++i) {
-//		printf("\n%zu: %d\t|%s\n", i , ((t_token *)tokens->addr)[i].type, ((t_token *)tokens->addr)[i].str);
-//	}
-}
+	char		*str;
+	t_vector	tokens;
+	t_tree		*tree;
+	t_vector	fd[2];
 
-t_tree *prompt(t_vector *env)
-{
-	char *str;
-	t_vector tokens;
-	t_tree 	*tree;
-
+	if (init_fd(fd))
+		return (1); // todo print erreur malloc
 	tokens.nbr_elem = 0;
 	str = readline("minichel>");
 	if (!str)
-		return (NULL);
+		return (free_fd(fd, 0));
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = make_sub(ft_vector_get(&tokens, 0), env);
+		tree = make_tree(ft_vector_get(&tokens, 0), env);
+		if (NULL == tree)
+			return (free_fd(fd, 1));
+		exec_args(tree, &fd[0], &fd[1]);
 		print_tree(tree);
 	}
 	if (str && str[0])
-	{
 		add_history(str);
-		print_token(&tokens);
+	return (free_fd(fd, 1));
+}
+
+static unsigned char free_fd(t_vector *fd, unsigned char ret)
+{
+	ft_vector_free(&fd[0], NULL);
+	ft_vector_free(&fd[1], NULL);
+	return (ret);
+}
+
+static unsigned char init_fd(t_vector *fd)
+{
+	if (-1 == ft_vector_init(&fd[0], sizeof(int)))
+		return (1);
+	if (-1 == ft_vector_init(&fd[1], sizeof(int)))
+	{
+		free(fd[0].addr);
+		return (1);
 	}
-	free_token(&tokens);
-	free(str);
-	return (tree);
+	return (0);
 }
