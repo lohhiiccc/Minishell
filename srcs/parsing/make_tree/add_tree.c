@@ -18,7 +18,7 @@ static t_tree	*add_up_right(t_tree *root, t_tree *new);
 static t_tree	*down_left(t_tree *root, t_tree *branch, t_tree *new);
 static t_tree	*down_right(t_tree *root, t_tree *branch, t_tree *new);
 
-t_tree	*add_tree(t_tree *root, t_tree *new)
+t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 {
 	if (NULL == root)
 		return (new);
@@ -66,6 +66,6 @@ static t_tree	*down_left(t_tree *root, t_tree *branch, t_tree *new)
 
 static t_tree	*add_down(t_tree *root, t_tree **branch, t_tree *leaf)
 {
-	*branch = add_tree(*branch, leaf);
+	*branch = add_in_subtree(*branch, leaf);
 	return (root);
 }

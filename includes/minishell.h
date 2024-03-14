@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "tree.h"
 
-t_tree *prompt(t_vector *env);
+int prompt(t_vector *env);
+//t_tree *prompt(t_vector *env);
 int		lexer(char *str, struct s_vector *tokens);
 #endif

@@ -22,6 +22,8 @@ int	exec_args(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int				ret;
 
+	if (tree == NULL)
+		return (0);
 	if (tree->type == O_OR)
 		ret = exec_or(tree, fd_in, fd_out);
 	if (tree->type == O_AND)

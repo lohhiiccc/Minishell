@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "tree.h"
 
 static int	found_sep(char *str, char sep)
