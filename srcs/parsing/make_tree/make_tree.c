@@ -17,9 +17,11 @@
 
 t_tree	*make_tree(t_token *tokens, char **env)
 {
-	return make_subtree(tokens, env);
+
+	return (make_subtree(tokens, env));
 }
 
+//todo: check makecommand makeoperator ou makeredirection
 t_tree *make_subtree(t_token *tokens, char **env)
 {
 	size_t	i;
