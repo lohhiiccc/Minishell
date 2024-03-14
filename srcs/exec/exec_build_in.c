@@ -6,29 +6,29 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:39:06 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/07 01:45:41 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/12 18:37:28 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "build_in.h"
 
-int	exec_build_in(char **arg)
+int	exec_build_in(t_cmd *cmd)
 {
-	if (!ft_strcmp(arg[0], "echo"))
-		ft_echo(arg);
-	else if (!ft_strcmp(arg[0], "cd"))
-		ft_cd();
-	else if (!ft_strcmp(arg[0], "pwd"))
-		ft_pwd();
-	else if (!ft_strcmp(arg[0], "export"))
-		ft_export();
-	else if (!ft_strcmp(arg[0], "unset"))
-		ft_unset();
-	else if (!ft_strcmp(arg[0], "env"))
-		ft_env();
-	else if (!ft_strcmp(arg[0], "exit"))
-		ft_exit();
+	if (!ft_strcmp(cmd->arg[0], "echo"))
+		ft_echo(cmd);
+	else if (!ft_strcmp(cmd->arg[0], "cd"))
+		ft_cd(cmd);
+	else if (!ft_strcmp(cmd->arg[0], "pwd"))
+		ft_pwd(cmd);
+	else if (!ft_strcmp(cmd->arg[0], "export"))
+		ft_export(cmd);
+	else if (!ft_strcmp(cmd->arg[0], "unset"))
+		ft_unset(cmd);
+	else if (!ft_strcmp(cmd->arg[0], "env"))
+		ft_env(cmd);
+	else if (!ft_strcmp(cmd->arg[0], "exit"))
+		ft_exit(cmd);
 	else
 	{
 		write(2, "NOOB\n", 5);

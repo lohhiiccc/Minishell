@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:38:03 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 17:56:02 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/08 03:01:13 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/11 19:57:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "exec.h"
+#include <errno.h>
+#include <stdio.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int status)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while (i < n - 1)
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (s1[i] - s2[i]);
+	perror(((t_cmd *)tree->structur)->arg[0]);
+	ft_clean_tree(tree);
+	close_vector_fd(fd_in);
+	close_vector_fd(fd_out);
+	exit(status);
 }

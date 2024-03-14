@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:38:03 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 17:56:02 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/11 22:30:31 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/13 18:29:05 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "env.h"
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	init_env(char **env, t_vector *new_env)
 {
 	size_t	i;
+	char	*temp;
 
 	i = 0;
-	if (!s1 || !s2)
+	if (ft_vector_init(new_env, sizeof(char *)) == -1)
 		return (-1);
-	while (i < n - 1)
+	while (env[i])
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		temp = ft_strdup(env[i]);
+		if (!temp || ft_vector_add_ptr(new_env, temp) == -1)
+		{
+			while (i > 0)
+			{
+				free(ft_vector_get(new_env, i));
+				i--;
+			}
+			return (-1);
+		}
 		i++;
 	}
-	return (s1[i] - s2[i]);
+	ft_vector_add_ptr(new_env, NULL);
+	return (0);
 }
