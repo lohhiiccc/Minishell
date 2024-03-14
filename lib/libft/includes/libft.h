@@ -42,6 +42,7 @@ typedef struct s_vector
 	size_t	size;
 }	t_vector;
 
+void	*ft_null_alloc(size_t nmemb, size_t size);
 void	ft_vector_free(t_vector *vector, void (* content_free)(void *));
 void	*ft_vector_get(t_vector *vector, size_t n);
 void	ft_vector_trim(t_vector *vector);

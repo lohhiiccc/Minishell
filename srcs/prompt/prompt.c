@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "make_tree.h"
