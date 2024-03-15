@@ -66,7 +66,7 @@ SRCPRINTTREE = print
 
 SRCMAKE_TREE = make_tree \
 			   is_type \
-			   add_tree
+			   add_subtree
 
 SRCENV = init_env \
 

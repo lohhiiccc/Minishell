@@ -37,7 +37,7 @@ int prompt(t_vector *env)
 		tree = make_tree(ft_vector_get(&tokens, 0), env);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
-		exec_args(tree, &fd[0], &fd[1]);
+//		exec_args(tree, &fd[0], &fd[1]);
 		print_tree(tree);
 	}
 	if (str && str[0])
