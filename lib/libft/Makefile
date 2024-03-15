@@ -19,6 +19,7 @@ $(BUILDDIR)%.o: $(SRCDIR)%.c
 -include $(DEPS)
 
 clean:
+	@$(PURPLE)
 	@rm -rf $(BUILDDIR)
 
 fclean: clean
