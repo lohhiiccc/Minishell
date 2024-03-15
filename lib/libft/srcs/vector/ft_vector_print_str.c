@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:24:42 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/15 16:29:35 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/15 16:54:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 void	ft_vector_print_str(void *str)
 {
-	printf("%s\n", *(char **)str);
+	if (*(char **)str)
+		printf("%s\n", *(char **)str);
 }
