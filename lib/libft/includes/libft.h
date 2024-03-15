@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:49:35 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/15 00:51:27 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/15 16:33:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char	*ft_itoa(long n);
 char	*ft_strndup(const char *src, size_t n);
 int		ft_vector_add_ptr(t_vector *vector, void *elem);
 void	ft_vector_print_int(void *n);
+void	ft_vector_print_str(void *str);
 int		ft_vector_iteri(t_vector *vector, void (*f)(void *));
 
 #endif
