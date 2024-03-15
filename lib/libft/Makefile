@@ -6,6 +6,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar -rcs $(NAME) $(OBJS)
+	@$(PURPLE)
 	@echo "🔗 $(GREEN)> $(YELLOW)ar $(RED)-rcs $(GREEN)$(NAME)$(END) $(OBJS)"
 	@echo "📚 $(CYAN)libft done\n$(END)"
 
