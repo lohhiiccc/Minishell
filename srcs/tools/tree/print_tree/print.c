@@ -47,7 +47,7 @@ void _print_tree(t_tree *root, int space)
 	if(root->type == O_OR)
 		printf("||");
 	if(root->type == O_PIPE)
-		printf("| ");
+		printf("|");
 
 	_print_tree(root->left, space);
 }

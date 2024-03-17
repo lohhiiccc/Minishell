@@ -66,7 +66,7 @@ static t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t
 	}
 	if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_RED_OUT))
 		return (add_redirection(i, root, subroot, tokens));
-	if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_PIPE))
+	else if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_PIPE))
 		return (add_pipe(i, root, subroot, tokens));
 	return (down(root, subroot));
 }

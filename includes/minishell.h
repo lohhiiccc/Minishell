@@ -19,4 +19,5 @@
 int prompt(t_vector *env);
 //t_tree *prompt(t_vector *env);
 int		lexer(char *str, struct s_vector *tokens);
+t_tree *parsing(t_vector *env, t_vector *tokens);
 #endif
