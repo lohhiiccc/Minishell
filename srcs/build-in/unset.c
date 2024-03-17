@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 18:28:51 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/13 19:42:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_unset(t_cmd *cmd)
 	while (cmd->arg[i])
 	{
 		n =is_variable_name(cmd, cmd->arg[i]);
-		printf("%ld\n", n);
 		if (n)
 			ft_vector_delete_elem(cmd->env, n);
 		i++;

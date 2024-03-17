@@ -6,14 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/14 16:02:54 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 03:27:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "env.h"
 #include <sys/wait.h>
-# include<stdio.h>
+
 static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	pid;
@@ -37,16 +37,13 @@ static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 				structur)->env, 0));
 	}
 	waitpid(pid, &ret, 0);
-	close(*(int *)(fd_in->addr + ((fd_in->nbr_elem - 1) * fd_in->size)));
-	close(*(int *)(fd_out->addr + ((fd_out->nbr_elem - 1) * fd_out->size)));
-	return (ret);
+	return (WIFEXITED(ret));
 }
 
 int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int		ret;
 
-	printf("\nCMD = %s FD_IN --> %d FD_OUT --> %d\n", ((t_cmd *)tree->structur)->arg[0], *(int *)(fd_in->addr + ((fd_in->nbr_elem - 1) * fd_in->size)), *(int *)(fd_out->addr + ((fd_out->nbr_elem - 1) * fd_out->size)));
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
 		ret = exec_build_in(tree->structur);
 	else
