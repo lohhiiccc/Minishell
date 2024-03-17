@@ -14,7 +14,9 @@
 #include "make_tree.h"
 
 static t_tree *down(t_tree *root, t_tree *new);
+static t_tree *add_pipe(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens);
 static t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t *i);
+static t_tree *add_redirection(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens);
 
 //todo: check makecommand makeoperator ou makeredirection
 t_tree	*make_tree(t_token *tokens, t_vector *env)
@@ -63,14 +65,30 @@ static t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t
 		++*i;
 	}
 	if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_RED_OUT))
-	{
-		++*i;
-		t_tree *new;
-		new = make_redirection(tokens + *i);
-		new->left = subroot;
-		return (down(root, new));
-	}
+		return (add_redirection(i, root, subroot, tokens));
+	if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_PIPE))
+		return (add_pipe(i, root, subroot, tokens));
 	return (down(root, subroot));
+}
+
+static t_tree *add_pipe(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens)
+{
+	t_tree	*new;
+
+	++*i;
+	new = make_operator(tokens + *i);
+	new->left = subroot;
+	return (down(root, new));
+}
+
+static t_tree *add_redirection(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens)
+{
+	t_tree	*new;
+
+	++*i;
+	new = make_redirection(tokens + *i);
+	new->left = subroot;
+	return (down(root, new));
 }
 
 static t_tree *down(t_tree *root, t_tree *new)

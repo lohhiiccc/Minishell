@@ -65,7 +65,6 @@ SRCMAKE_NODE = command \
 SRCPRINTTREE = print
 
 SRCMAKE_TREE = is_type \
-			   add_tree \
 			   make_tree \
 			   add_subtree \
 
