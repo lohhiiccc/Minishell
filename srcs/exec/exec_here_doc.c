@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/15 21:23:58 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/15 21:56:10 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	create_file_here_doc(t_tree *tree)
 	fd = open(file_name, O_RDWR | O_CREAT, 0777);
 	if (fd == -1)
 		return (1);
-	str = readline("Le croquant");
+	str = readline("Le croquant > ");
 	while (ft_strcmp(str, (char *)tree->structur))
 	{
 		if (write(fd, str, ft_strlen(str)) == -1)
@@ -68,7 +68,7 @@ int	create_file_here_doc(t_tree *tree)
 		if (write(fd, "\n", 1) == -1)
 			return (1);
 		free(str);
-		str = readline("Le croquant");
+		str = readline("Le croquant > ");
 	}
 	free(str);
 	free(tree->structur);
