@@ -14,7 +14,9 @@
 #include "make_tree.h"
 
 static t_tree *down(t_tree *root, t_tree *new);
+static t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t *i);
 
+//todo: check makecommand makeoperator ou makeredirection
 t_tree	*make_tree(t_token *tokens, t_vector *env)
 {
 	size_t	i;
@@ -40,8 +42,7 @@ t_tree	*make_tree(t_token *tokens, t_vector *env)
 	return (root);
 }
 
-//todo: check makecommand makeoperator ou makeredirection
-t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t *i)
+static t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t *i)
 {
 	t_tree	*subroot;
 
@@ -60,6 +61,14 @@ t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t *i)
 			subroot = make_subtree(tokens, env, subroot, i);
 		}
 		++*i;
+	}
+	if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_RED_OUT))
+	{
+		++*i;
+		t_tree *new;
+		new = make_redirection(tokens + *i);
+		new->left = subroot;
+		return (down(root, new));
 	}
 	return (down(root, subroot));
 }
