@@ -6,12 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/17 03:27:13 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:54:39 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include <sys/wait.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 static void	exec_left(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd)
 {

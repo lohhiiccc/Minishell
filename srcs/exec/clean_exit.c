@@ -6,13 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 03:01:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/11 19:57:09 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:55:25 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int status)
 {

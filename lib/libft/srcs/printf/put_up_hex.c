@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   put_up_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 17:13:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:23:50 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/17 23:03:55 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/17 23:27:03 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "printf_utils.h"
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	put_up_hex(t_vector *v, va_list arg)
 {
-	if (!lst || !(*lst))
-		return ;
-	ft_lstclear(&(*lst)->next, del);
-	(del)((*lst)->content);
-	free(*lst);
-	*lst = NULL;
+	char	*str;
+
+	str = ft_itoa_base(va_arg(arg, size_t), "0123456789ABCDEF");
+	if (!str)
+		return (-1);
+	if (ft_vector_add_n(v, str, ft_strlen(str)) == -1)
+	{
+		free(str);
+		return (-1);
+	}
+	free(str);
+	return (0);
 }

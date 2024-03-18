@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 09:20:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/12 16:47:31 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:25:37 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 size_t	ft_strclen(const char *str, int c)
 {

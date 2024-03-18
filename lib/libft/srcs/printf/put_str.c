@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fp_putstr.c                                        :+:      :+:    :+:   */
+/*   put_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <rio@student.42lyon.fr>               +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 17:57:24 by lrio              #+#    #+#             */
-/*   Updated: 2023/11/17 19:51:24 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/17 22:47:12 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/18 00:34:47 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf.h"
+#include "printf_utils.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int	fp_putstr(char *str, t_utils u)
+int	put_str(t_vector *v, va_list arg)
 {
-	size_t	lenstr;
+	char	*str;
 
+	str = ft_strdup(va_arg(arg, char *));
 	if (!str)
-	{
-		if (-1 == fp_putstr("(null)", u))
-			return (-1);
-		return (1);
-	}
-	lenstr = fp_strlen(str);
-	if (-1 == write(u.fd, str, lenstr))
 		return (-1);
-	u.len += lenstr;
-	return (1);
+	if (ft_vector_add_n(v, str, ft_strlen(str)) == -1)
+	{
+		free(str);
+		return (-1);
+	}
+	free(str);
+	return (0);
 }

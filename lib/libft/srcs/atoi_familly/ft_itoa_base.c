@@ -1,42 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 22:30:31 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/17 16:55:58 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/17 15:49:13 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/17 23:55:51 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
 #include "libft.h"
-#include "vector.h"
 #include <stdlib.h>
 
-int	init_env(char **env, t_vector *new_env)
+static size_t	size_to_malloc(long n, int len)
 {
 	size_t	i;
-	char	*temp;
 
-	i = 0;
-	if (ft_vector_init(new_env, sizeof(char *)) == -1)
-		return (-1);
-	while (env[i])
+	i = 1;
+	while (n >= len)
 	{
-		temp = ft_strdup(env[i]);
-		if (!temp || ft_vector_add_ptr(new_env, temp) == -1)
-		{
-			while (i > 0)
-			{
-				free(ft_vector_get(new_env, i));
-				i--;
-			}
-			return (-1);
-		}
+		n /= len;
 		i++;
 	}
-	ft_vector_add_ptr(new_env, NULL);
-	return (0);
+	return (i);
+}
+
+char	*ft_itoa_base(size_t n, char *base)
+{
+	char	*ret;
+	int		len_base;
+	size_t	i;
+
+	len_base = ft_strlen(base);
+	i = size_to_malloc(n, len_base);
+	ret = malloc(i + 1);
+	if (!ret)
+		return (NULL);
+	ret[i] = 0;
+	while (--i > 0)
+	{
+		ret[i] = *(base + (n % len_base));
+		n /= len_base;
+	}
+	ret[i] = *(base + (n % len_base));
+	return (ret);
 }

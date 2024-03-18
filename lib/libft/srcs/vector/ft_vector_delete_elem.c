@@ -6,10 +6,11 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 00:45:01 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/11 22:11:20 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:30:58 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "libft.h"
 
 void	ft_vector_delete_elem(t_vector *vector, size_t n)

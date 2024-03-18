@@ -6,12 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:32 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/08 03:44:30 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:47:53 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include <fcntl.h>
+#include <unistd.h>
 
 int	exec_apend(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {

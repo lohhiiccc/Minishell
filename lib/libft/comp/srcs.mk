@@ -6,10 +6,12 @@ PUT_FDDIR = put_fd/
 STRDIR = str/
 WHODIR = who/
 VECTORDIR = vector/
+PRINTFDIR = printf/
 
 
 SRCATOI = ft_atoi \
-		  ft_itoa
+		  ft_itoa \
+		  ft_itoa_base
 
 SRCCHAINED = ft_lstadd_back \
 			 ft_lstadd_front \
@@ -74,7 +76,19 @@ SRCVECTOR = ft_vector_add \
 			ft_vector_iteri \
 			ft_vector_print_int \
 			ft_vector_print_str \
+			ft_vector_add_n \
 			ft_vector_insert
+
+SRCPRINTF = ft_dprintf \
+			put_add \
+			put_char \
+			put_int \
+			put_low_hex \
+			put_up_hex \
+			put_str \
+			put_unsigned \
+			ft_printf \
+			ft_sprintf
 
 SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(CHAINEDDIR), $(addsuffix .c, $(SRCCHAINED))) \
@@ -83,3 +97,4 @@ SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(STRDIR), $(addsuffix .c, $(SRCSTR))) \
 	   $(addprefix $(SRCDIR)$(WHODIR), $(addsuffix .c, $(SRCWHO))) \
 	   $(addprefix $(SRCDIR)$(VECTORDIR), $(addsuffix .c, $(SRCVECTOR))) \
+	   $(addprefix $(SRCDIR)$(PRINTFDIR), $(addsuffix .c, $(SRCPRINTF))) 

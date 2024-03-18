@@ -1,5 +1,6 @@
 
 #include "libft.h"
+#include "vector.h"
 
 int	ft_vector_insert(t_vector *vector, void *elem, size_t index, size_t n)
 {

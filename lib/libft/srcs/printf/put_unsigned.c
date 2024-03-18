@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   put_unsigned.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 17:57:35 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/12 00:51:32 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/17 23:03:01 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/17 23:30:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "printf_utils.h"
+#include "libft.h"
+#include <stdlib.h>
 
-size_t	fp_strlen(char *s)
+int	put_unsigned(t_vector *v, va_list arg)
 {
-	size_t	i;
+	char	*str;
 
-	i = 0;
-	while (s && s[i])
-		i++;
-	return (i);
+	str = ft_itoa(va_arg(arg, unsigned int));
+	if (!str)
+		return (-1);
+	if (ft_vector_add_n(v, str, ft_strlen(str)) == -1)
+	{
+		free(str);
+		return (-1);
+	}
+	free(str);
+	return (0);
 }

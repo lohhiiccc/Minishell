@@ -6,27 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:49:35 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/15 16:33:21 by mjuffard         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 15:42:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 23:40:26 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 01:08:51 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
-# include <unistd.h>
+# include <stddef.h>
 
 typedef struct s_list
 {
@@ -34,23 +21,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct s_vector
-{
-	void	*addr;
-	size_t	nbr_elem;
-	size_t	capacity;
-	size_t	size;
-}	t_vector;
-
 void	*ft_null_alloc(size_t nmemb, size_t size);
-void	ft_vector_free(t_vector *vector, void (* content_free)(void *));
-void	*ft_vector_get(t_vector *vector, size_t n);
-void	ft_vector_trim(t_vector *vector);
-int		ft_vector_insert(t_vector *vector, void *elem, size_t index, size_t n);
-void	ft_vector_delete_elem(t_vector *vector, size_t n);
-int		ft_vector_add(t_vector *vector, void *elem);
-int		ft_vector_init(t_vector *vector, size_t size);
-int		ft_vector_resize(t_vector *vector, size_t new_size);
 size_t	ft_strclen(const char *str, int c);
 size_t	ft_count_word(const char *str, char c);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
@@ -101,10 +72,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strstrfjoin(char *str1, char *str2, char *str3);
 char	*ft_strfjoin(char *s1, char const *s2);
 char	*ft_itoa(long n);
+char	*ft_itoa_base(size_t n, char *base);
 char	*ft_strndup(const char *src, size_t n);
-int		ft_vector_add_ptr(t_vector *vector, void *elem);
-void	ft_vector_print_int(void *n);
-void	ft_vector_print_str(void *str);
-int		ft_vector_iteri(t_vector *vector, void (*f)(void *));
 
 #endif
