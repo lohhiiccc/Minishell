@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 02:08:03 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 02:10:54 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 17:44:02 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	ft_printf(char *str, ...)
 				return (-1);
 		str++;
 	}
+	ft_vector_add(&v, "\0");
 	ret = write(1, v.addr, v.nbr_elem);
 	va_end(arg);
 	free(v.addr);

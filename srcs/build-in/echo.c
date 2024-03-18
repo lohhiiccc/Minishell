@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/18 03:18:26 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 17:54:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int	ft_echo(t_cmd *cmd)
 		}
 		i++;
 	}
+	ft_vector_add(&v, "\0");
 	return (print_result(&v, option));
 }
