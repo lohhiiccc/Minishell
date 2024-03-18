@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "token.h"
 #include "lexer.h"
-#include "ft_printf.h"
 
 static unsigned char	lex_last(const size_t *parent, t_token_type type);
 static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent,

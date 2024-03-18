@@ -10,64 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "make_tree.h"
-/*
- *
- * (ls || ((cat && rm out) > test)) | grep ls
- *
- * (ls || ((cat && rm out) > test))
- *
- * ((cat && rm out) > test)
- *
- * (cat && rm out)
- *
- */
 
-/*
- *
- * (ls || ((cat && rm out) > test)) | grep ls
- *
- *
- *
- * 					( | )
- * 					/	\
- * 				  / 	 \
- * 				(||)	(grep ls)
- * 				/	\
- * 			  /		 \
- * 			ls		 (>)
- * 					/ 	\
- * 				  / 	 test
- * 			    (&&)
- *  		   /   \
- *  		 /      \
- *  		cat     rm out
- *
- */
+//todo: ajouter lexpand dans cette fonction
+t_tree *parsing(t_vector *env, t_vector *tokens)
+{
+	t_tree *tree;
 
-/*
- * cat -e > 1 && ls
- *
- * 1: cmd
- *
-// *
-// */
-//
-//unsigned char	parsing(t_vector *tokens, t_tree *root)
-//{
-//
-//}
-//
-
-
-
-/*
- *
- *
- *<<EOF ((ls || make) | (pwd && cat -e) > out)
- *
- *
- *
- *
- */
+	tree = make_tree(ft_vector_get(tokens, 0), env);
+	return (tree);
+}

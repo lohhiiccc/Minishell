@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "make_tree.h"
 #include "minishell.h"
 #include "exec.h"
 
@@ -35,11 +33,11 @@ int prompt(t_vector *env)
 		return (free_fd(fd, 0));
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = make_tree(ft_vector_get(&tokens, 0), env);
+		tree = parsing(env, &tokens);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
+//		print_tree(tree);
 		exec_args(tree, &fd[0], &fd[1]);
-		print_tree(tree);
 	}
 	if (str && str[0])
 		add_history(str);

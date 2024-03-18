@@ -10,14 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
-#include "exec.h"
 #include "libft.h"
 #include "minishell.h"
 #include "env.h"
-#include "ft_printf.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv, char **env)
 {
@@ -26,15 +21,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	if (-1 == init_env(env, &new_env))
-	{
 		return (1);
-	}
-
 	while (prompt(&new_env))
 		;
-//	while (1)
-//		prompt(&new_env);
-
-//	free(fd_in);
-//	free(fd_out);
 }

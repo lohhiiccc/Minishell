@@ -26,7 +26,8 @@ SRCMEM = ft_bzero \
 		 ft_memcmp \
 		 ft_memcpy \
 		 ft_memmove \
-		 ft_memset
+		 ft_memset \
+		 ft_null_alloc
 
 SRCPUTFD = 	ft_putchar_fd \
 			ft_putfloat_fd \
@@ -69,7 +70,10 @@ SRCVECTOR = ft_vector_add \
 			ft_vector_free \
 			ft_vector_delete_elem \
 			ft_vector_get \
-			ft_vector_add_ptr
+			ft_vector_add_ptr \
+			ft_vector_iteri \
+			ft_vector_print_int \
+			ft_vector_print_str
 
 SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(CHAINEDDIR), $(addsuffix .c, $(SRCCHAINED))) \

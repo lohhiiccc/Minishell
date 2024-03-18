@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:44 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 18:10:15 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/14 19:08:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_export(t_cmd *cmd)
 	while (cmd->arg[i])
 	{
 		n = found_sep(cmd->arg[i], '=');
-		if (n != 0)
+		if (n != -1)
 		{
 			while (j < cmd->env->nbr_elem)
 			{

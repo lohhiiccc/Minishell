@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:49:35 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/12 16:40:52 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/15 16:33:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_vector
 	size_t	size;
 }	t_vector;
 
+void	*ft_null_alloc(size_t nmemb, size_t size);
 void	ft_vector_free(t_vector *vector, void (* content_free)(void *));
 void	*ft_vector_get(t_vector *vector, size_t n);
 void	ft_vector_trim(t_vector *vector);
@@ -101,5 +102,8 @@ char	*ft_strfjoin(char *s1, char const *s2);
 char	*ft_itoa(long n);
 char	*ft_strndup(const char *src, size_t n);
 int		ft_vector_add_ptr(t_vector *vector, void *elem);
+void	ft_vector_print_int(void *n);
+void	ft_vector_print_str(void *str);
+int		ft_vector_iteri(t_vector *vector, void (*f)(void *));
 
 #endif

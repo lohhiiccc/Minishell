@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/12 19:38:02 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 03:27:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 				structur)->env, 0));
 	}
 	waitpid(pid, &ret, 0);
-	return (ret);
+	return (WIFEXITED(ret));
 }
 
 int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
@@ -57,6 +57,7 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		}
 		else
 			ret = exec_child_cmd(tree, fd_in, fd_out);
+		free(((t_cmd *)tree->structur)->path);
 	}
 	return (ret);
 }

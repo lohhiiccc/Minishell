@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_vector_print_str.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 15:36:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/14 14:12:11 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/15 16:24:42 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/15 16:54:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
+#include "libft.h"
+#include <stdio.h>
 
-int	ft_exit(void)
+void	ft_vector_print_str(void *str)
 {
-	// ((t_cmd *)tree->structur)->arg;
-	return (0);
+	if (*(char **)str)
+		printf("%s\n", *(char **)str);
 }

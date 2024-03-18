@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_vector_print_int.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 15:36:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/14 14:12:11 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/15 00:48:24 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/15 00:52:35 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
+#include "libft.h"
+#include <stdio.h>
 
-int	ft_exit(void)
+void	ft_vector_print_int(void *n)
 {
-	// ((t_cmd *)tree->structur)->arg;
-	return (0);
+	printf("[%d] ", *(int *)n);
 }
