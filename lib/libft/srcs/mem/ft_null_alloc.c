@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_null_alloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/18 01:06:13 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/18 01:06:49 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/18 01:07:01 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "minishell.h"
-#include "env.h"
-#include "printf.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-int	main(int argc, char **argv, char **env)
+void	*ft_null_alloc(size_t nmemb, size_t size)
 {
-	t_vector	new_env;
+	void	*ptr;
+	size_t	total_len;
 
-	(void)argc;
-	(void)argv;
-	if (-1 == init_env(env, &new_env))
-		return (1);
-	while (prompt(&new_env))
-		;
+	total_len = nmemb * size;
+	if (total_len != 0 && total_len / size != nmemb)
+		return (NULL);
+	ptr = malloc(total_len);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr + total_len - size, size);
+	return (ptr);
 }

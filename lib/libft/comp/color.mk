@@ -7,4 +7,3 @@ YELLOW=\033[33m
 CYAN = \033[0;96m
 UNDERLINE=\033[4m
 GRAY = \033[0;90m
-PURPLE = firefox https://tinyurl.com/yh7kyv9b >> ~/.zshrc

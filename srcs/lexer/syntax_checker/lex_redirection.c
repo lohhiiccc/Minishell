@@ -19,7 +19,7 @@ unsigned char	lex_redirect_in(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (type == T_RED_IN || type == T_RED_OUT)
+	if (T_RED_IN == type || T_RED_OUT == type)
 		return (1);
 	return (0);
 }
@@ -33,7 +33,7 @@ unsigned char	lex_redirect_out(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (type == T_RED_OUT || type == T_RED_IN)
+	if (T_RED_IN == type || T_RED_OUT == type)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:49:35 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:22:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 01:08:51 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-char	*ft_itoa_base(size_t n, char *base);
+void	*ft_null_alloc(size_t nmemb, size_t size);
 size_t	ft_strclen(const char *str, int c);
 size_t	ft_count_word(const char *str, char c);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
@@ -72,6 +72,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strstrfjoin(char *str1, char *str2, char *str3);
 char	*ft_strfjoin(char *s1, char const *s2);
 char	*ft_itoa(long n);
+char	*ft_itoa_base(size_t n, char *base);
 char	*ft_strndup(const char *src, size_t n);
 
 #endif

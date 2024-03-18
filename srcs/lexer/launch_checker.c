@@ -6,11 +6,10 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:37:08 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:45:38 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 01:06:33 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "token.h"
 #include "lexer.h"
 #include "libft.h"
