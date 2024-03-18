@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/01 15:31:04 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:43:51 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 //todo: malloc est faire un seul print / utiliser printf
 int	ft_echo(char **arg)

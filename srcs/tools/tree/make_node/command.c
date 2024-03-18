@@ -6,13 +6,15 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 23:56:19 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:46:06 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "tree.h"
 #include "token.h"
+#include <stdlib.h>
+#include "libft.h"
 
 static void		*free_command(t_cmd *content);
 static char		**get_cmd(t_token *tokens);

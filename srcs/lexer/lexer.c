@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 15:02:20 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/17 16:45:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "token.h"
 #include "lexer.h"
+#include <unistd.h>
 
 int	lexer(char *str, t_vector *tokens)
 {

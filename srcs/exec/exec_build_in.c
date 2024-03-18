@@ -6,12 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:39:06 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/12 18:37:28 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:48:13 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "build_in.h"
+#include <unistd.h>
 
 int	exec_build_in(t_cmd *cmd)
 {

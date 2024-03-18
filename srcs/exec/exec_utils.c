@@ -6,12 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/17 02:46:53 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 00:41:23 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "env.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 void	close_vector_fd(t_vector *fd)
 {
@@ -25,7 +27,7 @@ void	close_vector_fd(t_vector *fd)
 	}
 }
 
-int		is_build_in(char *str)
+int	is_build_in(char *str)
 {
 	if (!ft_strcmp(str, "cd"))
 		return (1);

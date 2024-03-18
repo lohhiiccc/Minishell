@@ -6,13 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:00 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 17:45:34 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:46:53 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "tree.h"
 #include "token.h"
+#include "libft.h"
 
 static t_node	get_redirect_type(t_token *token);
 

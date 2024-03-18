@@ -6,11 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 01:14:38 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/29 19:35:16 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:29:08 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector.h"
 #include "libft.h"
+#include <stdlib.h>
 
 int	ft_vector_resize(t_vector *vector, size_t new_size)
 {

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:49:18 by lrio              #+#    #+#             */
-/*   Updated: 2024/01/22 12:52:08 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/17 16:25:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strcdup(const char *src, int c)
 {

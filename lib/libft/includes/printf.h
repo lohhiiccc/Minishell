@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fp_putchar.c                                       :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <rio@student.42lyon.fr>               +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 17:56:40 by lrio              #+#    #+#             */
-/*   Updated: 2024/01/18 00:07:56 by lrio             ###   ########.fr       */
+/*   Created: 2024/03/17 15:37:33 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/17 18:44:04 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf.h"
+#ifndef PRINTF_H
+# define PRINTF_H
 
-int	fp_putchar(char c, t_utils u)
-{
-	if (-1 == write(u.fd, &c, 1))
-		return (-1);
-	u.len++;
-	return (1);
-}
+int	ft_dprintf(int fd, char *str, ...);
+
+#endif

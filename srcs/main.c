@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/12 16:17:43 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 00:35:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "minishell.h"
 #include "env.h"
-#include "ft_printf.h"
+#include "printf.h"
 #include <stdlib.h>
 #include <stdio.h>
 

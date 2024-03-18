@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:44 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/14 19:08:17 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:44:37 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
+#include "libft.h"
 
 static void	ft_vector_add_and_null(t_cmd *cmd, size_t i)
 {

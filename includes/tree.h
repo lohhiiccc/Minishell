@@ -6,14 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:43:43 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 21:07:20 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:40:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_H
 # define TREE_H
 
-# include "libft.h"
+# include "vector.h"
 
 typedef enum e_node
 {

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:58:06 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:08:59 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/17 16:46:28 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include "token.h"
+#include "libft.h"
 
 static t_node	get_operator(t_token *token);
 

@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 00:56:22 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/02/27 20:23:48 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:28:28 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vector.h"
+#include <stdlib.h>
 
 int	ft_vector_init(t_vector *vector, size_t size)
 {

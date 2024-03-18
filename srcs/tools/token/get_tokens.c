@@ -3,13 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_tokens.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 15:40:59 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/17 16:42:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "token.h"
+#include "libft.h"
+#include <stdlib.h>
 
 int	get_tokens(char *str, t_vector *vector)
 {

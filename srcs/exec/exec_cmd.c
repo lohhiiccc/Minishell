@@ -6,13 +6,15 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/17 03:27:17 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 00:40:53 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "env.h"
 #include <sys/wait.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
@@ -48,8 +50,8 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		ret = exec_build_in(tree->structur);
 	else
 	{
-		((t_cmd *)tree->structur)->path = find_path(((t_cmd *)\
-			tree->structur)->arg[0], ((t_cmd *)tree->structur)->env);
+		((t_cmd *)tree->structur)->path = find_path(((t_cmd *)
+					tree->structur)->arg[0], ((t_cmd *)tree->structur)->env);
 		if (!((t_cmd *)tree->structur)->path)
 		{
 			write(2, "NOOB\n", 5);
