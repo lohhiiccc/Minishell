@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/18 17:54:15 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 22:07:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,15 @@ int	ft_echo(t_cmd *cmd)
 	t_vector	v;
 	size_t		i;
 	int			option;
+	int			j;
 
 	i = 1;
 	if (ft_vector_init(&v, sizeof(char)))
 		return (1);
 	option = is_option(cmd->arg[1]);
-	if (option)
-		i++;
+	j = option;
+	while (option && j)
+		j = is_option(cmd->arg[++i]);
 	while (cmd->arg[i])
 	{
 		if (ft_vector_add_n(&v, cmd->arg[i], ft_strlen(cmd->arg[i])) == -1)
