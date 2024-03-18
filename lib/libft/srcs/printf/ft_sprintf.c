@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 02:08:03 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 02:10:54 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/18 01:58:40 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/18 02:12:04 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,40 +47,35 @@ static int	put_in_vector(t_vector *v, va_list arg, char c)
 		&put_low_hex
 	};
 	int			i;
-	int			ret;
 
-	ret = 0;
 	i = find_type(c);
 	if (i != OTHER)
-		ret = tab[i](v, arg);
+		tab[i](v, arg);
 	else if (ft_vector_add(v, &c) == -1)
 		return (-1);
-	return (ret);
+	return (0);
 }
 
-int	ft_printf(char *str, ...)
+char	*ft_sprintf(char *str, ...)
 {
 	va_list		arg;
 	t_vector	v;
-	int			ret;
 
 	va_start(arg, str);
 	if (ft_vector_init(&v, sizeof(char)))
-		return (-1);
+		return (NULL);
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			if (put_in_vector(&v, arg, *++str) == -1)
-				return (-1);
+				return (NULL);
 		}
 		else
 			if (ft_vector_add(&v, str) == -1)
-				return (-1);
+				return (NULL);
 		str++;
 	}
-	ret = write(1, v.addr, v.nbr_elem);
 	va_end(arg);
-	free(v.addr);
-	return (ret);
+	return (v.addr);
 }

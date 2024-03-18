@@ -78,14 +78,16 @@ SRCVECTOR = ft_vector_add \
 			ft_vector_print_str \
 			ft_vector_add_n
 
-SRCPRINTF = ft_printf \
+SRCPRINTF = ft_dprintf \
 			put_add \
 			put_char \
 			put_int \
 			put_low_hex \
 			put_up_hex \
 			put_str \
-			put_unsigned
+			put_unsigned \
+			ft_printf \
+			ft_sprintf
 
 SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(CHAINEDDIR), $(addsuffix .c, $(SRCCHAINED))) \

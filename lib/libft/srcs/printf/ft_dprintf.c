@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 02:08:03 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 02:10:54 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/17 15:13:14 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/18 02:10:20 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	put_in_vector(t_vector *v, va_list arg, char c)
 	return (ret);
 }
 
-int	ft_printf(char *str, ...)
+int	ft_dprintf(int fd, char *str, ...)
 {
 	va_list		arg;
 	t_vector	v;
@@ -79,7 +79,7 @@ int	ft_printf(char *str, ...)
 				return (-1);
 		str++;
 	}
-	ret = write(1, v.addr, v.nbr_elem);
+	ret = write(fd, v.addr, v.nbr_elem);
 	va_end(arg);
 	free(v.addr);
 	return (ret);
