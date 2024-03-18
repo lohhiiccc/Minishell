@@ -73,7 +73,8 @@ SRCVECTOR = ft_vector_add \
 			ft_vector_add_ptr \
 			ft_vector_iteri \
 			ft_vector_print_int \
-			ft_vector_print_str
+			ft_vector_print_str \
+			ft_vector_insert
 
 SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(CHAINEDDIR), $(addsuffix .c, $(SRCCHAINED))) \

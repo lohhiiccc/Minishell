@@ -46,6 +46,7 @@ void	*ft_null_alloc(size_t nmemb, size_t size);
 void	ft_vector_free(t_vector *vector, void (* content_free)(void *));
 void	*ft_vector_get(t_vector *vector, size_t n);
 void	ft_vector_trim(t_vector *vector);
+int		ft_vector_insert(t_vector *vector, void *elem, size_t index, size_t n);
 void	ft_vector_delete_elem(t_vector *vector, size_t n);
 int		ft_vector_add(t_vector *vector, void *elem);
 int		ft_vector_init(t_vector *vector, size_t size);
