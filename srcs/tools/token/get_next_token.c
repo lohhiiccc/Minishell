@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_token.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 00:58:26 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/17 16:43:04 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "token.h"
+#include <stdlib.h>
+#include "libft.h"
 
 static unsigned char	is_sep(char c);
 static char				set_cmd(const char *str, t_token *tkn);

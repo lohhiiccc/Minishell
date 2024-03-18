@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:36:15 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/12 17:03:31 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 00:18:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vector.h"
+#include <stdlib.h>
 
 int	ft_vector_add_ptr(t_vector *vector, void *elem)
 {

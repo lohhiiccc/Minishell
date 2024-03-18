@@ -6,12 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/13 19:42:48 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:44:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "tree.h"
+#include "libft.h"
 
 static int	found_sep(char *str, char sep)
 {

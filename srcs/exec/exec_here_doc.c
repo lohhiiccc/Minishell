@@ -6,13 +6,15 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/15 21:56:10 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 00:38:08 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include <fcntl.h>
 #include <readline/readline.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int	exec_here_doc(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
@@ -41,7 +43,7 @@ int	create_file_here_doc(t_tree *tree)
 	if (fd == -1)
 		return (1);
 	file_name = malloc(sizeof(char) * 7);
-	if(!file_name)
+	if (!file_name)
 		return (1);
 	if (read(fd, file_name, 6) == -1)
 		return (1);

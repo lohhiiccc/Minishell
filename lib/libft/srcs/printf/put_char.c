@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   put_char.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 17:13:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:23:50 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/03/17 22:41:44 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/03/17 23:26:28 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "printf_utils.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	put_char(t_vector *v, va_list arg)
 {
-	if (!lst || !(*lst))
-		return ;
-	ft_lstclear(&(*lst)->next, del);
-	(del)((*lst)->content);
-	free(*lst);
-	*lst = NULL;
+	char	c;
+
+	c = va_arg(arg, int);
+	if (ft_vector_add(v, &c) == -1)
+		return (-1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 23:55:41 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:41:11 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <readline/history.h>
 #include "minishell.h"
 #include "exec.h"
+#include <stdlib.h>
 
 static unsigned char init_fd(t_vector *fd);
 static unsigned char free_fd(t_vector *fd, unsigned char ret);

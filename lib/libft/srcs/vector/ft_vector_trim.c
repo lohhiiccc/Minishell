@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 00:24:17 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/07 01:55:34 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/17 16:29:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vector.h"
+#include <stdlib.h>
 
 void	ft_vector_trim(t_vector *vector)
 {

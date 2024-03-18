@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   launch_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:37:08 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/10 15:27:38 by lrio             ###   ########.fr       */
+/*   Updated: 2024/03/18 01:06:33 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "lexer.h"
+#include "libft.h"
 
 static unsigned char	lex_last(const size_t *parent, t_token_type type);
 static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent,
