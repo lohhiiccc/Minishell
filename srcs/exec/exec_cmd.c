@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 00:40:53 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/18 05:06:37 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
@@ -39,7 +40,9 @@ static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 				structur)->env, 0));
 	}
 	waitpid(pid, &ret, 0);
-	return (WIFEXITED(ret));
+	if (WIFEXITED(ret))
+		return (WEXITSTATUS(ret));
+	return (1);
 }
 
 int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
