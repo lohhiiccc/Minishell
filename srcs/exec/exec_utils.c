@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 00:41:23 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 14:54:59 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ char	*find_path(char *cmd, t_vector *env)
 
 	i = 0;
 	path_list = list_path(env);
-	if (path_list == NULL)
-		return (NULL);
-	while (path_list[i])
+	while (path_list && path_list[i])
 	{
 		ret = ft_strjoin(path_list[i], "/");
 		temp = ft_strdup(ret);
@@ -86,9 +84,9 @@ char	*find_path(char *cmd, t_vector *env)
 		free(temp);
 		if (!access(ret, F_OK))
 			return (ret);
+		free(ret);
 		i++;
 	}
-	free(ret);
 	if (!access(cmd, F_OK))
 	{
 		ret = ft_strdup(cmd);
