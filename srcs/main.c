@@ -10,12 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 #include "env.h"
-#include "printf.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv, char **env)
 {

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "tree.h"
+#include "expand.h"
 #include "token.h"
 #include <stdlib.h>
 #include "libft.h"
@@ -21,7 +21,7 @@ static char		**get_cmd(t_token *tokens);
 static size_t	get_cmd_len(t_token *tokens);
 static void		*free_range(char **tab);
 
-t_tree *make_command(t_token *tokens, t_vector *env)
+t_tree	*make_command(t_token *tokens, t_vector *env)
 {
 	t_cmd	*content;
 
@@ -80,7 +80,7 @@ static size_t	get_cmd_len(t_token *tokens)
 	return (len);
 }
 
-static void *free_range(char **tab)
+static void	*free_range(char **tab)
 {
 	size_t	i;
 
