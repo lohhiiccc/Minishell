@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/18 19:10:08 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 23:18:25 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ static int	is_variable_name(t_cmd *cmd, char *str)
 		i++;
 		env_i = ft_vector_get(cmd->env, i);
 	}
-	return (0);
+	return (-1);
 }
 
 int	ft_unset(t_cmd *cmd)
 {
 	size_t	i;
-	size_t	n;
+	int		n;
 
 	i = 1;
 	while (cmd->arg[i])
 	{
 		n = is_variable_name(cmd, cmd->arg[i]);
-		if (n)
+		if (n != -1)
 			ft_vector_delete_elem(cmd->env, n);
 		i++;
 	}
