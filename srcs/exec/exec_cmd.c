@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 05:06:37 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 17:09:29 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 				clean_exit(tree, fd_in, fd_out, 1);
 		close_vector_fd(fd_in);
 		close_vector_fd(fd_out);
-		execve(((t_cmd *)tree->structur)->path, \
-			((t_cmd *)tree->structur)->arg, ft_vector_get(((t_cmd *)tree-> \
-				structur)->env, 0));
+		execve(((t_cmd *)tree->structur)->path, ((t_cmd *)tree->structur)->arg,
+			ft_vector_get(((t_cmd *)tree->structur)->env, 0));
 	}
 	waitpid(pid, &ret, 0);
 	if (WIFEXITED(ret))
@@ -50,7 +49,7 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	int		ret;
 
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
-		ret = exec_build_in(tree->structur);
+		ret = exec_build_in(tree, fd_in, fd_out);
 	else
 	{
 		((t_cmd *)tree->structur)->path = find_path(((t_cmd *)

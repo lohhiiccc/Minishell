@@ -6,12 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/19 14:54:59 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 17:39:52 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "env.h"
+#include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -83,10 +84,15 @@ char	*find_path(char *cmd, t_vector *env)
 		ret = ft_strjoin(temp, cmd);
 		free(temp);
 		if (!access(ret, F_OK))
+		{
+			ft_free_tab(path_list);
 			return (ret);
+		}
 		free(ret);
 		i++;
 	}
+	if (path_list)
+		ft_free_tab(path_list);
 	if (!access(cmd, F_OK))
 	{
 		ret = ft_strdup(cmd);
