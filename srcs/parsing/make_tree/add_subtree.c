@@ -11,12 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "make_tree.h"
-
-static t_tree	*add_down(t_tree *root, t_tree **branch, t_tree *leaf);
-static t_tree	*add_up_right(t_tree *root, t_tree *new);
-static t_tree	*down_left(t_tree *root, t_tree *branch, t_tree *new);
-static t_tree	*down_right(t_tree *root, t_tree *branch, t_tree *new);
+#include "add_tree.h"
 
 t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 {
@@ -35,52 +30,9 @@ t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 		if (CMD == new->type)
 			return (down_left(root, root, new));
 		if (is_redirection(new->type))
-		{
-			t_tree *tmp;
-			t_tree *tmp2;
-
-			tmp = root;
-			while (tmp->left && is_redirection(tmp->left->type))
-				tmp = tmp->left;
-			if (!tmp->left)
-				return (down_left(root, root, new));
-			tmp2 = tmp->left;
-			tmp->left = new;
-			new->left = tmp2;
-			return (root);
-		}
+			return (add_redirection(root, new));
 		return (add_up_right(root, new));
 	}
 	return (root);
 }
 
-static t_tree	*add_up_right(t_tree *root, t_tree *new)
-{
-	new->left = root;
-	return (new);
-}
-
-static t_tree	*down_right(t_tree *root, t_tree *branch, t_tree *new)
-{
-	t_tree	*tmp;
-
-	if (new->type == CMD)
-		return (add_down(root, &branch->right, new));
-	tmp = root->right;
-	root->right = new;
-	new->left = tmp;
-	return (root);
-}
-
-static t_tree *down_left(t_tree *root, t_tree *branch, t_tree *new)
-{
-	if (branch->left == NULL)
-		return (add_down(root, &branch->left, new));
-	return (down_left(root, branch->left, new));
-}
-
-static t_tree	*add_down(t_tree *root, t_tree **branch, t_tree *leaf)
-{
-	*branch = add_in_subtree(*branch, leaf);
-	return (root);
-}

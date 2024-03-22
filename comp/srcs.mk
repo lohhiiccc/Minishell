@@ -13,6 +13,7 @@ PRINTTREEDIR = $(TREEDIR)print_tree/
 MAKETREEDIR = $(PARSINGDIR)make_tree/
 ENVDIR = $(SRCDIR)env/
 EXPANDERDIR = $(SRCDIR)expander/
+MAKETREEUTILSDIR= $(MAKETREEDIR)utils/
 
 SRCPROMT = prompt \
 
@@ -69,6 +70,12 @@ SRCMAKE_TREE = is_type \
 			   make_tree \
 			   add_subtree \
 
+SRCMAKETREEUTILS = add_down \
+				   add_up_right \
+				   add_down_left \
+				   add_down_right \
+				   add_redirection
+
 SRCENV = init_env \
 
 SRCEXPANDER = expander \
@@ -87,3 +94,4 @@ SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(LEXSYNTAXDIR), $(addsuffix .c, $(SRCLEXSYNTAX))) \
 	   $(addprefix $(MAKE_NODEDIR), $(addsuffix .c, $(SRCMAKE_NODE))) \
 	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
+	   $(addprefix $(MAKETREEUTILSDIR), $(addsuffix .c, $(SRCMAKETREEUTILS))) \
