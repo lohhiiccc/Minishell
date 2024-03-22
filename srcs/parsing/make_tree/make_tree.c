@@ -39,6 +39,9 @@ t_tree	*make_tree(t_token *tokens, t_vector *env)
 			i++;
 			root = make_subtree(tokens, env, root, &i);
 		}
+		printf("-----------------------------------------------------\n");
+		print_tree(root);
+		printf("-----------------------------------------------------\n");
 		i++;
 	}
 	return (root);

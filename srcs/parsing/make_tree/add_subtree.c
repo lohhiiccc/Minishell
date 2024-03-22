@@ -34,6 +34,21 @@ t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 	{
 		if (CMD == new->type)
 			return (down_left(root, root, new));
+		if (is_redirection(new->type))
+		{
+			t_tree *tmp;
+			t_tree *tmp2;
+
+			tmp = root;
+			while (tmp->left && is_redirection(tmp->left->type))
+				tmp = tmp->left;
+			if (!tmp->left)
+				return (down_left(root, root, new));
+			tmp2 = tmp->left;
+			tmp->left = new;
+			new->left = tmp2;
+			return (root);
+		}
 		return (add_up_right(root, new));
 	}
 	return (root);
@@ -57,7 +72,7 @@ static t_tree	*down_right(t_tree *root, t_tree *branch, t_tree *new)
 	return (root);
 }
 
-static t_tree	*down_left(t_tree *root, t_tree *branch, t_tree *new)
+static t_tree *down_left(t_tree *root, t_tree *branch, t_tree *new)
 {
 	if (branch->left == NULL)
 		return (add_down(root, &branch->left, new));

@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <malloc.h>
 #include "vector.h"
 #include "libft.h"
 
@@ -9,34 +10,37 @@ void	fill_quote(unsigned char *quotes, char c);
 
 char **expand_cmd(char **cmd, t_vector *env)
 {
-	t_vector	new_cmd;
-	size_t	i;
-
-	i = 0;
-	if (-1 == ft_vector_init(&new_cmd, sizeof(char *)))
-		return (NULL);
-	while (cmd[i])
-	{
-		if (-1 == ft_vector_add_ptr(&new_cmd, cmd[i]))
-			return (NULL);//todo free;
-		if (expand_parameter(&new_cmd, &i, env))
-			return (NULL);
-		(void)env;
-		i++;
-	}
-	if (-1 == ft_vector_add_ptr(&new_cmd, cmd[i]))
-		return (NULL);//todo free;
-	for (size_t j = 0; j < new_cmd.nbr_elem; ++j) {
-		printf("%zu:%s\n", j, ((char **)new_cmd.addr)[j]);
-	}
-	return (ft_vector_get(&new_cmd, 0));
+	(void)env;
+	return (cmd);
+//	t_vector	new_cmd;
+//	size_t	i;
+//
+//	i = 0;
+//	if (-1 == ft_vector_init(&new_cmd, sizeof(char *)))
+//		return (NULL);
+//	while (cmd[i])
+//	{
+//		printf("test: %s\n", cmd[i]);
+//		if (-1 == ft_vector_add_ptr(&new_cmd, cmd[i]))
+//			return (NULL); //todo free;
+//		if (expand_parameter(&new_cmd, &i, env))
+//			return (NULL);
+//		(void)env;
+//		i++;
+//	}
+//	if (-1 == ft_vector_add_ptr(&new_cmd, cmd[i]))
+//		return (NULL); //todo free;
+//	for (size_t j = 0; j < new_cmd.nbr_elem; ++j) {
+//		printf("%zu:|%s|\n", j, ((char **)new_cmd.addr)[j]);
+//	}
+//	return (ft_vector_get(&new_cmd, 0));
 }
 
 unsigned char	expand_parameter(t_vector *cmd, size_t *i, t_vector *env)
 {
-	char	*new;
+	char			*new;
 	unsigned char	quotes[2];
-	size_t	j;
+	size_t			j;
 
 	j = 0;
 	ft_bzero(quotes, sizeof(unsigned char) * 2);
@@ -74,7 +78,7 @@ char *get_value(char *str, char **env)
 	j = 0;
 	while (env && 0 != ft_strncmp(var, env[j], ft_strlen(var)))
 		j++;
-	return env[j] + i + 1;
+	return (env[j] + i + 1);
 }
 
 void	fill_quote(unsigned char *quotes, char c)
