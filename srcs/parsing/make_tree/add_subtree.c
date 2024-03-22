@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "add_tree.h"
 
 t_tree	*add_in_subtree(t_tree *root, t_tree *new)
@@ -35,4 +34,3 @@ t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 	}
 	return (root);
 }
-

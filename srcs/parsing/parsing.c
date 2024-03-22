@@ -12,7 +12,6 @@
 
 #include "make_tree.h"
 
-//todo: ajouter lexpand dans cette fonction
 t_tree *parsing(t_vector *env, t_vector *tokens)
 {
 	t_tree *tree;

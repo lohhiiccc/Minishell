@@ -30,18 +30,18 @@ void _print_tree(t_tree *root, int space)
 		int i = 0;
 		while (((t_cmd *)root->structur)->arg[i] != NULL)
 		{
-			printf("%s ", ((t_cmd *)root->structur)->arg[i]);
+			printf("%s", ((t_cmd *)root->structur)->arg[i]);
 			i++;
 		}
 	}
 	if (root->type == INPUT)
-		printf(" < :%s", (char *)root->structur);
+		printf("<:%s", (char *)root->structur);
 	if (root->type == OUTPUT)
-		printf(" > :%s", (char *)root->structur);
+		printf(">:%s", (char *)root->structur);
 	if (root->type == HERE_DOC)
-		printf("<< :%s", (char *)root->structur);
+		printf("<<:%s", (char *)root->structur);
 	if (root->type == APPEND)
-		printf(">> :%s", (char *)root->structur);
+		printf(">>:%s", (char *)root->structur);
 	if(root->type == O_AND)
 		printf("&&");
 	if(root->type == O_OR)

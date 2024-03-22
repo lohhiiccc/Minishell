@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "make_tree.h"
 
 static t_tree *down(t_tree *root, t_tree *new);
-static t_tree *add_pipe(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens);
+static t_tree *add_subpipe(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens);
 static t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t *i);
-static t_tree *add_redirection(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens);
+static t_tree *add_subredirection(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens);
 
 //todo: check makecommand makeoperator ou makeredirection
 t_tree	*make_tree(t_token *tokens, t_vector *env)
@@ -39,9 +38,6 @@ t_tree	*make_tree(t_token *tokens, t_vector *env)
 			i++;
 			root = make_subtree(tokens, env, root, &i);
 		}
-		printf("-----------------------------------------------------\n");
-		print_tree(root);
-		printf("-----------------------------------------------------\n");
 		i++;
 	}
 	return (root);
@@ -68,13 +64,13 @@ static t_tree *make_subtree(t_token *tokens, t_vector *env, t_tree *root, size_t
 		++*i;
 	}
 	if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_RED_OUT))
-		return (add_redirection(i, root, subroot, tokens));
+		return (add_subredirection(i, root, subroot, tokens));
 	else if ((tokens[*i].type != T_NEWLINE && tokens[*i + 1].type == T_PIPE))
-		return (add_pipe(i, root, subroot, tokens));
+		return (add_subpipe(i, root, subroot, tokens));
 	return (down(root, subroot));
 }
 
-static t_tree *add_pipe(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens)
+static t_tree *add_subpipe(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens)
 {
 	t_tree	*new;
 
@@ -84,7 +80,7 @@ static t_tree *add_pipe(size_t *i, t_tree *root, t_tree *subroot, t_token *token
 	return (down(root, new));
 }
 
-static t_tree *add_redirection(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens)
+static t_tree *add_subredirection(size_t *i, t_tree *root, t_tree *subroot, t_token *tokens)
 {
 	t_tree	*new;
 
