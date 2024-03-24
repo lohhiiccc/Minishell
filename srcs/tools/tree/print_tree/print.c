@@ -18,10 +18,8 @@ void _print_tree(t_tree *root, int space)
 {
 	if (root == NULL)
 		return;
-
 	space += COUNT;
 	_print_tree(root->right, space);
-
 	printf("\n");
 	for (int i = COUNT; i < space; i++)
 		printf(" ");
@@ -30,7 +28,7 @@ void _print_tree(t_tree *root, int space)
 		int i = 0;
 		while (((t_cmd *)root->structur)->arg[i] != NULL)
 		{
-			printf("%s", ((t_cmd *)root->structur)->arg[i]);
+			printf("%s ", ((t_cmd *)root->structur)->arg[i]);
 			i++;
 		}
 	}
@@ -48,7 +46,6 @@ void _print_tree(t_tree *root, int space)
 		printf("||");
 	if(root->type == O_PIPE)
 		printf("|");
-
 	_print_tree(root->left, space);
 }
 

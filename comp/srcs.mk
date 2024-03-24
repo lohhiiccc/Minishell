@@ -19,6 +19,7 @@ SRCPROMT = prompt \
 
 SRCLEXER = lexer \
 		   launch_checker \
+		   print_syntax_error \
 
 SRCLEXSYNTAX = lex_pipe \
 			   lex_string \

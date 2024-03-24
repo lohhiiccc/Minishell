@@ -17,5 +17,6 @@ t_tree *parsing(t_vector *env, t_vector *tokens)
 	t_tree *tree;
 
 	tree = make_tree(ft_vector_get(tokens, 0), env);
+	print_tree(tree);
 	return (tree);
 }
