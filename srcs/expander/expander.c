@@ -4,81 +4,41 @@
 #include "vector.h"
 #include "libft.h"
 
-unsigned char	expand_parameter(t_vector *cmd, size_t *i, t_vector *env);
-char *get_value(char *str, char **env);
 void	fill_quote(unsigned char *quotes, char c);
 
 char **expand_cmd(char **cmd, t_vector *env)
 {
-	(void)env;
-	return (cmd);
-//	t_vector	new_cmd;
-//	size_t	i;
-//
-//	i = 0;
-//	if (-1 == ft_vector_init(&new_cmd, sizeof(char *)))
-//		return (NULL);
-//	while (cmd[i])
-//	{
-//		printf("test: %s\n", cmd[i]);
-//		if (-1 == ft_vector_add_ptr(&new_cmd, cmd[i]))
-//			return (NULL); //todo free;
-//		if (expand_parameter(&new_cmd, &i, env))
-//			return (NULL);
-//		(void)env;
-//		i++;
-//	}
-//	if (-1 == ft_vector_add_ptr(&new_cmd, cmd[i]))
-//		return (NULL); //todo free;
-//	for (size_t j = 0; j < new_cmd.nbr_elem; ++j) {
-//		printf("%zu:|%s|\n", j, ((char **)new_cmd.addr)[j]);
-//	}
-//	return (ft_vector_get(&new_cmd, 0));
+	t_vector t_cmd;
+
+	if (-1 == ft_vector_init(&t_cmd, sizeof(char *)))
+		return (NULL);
+
+	return (ft_vector_get(&t_cmd, 0));
 }
 
-unsigned char	expand_parameter(t_vector *cmd, size_t *i, t_vector *env)
+int	expand(char *arg, t_vector *vector)
 {
-	char			*new;
-	unsigned char	quotes[2];
-	size_t			j;
-
-	j = 0;
-	ft_bzero(quotes, sizeof(unsigned char) * 2);
-	while (((char **)cmd->addr)[*i][j])
-	{
-		fill_quote(quotes, ((char **)cmd->addr)[*i][j]);
-		if (!quotes[0] && ((char **)cmd->addr)[*i][j] == '$')
-		{
-			((char **)cmd->addr)[*i][j] = '\0';
-			new = get_value(((char **)cmd->addr)[*i] + j + 1, ft_vector_get(env, 0));
-			if (new == NULL)
-				return 1;//free ??
-			if (-1 == ft_vector_add_ptr(cmd, new))
-				return 1;
-		}
-		j++;
-	}
-	return (0);
-}
-
-char *get_value(char *str, char **env)
-{
-	char	*var;
-
-	size_t	i;
-	size_t	j;
+	size_t			i;
+	unsigned char	quote[2];
+	char			*str;
 
 	i = 0;
-	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
+	str = ft_strdup(arg);
+	while (arg[i])
+	{
+		fill_quote(quote, arg[i]);
+		if (0 == quote[0] && arg[i] == '$' && (ft_isalnum(arg[i + 1]) || arg[i + 1] == '-'))
+		{
+			str[i] = '\0';
+			if (1 == quote[1])
+				;
+			else
+				;
+		}
 		i++;
-	var	= ft_strdup(str);
-	if (NULL == var)
-		return (NULL);
-	var[i] = '\0';
-	j = 0;
-	while (env && 0 != ft_strncmp(var, env[j], ft_strlen(var)))
-		j++;
-	return (env[j] + i + 1);
+	}
+	free(arg);
+	return (0);
 }
 
 void	fill_quote(unsigned char *quotes, char c)

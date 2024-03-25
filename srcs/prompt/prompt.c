@@ -37,7 +37,7 @@ int prompt(t_vector *env)
 		tree = parsing(env, &tokens);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
-//		exec_args(tree, &fd[0], &fd[1]);
+		exec_args(tree, &fd[0], &fd[1]);
 	}
 	if (str && str[0])
 		add_history(str);
