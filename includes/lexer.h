@@ -22,5 +22,6 @@ unsigned char	lex_operator(t_vector *vector, size_t i);
 unsigned char	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i);
 unsigned char	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i);
 unsigned char	syntax_check(t_vector *tokens);
+char print_syntax_error(t_vector *tokens);
 
 #endif
