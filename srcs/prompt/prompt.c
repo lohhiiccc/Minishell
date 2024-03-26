@@ -14,10 +14,12 @@
 #include <readline/history.h>
 #include "minishell.h"
 #include "exec.h"
+#include "ft_printf.h"
 #include <stdlib.h>
 
 static unsigned char init_fd(t_vector *fd);
 static unsigned char free_fd(t_vector *fd, unsigned char ret);
+static char *prompt_value();
 
 int prompt(t_vector *env)
 {
@@ -29,7 +31,7 @@ int prompt(t_vector *env)
 	if (init_fd(fd))
 		return (1); // todo print erreur malloc
 	tokens.nbr_elem = 0;
-	str = readline("minichel>");
+	str = prompt_value();
 	if (!str)
 		return (free_fd(fd, 0));
 	if (-1 != lexer(str, &tokens))
@@ -42,6 +44,18 @@ int prompt(t_vector *env)
 	if (str && str[0])
 		add_history(str);
 	return (free_fd(fd, 1));
+}
+
+static char *prompt_value()
+{
+	char *str;
+	char *ret;
+
+	ret = NULL;
+	str = ft_sprintf("minichel%s%c", ": ",'\0'); //todo : secure sprintf;
+	ret = readline(str);
+	free(str);
+	return (ret);
 }
 
 static unsigned char free_fd(t_vector *fd, unsigned char ret)

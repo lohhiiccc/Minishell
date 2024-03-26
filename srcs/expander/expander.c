@@ -3,6 +3,7 @@
 #include <malloc.h>
 #include "vector.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 void	fill_quote(unsigned char *quotes, char c);
 
@@ -21,17 +22,21 @@ int	expand(char *arg, t_vector *vector)
 	size_t			i;
 	unsigned char	quote[2];
 	char			*str;
+	char			*test;
 
 	i = 0;
 	str = ft_strdup(arg);
 	while (arg[i])
 	{
 		fill_quote(quote, arg[i]);
-		if (0 == quote[0] && arg[i] == '$' && (ft_isalnum(arg[i + 1]) || arg[i + 1] == '-'))
+		if (0 == quote[0] && arg[i] == '$' && (ft_isalnum(arg[i + 1]) || arg[i + 1] == '_'))
 		{
 			str[i] = '\0';
 			if (1 == quote[1])
-				;
+			{
+
+
+			}
 			else
 				;
 		}
