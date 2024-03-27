@@ -18,11 +18,9 @@ int	main(int argc, char **argv, char **env)
 {
 	t_vector	new_env;
 
-	if (!isatty(0))
-		return (1);
 	(void)argc;
 	(void)argv;
-	if (-1 == init_env(env, &new_env))
+	if (!isatty(0) || -1 == init_env(env, &new_env))
 		return (1);
 	while (prompt(&new_env))
 		;
