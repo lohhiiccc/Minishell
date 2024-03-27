@@ -16,11 +16,12 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	t_vector	new_env;
+	t_env		new_env;
 
+	new_env.ret = 0;
 	(void)argc;
 	(void)argv;
-	if (!isatty(0) || -1 == init_env(env, &new_env))
+	if (!isatty(0) || -1 == init_env(env, &new_env.env))
 		return (1);
 	while (prompt(&new_env))
 		;

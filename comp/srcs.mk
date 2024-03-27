@@ -1,3 +1,4 @@
+#------------------------------------dir----------------------------------#
 SRCDIR = srcs/
 PROMPTDIR = $(SRCDIR)prompt/
 LEXERDIR = $(SRCDIR)lexer/
@@ -14,7 +15,8 @@ MAKETREEDIR = $(PARSINGDIR)make_tree/
 ENVDIR = $(SRCDIR)env/
 EXPANDERDIR = $(SRCDIR)expander/
 MAKETREEUTILSDIR= $(MAKETREEDIR)utils/
-
+#-------------------------------------------------------------------------#
+#----------------------------------files-----------------------------------#
 SRCPROMT = prompt \
 
 SRCLEXER = lexer \
@@ -80,7 +82,8 @@ SRCMAKETREEUTILS = add_down \
 SRCENV = init_env \
 
 SRCEXPANDER = expander \
-
+#--------------------------------------------------------------------------#
+#----------------------------------srcs------------------------------------#
 SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(ENVDIR), $(addsuffix .c, $(SRCENV))) \
 	   $(addprefix $(TREEDIR), $(addsuffix .c, $(SRCTREE))) \
