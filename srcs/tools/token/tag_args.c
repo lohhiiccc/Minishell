@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "token.h"
+#include <stdint.h>
 
-static unsigned char	is_sep(t_token_type type);
+static uint8_t	is_sep(t_token_type type);
 
 void	tag_arg(t_vector *tokens)
 {
@@ -33,7 +34,7 @@ void	tag_arg(t_vector *tokens)
 	}
 }
 
-static unsigned char	is_sep(t_token_type type)
+static uint8_t is_sep(t_token_type type)
 {
 	return (type == T_LOGICAL_OP || type == T_PIPE);
 }

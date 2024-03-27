@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int	get_tokens(char *str, t_vector *vector)
+int8_t	get_tokens(char *str, t_vector *vector)
 {
 	char	*string;
 	t_token	tmp_token;
