@@ -9,10 +9,10 @@
 /*   Updated: 2024/03/11 13:13:06 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdint.h>
 #include "token.h"
 
-unsigned char	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
+uint8_t	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 
@@ -30,7 +30,7 @@ unsigned char	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i)
 	return (0);
 }
 
-unsigned char	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
+uint8_t	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i)
 {
 	t_token_type	type;
 

@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
+#include <stdint.h>
 
-unsigned char	lex_operator(t_vector *vector, size_t i)
+uint8_t	lex_operator(t_vector *vector, size_t i)
 {
 	t_token_type	type;
 

@@ -12,6 +12,7 @@
 
 #include "add_tree.h"
 
+//todo: si new == NULL free root et return NULL
 t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 {
 	if (NULL == root)

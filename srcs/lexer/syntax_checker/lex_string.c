@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
+#include <stdint.h>
 
 static size_t			get_quote_len(char *str, unsigned char *error);
-static unsigned char	search_cmd(t_vector *vector, size_t i);
-static unsigned char	check_str(t_vector *vector, size_t i);
-
-unsigned char	lex_string(t_vector *vector, size_t i)
+static uint8_t	search_cmd(t_vector *vector, size_t i);
+static uint8_t	check_str(t_vector *vector, size_t i);
+uint8_t	lex_string(t_vector *vector, size_t i)
 {
 	t_token_type	last;
 
@@ -46,7 +46,7 @@ static size_t	get_quote_len(char *str, unsigned char *error)
 	return (i + 1);
 }
 
-static unsigned char	check_str(t_vector *vector, size_t i)
+static uint8_t	check_str(t_vector *vector, size_t i)
 {
 	unsigned char	error;
 	size_t			j;
@@ -66,7 +66,7 @@ static unsigned char	check_str(t_vector *vector, size_t i)
 	return (0);
 }
 
-static unsigned char	search_cmd(t_vector *vector, size_t i)
+static uint8_t	search_cmd(t_vector *vector, size_t i)
 {
 	i--;
 	while (1)

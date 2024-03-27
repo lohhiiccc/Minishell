@@ -16,10 +16,11 @@
 #include "exec.h"
 #include "ft_printf.h"
 #include <stdlib.h>
+#include <stdint.h>
 
-static unsigned char init_fd(t_vector *fd);
-static unsigned char free_fd(t_vector *fd, unsigned char ret);
-static char *prompt_value();
+static uint8_t	init_fd(t_vector *fd);
+static uint8_t	free_fd(t_vector *fd, unsigned char ret);
+static char		*prompt_value(void);
 
 int prompt(t_vector *env)
 {
@@ -46,26 +47,26 @@ int prompt(t_vector *env)
 	return (free_fd(fd, 1));
 }
 
-static char *prompt_value()
+static char *prompt_value(void)
 {
 	char *str;
 	char *ret;
 
 	ret = NULL;
-	str = ft_sprintf("minichel%s%c", ": ",'\0'); //todo : secure sprintf;
+	str = ft_sprintf("minichel:%c",'\0'); //todo : secure sprintf;
 	ret = readline(str);
 	free(str);
 	return (ret);
 }
 
-static unsigned char free_fd(t_vector *fd, unsigned char ret)
+static uint8_t free_fd(t_vector *fd, unsigned char ret)
 {
 	ft_vector_free(&fd[0], NULL);
 	ft_vector_free(&fd[1], NULL);
 	return (ret);
 }
 
-static unsigned char init_fd(t_vector *fd)
+static uint8_t init_fd(t_vector *fd)
 {
 	if (-1 == ft_vector_init(&fd[0], sizeof(int)))
 		return (1);

@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "token.h"
+#include <stdint.h>
 //<< and <
-unsigned char	lex_redirect_in(t_vector *vector, size_t i)
+uint8_t	lex_redirect_in(t_vector *vector, size_t i)
 {
 	t_token_type	type;
 
@@ -25,7 +26,7 @@ unsigned char	lex_redirect_in(t_vector *vector, size_t i)
 }
 //> and >>
 
-unsigned char	lex_redirect_out(t_vector *vector, size_t i)
+uint8_t	lex_redirect_out(t_vector *vector, size_t i)
 {
 	t_token_type	type;
 
