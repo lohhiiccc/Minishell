@@ -1,5 +1,5 @@
-include comp/srcs.mk
-include comp/color.mk
+include srcs/srcs.mk
+include color.mk
 -include $(DEPS)
 
 NAME = minishell
