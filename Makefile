@@ -1,8 +1,27 @@
 include comp/srcs.mk
-include comp/vars.mk
 include comp/color.mk
-include comp/lib.mk
 -include $(DEPS)
+
+NAME = minishell
+
+MAKEFLAGS += --no-print-directory
+
+CFLAGS = -Wall -Wextra -Werror -g3
+BUILDDIRBACKUP = build/
+BUILDDIR = $(BUILDDIRBACKUP)
+INCLUDEDIR = includes/
+DEPENDENCIESDIR = $(BUILDDIR)dependencies/
+
+OBJS = $(SRCS:$(SRCDIR)%.c=$(BUILDDIR)%.o)
+DEPS = $(SRCS:$(SRCDIR)%.c=$(DEPENDENCIESDIR)%.d)
+
+LIBDIR = lib/
+LIBFT = $(LIBDIR)libft/
+
+LIBS = $(LIBFT)libft.a
+
+$(LIBS): FORCE
+	@$(MAKE) -C $(@D) --no-print-directory
 
 all: $(NAME)
 
