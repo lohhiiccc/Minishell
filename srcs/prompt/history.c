@@ -4,9 +4,14 @@ static long long	get_id(char *str);
 
 void	manage_history(char *str)
 {
-	static long long	id = 0;
+	static long long	id = -1;
 	long long			tmp;
 
+	if (id == -1)
+	{
+		add_history(str);
+		return ;
+	}
 	tmp = get_id(str);
 	if (tmp == id)
 		return ;

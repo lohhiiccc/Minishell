@@ -46,8 +46,8 @@ int prompt(t_env *env)
 
 static char *prompt_value(void)
 {
-	char *str;
-	char *ret;
+	char	*str;
+	char	*ret;
 
 	ret = NULL;
 	str = ft_sprintf("minichel:%c",'\0'); //todo : secure sprintf;
