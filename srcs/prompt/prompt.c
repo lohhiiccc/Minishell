@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <readline/readline.h>
-#include <readline/history.h>
 #include "minishell.h"
 #include "exec.h"
 #include "ft_printf.h"
-#include <stdlib.h>
+#include "prompt.h"
 
 static uint8_t	init_fd(t_vector *fd);
 static uint8_t	free_fd(t_vector *fd, uint8_t ret);
@@ -42,7 +40,7 @@ int prompt(t_env *env)
 		env->ret = exec_args(tree, &fd[0], &fd[1]);
 	}
 	if (str && str[0])
-		add_history(str);
+		manage_history(str);
 	return (free_fd(fd, 1));
 }
 

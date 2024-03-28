@@ -18,6 +18,7 @@ MAKETREEUTILSDIR= $(MAKETREEDIR)utils/
 #-------------------------------------------------------------------------#
 #----------------------------------files-----------------------------------#
 SRCPROMT = prompt \
+		   history
 
 SRCLEXER = lexer \
 		   launch_checker \
@@ -99,3 +100,4 @@ SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(MAKE_NODEDIR), $(addsuffix .c, $(SRCMAKE_NODE))) \
 	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
 	   $(addprefix $(MAKETREEUTILSDIR), $(addsuffix .c, $(SRCMAKETREEUTILS))) \
+#--------------------------------------------------------------------------#

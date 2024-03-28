@@ -16,7 +16,7 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	t_env		new_env;
+	t_env	new_env;
 
 	new_env.ret = 0;
 	(void)argc;
