@@ -9,6 +9,7 @@ void	manage_history(char *str)
 
 	if (id == -1)
 	{
+		id = get_id(str);
 		add_history(str);
 		return ;
 	}
