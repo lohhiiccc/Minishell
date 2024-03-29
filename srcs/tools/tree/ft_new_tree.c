@@ -18,6 +18,8 @@ t_tree	*ft_new_tree(void *content, t_node node)
 	t_tree	*new_tree;
 
 	new_tree = malloc(sizeof(t_tree));
+	if (new_tree == NULL)
+		return (NULL);
 	new_tree->type = node;
 	new_tree->structur = content;
 	new_tree->left = NULL;

@@ -14,11 +14,11 @@
 #include "lexer.h"
 #include "libft.h"
 
-static unsigned char	lex_last(const size_t *parent, t_token_type type);
-static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent,
+static uint8_t	lex_last(const size_t *parent, t_token_type type);
+static uint8_t	lex_global(t_vector *vector, size_t i, size_t *parent,
 							t_token_type type);
 
-unsigned char	syntax_check(t_vector *tokens)
+uint8_t	syntax_check(t_vector *tokens)
 {
 	size_t			i;
 	t_token_type	type;
@@ -39,7 +39,7 @@ unsigned char	syntax_check(t_vector *tokens)
 	return (0);
 }
 
-static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent, \
+static uint8_t	lex_global(t_vector *vector, size_t i, size_t *parent, \
 									t_token_type type)
 {
 	return ((type == T_PARENTHESE_OP && lex_parenthese_op(vector, parent, i))
@@ -51,7 +51,7 @@ static unsigned char	lex_global(t_vector *vector, size_t i, size_t *parent, \
 		|| (type == T_CMD && lex_string(vector, i)));
 }
 
-static	unsigned char	lex_last(const size_t *parent, t_token_type type)
+static uint8_t	lex_last(const size_t *parent, t_token_type type)
 {
 	return (parent[0] != parent[1]
 		|| !(type == T_CMD

@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "make_tree.h"
+#include <stdint.h>
 
-unsigned char	is_redirection(t_node root_type)
+uint8_t	is_redirection(t_node root_type)
 {
 	return (root_type == APPEND
 		|| root_type == HERE_DOC
@@ -19,7 +20,7 @@ unsigned char	is_redirection(t_node root_type)
 		|| root_type == OUTPUT);
 }
 
-unsigned char	is_operator(t_node root_type)
+uint8_t	is_operator(t_node root_type)
 {
 	return ((root_type == O_OR || root_type == O_AND));
 }

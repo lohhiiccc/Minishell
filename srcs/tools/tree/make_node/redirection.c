@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "tree.h"
 #include "token.h"
 #include "libft.h"

@@ -18,10 +18,8 @@ void _print_tree(t_tree *root, int space)
 {
 	if (root == NULL)
 		return;
-
 	space += COUNT;
 	_print_tree(root->right, space);
-
 	printf("\n");
 	for (int i = COUNT; i < space; i++)
 		printf(" ");
@@ -35,20 +33,19 @@ void _print_tree(t_tree *root, int space)
 		}
 	}
 	if (root->type == INPUT)
-		printf(" < :%s", (char *)root->structur);
+		printf("<:%s", (char *)root->structur);
 	if (root->type == OUTPUT)
-		printf(" > :%s", (char *)root->structur);
+		printf(">:%s", (char *)root->structur);
 	if (root->type == HERE_DOC)
-		printf("<< :%s", (char *)root->structur);
+		printf("<<:%s", (char *)root->structur);
 	if (root->type == APPEND)
-		printf(">> :%s", (char *)root->structur);
+		printf(">>:%s", (char *)root->structur);
 	if(root->type == O_AND)
 		printf("&&");
 	if(root->type == O_OR)
 		printf("||");
 	if(root->type == O_PIPE)
 		printf("|");
-
 	_print_tree(root->left, space);
 }
 

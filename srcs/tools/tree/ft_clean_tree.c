@@ -28,7 +28,6 @@ static void	clean_cmd(t_tree *tree)
 	free(tree->structur);
 }
 
-
 void	ft_clean_tree(t_tree *tree)
 {
 	if (!tree)
@@ -37,8 +36,8 @@ void	ft_clean_tree(t_tree *tree)
 	ft_clean_tree(tree->right);
 	if (tree->type == CMD)
 		clean_cmd(tree);
-	if (tree->type == HERE_DOC || tree->type == APPEND || tree->type == OUTPUT \
-		|| tree->type == INPUT)
+	if (tree->type == HERE_DOC || tree->type == APPEND
+		|| tree->type == OUTPUT || tree->type == INPUT)
 		free(tree->structur);
 	free(tree);
 }

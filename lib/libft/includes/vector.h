@@ -35,5 +35,7 @@ void	ft_vector_print_int(void *n);
 void	ft_vector_print_str(void *str);
 int		ft_vector_iteri(t_vector *vector, void (*f)(void *));
 int		ft_vector_add_n(t_vector *vector, void *elem, size_t n);
+int	ft_vector_insert(t_vector *vector, void *elem, size_t index, size_t n);
+
 
 #endif

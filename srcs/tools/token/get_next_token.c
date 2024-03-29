@@ -10,18 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "token.h"
-#include <stdlib.h>
+#include <bits/stdint-uintn.h>
 #include "libft.h"
 
-static unsigned char	is_sep(char c);
-static char				set_cmd(const char *str, t_token *tkn);
-static int				fill_token(char *str, t_token *token,
-							enum e_token_type type, char *s);
+static uint8_t	is_sep(char c);
+static int8_t	set_cmd(const char *str, t_token *tkn);
+static int8_t	fill_token(char *str, t_token *token,
+						 t_token_type type, char *s);
 
 //todo : securiser strndup
-int	get_next_token(char *str, t_token *tkn)
+int8_t get_next_token(char *str, t_token *tkn)
 {
 	size_t					i;
 	static const t_token	type[] = {{"(", T_PARENTHESE_OP},
@@ -46,7 +45,7 @@ int	get_next_token(char *str, t_token *tkn)
 	return (0);
 }
 
-static char	set_cmd(const char *str, t_token *tkn)
+static int8_t	set_cmd(const char *str, t_token *tkn)
 {
 	size_t	i;
 
@@ -62,8 +61,8 @@ static char	set_cmd(const char *str, t_token *tkn)
 	return (0);
 }
 
-static int	fill_token(char *str, t_token *token,
-							t_token_type type, char *s)
+static int8_t	fill_token(char *str, t_token *token,
+						 t_token_type type, char *s)
 {
 	token->type = type;
 	token->str = ft_strndup(str, ft_strlen(s));
@@ -72,7 +71,7 @@ static int	fill_token(char *str, t_token *token,
 	return (0);
 }
 
-static unsigned char	is_sep(char c)
+static uint8_t	is_sep(char c)
 {
 	if (quote_started(0, c))
 		return (1);

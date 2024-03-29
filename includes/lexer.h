@@ -13,14 +13,16 @@
 #ifndef LEXER_H
 # define LEXER_H
 # include "stddef.h"
+# include <stdint.h>
 
-unsigned char	lex_string(t_vector *vector, size_t i);
-unsigned char	lex_pipe(t_vector *vector, size_t i);
-unsigned char	lex_redirect_in(t_vector *vector, size_t i);
-unsigned char	lex_redirect_out(t_vector *vector, size_t i);
-unsigned char	lex_operator(t_vector *vector, size_t i);
-unsigned char	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i);
-unsigned char	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i);
-unsigned char	syntax_check(t_vector *tokens);
+uint8_t	lex_string(t_vector *vector, size_t i);
+uint8_t	lex_pipe(t_vector *vector, size_t i);
+uint8_t	lex_redirect_in(t_vector *vector, size_t i);
+uint8_t	lex_redirect_out(t_vector *vector, size_t i);
+uint8_t	lex_operator(t_vector *vector, size_t i);
+uint8_t	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i);
+uint8_t	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i);
+uint8_t	syntax_check(t_vector *tokens);
+int8_t	print_syntax_error(t_vector *tokens);
 
 #endif
