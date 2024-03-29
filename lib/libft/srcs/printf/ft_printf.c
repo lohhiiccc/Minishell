@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 02:08:03 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 02:10:54 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/21 13:51:07 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,20 @@ int	ft_printf(char *str, ...)
 	t_vector	v;
 	int			ret;
 
+	ret = 0;
 	va_start(arg, str);
 	if (ft_vector_init(&v, sizeof(char)))
 		return (-1);
-	while (*str)
+	while (*str && ret != -1)
 	{
 		if (*str == '%')
-		{
-			if (put_in_vector(&v, arg, *++str) == -1)
-				return (-1);
-		}
+			ret = put_in_vector(&v, arg, *++str);
 		else
-			if (ft_vector_add(&v, str) == -1)
-				return (-1);
+			ret = ft_vector_add(&v, str);
 		str++;
 	}
+	if (ret == -1)
+		return (-1);
 	ret = write(1, v.addr, v.nbr_elem);
 	va_end(arg);
 	free(v.addr);

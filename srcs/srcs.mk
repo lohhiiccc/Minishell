@@ -49,7 +49,6 @@ SRCTOKEN = quote \
 SRCBUILD_IN = cd \
 			  env \
 			  pwd \
-			  exit \
 			  echo \
 			  unset \
 			  export \

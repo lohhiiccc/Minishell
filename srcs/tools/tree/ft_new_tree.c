@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:41:16 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/05 16:53:46 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 17:08:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ t_tree	*ft_new_tree(void *content, t_node node)
 	new_tree->structur = content;
 	new_tree->left = NULL;
 	new_tree->right = NULL;
+	new_tree->root = NULL;
 	return (new_tree);
 }
