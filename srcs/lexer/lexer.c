@@ -10,19 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "token.h"
 #include "lexer.h"
-#include <unistd.h>
 
 int	lexer(char *str, t_vector *tokens)
 {
 	if (!str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
 		return (-1);
 	if (-1 == get_tokens(str, tokens))
-		return (write(2, "error\n", 6), -1);
+		return (print_syntax_error(tokens));
 	if (0 != syntax_check(tokens))
-		return (write(2, "error\n", 6), -1);
+		return (print_syntax_error(tokens));
 	tag_arg(tokens);
 	return (0);
 }

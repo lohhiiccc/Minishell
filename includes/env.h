@@ -13,7 +13,14 @@
 #ifndef ENV_H
 # define ENV_H
 
+# include <stdint.h>
 # include "vector.h"
+
+typedef struct	s_env
+{
+	t_vector	env;
+	uint8_t		ret;
+}	t_env;
 
 int	init_env(char **env, t_vector *new_env);
 

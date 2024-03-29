@@ -9,8 +9,9 @@
 /*   Updated: 2024/03/04 00:58:50 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <bits/stdint-intn.h>
 
-int	quote_started(unsigned char reset, char c)
+int8_t	quote_started(unsigned char reset, char c)
 {
 	static char	lastquote = 0;
 

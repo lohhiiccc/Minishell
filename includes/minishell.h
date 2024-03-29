@@ -13,11 +13,10 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
 # include "tree.h"
+#include "env.h"
 
-int prompt(t_vector *env);
-//t_tree *prompt(t_vector *env);
+int		prompt(t_env *env);
 int		lexer(char *str, struct s_vector *tokens);
-t_tree *parsing(t_vector *env, t_vector *tokens);
+t_tree	*parsing(t_vector *env, t_vector *tokens);
 #endif
