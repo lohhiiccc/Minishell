@@ -6,34 +6,32 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:39:06 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 02:51:41 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/21 18:14:01 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "build_in.h"
+#include "ft_printf.h"
 #include <unistd.h>
 
-int	exec_build_in(t_cmd *cmd)
+int	exec_build_in(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	if (!ft_strcmp(cmd->arg[0], "echo"))
-		ft_echo(cmd);
-	else if (!ft_strcmp(cmd->arg[0], "cd"))
-		ft_cd(cmd);
-	else if (!ft_strcmp(cmd->arg[0], "pwd"))
-		ft_pwd(cmd);
-	else if (!ft_strcmp(cmd->arg[0], "export"))
-		ft_export(cmd);
-	else if (!ft_strcmp(cmd->arg[0], "unset"))
-		ft_unset(cmd);
-	else if (!ft_strcmp(cmd->arg[0], "env"))
-		ft_env(cmd);
-	else if (!ft_strcmp(cmd->arg[0], "exit"))
-		ft_exit(cmd);
-	else
-	{
-		write(2, "NOOB\n", 5);
-		return (1);
-	}
-	return (0);
+	int	ret;
+
+	if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "echo"))
+		ret = ft_echo(((t_cmd *)tree->structur));
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "cd"))
+		ret = ft_cd(((t_cmd *)tree->structur));
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "pwd"))
+		ret = ft_pwd();
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "export"))
+		ret = ft_export(((t_cmd *)tree->structur));
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "unset"))
+		ret = ft_unset(((t_cmd *)tree->structur));
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "env"))
+		ret = ft_env(((t_cmd *)tree->structur));
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "exit"))
+		clean_exit(tree->root, fd_in, fd_out, 0);
+	return (ret);
 }

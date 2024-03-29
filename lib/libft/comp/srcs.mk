@@ -29,7 +29,8 @@ SRCMEM = ft_bzero \
 		 ft_memcpy \
 		 ft_memmove \
 		 ft_memset \
-		 ft_null_alloc
+		 ft_null_alloc \
+		 ft_free_tab
 
 SRCPUTFD = 	ft_putchar_fd \
 			ft_putfloat_fd \

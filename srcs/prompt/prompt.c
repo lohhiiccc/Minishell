@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:41:11 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/29 05:00:55 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int prompt(t_vector *env)
 		tree = parsing(env, &tokens);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
-//		print_tree(tree);
-		exec_args(tree, &fd[0], &fd[1]);
+		print_tree(tree);
+		exec_args(tree, &fd[0], &fd[1], NULL);
 	}
 	if (str && str[0])
 		add_history(str);
@@ -52,7 +52,7 @@ static unsigned char free_fd(t_vector *fd, unsigned char ret)
 	return (ret);
 }
 
-static unsigned char init_fd(t_vector *fd)
+static unsigned char	init_fd(t_vector *fd)
 {
 	if (-1 == ft_vector_init(&fd[0], sizeof(int)))
 		return (1);

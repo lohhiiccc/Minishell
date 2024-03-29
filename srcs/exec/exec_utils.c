@@ -6,12 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 00:41:23 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/29 03:09:05 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "env.h"
+#include "libft.h"
+#include "ft_printf.h"
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -69,26 +71,24 @@ static char	**list_path(t_vector *env)
 char	*find_path(char *cmd, t_vector *env)
 {
 	char	*ret;
-	char	*temp;
 	char	**path_list;
 	size_t	i;
 
 	i = 0;
 	path_list = list_path(env);
-	if (path_list == NULL)
-		return (NULL);
-	while (path_list[i])
+	while (path_list && path_list[i])
 	{
-		ret = ft_strjoin(path_list[i], "/");
-		temp = ft_strdup(ret);
-		free(ret);
-		ret = ft_strjoin(temp, cmd);
-		free(temp);
+		ret = ft_sprintf("%s/%s", path_list[i], cmd);
 		if (!access(ret, F_OK))
+		{
+			ft_free_tab(path_list);
 			return (ret);
+		}
+		free(ret);
 		i++;
 	}
-	free(ret);
+	if (path_list)
+		ft_free_tab(path_list);
 	if (!access(cmd, F_OK))
 	{
 		ret = ft_strdup(cmd);

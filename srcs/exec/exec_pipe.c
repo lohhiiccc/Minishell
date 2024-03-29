@@ -6,11 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/17 16:54:39 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/29 08:48:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+#include "ft_printf.h"
+#include <errno.h>
+#include <string.h>
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -18,12 +21,18 @@
 static void	exec_left(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd)
 {
 	if (close(fd[0]) == -1)
-		clean_exit(tree, fd_in, fd_out, 1);
+	{
+		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		clean_exit(tree->root, fd_in, fd_out, 1);
+	}
 	ft_vector_add(fd_out, &fd[1]);
-	exec_args(tree->left, fd_in, fd_out);
+	exec_args(tree->left, fd_in, fd_out, tree->root);
 	if (close(fd[1]) == -1)
-		clean_exit(tree, fd_in, fd_out, 1);
-	exit(0);
+	{
+		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		clean_exit(tree->root, fd_in, fd_out, 1);
+	}
+	clean_exit(tree->root, fd_in, fd_out, 0);
 }
 
 static int	exec_right(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd)
@@ -33,19 +42,25 @@ static int	exec_right(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd)
 
 	pid = fork();
 	if (pid == -1)
-		clean_exit(tree, fd_in, fd_out, 1);
+	{
+		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		return (1);
+	}
 	if (pid == 0)
 	{
 		ft_vector_add(fd_in, &fd[0]);
-		ret = exec_args(tree->right, fd_in, fd_out);
+		ret = exec_args(tree->right, fd_in, fd_out, tree->root);
 		if (close(fd[0]) == -1)
-			clean_exit(tree, fd_in, fd_out, 1);
-		exit(ret);
+		{
+			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+			clean_exit(tree->root, fd_in, fd_out, 1);
+		}
+		clean_exit(tree->root, fd_in, fd_out, ret);
 	}
-	else
+	else if (close(fd[0]) == -1)
 	{
-		if (close(fd[0]) == -1)
-			clean_exit(tree, fd_in, fd_out, 1);
+		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		return (1);
 	}
 	waitpid(pid, &ret, 0);
 	return (WEXITSTATUS(ret));
@@ -58,16 +73,22 @@ int	exec_pipe(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	int	fd[2];
 
 	if (pipe(fd) == -1)
-		clean_exit(tree, fd_in, fd_out, 1);
+	{
+		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		return (1);
+	}
 	pid = fork();
 	if (pid == -1)
-		clean_exit(tree, fd_in, fd_out, 1);
+	{
+		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		return (1);
+	}
 	if (pid == 0)
 		exec_left(tree, fd_in, fd_out, fd);
 	else
 	{
 		if (close(fd[1]) == -1)
-			clean_exit(tree, fd_in, fd_out, 1);
+			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
 		ret = exec_right(tree, fd_in, fd_out, fd);
 	}
 	while (wait(0) != -1)

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:44:15 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/19 23:18:25 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	found_sep(char *str, char sep)
 	i = 0;
 	while (str[i] && str[i] != sep)
 		i++;
-	if (str[i] == sep)
+	if (str[i] && str[i] == sep)
 		return (i);
 	return (-1);
 }
@@ -39,21 +39,22 @@ static int	is_variable_name(t_cmd *cmd, char *str)
 		n = found_sep(*env_i, '=');
 		if (!ft_strncmp(*env_i, str, n - 1))
 			return (i);
-		env_i = ft_vector_get(cmd->env, ++i);
+		i++;
+		env_i = ft_vector_get(cmd->env, i);
 	}
-	return (0);
+	return (-1);
 }
 
 int	ft_unset(t_cmd *cmd)
 {
 	size_t	i;
-	size_t	n;
+	int		n;
 
 	i = 1;
 	while (cmd->arg[i])
 	{
-		n =is_variable_name(cmd, cmd->arg[i]);
-		if (n)
+		n = is_variable_name(cmd, cmd->arg[i]);
+		if (n != -1)
 			ft_vector_delete_elem(cmd->env, n);
 		i++;
 	}

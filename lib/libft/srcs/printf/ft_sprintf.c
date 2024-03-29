@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 01:58:40 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/18 02:12:04 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/21 12:03:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,26 @@ char	*ft_sprintf(char *str, ...)
 {
 	va_list		arg;
 	t_vector	v;
+	int			status;
 
 	va_start(arg, str);
+	status = 0;
 	if (ft_vector_init(&v, sizeof(char)))
 		return (NULL);
-	while (*str)
+	while (*str && status != -1)
 	{
 		if (*str == '%')
-		{
-			if (put_in_vector(&v, arg, *++str) == -1)
-				return (NULL);
-		}
+			status = put_in_vector(&v, arg, *++str);
 		else
-			if (ft_vector_add(&v, str) == -1)
-				return (NULL);
+			status = ft_vector_add(&v, str);
 		str++;
 	}
+	if (status == -1)
+	{
+		free(v.addr);
+		return (NULL);
+	}
+	ft_vector_add(&v, "\0");
 	va_end(arg);
 	return (v.addr);
 }
