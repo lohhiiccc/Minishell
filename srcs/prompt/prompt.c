@@ -38,6 +38,7 @@ int prompt(t_env *env)
 		if (NULL == tree)
 			return (free_fd(fd, 1));
 		env->ret = exec_args(tree, &fd[0], &fd[1], NULL);
+		ft_clean_tree(tree);
 	}
 	if (str && str[0])
 		manage_history(str);

@@ -28,6 +28,5 @@ int	exec_args(t_tree *tree, t_vector *fd_in, t_vector *fd_out, t_tree *root)
 	else
 		tree->root = root;
 	ret = tab[tree->type](tree, fd_in, fd_out);
-//	printf("RET = %d NODE = %d\n", ret, tree->type);
 	return (ret);
 }
