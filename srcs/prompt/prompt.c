@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/21 18:35:02 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/29 05:00:55 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int prompt(t_vector *env)
 		tree = parsing(env, &tokens);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
-		// print_tree(tree);
+		print_tree(tree);
 		exec_args(tree, &fd[0], &fd[1], NULL);
 	}
 	if (str && str[0])
