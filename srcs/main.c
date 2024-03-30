@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <malloc.h>
 #include "minishell.h"
 #include "env.h"
 #include "ft_printf.h"

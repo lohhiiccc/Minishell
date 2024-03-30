@@ -32,7 +32,10 @@ int prompt(t_env *env)
 	tokens.nbr_elem = 0;
 	str = prompt_value();
 	if (!str)
+	{
+		clear_env(&env->env);
 		clean_exit(tree, &fd[0], &fd[1], env->ret);
+	}
 	if (-1 != lexer(str, &tokens))
 	{
 		tree = parsing(&env->env, &tokens);

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "make_tree.h"
-#include <stdint.h>
 
 uint8_t	is_redirection(t_node root_type)
 {
