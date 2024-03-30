@@ -11,11 +11,9 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdlib.h>
 #include "minishell.h"
 #include "env.h"
 #include "ft_printf.h"
-#include "exec.h"
 
 int	main(int argc, char **argv, char **env)
 {
@@ -31,4 +29,5 @@ int	main(int argc, char **argv, char **env)
 	}
 	while (prompt(&new_env))
 		;
+	return (127);
 }
