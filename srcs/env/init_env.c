@@ -18,15 +18,13 @@
 int	init_env(char **env, t_vector *new_env)
 {
 	size_t	i;
-	char	*temp;
 
 	i = 0;
 	if (ft_vector_init(new_env, sizeof(char *)) == -1)
 		return (-1);
 	while (env[i])
 	{
-		temp = ft_strdup(env[i]);
-		if (!temp || ft_vector_add_ptr(new_env, temp) == -1)
+		if (ft_vector_add_ptr(new_env, env[i]) == -1)
 		{
 			while (i > 0)
 			{

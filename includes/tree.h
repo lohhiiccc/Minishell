@@ -13,6 +13,7 @@
 #ifndef TREE_H
 # define TREE_H
 
+#include <bits/stdint-uintn.h>
 # include "vector.h"
 
 typedef enum e_node
