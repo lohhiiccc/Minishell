@@ -46,6 +46,7 @@ int prompt(t_env *env)
 	}
 	if (str && str[0])
 		manage_history(str);
+	free(str);
 	return (free_fd(fd, 1));
 }
 
