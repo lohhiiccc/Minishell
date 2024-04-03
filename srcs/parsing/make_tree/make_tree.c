@@ -31,11 +31,11 @@ t_tree	*make_tree(t_token *tokens, t_vector *env)
 	while (tokens[i].type != T_NEWLINE)
 	{
 		if (T_CMD == tokens[i].type)
-			root = add_in_subtree(root, make_command(tokens + i, env));
+			root = add_in_subtree(root, make_command(tokens + i, env, root));
 		else if (T_LOGICAL_OP == tokens[i].type || T_PIPE == tokens[i].type)
-			root = add_in_subtree(root, make_operator(tokens + i));
+			root = add_in_subtree(root, make_operator(tokens + i, root));
 		else if (T_RED_OUT == tokens[i].type || T_RED_IN == tokens[i].type)
-			root = add_in_subtree(root, make_redirection(tokens + i));
+			root = add_in_subtree(root, make_redirection(tokens + i, root));
 		else if (T_PARENTHESE_OP == tokens[i].type)
 		{
 			i++;
@@ -55,11 +55,11 @@ static t_tree *make_subtree(t_token *tokens,
 	while (T_NEWLINE != tokens[*i].type && T_PARENTHESE_CL != tokens[*i].type)
 	{
 		if (T_CMD == tokens[*i].type)
-			subroot = add_in_subtree(subroot, make_command(tokens + *i, env));
+			subroot = add_in_subtree(subroot, make_command(tokens + *i, env, root));
 		else if (T_LOGICAL_OP == tokens[*i].type || T_PIPE == tokens[*i].type)
-			subroot = add_in_subtree(subroot, make_operator(tokens + *i));
+			subroot = add_in_subtree(subroot, make_operator(tokens + *i, root));
 		else if (T_RED_OUT == tokens[*i].type || T_RED_IN == tokens[*i].type)
-			subroot = add_in_subtree(subroot, make_redirection(tokens + *i));
+			subroot = add_in_subtree(subroot, make_redirection(tokens + *i, root));
 		else if (T_PARENTHESE_OP == tokens[*i].type)
 		{
 			++*i;
@@ -80,7 +80,7 @@ static t_tree *add_subpipe(size_t *i,
 	t_tree	*new;
 
 	++*i;
-	new = make_operator(tokens + *i);
+	new = make_operator(tokens + *i, root);
 	new->left = subroot;
 	return (down(root, new));
 }
@@ -91,7 +91,7 @@ static t_tree *add_subredirection(size_t *i,
 	t_tree	*new;
 
 	++*i;
-	new = make_redirection(tokens + *i);
+	new = make_redirection(tokens + *i, root);
 	new->left = subroot;
 	return (down(root, new));
 }

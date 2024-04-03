@@ -27,14 +27,14 @@ all: $(NAME)
 
 $(NAME): $(LIBS) $(OBJS)
 	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -Iincludes/ $(OBJS) -L$(LIBFT) -lft -lreadline -o $(NAME)
-	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY) -I$(LIBFT)includes/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) -L$(LIBPRINTF)$(YELLOW) -lft -lreadline $(END) -o $(GREEN)$(NAME)$(END)"
+	@echo "🔗 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS)$(GRAY) -I$(LIBFT)includes/ -Iincludes/$(END) $(OBJS)$(GRAY) -L$(LIBFT) $(YELLOW)-lft -lreadline $(CYAN)-o $(GREEN)$(NAME)$(END)"
 	@echo "📚 $(CYAN)$(NAME) done\n$(END)"
 
 $(BUILDDIR)%.o: $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@mkdir -p $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%$(@F)=%)
 	@$(CC) $(CFLAGS) -I$(LIBFT)includes/ -I$(INCLUDEDIR) -MMD -MP -c $< -o $@
-	@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS) $(GRAY) -I$(LIBFT)includes/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< -o $@ $(END)"
+	@echo "🔧 $(GREEN)> $(YELLOW)$(CC) $(RED)$(CFLAGS)$(GRAY) -I$(LIBFT)includes/ -I$(INCLUDEDIR) $(RED)-MMD -MP $(END)-c $< $(CYAN)-o$(END) $@ $(END)"
 	@mv $(@:%.o=%.d) $(DEPENDENCIESDIR)$(@:$(BUILDDIR)%.o=%.d)
 
 clean:

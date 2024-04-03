@@ -12,13 +12,13 @@
 
 #include "exec.h"
 #include "build_in.h"
-#include "ft_printf.h"
-#include <unistd.h>
+#include "env.h"
 
 int	exec_build_in(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int	ret;
 
+	ret = 0;
 	if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "echo"))
 		ret = ft_echo(((t_cmd *)tree->structur));
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "cd"))
@@ -32,6 +32,9 @@ int	exec_build_in(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "env"))
 		ret = ft_env(((t_cmd *)tree->structur));
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "exit"))
-		clean_exit(tree->root, fd_in, fd_out, 0);
+	{
+		clear_env(((t_cmd *)tree->structur)->env);
+		clean_exit(tree->root, fd_in, fd_out, ft_atoi(((t_cmd *)tree->structur)->arg[1]));
+	}
 	return (ret);
 }

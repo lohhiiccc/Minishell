@@ -83,6 +83,7 @@ SRCMAKETREEUTILS = add_down \
 				   add_redirection
 
 SRCENV = init_env \
+		 clear_env \
 
 SRCEXPANDER = expander \
 

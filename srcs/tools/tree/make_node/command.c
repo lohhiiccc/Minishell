@@ -21,7 +21,7 @@ static char	**get_cmd(t_token *tokens, t_vector *env);
 static size_t	get_cmd_len(t_token *tokens);
 static void		*free_range(char **tab);
 
-t_tree	*make_command(t_token *tokens, t_vector *env)
+t_tree	*make_command(t_token *tokens, t_vector *env, t_tree *root)
 {
 	t_cmd	*content;
 
@@ -33,7 +33,7 @@ t_tree	*make_command(t_token *tokens, t_vector *env)
 		return (free_and_return_null(content));
 	content->path = NULL;
 	content->env = env;
-	return (ft_new_tree(content, CMD));
+	return (ft_new_tree(content, CMD, root));
 }
 
 static char	**get_cmd(t_token *tokens, t_vector *env)

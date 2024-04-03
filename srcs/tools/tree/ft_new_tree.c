@@ -13,7 +13,7 @@
 #include <malloc.h>
 #include "tree.h"
 
-t_tree	*ft_new_tree(void *content, t_node node)
+t_tree	*ft_new_tree(void *content, t_node node, t_tree *root)
 {
 	t_tree	*new_tree;
 
@@ -24,6 +24,8 @@ t_tree	*ft_new_tree(void *content, t_node node)
 	new_tree->structur = content;
 	new_tree->left = NULL;
 	new_tree->right = NULL;
-	new_tree->root = NULL;
+	new_tree->root = root;
+	if (NULL == root)
+		new_tree->root = new_tree;
 	return (new_tree);
 }

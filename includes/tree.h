@@ -13,6 +13,7 @@
 #ifndef TREE_H
 # define TREE_H
 
+#include <bits/stdint-uintn.h>
 # include "vector.h"
 
 typedef enum e_node
@@ -46,6 +47,6 @@ typedef struct s_cmd
 void	print_tree(t_tree *root);
 t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content, t_node node);
 void	ft_clean_tree(t_tree *tree);
-t_tree	*ft_new_tree(void *content, t_node node);
+t_tree	*ft_new_tree(void *content, t_node node, t_tree *root);
 
 #endif

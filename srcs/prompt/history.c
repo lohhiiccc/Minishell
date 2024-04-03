@@ -1,18 +1,12 @@
 #include "prompt.h"
 
-static long long	get_id(char *str);
+static long long	get_id(const char *str);
 
 void	manage_history(char *str)
 {
-	static long long	id = -1;
+	static long long	id = 0;
 	long long			tmp;
 
-	if (id == -1)
-	{
-		id = get_id(str);
-		add_history(str);
-		return ;
-	}
 	tmp = get_id(str);
 	if (tmp == id)
 		return ;
@@ -20,19 +14,18 @@ void	manage_history(char *str)
 	add_history(str);
 }
 
-static long long	get_id(char *str)//todo: voir si il y a mieux
+static long long	get_id(const char *str)
 {
-	size_t	i;
-	long long id;
+	size_t			i;
+	char			j;
+	long long		id;
 
-	id = 1;
+	id = 5381;
 	i = 0;
 	while (str[i])
 	{
-		if (i & 1)
-			id *= str[i] % 5;
-		else
-			id += str[i] * 7;
+		j = str[i];
+		id = ((id << 5) + id) + j;
 		i++;
 	}
 	return (id);

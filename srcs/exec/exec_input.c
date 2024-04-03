@@ -23,7 +23,7 @@ int	exec_input(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	int	ret;
 
 	fd = open((char *)tree->structur, O_RDONLY);
-	ft_printf("OPEN FD %d\n", fd);
+//	ft_printf("OPEN FD %d\n", fd);
 	if (fd == -1)
 	{
 		ft_dprintf(2, "Minichell: %s: %s\n",
