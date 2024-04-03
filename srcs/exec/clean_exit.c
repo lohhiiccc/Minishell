@@ -11,13 +11,16 @@
 /* ************************************************************************** */
 
 #include "exec.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <readline/readline.h>
 
 void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int status)
 {
+	rl_clear_history();
 	ft_clean_tree(tree);
 	close_vector_fd(fd_in);
 	close_vector_fd(fd_out);
+	ft_vector_free(fd_in, NULL);
+	ft_vector_free(fd_out, NULL);
 	exit(status);
 }

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "tree.h"
 #include "stdlib.h"
 
@@ -30,6 +31,7 @@ static void	clean_cmd(t_tree *tree)
 
 void	ft_clean_tree(t_tree *tree)
 {
+
 	if (!tree)
 		return ;
 	ft_clean_tree(tree->left);

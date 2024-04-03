@@ -16,9 +16,9 @@
 
 static t_node	get_redirect_type(t_token *token);
 
-t_tree	*make_redirection(t_token *tokens)
+t_tree	*make_redirection(t_token *tokens, t_tree *root)
 {
-	return (ft_new_tree(ft_strdup(tokens[1].str), get_redirect_type(tokens)));
+	return (ft_new_tree(ft_strdup(tokens[1].str), get_redirect_type(tokens), root));
 }
 
 static t_node	get_redirect_type(t_token *token)

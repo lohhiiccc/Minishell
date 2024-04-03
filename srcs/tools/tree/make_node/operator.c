@@ -16,9 +16,9 @@
 
 static t_node	get_operator(t_token *token);
 
-t_tree	*make_operator(t_token *tokens)
+t_tree	*make_operator(t_token *tokens, t_tree *root)
 {
-	return (ft_new_tree(ft_strdup(tokens[0].str), get_operator(tokens)));
+	return (ft_new_tree(NULL, get_operator(tokens), root));
 }
 
 static t_node	get_operator(t_token *token)

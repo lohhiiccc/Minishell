@@ -26,12 +26,16 @@ int prompt(t_env *env)
 	t_tree		*tree;
 	t_vector	fd[2];
 
+	tree = NULL;
 	if (init_fd(fd))
 		return (1); //todo print erreur malloc
 	tokens.nbr_elem = 0;
 	str = prompt_value();
 	if (!str)
-		return (free_fd(fd, 0));
+	{
+		clear_env(&env->env);
+		clean_exit(tree, &fd[0], &fd[1], env->ret);
+	}
 	if (-1 != lexer(str, &tokens))
 	{
 		tree = parsing(&env->env, &tokens);
@@ -42,6 +46,7 @@ int prompt(t_env *env)
 	}
 	if (str && str[0])
 		manage_history(str);
+	free(str);
 	return (free_fd(fd, 1));
 }
 

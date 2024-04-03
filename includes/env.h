@@ -22,6 +22,7 @@ typedef struct	s_env
 	uint8_t		ret;
 }	t_env;
 
-int	init_env(char **env, t_vector *new_env);
+int			init_env(char **env, t_vector *new_env);
+void		clear_env(t_vector *env);
 
 #endif

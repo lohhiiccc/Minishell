@@ -72,7 +72,7 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 					tree->structur)->arg[0], ((t_cmd *)tree->structur)->env);
 		if (!((t_cmd *)tree->structur)->path)
 		{
-			ft_dprintf(2, "Minichell: %s: Command not found\n",
+			ft_dprintf(2, "Minichell: %s: Command not found\a\n",
 				((t_cmd *)tree->structur)->arg[0]);
 			return (127);
 		}

@@ -62,6 +62,8 @@ int	ft_atoi(const char *str)
 {
 	long	tmp;
 
+	if (!str)
+		return (0);
 	tmp = ft_atol(str);
 	if (!(tmp >= INT_MIN && tmp <= INT_MAX))
 		errno = ERANGE;

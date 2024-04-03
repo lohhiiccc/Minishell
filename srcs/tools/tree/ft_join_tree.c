@@ -16,7 +16,7 @@ t_tree	*ft_join_tree(t_tree *left, t_tree *right, void *content, t_node node)
 {
 	t_tree	*tree;
 
-	tree = ft_new_tree(content, node);
+	tree = ft_new_tree(content, node, NULL);
 	tree->type = node;
 	tree->left = left;
 	tree->right = right;
