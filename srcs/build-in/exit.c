@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 22:26:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/03 15:57:45 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/04/03 15:18:52 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/04 19:48:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#include "exec.h"
+#include "env.h"
+#include "vector.h"
+#include <stdlib.h>
 
-# include <stdint.h>
-# include "vector.h"
-
-typedef struct	s_env
+void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	t_vector	env;
-	uint8_t		ret;
-}	t_env;
-
-int			init_env(char **env, t_vector *new_env);
-void		clear_env(t_vector *env);
-
-#endif
+	clear_env(&((t_cmd *)tree->structur)->env.env);
+	if (((t_cmd *)tree->structur)->arg[1])
+		clean_exit(tree->root, fd_in, fd_out,
+			ft_atoi(((t_cmd *)tree->structur)->arg[1]));
+	else
+		clean_exit(tree->root, fd_in, fd_out,
+			((t_cmd *)tree->structur)->env.ret);
+}

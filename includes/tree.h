@@ -6,15 +6,16 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:43:43 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/19 17:08:12 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/03 15:02:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_H
 # define TREE_H
 
-#include <bits/stdint-uintn.h>
+# include <bits/stdint-uintn.h>
 # include "vector.h"
+# include "env.h"
 
 typedef enum e_node
 {
@@ -39,9 +40,9 @@ typedef struct s_tree
 
 typedef struct s_cmd
 {
-	char		*path;
-	char		**arg;
-	t_vector	*env;
+	char	*path;
+	char	**arg;
+	t_env	env;
 }	t_cmd;
 
 void	print_tree(t_tree *root);

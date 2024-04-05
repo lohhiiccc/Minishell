@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:04:27 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/19 17:18:19 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/04 19:36:05 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		exec_apend(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
 int		exec_here_doc(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
 void	close_vector_fd(t_vector *fd);
 int		exec_build_in(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int status);
+void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out,
+			uint8_t status);
 char	*find_path(char *cmd, t_vector *env);
 int		is_build_in(char *str);
 

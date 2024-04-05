@@ -1,6 +1,5 @@
 include srcs/srcs.mk
 include color.mk
--include $(DEPS)
 
 NAME = minishell
 
@@ -14,6 +13,8 @@ DEPENDENCIESDIR = $(BUILDDIR)dependencies/
 
 OBJS = $(SRCS:$(SRCDIR)%.c=$(BUILDDIR)%.o)
 DEPS = $(SRCS:$(SRCDIR)%.c=$(DEPENDENCIESDIR)%.d)
+
+-include $(DEPS)
 
 LIBDIR = lib/
 LIBFT = $(LIBDIR)libft/

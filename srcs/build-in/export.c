@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:44 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:44:37 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/03 16:00:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 static void	ft_vector_add_and_null(t_cmd *cmd, size_t i)
 {
-		char	*temp;
+	char	*temp;
 
-		temp = ft_strdup(cmd->arg[i]);
-		ft_vector_delete_elem(cmd->env, cmd->env->nbr_elem);
-		ft_vector_add_ptr(cmd->env, temp);
-		ft_vector_add_ptr(cmd->env, NULL);
+	temp = ft_strdup(cmd->arg[i]);
+	ft_vector_delete_elem(&cmd->env.env, cmd->env.env.nbr_elem);
+	ft_vector_add_ptr(&cmd->env.env, temp);
+	ft_vector_add_ptr(&cmd->env.env, NULL);
 
 }
 
@@ -49,11 +49,11 @@ int	ft_export(t_cmd *cmd)
 		n = found_sep(cmd->arg[i], '=');
 		if (n != -1)
 		{
-			while (j < cmd->env->nbr_elem)
+			while (j < cmd->env.env.nbr_elem)
 			{
 				if (!ft_strncmp(cmd->arg[i], *(char **)ft_vector_get \
-				(cmd->env, j), n - 1))
-					ft_vector_delete_elem(cmd->env, j);
+				(&cmd->env.env, j), n - 1))
+					ft_vector_delete_elem(&cmd->env.env, j);
 				j++;
 			}
 			ft_vector_add_and_null(cmd, i);
