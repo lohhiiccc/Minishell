@@ -52,6 +52,7 @@ SRCBUILD_IN = cd \
 			  echo \
 			  unset \
 			  export \
+			  exit
 
 SRCEXEC = exec \
 		  exec_or \
@@ -65,6 +66,7 @@ SRCEXEC = exec \
 		  exec_output \
 		  exec_here_doc \
 		  exec_build_in \
+		  find_path
 
 SRCMAKE_NODE = command \
 			   operator \

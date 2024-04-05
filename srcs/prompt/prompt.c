@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/29 19:38:09 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/05 19:25:35 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "exec.h"
 #include "ft_printf.h"
 #include "prompt.h"
+#include <signal.h>
 
 static uint8_t	init_fd(t_vector *fd);
 static uint8_t	free_fd(t_vector *fd, uint8_t ret);
@@ -27,18 +28,20 @@ int prompt(t_env *env)
 	t_vector	fd[2];
 
 	tree = NULL;
+	test();
 	if (init_fd(fd))
 		return (1); //todo print erreur malloc
 	tokens.nbr_elem = 0;
 	str = prompt_value();
 	if (!str)
 	{
+		ft_printf("Exit\n");
 		clear_env(&env->env);
 		clean_exit(tree, &fd[0], &fd[1], env->ret);
 	}
 	if (-1 != lexer(str, &tokens))
 	{
-		tree = parsing(&env->env, &tokens);
+		tree = parsing(env, &tokens);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
 		env->ret = exec_args(tree, &fd[0], &fd[1], NULL);
@@ -50,13 +53,12 @@ int prompt(t_env *env)
 	return (free_fd(fd, 1));
 }
 
-static char *prompt_value(void)
+static char	*prompt_value(void)
 {
 	char	*str;
 	char	*ret;
 
-	ret = NULL;
-	str = ft_sprintf("M1n1ch3ll:%c",'\0'); //todo : secure sprintf;
+	str = ft_sprintf("🐢M1n1ch3ll🐢:%c",'\0'); //todo : secure sprintf;
 	ret = readline(str);
 	free(str);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/29 13:20:55 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/04 19:29:20 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int	ft_cd(t_cmd *cmd)
 			return (1);
 		if (chdir(str) == -1)
 		{
+			free(str);
 			ft_dprintf(2, "Minichel: cd: %s: %s\n", cmd->arg[1],
 				strerror(errno));
 			return (1);
 		}
+		free(str);
 		return (0);
 	}
 	return (0);

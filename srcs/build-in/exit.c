@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/05 01:54:01 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/04/03 15:18:52 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/04 19:48:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <malloc.h>
-#include "minishell.h"
+#include "exec.h"
 #include "env.h"
-#include "build_in.h"
-#include "ft_printf.h"
-#include "libft.h"
+#include "vector.h"
+#include <stdlib.h>
 
-int	main(int argc, char **argv, char **env)
+void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	t_env	new_env;
-
-	(void)argc;
-	(void)argv;
-	new_env.ret = 0;
-	if (!isatty(0) || -1 == init_env(env, &new_env.env))
-	{
-		ft_dprintf(2, "minichel: please use a tty\n");
-		return (1);
-	}
-	while (prompt(&new_env))
-		;
-	return (127);
+	clear_env(&((t_cmd *)tree->structur)->env.env);
+	if (((t_cmd *)tree->structur)->arg[1])
+		clean_exit(tree->root, fd_in, fd_out,
+			ft_atoi(((t_cmd *)tree->structur)->arg[1]));
+	else
+		clean_exit(tree->root, fd_in, fd_out,
+			((t_cmd *)tree->structur)->env.ret);
 }

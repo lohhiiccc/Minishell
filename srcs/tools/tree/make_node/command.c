@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:46:06 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/05 14:19:28 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@ static char	**get_cmd(t_token *tokens, t_vector *env);
 static size_t	get_cmd_len(t_token *tokens);
 static void		*free_range(char **tab);
 
-t_tree	*make_command(t_token *tokens, t_vector *env, t_tree *root)
+t_tree	*make_command(t_token *tokens, t_env *env, t_tree *root)
 {
 	t_cmd	*content;
 
 	content = malloc(sizeof(t_cmd));
 	if (NULL == content)
 		return (NULL);
-	content->arg = get_cmd(tokens, env);
+	content->arg = get_cmd(tokens, &env->env);
 	if (NULL == content->arg)
 		return (free_and_return_null(content));
 	content->path = NULL;
-	content->env = env;
+	content->env.env = env->env;
+	content->env.ret = env->ret;
 	return (ft_new_tree(content, CMD, root));
 }
 
