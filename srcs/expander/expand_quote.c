@@ -6,8 +6,10 @@
 #include "env.h"
 #include "libft.h"
 
-static int8_t is_inquote(char *s, t_vector *new, size_t *i, t_vector *env);
-int get_value(char *s, size_t *i, char **env, t_vector *vector);
+static int ft_vector_add_negative(t_vector *v, char *c);
+static int ft_vector_add_n_negative(t_vector *v, char *c);
+static int8_t	is_inquote(char *s, t_vector *new, size_t *i, t_vector *env);
+static int		get_value(char *s, size_t *i, char **env, t_vector *vector);
 int8_t expand_quote(char **str, uint8_t *quote, t_vector *env)
 {
 	size_t	i;
@@ -34,7 +36,6 @@ int8_t expand_quote(char **str, uint8_t *quote, t_vector *env)
 		return (-1);
 	free(*str);
 	*str = ft_vector_get(&new, 0);
-	ft_vector_print_str(&new);
 	return (0);
 }
 
@@ -42,7 +43,7 @@ static int8_t is_inquote(char *s, t_vector *new, size_t *i, t_vector *env)
 {
 	if (s[*i] != '$' || (s[*i] == '$' && !is_charset(s[*i + 1])))
 	{
-		if (-1 == ft_vector_add(new, &s[*i]))
+		if (-1 == ft_vector_add_negative(new, &s[*i]))
 			return (-1);
 	}
 	else
@@ -53,7 +54,7 @@ static int8_t is_inquote(char *s, t_vector *new, size_t *i, t_vector *env)
 	return (0);
 }
 
-int get_value(char *s, size_t *i, char **env, t_vector *vector)
+static int get_value(char *s, size_t *i, char **env, t_vector *vector)
 {
 	char *value;
 	size_t	backup;
@@ -66,5 +67,24 @@ int get_value(char *s, size_t *i, char **env, t_vector *vector)
 	if (value == NULL)
 		return 0;
 	value += (*i - backup + 2);
-	return ft_vector_add_n(vector, value, ft_strlen(value));
+	return ft_vector_add_n_negative(vector, value);
+}
+
+static int ft_vector_add_n_negative(t_vector *v, char *c)
+{
+	size_t i;
+
+	i = 1;
+	while (c[i])
+	{
+		c[i] = -c[i];
+		i++;
+	}
+	return ft_vector_add_n(v, c, ft_strlen(c));
+}
+static int ft_vector_add_negative(t_vector *v, char *c)
+{
+	if (c[0] == '\'')
+		*c = -(*c);
+	return ft_vector_add(v, c);
 }

@@ -89,6 +89,7 @@ SRCENV = init_env \
 SRCEXPANDER = expander \
 			  var_charset \
 			  expand_quote \
+			  remove_quote
 
 SRCEXPANDERUTILS = get_env_line \
 			  	   quote_status \
