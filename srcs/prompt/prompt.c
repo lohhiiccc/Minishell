@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/29 05:00:55 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/03/29 19:38:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char *prompt_value(void)
 	char	*ret;
 
 	ret = NULL;
-	str = ft_sprintf("minichel:%c",'\0'); //todo : secure sprintf;
+	str = ft_sprintf("M1n1ch3ll:%c",'\0'); //todo : secure sprintf;
 	ret = readline(str);
 	free(str);
 	return (ret);
