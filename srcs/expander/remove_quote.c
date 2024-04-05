@@ -15,11 +15,10 @@ void	remove_quote(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '"')
+		if (s[i] == '"' || s[i] == '\'')
 			s[i] = '\0';
 		if (s[i] < 0)
 			s[i] = -s[i];
 		i++;
 	}
-//	s[i - count] = '\0';
 }

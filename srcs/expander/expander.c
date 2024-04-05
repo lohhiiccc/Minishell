@@ -2,9 +2,7 @@
 #include "vector.h"
 #include "expand.h"
 #include "libft.h"
-#include "ft_printf.h"
 
-//void	fill_quote(unsigned char *quotes, char c);
 
 char **expand_cmd(char **cmd, t_vector *env)
 {
