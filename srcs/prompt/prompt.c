@@ -28,7 +28,6 @@ int prompt(t_env *env)
 	t_vector	fd[2];
 
 	tree = NULL;
-	test();
 	if (init_fd(fd))
 		return (1); //todo print erreur malloc
 	tokens.nbr_elem = 0;
