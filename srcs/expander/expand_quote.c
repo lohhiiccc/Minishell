@@ -1,12 +1,12 @@
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "vector.h"
 #include "expand.h"
 #include "env.h"
 #include "libft.h"
 
 static int8_t is_inquote(char *s, t_vector *new, size_t *i, t_vector *env);
-size_t	get_envline(char **env, char *var);
 int get_value(char *s, size_t *i, char **env, t_vector *vector);
 int8_t expand_quote(char **str, uint8_t *quote, t_vector *env)
 {
@@ -50,33 +50,21 @@ static int8_t is_inquote(char *s, t_vector *new, size_t *i, t_vector *env)
 		++*i;
 		get_value(s, i, ft_vector_get(env, 0), new);
 	}
-
 	return (0);
 }
 
 int get_value(char *s, size_t *i, char **env, t_vector *vector)
 {
-	(void)s;
-	(void)i;
-	(void)env;
-	(void)vector;
+	char *value;
+	size_t	backup;
+
+	backup = *i;
+	value = env[get_envline(env, s + *i)];
 	while (s[*i] && is_charset(s[*i]))
 		(*i)++;
 	--*i;
-
-	return 0;
-}
-
-size_t	get_envline(char **env, char *var)
-{
-	size_t i;
-
-	i = 0;
-	while (env[i])
-	{
-		if (0 == ft_strcmp(var, env[i]))
-			return i;
-		i++;
-	}
-	return i;
+	if (value == NULL)
+		return 0;
+	value += (*i - backup + 2);
+	return ft_vector_add_n(vector, value, ft_strlen(value));
 }
