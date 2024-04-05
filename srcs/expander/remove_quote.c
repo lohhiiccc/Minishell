@@ -1,8 +1,6 @@
 
 #include "libft.h"
-#include "ft_printf.h"
 
-void	ft_swap(char *str, size_t a, size_t b);
 void	remove_quote(char *s)
 {
 	size_t	i;
@@ -19,5 +17,4 @@ void	remove_quote(char *s)
 			s[i] = -s[i];
 		i++;
 	}
-	ft_printf("|%s|\n", s);
 }
