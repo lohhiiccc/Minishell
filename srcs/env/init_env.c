@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:30:31 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/29 12:52:45 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/06 16:35:55 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,6 @@
 #include "vector.h"
 #include <stdlib.h>
 
-//int	init_env(char **env, t_vector *new_env)
-//{
-//	size_t	i;
-//
-//	i = 0;
-//	if (ft_vector_init(new_env, sizeof(char *)) == -1)
-//		return (-1);
-//	while (env[i])
-//	{
-//		if (ft_vector_add_ptr(new_env, env[i]) == -1)
-//		{
-//			while (i > 0)
-//			{
-//				free(ft_vector_get(new_env, i));
-//				i--;
-//			}
-//			return (-1);
-//		}
-//		i++;
-//	}
-//	ft_vector_add_ptr(new_env, NULL);
-//	return (0);
-//}
-//
 int	init_env(char **env, t_vector *new_env)
 {
 	size_t	i;
