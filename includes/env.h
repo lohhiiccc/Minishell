@@ -18,7 +18,7 @@
 
 typedef struct	s_env
 {
-	t_vector	env;
+	t_vector	*env;
 	uint8_t		ret;
 }	t_env;
 

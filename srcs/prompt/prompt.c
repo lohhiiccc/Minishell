@@ -35,7 +35,7 @@ int prompt(t_env *env)
 	if (!str)
 	{
 		ft_printf("Exit\n");
-		clear_env(&env->env);
+		clear_env(env->env);
 		clean_exit(tree, &fd[0], &fd[1], env->ret);
 	}
 	if (-1 != lexer(str, &tokens))

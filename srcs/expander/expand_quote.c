@@ -10,6 +10,7 @@ static int ft_vector_add_negative(t_vector *v, char *c);
 static int ft_vector_add_n_negative(t_vector *v, char *c);
 static int8_t	is_inquote(char *s, t_vector *new, size_t *i, t_vector *env);
 static int		get_value(char *s, size_t *i, char **env, t_vector *vector);
+
 int8_t expand_quote(char **str, uint8_t *quote, t_vector *env)
 {
 	size_t	i;

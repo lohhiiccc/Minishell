@@ -15,6 +15,6 @@
 
 int	ft_env(t_cmd *cmd)
 {
-	ft_vector_iteri(&cmd->env.env, ft_vector_print_str);
+	ft_vector_iteri(cmd->env.env, ft_vector_print_str);
 	return (0);
 }

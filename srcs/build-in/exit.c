@@ -17,7 +17,7 @@
 
 void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
-	clear_env(&((t_cmd *)tree->structur)->env.env);
+	clear_env(((t_cmd *)tree->structur)->env.env);
 	if (((t_cmd *)tree->structur)->arg[1])
 		clean_exit(tree->root, fd_in, fd_out,
 			ft_atoi(((t_cmd *)tree->structur)->arg[1]));
