@@ -11,16 +11,13 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <malloc.h>
 #include "minishell.h"
 #include "env.h"
-#include "build_in.h"
 #include "ft_printf.h"
-#include "libft.h"
 
 int	main(int argc, char **argv, char **env)
 {
-	t_env	new_env;
+	t_env		new_env;
 
 	(void)argc;
 	(void)argv;
@@ -30,6 +27,7 @@ int	main(int argc, char **argv, char **env)
 		ft_dprintf(2, "minichel: please use a tty\n");
 		return (1);
 	}
+	ft_printf("%d\n", new_env.env.nbr_elem);
 	while (prompt(&new_env))
 		;
 	return (127);

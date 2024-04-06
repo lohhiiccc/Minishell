@@ -17,7 +17,7 @@
 #include "libft.h"
 
 static void		*free_and_return_null(void *content);
-static char	**get_cmd(t_token *tokens, t_vector *env);
+static char **get_cmd(t_token *tokens);
 static size_t	get_cmd_len(t_token *tokens);
 static void		*free_range(char **tab);
 
@@ -28,16 +28,15 @@ t_tree	*make_command(t_token *tokens, t_env *env, t_tree *root)
 	content = malloc(sizeof(t_cmd));
 	if (NULL == content)
 		return (NULL);
-	content->arg = get_cmd(tokens, &env->env);
+	content->arg = get_cmd(tokens);
 	if (NULL == content->arg)
 		return (free_and_return_null(content));
 	content->path = NULL;
-	content->env.env = env->env;
-	content->env.ret = env->ret;
+	content->env = env;
 	return (ft_new_tree(content, CMD, root));
 }
 
-static char	**get_cmd(t_token *tokens, t_vector *env)
+static char **get_cmd(t_token *tokens)
 {
 	size_t	i;
 	size_t	len;
@@ -62,7 +61,7 @@ static char	**get_cmd(t_token *tokens, t_vector *env)
 		}
 		i++;
 	}
-	return (expand_cmd(arg, env));
+	return (arg);
 }
 
 static size_t	get_cmd_len(t_token *tokens)

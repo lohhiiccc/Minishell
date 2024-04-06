@@ -13,6 +13,7 @@
 #include "exec.h"
 #include "env.h"
 #include "ft_printf.h"
+#include "expand.h"
 #include <string.h>
 #include <errno.h>
 #include <sys/wait.h>
@@ -52,7 +53,7 @@ static int	exec_child_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		close_vector_fd(fd_in);
 		close_vector_fd(fd_out);
 		execve(((t_cmd *)tree->structur)->path, ((t_cmd *)tree->structur)->arg,
-			ft_vector_get(&((t_cmd *)tree->structur)->env.env, 0));
+			ft_vector_get(&((t_cmd *)tree->structur)->env->env, 0));
 		ft_dprintf(2, "Minichell: %s: %s\n",
 			((t_cmd *)tree->structur)->arg[0], strerror(errno));
 		clean_exit(tree->root, fd_in, fd_out, 1);
@@ -67,12 +68,14 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int		ret;
 
+	expand_cmd(((t_cmd *)tree->structur)->arg,
+			   &((t_cmd *)tree->structur)->env->env); //todo: securiser ca
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
 		ret = exec_build_in(tree, fd_in, fd_out);
 	else
 	{
 		((t_cmd *)tree->structur)->path = find_path(((t_cmd *)tree->structur)
-				->arg[0], &((t_cmd *)tree->structur)->env.env);
+				->arg[0], &((t_cmd *)tree->structur)->env->env);
 		if (!((t_cmd *)tree->structur)->path)
 		{
 			ft_dprintf(2, "Minichell: %s: Command not found\n",

@@ -1,32 +1,21 @@
 
-#include <stdio.h>
-#include <malloc.h>
 #include "vector.h"
+#include "expand.h"
 #include "libft.h"
-#include "ft_printf.h"
 
-//void	fill_quote(unsigned char *quotes, char c);
 
 char **expand_cmd(char **cmd, t_vector *env)
 {
-	(void)env;
-	return (cmd);
-}
+	uint8_t quotes[2];
+	size_t	i;
 
-void	fill_quote(unsigned char *quotes, char c)
-{
-	if (c == '\'' && quotes[1] != 1)
+	i = 0;
+	ft_bzero(quotes, sizeof(uint8_t) * 2);
+	while (cmd[i])
 	{
-		if (quotes[0] == 0)
-			quotes[0] = 1;
-		else
-			quotes[0] = 0;
+		expand_quote(&cmd[i], quotes, env);
+		remove_quote(cmd[i]);
+		i++;
 	}
-	else if (c == '"' && quotes[0] != 1)
-	{
-		if (quotes[1] == 0)
-			quotes[1] = 1;
-		else
-			quotes[1] = 0;
-	}
+	return (cmd);
 }
