@@ -32,8 +32,7 @@ t_tree	*make_command(t_token *tokens, t_env *env, t_tree *root)
 	if (NULL == content->arg)
 		return (free_and_return_null(content));
 	content->path = NULL;
-	content->env.env = env->env;
-	content->env.ret = env->ret;
+	content->env = env;
 	return (ft_new_tree(content, CMD, root));
 }
 

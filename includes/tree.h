@@ -42,7 +42,7 @@ typedef struct s_cmd
 {
 	char	*path;
 	char	**arg;
-	t_env	env;
+	t_env	*env;
 }	t_cmd;
 
 void	print_tree(t_tree *root);

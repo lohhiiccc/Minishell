@@ -18,9 +18,9 @@ static void	ft_vector_add_and_null(t_cmd *cmd, size_t i)
 	char	*temp;
 
 	temp = ft_strdup(cmd->arg[i]);
-	ft_vector_delete_elem(cmd->env.env, cmd->env.env->nbr_elem);
-	ft_vector_add_ptr(cmd->env.env, temp);
-	ft_vector_add_ptr(cmd->env.env, NULL);
+	ft_vector_delete_elem(&cmd->env->env, cmd->env->env.nbr_elem);
+	ft_vector_add_ptr(&cmd->env->env, temp);
+	ft_vector_add_ptr(&cmd->env->env, NULL);
 
 }
 
@@ -49,11 +49,11 @@ int	ft_export(t_cmd *cmd)
 		n = found_sep(cmd->arg[i], '=');
 		if (n != -1)
 		{
-			while (j < cmd->env.env->nbr_elem)
+			while (j < cmd->env->env.nbr_elem)
 			{
-				if (!ft_strncmp(cmd->arg[i], *(char **)ft_vector_get \
-				(cmd->env.env, j), n - 1))
-					ft_vector_delete_elem(cmd->env.env, j);
+				if (!ft_strncmp(cmd->arg[i],
+					*(char **)ft_vector_get(&cmd->env->env, j), n - 1))
+					ft_vector_delete_elem(&cmd->env->env, j);
 				j++;
 			}
 			ft_vector_add_and_null(cmd, i);
