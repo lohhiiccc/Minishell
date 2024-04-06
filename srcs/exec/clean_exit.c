@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 03:01:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/21 18:09:47 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/04 20:01:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 
-void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int status)
+void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out,
+	uint8_t status)
 {
 	rl_clear_history();
 	ft_clean_tree(tree);

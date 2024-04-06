@@ -16,6 +16,7 @@ MAKETREEDIR = $(PARSINGDIR)make_tree/
 ENVDIR = $(SRCDIR)env/
 EXPANDERDIR = $(SRCDIR)expander/
 MAKETREEUTILSDIR= $(MAKETREEDIR)utils/
+EXPANDERUTILSDIR = $(EXPANDERDIR)utils/
 
 #-------------------------------------------------------------------------#
 #----------------------------------files-----------------------------------#
@@ -52,6 +53,7 @@ SRCBUILD_IN = cd \
 			  echo \
 			  unset \
 			  export \
+			  exit
 
 SRCEXEC = exec \
 		  exec_or \
@@ -65,6 +67,7 @@ SRCEXEC = exec \
 		  exec_output \
 		  exec_here_doc \
 		  exec_build_in \
+		  find_path
 
 SRCMAKE_NODE = command \
 			   operator \
@@ -86,6 +89,12 @@ SRCENV = init_env \
 		 clear_env \
 
 SRCEXPANDER = expander \
+			  var_charset \
+			  expand_quote \
+			  remove_quote
+
+SRCEXPANDERUTILS = get_env_line \
+			  	   quote_status \
 
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
@@ -105,5 +114,6 @@ SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(MAKE_NODEDIR), $(addsuffix .c, $(SRCMAKE_NODE))) \
 	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
 	   $(addprefix $(MAKETREEUTILSDIR), $(addsuffix .c, $(SRCMAKETREEUTILS))) \
+	   $(addprefix $(EXPANDERUTILSDIR), $(addsuffix .c, $(SRCEXPANDERUTILS))) \
 
 #--------------------------------------------------------------------------#

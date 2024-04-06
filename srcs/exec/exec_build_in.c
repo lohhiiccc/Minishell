@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:39:06 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/21 18:14:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/03 15:36:14 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int	exec_build_in(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "env"))
 		ret = ft_env(((t_cmd *)tree->structur));
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "exit"))
-	{
-		clear_env(((t_cmd *)tree->structur)->env);
-		clean_exit(tree->root, fd_in, fd_out, ft_atoi(((t_cmd *)tree->structur)->arg[1]));
-	}
+		ft_exit(tree, fd_in, fd_out);
 	return (ret);
 }

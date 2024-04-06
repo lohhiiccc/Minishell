@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:40:48 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/08 23:20:19 by lrio             ###   ########.fr       */
+/*   Updated: 2024/04/05 14:09:36 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "make_tree.h"
 
-t_tree *parsing(t_vector *env, t_vector *tokens)
+t_tree *parsing(t_env *env, t_vector *tokens)
 {
 	t_tree *tree;
 

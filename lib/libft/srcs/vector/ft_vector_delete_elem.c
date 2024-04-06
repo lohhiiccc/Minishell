@@ -12,10 +12,12 @@
 
 #include "vector.h"
 #include "libft.h"
-
+#include "ft_printf.h"
 void	ft_vector_delete_elem(t_vector *vector, size_t n)
 {
+	ft_printf("||%d\n", vector->nbr_elem);
 	ft_memmove(vector->addr + (n * vector->size), \
-		vector->addr + ((n + 1) * vector->size), vector->nbr_elem - n);
+		vector->addr + ((n + 1) * vector->size), (vector->nbr_elem - n) * vector->size);
 	vector->nbr_elem--;
+	ft_printf("||%d||\n", vector->nbr_elem);
 }
