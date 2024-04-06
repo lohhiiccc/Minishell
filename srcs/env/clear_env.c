@@ -11,7 +11,6 @@ void	clear_env(t_vector *env)
 
 	i = 0;
 	test = ft_vector_get(env, 0);
-	ft_printf("%d\n", env->nbr_elem);
 	while (i < env->nbr_elem)
 	{
 		free(test[i]);
