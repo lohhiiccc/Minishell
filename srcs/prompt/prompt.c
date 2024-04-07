@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/07 20:06:56 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 22:25:35 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static char		*prompt_value(int last_ret);
 int prompt(t_env *env)
 {
 	char		*str;
+	static int	ptree = -1;
 	t_vector	tokens;
 	t_tree		*tree;
 	t_vector	fd[2];
@@ -40,6 +41,9 @@ int prompt(t_env *env)
 	if (-1 != lexer(str, &tokens))
 	{
 		tree = parsing(env, &tokens);
+		tree->ptree = &ptree;
+		if (ptree == 1)
+			print_tree(tree);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
 		env->ret = exec_args(tree, &fd[0], &fd[1], NULL);

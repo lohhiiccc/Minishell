@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:43:43 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/03 15:02:48 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 22:11:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_tree
 	struct s_tree	*root;
 	enum e_node		type;
 	void			*structur;
+	int				*ptree;
 }	t_tree;
 
 typedef struct s_cmd
