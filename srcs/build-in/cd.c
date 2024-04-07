@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/04 19:29:20 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 23:15:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 #include <unistd.h>
 #include <errno.h>
 #include <stdlib.h>
+#include "build_in.h"
 
 int	ft_cd(t_cmd *cmd)
 {
 	char	*str;
+	char	**tab;
 	char	*temp;
 
+	tab = malloc(sizeof(char *) * 3);
 	if (cmd->arg[2])
 	{
 		ft_dprintf(2, "Minichel: cd: too many argument\n");
@@ -45,6 +48,11 @@ int	ft_cd(t_cmd *cmd)
 			return (1);
 		}
 		free(str);
+		tab[0] = NULL;
+		tab[1] = ft_sprintf("PWD=%s", getcwd(NULL, 0));
+		tab[2] = NULL;
+		ft_export(tab, &cmd->env->env);
+		ft_free_tab(tab);
 		return (0);
 	}
 	return (0);

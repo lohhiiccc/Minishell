@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/07 22:25:35 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 22:51:20 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "exec.h"
 #include "ft_printf.h"
 #include "prompt.h"
+#include <unistd.h>
 
 static uint8_t	init_fd(t_vector *fd);
 static uint8_t	free_fd(t_vector *fd, uint8_t ret);
@@ -61,9 +62,9 @@ static char	*prompt_value(int last_ret)
 	char	*ret;
 
 	if (last_ret != 0)
-		str = ft_sprintf("\001\xF0\x9F\xA5\002\x9A Minichell:"); //todo : secure sprintf;
+		str = ft_sprintf("\001\xF0\x9F\xA5\002\x9A %s Minichell:", getcwd(NULL, 0)); //todo : secure sprintf;
 	else
-		str = ft_sprintf("\001\xF0\x9F\x90\002\xA5 Minichell:"); //todo : secure sprintf;
+		str = ft_sprintf("\001\xF0\x9F\x90\002\xA5 %s Minichell:", getcwd(NULL, 0)); //todo : secure sprintf;
 	ret = readline(str);
 	free(str);
 	return (ret);
