@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_iteri.c                                  :+:      :+:    :+:   */
+/*   ft_vector_print_str_fd.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 19:17:14 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 21:10:07 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/04/07 21:13:21 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/07 21:14:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include <stdio.h>
+#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_vector_iteri(t_vector *vector, void (*f)(void *))
+void	ft_vector_print_str_fd(void *str, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < vector->nbr_elem)
-	{
-		f(ft_vector_get(vector, i));
-		i++;
-	}
-	printf("\n");
-	return (0);
+	if (*(char **)str)
+		ft_dprintf(fd, "%s\n", *(char **)str);
 }

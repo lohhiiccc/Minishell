@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:22:09 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 20:04:12 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 20:27:25 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ms_signal(void)
 {
 	struct sigaction	sa;
 
+	sa = (struct sigaction){0};
 	sa.sa_handler = &handle_sigint;
 	sigaction(SIGINT, &sa, NULL);
 	sa.sa_handler = SIG_IGN;
