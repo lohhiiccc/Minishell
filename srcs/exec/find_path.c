@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:25:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/04 17:32:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 21:36:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+static char	**list_path(t_vector *env);
+static char	*path_exist(char **path_list, char *cmd);
+
+char	*find_path(char *cmd, t_vector *env)
+{
+	char	*ret;
+	char	**path_list;
+
+	if (ft_strchr(cmd, '/') && !access(cmd, F_OK))
+		ret = ft_strdup(cmd);
+	else
+	{
+		path_list = list_path(env);
+		ret = path_exist(path_list, cmd);
+	}
+	return (ret);
+}
 
 static char	**list_path(t_vector *env)
 {
@@ -58,19 +75,4 @@ static char	*path_exist(char **path_list, char *cmd)
 	}
 	ft_free_tab(path_list);
 	return (NULL);
-}
-
-char	*find_path(char *cmd, t_vector *env)
-{
-	char	*ret;
-	char	**path_list;
-
-	if (ft_strchr(cmd, '/') && !access(cmd, F_OK))
-		ret = ft_strdup(cmd);
-	else
-	{
-		path_list = list_path(env);
-		ret = path_exist(path_list, cmd);
-	}
-	return (ret);
 }
