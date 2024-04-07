@@ -4,7 +4,7 @@
 #include "libft.h"
 
 
-char **expand_cmd(char **cmd, t_vector *env)
+char **expand_cmd(char **cmd, t_env *env)
 {
 	uint8_t quotes[2];
 	size_t	i;
@@ -13,7 +13,8 @@ char **expand_cmd(char **cmd, t_vector *env)
 	ft_bzero(quotes, sizeof(uint8_t) * 2);
 	while (cmd[i])
 	{
-		expand_quote(&cmd[i], quotes, env);
+		expand_quote(&cmd[i], quotes, &env->env);
+		expand_ret(&cmd[i], env->ret, quotes);
 		remove_quote(cmd[i]);
 		i++;
 	}

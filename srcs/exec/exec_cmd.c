@@ -68,8 +68,8 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int		ret;
 
-	expand_cmd(((t_cmd *)tree->structur)->arg,
-			   &((t_cmd *)tree->structur)->env->env); //todo: securiser ca
+	expand_cmd(((t_cmd *) tree->structur)->arg,
+			   ((t_cmd *) tree->structur)->env); //todo: securiser ca
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
 		ret = exec_build_in(tree, fd_in, fd_out);
 	else
@@ -88,5 +88,6 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 			free(((t_cmd *)tree->structur)->path);
 		}
 	}
+	((t_cmd *)tree->structur)->env->ret = ret;
 	return (ret);
 }

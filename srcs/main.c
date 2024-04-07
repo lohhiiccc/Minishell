@@ -9,7 +9,6 @@
 /*   Updated: 2024/04/05 22:09:27 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <unistd.h>
 #include "minishell.h"
 #include "env.h"
