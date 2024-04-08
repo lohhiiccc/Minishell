@@ -18,7 +18,6 @@
 
 static uint8_t	init_fd(t_vector *fd);
 static uint8_t	free_fd(t_vector *fd, uint8_t ret);
-static char		*prompt_value(int last_ret);
 
 int prompt(t_env *env)
 {
@@ -54,28 +53,6 @@ int prompt(t_env *env)
 		manage_history(str);
 	free(str);
 	return (free_fd(fd, 1));
-}
-
-static char	*prompt_value(int last_ret)
-{
-	char	*str;
-	char	*ret;
-	char	*pwd;
-
-	pwd = getcwd(NULL, 0);
-	if (last_ret != 0)
-		str = ft_sprintf("[\001\xF0\x9F\xA5\002\x9A] [%s] Minichell$ ", pwd);
-	else
-		str = ft_sprintf("[\001\xF0\x9F\x90\002\xA5] [%s] Minichell$ ", pwd);
-	free(pwd);
-	if (!str)
-	{
-		ret = readline("[x] [error] Minishell$ ");
-		return ret;
-	}
-	ret = readline(str);
-	free(str);
-	return (ret);
 }
 
 static uint8_t free_fd(t_vector *fd, uint8_t ret)

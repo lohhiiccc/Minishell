@@ -24,6 +24,7 @@ SIGNALDIR = $(SRCDIR)signal/
 
 SRCPROMT = prompt \
 		   history \
+		   prompt_skin
 
 SRCLEXER = lexer \
 		   launch_checker \
