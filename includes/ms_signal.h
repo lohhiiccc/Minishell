@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_in.h                                         :+:      :+:    :+:   */
+/*   ms_signal.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 18:33:27 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 22:59:30 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/04/03 19:22:26 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/06 16:56:23 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILD_IN_H
-# define BUILD_IN_H
+#ifndef MS_SIGNAL_H
+# define MS_SIGNAL_H
 
-# include "tree.h"
-
-int		ft_echo(t_cmd *cmd, t_vector *fd_out);
-int		ft_unset(t_cmd *cmd);
-int		ft_pwd(t_vector *fd_out);
-int		ft_export(char **cmd, t_vector *env);
-int		ft_cd(t_cmd *cmd);
-int		ft_env(t_cmd *cmd, t_vector *fd_out);
-void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
+void	ms_signal(void);
 
 #endif

@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 00:47:02 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/11 13:19:30 by lrio             ###   ########.fr       */
+/*   Updated: 2024/04/07 22:30:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "tree.h"
+#include "ft_printf.h"
 #define COUNT 8
+
+void _print_tree(t_tree *root, int space);
+
+void print_tree(t_tree *root)
+{
+	ft_printf("<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
+	_print_tree(root, 0);
+	printf("\n\n<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
+}
 
 void _print_tree(t_tree *root, int space)
 {
@@ -50,8 +60,3 @@ void _print_tree(t_tree *root, int space)
 }
 
 // Wrapper over print_tree()
-void print_tree(t_tree *root)
-{
-	_print_tree(root, 0);
-	printf("\n");
-}

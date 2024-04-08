@@ -6,22 +6,28 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:26 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/19 18:57:38 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 21:01:23 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include "ft_printf.h"
+#include "vector.h"
 
-int	ft_pwd(void)
+int	ft_pwd(t_vector *fd_out)
 {
 	char	*ret;
+	int		fd;
 
+	if (fd_out->nbr_elem)
+		fd = *(int *)ft_vector_get(fd_out, fd_out->nbr_elem - 1);
+	else
+		fd = 1;
 	ret = getcwd(NULL, 0);
 	if (!ret)
 		return (1);
-	if (printf("%s\n", ret) == -1)
+	if (ft_dprintf(fd, "%s\n", ret) == -1)
 		return (1);
 	free(ret);
 	return (0);

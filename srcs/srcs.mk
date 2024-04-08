@@ -17,12 +17,13 @@ ENVDIR = $(SRCDIR)env/
 EXPANDERDIR = $(SRCDIR)expander/
 MAKETREEUTILSDIR= $(MAKETREEDIR)utils/
 EXPANDERUTILSDIR = $(EXPANDERDIR)utils/
+SIGNALDIR = $(SRCDIR)signal/
 
 #-------------------------------------------------------------------------#
 #----------------------------------files-----------------------------------#
 
 SRCPROMT = prompt \
-		   history
+		   history \
 
 SRCLEXER = lexer \
 		   launch_checker \
@@ -53,7 +54,7 @@ SRCBUILD_IN = cd \
 			  echo \
 			  unset \
 			  export \
-			  exit
+			  exit \
 
 SRCEXEC = exec \
 		  exec_or \
@@ -67,7 +68,7 @@ SRCEXEC = exec \
 		  exec_output \
 		  exec_here_doc \
 		  exec_build_in \
-		  find_path
+		  find_path \
 
 SRCMAKE_NODE = command \
 			   operator \
@@ -97,10 +98,12 @@ SRCEXPANDER = expander \
 SRCEXPANDERUTILS = get_env_line \
 			  	   quote_status \
 
+SRCSIGNAL = signal \
+
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
 
-SRCS =  $(SRCDIR)main.c \
+SRCS = $(SRCDIR)main.c \
 	   $(addprefix $(ENVDIR), $(addsuffix .c, $(SRCENV))) \
 	   $(addprefix $(TREEDIR), $(addsuffix .c, $(SRCTREE))) \
 	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC))) \
@@ -116,5 +119,6 @@ SRCS =  $(SRCDIR)main.c \
 	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
 	   $(addprefix $(MAKETREEUTILSDIR), $(addsuffix .c, $(SRCMAKETREEUTILS))) \
 	   $(addprefix $(EXPANDERUTILSDIR), $(addsuffix .c, $(SRCEXPANDERUTILS))) \
+	   $(addprefix $(SIGNALDIR), $(addsuffix .c, $(SRCSIGNAL))) \
 
 #--------------------------------------------------------------------------#
