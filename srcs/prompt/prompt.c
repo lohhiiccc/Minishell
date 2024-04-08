@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/05 19:31:14 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 22:51:20 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 #include "exec.h"
 #include "ft_printf.h"
 #include "prompt.h"
-#include <signal.h>
+#include <unistd.h>
 
 static uint8_t	init_fd(t_vector *fd);
 static uint8_t	free_fd(t_vector *fd, uint8_t ret);
-static char		*prompt_value(void);
+static char		*prompt_value(int last_ret);
 
 int prompt(t_env *env)
 {
 	char		*str;
+	static int	ptree = -1;
 	t_vector	tokens;
 	t_tree		*tree;
 	t_vector	fd[2];
@@ -31,7 +32,7 @@ int prompt(t_env *env)
 	if (init_fd(fd))
 		return (1); //todo print erreur malloc
 	tokens.nbr_elem = 0;
-	str = prompt_value();
+	str = prompt_value(env->ret);
 	if (!str)
 	{
 		ft_printf("Exit\n");
@@ -41,6 +42,9 @@ int prompt(t_env *env)
 	if (-1 != lexer(str, &tokens))
 	{
 		tree = parsing(env, &tokens);
+		tree->ptree = &ptree;
+		if (ptree == 1)
+			print_tree(tree);
 		if (NULL == tree)
 			return (free_fd(fd, 1));
 		env->ret = exec_args(tree, &fd[0], &fd[1], NULL);
@@ -52,12 +56,15 @@ int prompt(t_env *env)
 	return (free_fd(fd, 1));
 }
 
-static char	*prompt_value(void)
+static char	*prompt_value(int last_ret)
 {
 	char	*str;
 	char	*ret;
 
-	str = ft_sprintf("🐢M1n1ch3ll🐢:%c",'\0'); //todo : secure sprintf;
+	if (last_ret != 0)
+		str = ft_sprintf("\001\xF0\x9F\xA5\002\x9A %s Minichell:", getcwd(NULL, 0)); //todo : secure sprintf;
+	else
+		str = ft_sprintf("\001\xF0\x9F\x90\002\xA5 %s Minichell:", getcwd(NULL, 0)); //todo : secure sprintf;
 	ret = readline(str);
 	free(str);
 	return (ret);

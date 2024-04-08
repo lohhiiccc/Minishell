@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:00:13 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/05 14:18:14 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 22:00:18 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_tree *add_subredirection
 t_tree	*make_tree(t_token *tokens, t_env *env)
 {
 	size_t	i;
-	t_tree *root;
+	t_tree	*root;
 
 	root = NULL;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/03 18:28:44 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/07 21:52:02 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	is_build_in(char *str)
 	if (!ft_strcmp(str, "pwd"))
 		return (1);
 	if (!ft_strcmp(str, "unset"))
+		return (1);
+	if (!ft_strcmp(str, "ptree"))
 		return (1);
 	return (0);
 }
