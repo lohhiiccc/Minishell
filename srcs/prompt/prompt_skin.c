@@ -5,23 +5,23 @@
 
 char	*prompt_value(int last_ret)
 {
-	char	*str;
-	char	*ret;
+	char	*prompt;
 	char	*pwd;
+	char	*line;
 
 	pwd = getcwd(NULL, 0);
 	if (last_ret != 0)
-		str = ft_sprintf(PROMPTSKIN, RED, E_EGG, END, pwd, UNDERLINE, RED, END, YELLOW, END);
+		prompt = ft_sprintf(PROMPTSKIN, RED, E_EGG, END, pwd, UNDERLINE, RED, END, YELLOW, END);
 	else
-		str = ft_sprintf(PROMPTSKIN, GREEN, E_EGG2, END, pwd, UNDERLINE, LIGHTGREEN, END, YELLOW, END);
+		prompt = ft_sprintf(PROMPTSKIN, GREEN, E_EGG2, END, pwd, UNDERLINE, LIGHTGREEN, END, YELLOW, END);
 	free(pwd);
-	if (!str)
+	if (!prompt)
 	{
-		ret = readline("[x] [error] Minishell$ ");
-		return ret;
+		line = readline("[x] [error] Minishell$ ");
+		return line;
 	}
-	ret = readline(str);
-	free(str);
-	return (ret);
+	line = readline(prompt);
+	free(prompt);
+	return (line);
 }
 

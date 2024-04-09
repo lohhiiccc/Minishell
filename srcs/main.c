@@ -23,11 +23,13 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	new_env.ret = 0;
 	ms_signal();
-	if (!isatty(0) || !isatty(1) || -1 == init_env(env, &new_env.env))
+	if (!isatty(0) || !isatty(1))
 	{
 		ft_dprintf(2, "minichel: please use a tty\n");
 		return (1);
 	}
+	if (-1 == init_env(env, &new_env.env))
+		return (1);
 	while (prompt(&new_env))
 		;
 	return (127);

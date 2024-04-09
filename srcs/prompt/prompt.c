@@ -41,11 +41,11 @@ int prompt(t_env *env)
 	if (-1 != lexer(str, &tokens))
 	{
 		tree = parsing(env, &tokens);
+		if (NULL == tree)
+			return (free_fd(fd, 1));
 		tree->ptree = &ptree;
 		if (ptree == 1)
 			print_tree(tree);
-		if (NULL == tree)
-			return (free_fd(fd, 1));
 		env->ret = exec_args(tree, &fd[0], &fd[1], NULL);
 		ft_clean_tree(tree);
 	}
