@@ -1,9 +1,7 @@
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "vector.h"
 #include "expand.h"
-#include "env.h"
 #include "libft.h"
 
 static int ft_vector_add_negative(t_vector *v, char *c);
