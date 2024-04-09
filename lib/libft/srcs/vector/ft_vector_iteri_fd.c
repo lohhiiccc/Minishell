@@ -23,6 +23,6 @@ int	ft_vector_iteri_fd(t_vector *vector, void (*f)(void *, int), int fd)
 		f(ft_vector_get(vector, i), fd);
 		i++;
 	}
-	printf("\n");
+//	printf("\n");
 	return (0);
 }
