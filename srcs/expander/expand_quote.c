@@ -73,19 +73,33 @@ static int get_value(char *s, size_t *i, char **env, t_vector *vector)
 
 static int ft_vector_add_n_negative(t_vector *v, char *c)
 {
-	size_t i;
+	size_t	i;
+	int		return_value;
+	char	*strdup;
 
+	strdup = malloc(sizeof(char) * (ft_strlen(c) + 1));
+	if (NULL == strdup)
+		return (-1);
+	strdup[0] = c[0];
 	i = 1;
 	while (c[i])
 	{
-		c[i] = -c[i];
+		strdup[i] = -c[i];
 		i++;
 	}
-	return ft_vector_add_n(v, c, ft_strlen(c));
+	strdup[i] = '\0';
+	return_value = ft_vector_add_n(v, strdup, ft_strlen(strdup));
+	free(strdup);
+	return (return_value);
 }
 static int ft_vector_add_negative(t_vector *v, char *c)
 {
+	char	dupchar;
+	int		return_value;
+
+	dupchar = c[0];
 	if (c[0] == '\'')
-		*c = -(*c);
-	return ft_vector_add(v, c);
+		dupchar = -(*c);
+	return_value = ft_vector_add(v, &dupchar);
+	return (return_value);
 }
