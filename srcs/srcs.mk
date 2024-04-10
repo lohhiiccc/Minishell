@@ -98,6 +98,7 @@ SRCEXPANDER = expander \
 SRCEXPANDERUTILS = var_charset \
 			  	   quote_status \
 				   get_env_line \
+				   set_negative
 
 SRCSIGNAL = signal \
 

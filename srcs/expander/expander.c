@@ -5,8 +5,6 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-static void	set_negative(char *str, char c);
-static void	set_snegative(char *str);
 
 char **expand_cmd(char **cmd, t_env *env)
 {
@@ -37,50 +35,3 @@ char **expand_cmd(char **cmd, t_env *env)
 	return (cmd);
 }
 
-static void	set_snegative(char *str)
-{
-	size_t	i;
-	const char c = '\'';
-
-	i = 0;
-	while (str[i]) {
-		if (str[i] == '"')
-		{
-			i++;
-			while (str[i] != '"')
-				i++;
-		}
-		if (str[i] == c)
-		{
-			i++;
-			while (str[i] != c && str[i])
-			{
-				str[i] = -str[i];
-				i++;
-			}
-		}
-		if (str[i])
-			i++;
-	}
-}
-
-static void	set_negative(char *str, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-		{
-			i++;
-			while (str[i] != c && str[i])
-			{
-				str[i] = -str[i];
-				i++;
-			}
-		}
-		if (str[i])
-			i++;
-	}
-}
