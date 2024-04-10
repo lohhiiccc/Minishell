@@ -20,7 +20,7 @@ int8_t expand_ret(char **str, uint8_t ret)
 	i = 0;
 	while (s[i])
 	{
-		if ((s[i + 1] && (s[i] == '$' && s[i + 1] == '?')))
+		if (/*(s[i + 1] && */(s[i] == '$' && s[i + 1] == '?'))
 		{
 			if (-1 == ft_vector_init(&new, sizeof(char)))
 				return (-1);
@@ -46,7 +46,7 @@ static int8_t new_str(t_vector *vector, char *str, uint8_t ret)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i + 1] && (str[i] == '$' && str[i + 1] == '?'))
+		if ((str[i] == '$' && str[i + 1] == '?'))
 		{
 			vector_put_ret(num, ret, vector);
 			i += 1;

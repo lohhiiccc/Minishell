@@ -6,6 +6,7 @@
 #include "ft_printf.h"
 
 static void	set_negative(char *str, char c);
+static void	set_snegative(char *str);
 
 char **expand_cmd(char **cmd, t_env *env)
 {
@@ -18,9 +19,9 @@ char **expand_cmd(char **cmd, t_env *env)
 	ft_bzero(quotes, sizeof(uint8_t) * 2);
 	while (cmd[i])
 	{
-		set_negative(cmd[i], '\'');
-		expand_var(&cmd[i], &env->env);
+		set_snegative(cmd[i]);
 		expand_ret(&cmd[i], env->ret);
+		expand_var(&cmd[i], &env->env);
 		set_negative(cmd[i], '"');
 		str = ft_sprintf("%S%s ", str, cmd[i]);
 		i++;
@@ -36,6 +37,33 @@ char **expand_cmd(char **cmd, t_env *env)
 	return (cmd);
 }
 
+static void	set_snegative(char *str)
+{
+	size_t	i;
+	const char c = '\'';
+
+	i = 0;
+	while (str[i]) {
+		if (str[i] == '"')
+		{
+			i++;
+			while (str[i] != '"')
+				i++;
+		}
+		if (str[i] == c)
+		{
+			i++;
+			while (str[i] != c && str[i])
+			{
+				str[i] = -str[i];
+				i++;
+			}
+		}
+		if (str[i])
+			i++;
+	}
+}
+
 static void	set_negative(char *str, char c)
 {
 	size_t	i;
@@ -46,7 +74,7 @@ static void	set_negative(char *str, char c)
 		if (str[i] == c)
 		{
 			i++;
-			while (str[i] != c)
+			while (str[i] != c && str[i])
 			{
 				str[i] = -str[i];
 				i++;
