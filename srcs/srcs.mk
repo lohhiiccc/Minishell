@@ -24,7 +24,7 @@ SIGNALDIR = $(SRCDIR)signal/
 
 SRCPROMT = prompt \
 		   history \
-		   prompt_skin
+		   prompt_skin \
 
 SRCLEXER = lexer \
 		   launch_checker \
@@ -53,14 +53,15 @@ SRCBUILD_IN = cd \
 			  env \
 			  pwd \
 			  echo \
+			  exit \
 			  unset \
 			  export \
-			  exit \
 
 SRCEXEC = exec \
 		  exec_or \
 		  exec_cmd \
 		  exec_and \
+		  find_path \
 		  exec_pipe \
 		  exec_utils \
 		  clean_exit \
@@ -69,7 +70,6 @@ SRCEXEC = exec \
 		  exec_output \
 		  exec_here_doc \
 		  exec_build_in \
-		  find_path \
 
 SRCMAKE_NODE = command \
 			   operator \
@@ -85,19 +85,19 @@ SRCMAKETREEUTILS = add_down \
 				   add_up_right \
 				   add_down_left \
 				   add_down_right \
-				   add_redirection
+				   add_redirection \
 
 SRCENV = init_env \
 		 clear_env \
 
 SRCEXPANDER = expander \
-			  var_charset \
+			  expand_ret \
 			  expand_quote \
 			  remove_quote \
-			  expand_ret
 
-SRCEXPANDERUTILS = get_env_line \
+SRCEXPANDERUTILS = var_charset \
 			  	   quote_status \
+				   get_env_line \
 
 SRCSIGNAL = signal \
 
@@ -112,6 +112,7 @@ SRCS = $(SRCDIR)main.c \
 	   $(addprefix $(TOKENDIR), $(addsuffix .c, $(SRCTOKEN))) \
 	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER))) \
 	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
+	   $(addprefix $(SIGNALDIR), $(addsuffix .c, $(SRCSIGNAL))) \
 	   $(addprefix $(PARSINGDIR), $(addsuffix .c, $(SRCPARSING))) \
 	   $(addprefix $(EXPANDERDIR), $(addsuffix .c, $(SRCEXPANDER))) \
 	   $(addprefix $(BUILD_INDIR), $(addsuffix .c, $(SRCBUILD_IN))) \
@@ -121,6 +122,5 @@ SRCS = $(SRCDIR)main.c \
 	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
 	   $(addprefix $(MAKETREEUTILSDIR), $(addsuffix .c, $(SRCMAKETREEUTILS))) \
 	   $(addprefix $(EXPANDERUTILSDIR), $(addsuffix .c, $(SRCEXPANDERUTILS))) \
-	   $(addprefix $(SIGNALDIR), $(addsuffix .c, $(SRCSIGNAL))) \
 
 #--------------------------------------------------------------------------#

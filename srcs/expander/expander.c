@@ -37,16 +37,29 @@ char **expand_cmd(char **cmd, t_env *env)
 
 static void	remove_space(char *str)
 {
-	uint8_t quotes[2];
 	size_t	i;
 
 	i = 0;
-	ft_bzero(quotes, sizeof(uint8_t) * 2);
 	while (str[i])
 	{
-		fill_quote(quotes, str[i]);
-		if (str[i] == ' ' && (quotes[0] || quotes[1]))
-			str[i] = -str[i];
+		if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] != '\'')
+			{
+				str[i] = -str[i];
+				i++;
+			}
+		}
+		if (str[i] == '"')
+		{
+			i++;
+			while (str[i] != '"')
+			{
+				str[i] = -str[i];
+				i++;
+			}
+		}
 		if (str[i])
 			i++;
 	}

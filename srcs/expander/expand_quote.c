@@ -4,7 +4,6 @@
 #include "expand.h"
 #include "libft.h"
 
-static int ft_vector_add_negative(t_vector *v, char *c);
 static int ft_vector_add_n_negative(t_vector *v, char *c);
 static int8_t	is_inquote(char *s, t_vector *new, size_t *i, t_vector *env);
 static int		get_value(char *s, size_t *i, char **env, t_vector *vector);
@@ -42,7 +41,7 @@ static int8_t is_inquote(char *s, t_vector *new, size_t *i, t_vector *env)
 {
 	if (s[*i] != '$' || (s[*i] == '$' && !is_charset(s[*i + 1])))
 	{
-		if (-1 == ft_vector_add_negative(new, &s[*i]))
+		if (-1 == ft_vector_add(new, &s[*i]))
 			return (-1);
 	}
 	else
@@ -88,16 +87,5 @@ static int ft_vector_add_n_negative(t_vector *v, char *c)
 	strdup[i] = '\0';
 	return_value = ft_vector_add_n(v, strdup, ft_strlen(strdup));
 	free(strdup);
-	return (return_value);
-}
-static int ft_vector_add_negative(t_vector *v, char *c)
-{
-	char	dupchar;
-	int		return_value;
-
-	dupchar = c[0];
-	if (c[0] == '\'')
-		dupchar = -(*c);
-	return_value = ft_vector_add(v, &dupchar);
 	return (return_value);
 }
