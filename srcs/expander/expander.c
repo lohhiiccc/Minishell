@@ -20,7 +20,7 @@ char **expand_cmd(char **cmd, t_env *env)
 	{
 		set_negative(cmd[i], '\'');
 		expand_var(&cmd[i], &env->env);
-		expand_ret(&cmd[i], env->ret, quotes);
+		expand_ret(&cmd[i], env->ret);
 		set_negative(cmd[i], '"');
 		str = ft_sprintf("%S%s ", str, cmd[i]);
 		i++;

@@ -1,5 +1,4 @@
 
-#include <stdio.h>
 #include "libft.h"
 
 void	remove_quote(char *s)

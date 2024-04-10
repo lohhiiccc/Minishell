@@ -9,7 +9,7 @@
 static int8_t new_str(t_vector *vector, char *str, uint8_t ret);
 static int8_t vector_put_ret(char *num, uint8_t ret, t_vector *vector);
 
-int8_t	expand_ret(char **str, uint8_t ret, uint8_t *quote)
+int8_t expand_ret(char **str, uint8_t ret)
 {
 	size_t	i;
 	char *s;
@@ -18,11 +18,9 @@ int8_t	expand_ret(char **str, uint8_t ret, uint8_t *quote)
 	s = *str;
 
 	i = 0;
-	ft_bzero(quote, sizeof(uint8_t) * 2);
 	while (s[i])
 	{
-		fill_quote(quote, s[i]);
-		if (!quote[0] && (s[i + 1] && (s[i] == '$' && s[i + 1] == '?')))
+		if ((s[i + 1] && (s[i] == '$' && s[i + 1] == '?')))
 		{
 			if (-1 == ft_vector_init(&new, sizeof(char)))
 				return (-1);
@@ -51,7 +49,7 @@ static int8_t new_str(t_vector *vector, char *str, uint8_t ret)
 		if (str[i + 1] && (str[i] == '$' && str[i + 1] == '?'))
 		{
 			vector_put_ret(num, ret, vector);
-			i +=1;
+			i += 1;
 		}
 		else
 			if (-1 == ft_vector_add(vector, &str[i]))
