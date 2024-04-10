@@ -5,7 +5,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-static void	set_negative(char *str);
+static void	set_negative(char *str, char c);
 
 char **expand_cmd(char **cmd, t_env *env)
 {
@@ -18,14 +18,14 @@ char **expand_cmd(char **cmd, t_env *env)
 	ft_bzero(quotes, sizeof(uint8_t) * 2);
 	while (cmd[i])
 	{
-		expand_quote(&cmd[i], quotes, &env->env);
-		expand_ret(&cmd[i], env->ret, quotes);
-		set_negative(cmd[i]);
+		set_negative(cmd[i], '\'');
 		expand_var(&cmd[i], &env->env);
-		str = ft_sprintf("%S%S ", str, cmd[i]);
+		expand_ret(&cmd[i], env->ret, quotes);
+		set_negative(cmd[i], '"');
+		str = ft_sprintf("%S%s ", str, cmd[i]);
 		i++;
 	}
-	free(cmd);
+	ft_free_tab(cmd);
 	cmd = ft_split(str, " \t\n");
 	free(str);
 	if (NULL == cmd)
@@ -36,26 +36,17 @@ char **expand_cmd(char **cmd, t_env *env)
 	return (cmd);
 }
 
-static void	set_negative(char *str)
+static void	set_negative(char *str, char c)
 {
 	size_t	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
+		if (str[i] == c)
 		{
 			i++;
-			while (str[i] != '\'')
-			{
-				str[i] = -str[i];
-				i++;
-			}
-		}
-		if (str[i] == '"')
-		{
-			i++;
-			while (str[i] != '"')
+			while (str[i] != c)
 			{
 				str[i] = -str[i];
 				i++;
