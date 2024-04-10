@@ -27,7 +27,7 @@ int	exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {
 	int		ret;
 
-	expand_cmd(((t_cmd *) tree->structur)->arg,
+	((t_cmd *)tree->structur)->arg = expand_cmd(((t_cmd *) tree->structur)->arg,
 			   ((t_cmd *) tree->structur)->env); //todo: securiser ca
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
 		ret = exec_build_in(tree, fd_in, fd_out);

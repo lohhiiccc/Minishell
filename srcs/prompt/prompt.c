@@ -21,11 +21,11 @@ static uint8_t	free_fd(t_vector *fd, uint8_t ret);
 
 int prompt(t_env *env)
 {
-	char		*str;
+	char			*str;
 	static int	ptree = -1;
-	t_vector	tokens;
-	t_tree		*tree;
-	t_vector	fd[2];
+	t_vector		tokens;
+	t_tree			*tree;
+	t_vector		fd[2];
 
 	tree = NULL;
 	if (init_fd(fd))

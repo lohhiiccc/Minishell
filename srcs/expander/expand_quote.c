@@ -15,7 +15,7 @@ int8_t expand_quote(char **str, uint8_t *quote, t_vector *env)
 	t_vector	new;
 	char 		*s;
 
-	s = str[0];
+	s = *str;
 	if (-1 == ft_vector_init(&new, sizeof(char)))
 		return -1;
 	i = 0;

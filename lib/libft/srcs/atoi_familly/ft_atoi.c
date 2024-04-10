@@ -14,7 +14,7 @@
 #include <limits.h>
 #include <errno.h>
 
-static int	ft_isspace(const char *str)
+static int	ft_aisspace(const char *str)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ long	ft_atol(const char *str)
 	is_neg = 0;
 	i = 0;
 	return_value = 0;
-	start = ft_isspace(str);
+	start = ft_aisspace(str);
 	if (str[start] == '+' || str[start] == '-')
 		if (str[start++] == '-')
 			is_neg = 1;

@@ -1,5 +1,6 @@
 
 #include <stdint.h>
+#include <stdio.h>
 
 static void next_quote(uint8_t *next, uint8_t *quotes);
 void	fill_quote(unsigned char *quotes, char c)

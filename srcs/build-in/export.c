@@ -31,7 +31,7 @@ int	ft_export(char **cmd, t_vector *env)
 		{
 			while (j < env->nbr_elem)
 			{
-				if (!ft_strncmp(cmd[i],
+				if (!ft_strncmp(cmd[i + 1],
 						*(char **)ft_vector_get(env, j), n - 1))
 					ft_vector_delete_elem(env, j);
 				j++;

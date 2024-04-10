@@ -46,7 +46,7 @@ static char	**list_path(t_vector *env)
 	{
 		if (!ft_strncmp(*temp, "PATH=", 5))
 		{
-			ret = ft_split(*temp + 5, ':');
+			ret = ft_split(*temp + 5, ":");
 			return (ret);
 		}
 		temp = ft_vector_get(env, ++i);
