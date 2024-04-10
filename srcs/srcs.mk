@@ -91,6 +91,7 @@ SRCENV = init_env \
 		 clear_env \
 
 SRCEXPANDER = expander \
+			  expand_var \
 			  expand_ret \
 			  expand_quote \
 			  remove_quote \

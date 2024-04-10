@@ -47,7 +47,7 @@ static int8_t is_inquote(char *s, t_vector *new, size_t *i, t_vector *env)
 	else
 	{
 		++*i;
-		get_value(s, i, ft_vector_get(env, 0), new);
+		return get_value(s, i, ft_vector_get(env, 0), new);
 	}
 	return (0);
 }

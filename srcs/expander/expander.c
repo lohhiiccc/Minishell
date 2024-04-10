@@ -21,6 +21,7 @@ char **expand_cmd(char **cmd, t_env *env)
 		expand_quote(&cmd[i], quotes, &env->env);
 		expand_ret(&cmd[i], env->ret, quotes);
 		set_negative(cmd[i]);
+		expand_var(&cmd[i], &env->env);
 		str = ft_sprintf("%S%S ", str, cmd[i]);
 		i++;
 	}
@@ -42,16 +43,18 @@ static void	set_negative(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i++] == '\'')
+		if (str[i] == '\'')
 		{
+			i++;
 			while (str[i] != '\'')
 			{
 				str[i] = -str[i];
 				i++;
 			}
 		}
-		if (str[i++] == '"')
+		if (str[i] == '"')
 		{
+			i++;
 			while (str[i] != '"')
 			{
 				str[i] = -str[i];
