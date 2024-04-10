@@ -42,6 +42,8 @@ int	is_build_in(char *str)
 		return (1);
 	if (!ft_strcmp(str, "unset"))
 		return (1);
+	if (!ft_strcmp(str, "return"))
+		return (1);
 	if (!ft_strcmp(str, "ptree"))
 		return (1);
 	return (0);
