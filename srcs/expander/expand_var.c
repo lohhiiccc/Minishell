@@ -1,5 +1,4 @@
 
-#include <stdlib.h>
 #include "expand.h"
 #include "libft.h"
 
@@ -38,7 +37,7 @@ int8_t expand_var(char **str, t_vector *env)
 
 static int get_value(char *s, size_t i, char **env, t_vector *vector)
 {
-	char *value;
+	char	*value;
 	size_t	backup;
 
 	backup = i;
@@ -47,7 +46,7 @@ static int get_value(char *s, size_t i, char **env, t_vector *vector)
 		(i)++;
 	--i;
 	if (value == NULL)
-		return 0;
+		return (0);
 	value += (i - backup + 2);
-	return ft_vector_add_n(vector, value, ft_strlen(value));
+	return (ft_vector_add_n(vector, value, ft_strlen(value)));
 }
