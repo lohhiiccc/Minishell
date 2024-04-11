@@ -44,7 +44,8 @@ static int8_t new_str(t_vector *vector, char *str, uint8_t ret)
 	{
 		if ((str[i] == '$' && str[i + 1] == '?'))
 		{
-			vector_put_ret(num, ret, vector);
+			if (-1 == vector_put_ret(num, ret, vector))
+				return (-1);
 			i++;
 		}
 		else
