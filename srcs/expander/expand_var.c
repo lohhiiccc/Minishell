@@ -24,6 +24,7 @@ int8_t expand_var(char **str, t_vector *env)
 			i++;
 			while (s[i] && is_charset(s[i]))
 				i++;
+			continue;
 		}
 		if (-1 == ft_vector_add(&new, &s[i]))
 			return (-1);

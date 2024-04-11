@@ -5,7 +5,7 @@
 
 static	void *free_expand(char **str, size_t i, char *error);
 static int8_t expand_str(char **str, size_t i, t_env *env, char *error);
-//$PWD$PWD didn't work
+
 char **expand_cmd(char **cmd, t_env *env)
 {
 	size_t		i;
