@@ -1,4 +1,5 @@
 
+#include <stdio.h>
 #include "expand.h"
 #include "libft.h"
 
@@ -18,7 +19,7 @@ int8_t expand_var(char **str, t_vector *env)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '$' && is_charset(s[i + 1]))
+		if (s[i] == '$' && ft_isalpha(s[i + 1]))
 		{
 			if (-1 == add_var(s, &i, env, &new))
 				return (free_and_return(&new));
