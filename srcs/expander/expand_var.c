@@ -2,13 +2,15 @@
 #include "expand.h"
 #include "libft.h"
 
-static int get_value(char *s, size_t i, char **env, t_vector *vector);
+static int8_t get_value(char *s, size_t i, char **env, t_vector *vector);
+static int8_t free_and_return(t_vector *v);
+static int8_t add_var(char *s, size_t *i, t_vector *env, t_vector *vector);
+
 int8_t expand_var(char **str, t_vector *env)
 {
 	char *s;
 	t_vector new;
 	size_t	i;
-	int8_t ret;
 
 	if (-1 == ft_vector_init(&new, sizeof(char)))
 		return (-1);
@@ -18,24 +20,32 @@ int8_t expand_var(char **str, t_vector *env)
 	{
 		if (s[i] == '$' && is_charset(s[i + 1]))
 		{
-			if (-1 == get_value(s, i+1, ft_vector_get(env, 0), &new))
-				return (-1);
-			i++;
-			while (s[i] && is_charset(s[i]))
-				i++;
+			if (-1 == add_var(s, &i, env, &new))
+				return (free_and_return(&new));
 			continue;
 		}
 		if (-1 == ft_vector_add(&new, &s[i]))
-			return (-1);
+			return (free_and_return(&new));
 		if (s[i])
 			i++;
 	}
-	ret = ft_vector_add(&new, &s[i]);
+	if (-1 == ft_vector_add(&new, &s[i]))
+		return (free_and_return(&new));
 	*str = ft_vector_get(&new, 0);
-	return (ret);
+	return (0);
 }
 
-static int get_value(char *s, size_t i, char **env, t_vector *vector)
+static int8_t add_var(char *s, size_t *i, t_vector *env, t_vector *vector)
+{
+	if (-1 == get_value(s, *i + 1, ft_vector_get(env, 0), vector))
+		return (-1);
+	++*i;
+	while (s[*i] && is_charset(s[*i]))
+		++*i;
+	return (0);
+}
+
+static int8_t	get_value(char *s, size_t i, char **env, t_vector *vector)
 {
 	char	*value;
 	size_t	backup;
@@ -49,4 +59,10 @@ static int get_value(char *s, size_t i, char **env, t_vector *vector)
 		return (0);
 	value += (i - backup + 2);
 	return (ft_vector_add_n(vector, value, ft_strlen(value)));
+}
+
+static int8_t free_and_return(t_vector *v)
+{
+	ft_vector_free(v, NULL);
+	return (-1);
 }
