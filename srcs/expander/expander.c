@@ -1,30 +1,29 @@
-
+#include "ft_printf.h"
 #include <stdlib.h>
-#include "vector.h"
 #include "expand.h"
 #include "libft.h"
-#include "ft_printf.h"
 
+static	void *free_expand(char **str, size_t i, char *error);
+static int8_t expand_str(char **str, size_t i, t_env *env, char *error);
 
 char **expand_cmd(char **cmd, t_env *env)
 {
-	uint8_t		quotes[2];
 	size_t		i;
 	char		*str;
 
 	i = 0;
 	str = NULL;
-	ft_bzero(quotes, sizeof(uint8_t) * 2);
 	while (cmd[i])
 	{
-		set_snegative(cmd[i]);
-		expand_ret(&cmd[i], env->ret);
-		expand_var(&cmd[i], &env->env);
-		set_negative(cmd[i], '"');
+		if (0 != expand_str(cmd, i, env, str))
+			return (NULL);
 		str = ft_sprintf("%S%s ", str, cmd[i]);
+		if (NULL == str)
+			return (free_expand(cmd, i ,str));
+		free(cmd[i]);
 		i++;
 	}
-	ft_free_tab(cmd);
+	free(cmd);
 	cmd = ft_split(str, " \t\n");
 	free(str);
 	if (NULL == cmd)
@@ -35,3 +34,27 @@ char **expand_cmd(char **cmd, t_env *env)
 	return (cmd);
 }
 
+static	void *free_expand(char **str, size_t i, char *error)
+{
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	free(error);
+	return (NULL);
+}
+
+static int8_t expand_str(char **str, size_t i, t_env *env, char *error)
+{
+	set_snegative(str[i]);
+	if (-1 == expand_ret(&str[i], env->ret)
+		|| -1 == expand_var(&str[i], &env->env))
+	{
+		free_expand(str, i , error);
+		return (-1);
+	}
+	set_negative(str[i], '"');
+	return (0);
+}

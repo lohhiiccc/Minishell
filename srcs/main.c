@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
-#include "minishell.h"
-#include "env.h"
-#include "ft_printf.h"
 #include "ms_signal.h"
-#include "libft.h"
+#include "minishell.h"
+#include "ft_printf.h"
 
 int	main(int argc, char **argv, char **env)
 {
@@ -22,7 +20,6 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-
 	new_env.ret = 0;
 	ms_signal();
 	if (!isatty(0) || !isatty(1))

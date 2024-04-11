@@ -1,10 +1,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-#include "libft.h"
 #include "vector.h"
-#include "ft_printf.h"
-#include "expand.h"
 
 static int8_t new_str(t_vector *vector, char *str, uint8_t ret);
 static int8_t vector_put_ret(char *num, uint8_t ret, t_vector *vector);
