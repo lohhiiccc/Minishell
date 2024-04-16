@@ -25,16 +25,20 @@ void print_tree(t_tree *root)
 
 static void _print_tree(t_tree *root, int space)
 {
+	int i;
+
+	i = 0;
 	if (root == NULL)
 		return;
 	space += PTREE_INDENT;
 	_print_tree(root->right, space);
 	ft_printf("\n");
-	for (int i = PTREE_INDENT; i < space; i++)
+	i = PTREE_INDENT;
+	while (space > i++)
 		ft_printf(" ");
 	if (root->type == CMD)
 	{
-		int i = 0;
+		i = 0;
 		while (((t_cmd *)root->structur)->arg[i] != NULL)
 		{
 			ft_printf("%s ", ((t_cmd *)root->structur)->arg[i]);
