@@ -12,6 +12,7 @@
 
 #include "exec.h"
 #include "ft_printf.h"
+#include "expand.h"
 #include <errno.h>
 #include <string.h>
 #include <fcntl.h>
@@ -22,6 +23,8 @@ int	exec_apend(t_tree *tree, t_fds *fds, t_env *env)
 	int	fd;
 	int	ret;
 
+	if (-1 == expand_file((char *)tree->structur, env))
+		return (1);
 	fd = open((char *)tree->structur, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{

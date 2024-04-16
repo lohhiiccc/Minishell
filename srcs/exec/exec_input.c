@@ -16,12 +16,14 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
-
+#include "expand.h"
 int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int	fd;
 	int	ret;
 
+	if (-1 == expand_file((char *)tree->structur, env))
+		return (1);
 	fd = open((char *)tree->structur, O_RDONLY);
 	if (fd == -1)
 	{
