@@ -13,8 +13,8 @@
 #include "tree.h"
 #include "ft_printf.h"
 
-static void _print_tree(t_tree *root, int space);
-static void	format(enum e_node type, char *s);
+static void _print_tree(t_tree *root, size_t space);
+static void	format(t_tree *root);
 
 void print_tree(t_tree *root)
 {
@@ -23,19 +23,26 @@ void print_tree(t_tree *root)
 	ft_printf("\n\n<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
 }
 
-static void _print_tree(t_tree *root, int space)
+static void _print_tree(t_tree *root, size_t space)
 {
-	int i;
+	size_t i;
 
-	i = 0;
+	i = PTREE_INDENT;
 	if (root == NULL)
 		return;
 	space += PTREE_INDENT;
 	_print_tree(root->right, space);
 	ft_printf("\n");
-	i = PTREE_INDENT;
 	while (space > i++)
 		ft_printf(" ");
+	format(root);
+	_print_tree(root->left, space);
+}
+
+static void	format(t_tree *root)
+{
+	size_t i;
+
 	if (root->type == CMD)
 	{
 		i = 0;
@@ -45,24 +52,18 @@ static void _print_tree(t_tree *root, int space)
 			i++;
 		}
 	}
-	format(root->type, (char *)root->structur);
-	_print_tree(root->left, space);
-}
-
-static void	format(enum e_node type, char *s)
-{
-	if (type == INPUT)
-		ft_printf("<:%s", s);
-	if (type == OUTPUT)
-		ft_printf(">:%s", s);
-	if (type == HERE_DOC)
-		ft_printf("<<:%s",s);
-	if (type == APPEND)
-		ft_printf(">>:%s", s);
-	if (type == O_AND)
+	else if (root->type == INPUT)
+		ft_printf("<:%s", (char *)root->structur);
+	else if (root->type == OUTPUT)
+		ft_printf(">:%s", (char *)root->structur);
+	else if (root->type == HERE_DOC)
+		ft_printf("<<:%s", (char *)root->structur);
+	else if (root->type == APPEND)
+		ft_printf(">>:%s", (char *)root->structur);
+	else if (root->type == O_AND)
 		ft_printf("&&");
-	if (type == O_OR)
+	else if (root->type == O_OR)
 		ft_printf("||");
-	if (type == O_PIPE)
+	else if (root->type == O_PIPE)
 		ft_printf("|");
 }
