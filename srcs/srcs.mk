@@ -17,6 +17,7 @@ ENVDIR = $(SRCDIR)env/
 EXPANDERDIR = $(SRCDIR)expander/
 MAKETREEUTILSDIR= $(MAKETREEDIR)utils/
 EXPANDERUTILSDIR = $(EXPANDERDIR)utils/
+EXPANDEREXPANDDIR = $(EXPANDERDIR)expand/
 SIGNALDIR = $(SRCDIR)signal/
 
 #-------------------------------------------------------------------------#
@@ -90,15 +91,19 @@ SRCMAKETREEUTILS = add_down \
 SRCENV = init_env \
 		 clear_env \
 
-SRCEXPANDER = expander \
-			  expand_var \
-			  expand_ret \
-			  remove_quote \
+SRCEXPANDER = expand_cmd \
+			  expand_file \
 
-SRCEXPANDERUTILS = var_charset \
+SRCEXPANDERUTILS = add_var \
+				   var_charset \
 			  	   quote_status \
 				   get_env_line \
-				   set_negative
+				   set_negative \
+				   expand_str
+
+SRCEXPANDEREXPAND = expand_var \
+			  		expand_ret \
+			  		expand_quote \
 
 SRCSIGNAL = signal \
 
@@ -123,5 +128,6 @@ SRCS = $(SRCDIR)main.c \
 	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
 	   $(addprefix $(MAKETREEUTILSDIR), $(addsuffix .c, $(SRCMAKETREEUTILS))) \
 	   $(addprefix $(EXPANDERUTILSDIR), $(addsuffix .c, $(SRCEXPANDERUTILS))) \
+	   $(addprefix $(EXPANDEREXPANDDIR), $(addsuffix .c, $(SRCEXPANDEREXPAND))) \
 
 #--------------------------------------------------------------------------#
