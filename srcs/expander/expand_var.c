@@ -1,5 +1,4 @@
 
-#include <stdio.h>
 #include "expand.h"
 #include "libft.h"
 
@@ -9,9 +8,9 @@ static int8_t add_var(char *s, size_t *i, t_vector *env, t_vector *vector);
 
 int8_t expand_var(char **str, t_vector *env)
 {
-	char *s;
-	t_vector new;
-	size_t	i;
+	char		*s;
+	t_vector	new;
+	size_t		i;
 
 	if (-1 == ft_vector_init(&new, sizeof(char)))
 		return (-1);
@@ -19,7 +18,7 @@ int8_t expand_var(char **str, t_vector *env)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '$' && ft_isalpha(s[i + 1]))
+		if (s[i] == '$' && (ft_isalpha(s[i + 1]) || s[i + 1] == '_'))
 		{
 			if (-1 == add_var(s, &i, env, &new))
 				return (free_and_return(&new));
@@ -54,7 +53,7 @@ static int8_t	get_value(char *s, size_t i, char **env, t_vector *vector)
 	backup = i;
 	value = env[get_envline(env, s + i)];
 	while (s[i] && is_charset(s[i]))
-		(i)++;
+		i++;
 	--i;
 	if (value == NULL)
 		return (0);

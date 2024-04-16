@@ -3,8 +3,8 @@
 
 void	set_snegative(char *str)
 {
-	size_t	i;
-	const char c = '\'';
+	size_t		i;
+	const char	c = '\'';
 
 	i = 0;
 	while (str[i]) {

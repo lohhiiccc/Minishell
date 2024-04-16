@@ -8,8 +8,8 @@ static int8_t expand_str(char **str, size_t i, t_env *env, char *error);
 
 char **expand_cmd(char **cmd, t_env *env)
 {
-	size_t		i;
-	char		*str;
+	size_t	i;
+	char	*str;
 
 	i = 0;
 	str = NULL;

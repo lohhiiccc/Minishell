@@ -6,8 +6,8 @@
 
 void	clear_env(t_vector *env)
 {
-	char **test;
-	size_t i;
+	char	**test;
+	size_t	i;
 
 	i = 0;
 	test = ft_vector_get(env, 0);

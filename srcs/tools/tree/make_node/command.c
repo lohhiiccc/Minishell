@@ -17,7 +17,7 @@
 #include "libft.h"
 
 static void		*free_and_return_null(void *content);
-static char **get_cmd(t_token *tokens);
+static char		**get_cmd(t_token *tokens);
 static size_t	get_cmd_len(t_token *tokens);
 static void		*free_range(char **tab);
 
