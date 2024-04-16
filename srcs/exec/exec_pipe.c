@@ -68,7 +68,7 @@ static void	exec_left(t_tree *tree, t_fds *fds, int *fd)
 		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
-	clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
+	clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 0);
 }
 
 static int	exec_right(t_tree *tree, t_fds *fds, int *fd)
@@ -91,7 +91,7 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd)
 			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
 			clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 		}
-		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
+		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, ret);
 	}
 	else if (close(fd[0]) == -1)
 	{

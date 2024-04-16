@@ -32,7 +32,7 @@ int	exec_build_in(t_tree *tree, t_fds *fds)
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "env"))
 		ret = ft_env(((t_cmd *)tree->structur), &fds->fd_out);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "exit"))
-		ft_exit(tree, &fds->fd_out, &fds->fd_in);
+		ft_exit(tree, &fds->fd_in, &fds->fd_out);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "return"))
 		ret = ft_atoi(((t_cmd *)tree->structur)->arg[1]);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "ptree"))
