@@ -1,24 +1,20 @@
 #include "ft_printf.h"
 #include <stdlib.h>
-#include "expand.h"
+#include "expand_utils.h"
 #include "libft.h"
 
-static	void *free_expand(char **str, size_t i, char *error);
-
-char **expand_cmd(char **cmd, t_env *env)
-{
-	size_t	i;
-	char	*str;
+char **expand_cmd(char **cmd, t_env *env) {
+	size_t i;
+	char *str;
 
 	i = 0;
 	str = NULL;
-	while (cmd[i])
-	{
+	while (cmd[i]) {
 		if (0 != expand_str(cmd, i, env, str))
 			return (NULL);
 		str = ft_sprintf("%S%s ", str, cmd[i]);
 		if (NULL == str)
-			return (free_expand(cmd, i ,str));
+			return (free_expand(cmd, i, str));
 		free(cmd[i]);
 		i++;
 	}
@@ -32,16 +28,3 @@ char **expand_cmd(char **cmd, t_env *env)
 		remove_quote(cmd[i++]);
 	return (cmd);
 }
-
-static	void *free_expand(char **str, size_t i, char *error)
-{
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-	free(error);
-	return (NULL);
-}
-

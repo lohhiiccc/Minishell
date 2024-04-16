@@ -95,11 +95,11 @@ SRCEXPANDER = expand_cmd \
 			  expand_file \
 
 SRCEXPANDERUTILS = add_var \
+				   expand_str \
 				   var_charset \
-			  	   quote_status \
+				   free_expand \
 				   get_env_line \
 				   set_negative \
-				   expand_str
 
 SRCEXPANDEREXPAND = expand_var \
 			  		expand_ret \
