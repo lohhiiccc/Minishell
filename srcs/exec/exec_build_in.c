@@ -14,9 +14,10 @@
 #include "build_in.h"
 #include "env.h"
 
-int	exec_build_in(t_tree *tree, t_fds *fds)
+int	exec_build_in(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int	ret;
+	(void)env;
 
 	ret = 0;
 	if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "echo"))

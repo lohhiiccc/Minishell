@@ -23,14 +23,14 @@
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd);
 static int	exec_child_cmd(t_tree *tree, t_fds *fds);
 
-int	exec_cmd(t_tree *tree, t_fds *fds)
+int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int		ret;
 
 	((t_cmd *)tree->structur)->arg = expand_cmd(((t_cmd *) tree->structur)->arg,
 			   ((t_cmd *) tree->structur)->env); //todo: securiser ca
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
-		ret = exec_build_in(tree, fds);
+		ret = exec_build_in(tree, fds, env);
 	else
 	{
 		((t_cmd *)tree->structur)->path = find_path(((t_cmd *)tree->structur)

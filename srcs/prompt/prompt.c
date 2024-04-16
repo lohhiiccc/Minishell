@@ -46,7 +46,7 @@ int prompt(t_env *env)
 		tree->ptree = &ptree;
 		if (ptree == 1)
 			print_tree(tree);
-		env->ret = exec_args(tree, &fd, NULL);
+		env->ret = exec_args(tree, &fd, NULL, env);
 		ft_clean_tree(tree);
 	}
 	if (str && str[0])

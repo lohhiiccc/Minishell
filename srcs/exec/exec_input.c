@@ -17,7 +17,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int	exec_input(t_tree *tree, t_fds *fds)
+int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int	fd;
 	int	ret;
@@ -30,7 +30,7 @@ int	exec_input(t_tree *tree, t_fds *fds)
 		return (1);
 	}
 	ft_vector_add(&fds->fd_in, &fd);
-	ret = exec_args(tree->left, fds, tree->root);
+	ret = exec_args(tree->left, fds, tree->root, env);
 	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem);
 	if (close(fd))
 	{
