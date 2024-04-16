@@ -10,53 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "tree.h"
 #include "ft_printf.h"
-#define COUNT 8
 
-void _print_tree(t_tree *root, int space);
+static void _print_tree(t_tree *root, int space);
+static void	format(enum e_node type, char *s);
 
 void print_tree(t_tree *root)
 {
 	ft_printf("<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
 	_print_tree(root, 0);
-	printf("\n\n<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
+	ft_printf("\n\n<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
 }
 
-void _print_tree(t_tree *root, int space)
+static void _print_tree(t_tree *root, int space)
 {
 	if (root == NULL)
 		return;
-	space += COUNT;
+	space += PTREE_INDENT;
 	_print_tree(root->right, space);
-	printf("\n");
-	for (int i = COUNT; i < space; i++)
-		printf(" ");
+	ft_printf("\n");
+	for (int i = PTREE_INDENT; i < space; i++)
+		ft_printf(" ");
 	if (root->type == CMD)
 	{
 		int i = 0;
 		while (((t_cmd *)root->structur)->arg[i] != NULL)
 		{
-			printf("%s ", ((t_cmd *)root->structur)->arg[i]);
+			ft_printf("%s ", ((t_cmd *)root->structur)->arg[i]);
 			i++;
 		}
 	}
-	if (root->type == INPUT)
-		printf("<:%s", (char *)root->structur);
-	if (root->type == OUTPUT)
-		printf(">:%s", (char *)root->structur);
-	if (root->type == HERE_DOC)
-		printf("<<:%s", (char *)root->structur);
-	if (root->type == APPEND)
-		printf(">>:%s", (char *)root->structur);
-	if(root->type == O_AND)
-		printf("&&");
-	if(root->type == O_OR)
-		printf("||");
-	if(root->type == O_PIPE)
-		printf("|");
+	format(root->type, (char *)root->structur);
 	_print_tree(root->left, space);
 }
 
-// Wrapper over print_tree()
+static void	format(enum e_node type, char *s)
+{
+	if (type == INPUT)
+		ft_printf("<:%s", s);
+	if (type == OUTPUT)
+		ft_printf(">:%s", s);
+	if (type == HERE_DOC)
+		ft_printf("<<:%s",s);
+	if (type == APPEND)
+		ft_printf(">>:%s", s);
+	if (type == O_AND)
+		ft_printf("&&");
+	if (type == O_OR)
+		ft_printf("||");
+	if (type == O_PIPE)
+		ft_printf("|");
+}

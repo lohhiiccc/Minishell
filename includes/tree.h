@@ -13,9 +13,9 @@
 #ifndef TREE_H
 # define TREE_H
 
-# include <bits/stdint-uintn.h>
 # include "vector.h"
 # include "env.h"
+# define PTREE_INDENT 4
 
 typedef enum e_node
 {
