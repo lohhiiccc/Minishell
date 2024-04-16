@@ -16,22 +16,28 @@
 # include "tree.h"
 # include "libft.h"
 
-typedef int(*	t_exec)(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
+typedef struct s_fds
+{
+		t_vector fd_in;
+		t_vector fd_out;
+}		t_fds;
 
-int		exec_args(t_tree *tree, t_vector *fd_in, t_vector *fd_out,
-			t_tree *root);
-int		exec_or(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-int		exec_pipe(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-int		exec_and(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-int		exec_cmd(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-int		exec_input(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-int		exec_output(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-int		exec_apend(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
-int		exec_here_doc(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
+typedef int(*	t_exec)(t_tree *tree, t_fds *fds);
+int		exec_args(t_tree *tree, t_fds *fds, t_tree *root);
+int		exec_or(t_tree *tree, t_fds *fds);
+int		exec_pipe(t_tree *tree, t_fds *fds);
+int		exec_and(t_tree *tree, t_fds *fds);
+int		exec_cmd(t_tree *tree, t_fds *fds);
+int		exec_input(t_tree *tree, t_fds *fds);
+int		exec_output(t_tree *tree, t_fds *fds);
+int		exec_apend(t_tree *tree, t_fds *fds);
+int		exec_here_doc(t_tree *tree, t_fds *fds);
 void	close_vector_fd(t_vector *fd);
-int		exec_build_in(t_tree *tree, t_vector *fd_in, t_vector *fd_out);
+int		exec_build_in(t_tree *tree, t_fds *fds);
 void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out,
-			uint8_t status);
+				   uint8_t status);
+//void	clean_exit(t_tree *tree, t_fds *fds,
+//			uint8_t status);
 char	*find_path(char *cmd, t_vector *env);
 int		is_build_in(char *str);
 

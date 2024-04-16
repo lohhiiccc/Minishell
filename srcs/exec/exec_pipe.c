@@ -18,11 +18,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static void	exec_left(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd);
-static int	exec_right(t_tree *tree, t_vector *fd_in,
-				t_vector *fd_out, int *fd);
+static void	exec_left(t_tree *tree, t_fds *fds, int *fd);
+static int	exec_right(t_tree *tree, t_fds *fds, int *fd);
+//static void	exec_left(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd);
+//static int	exec_right(t_tree *tree, t_vector *fd_in,
+//				t_vector *fd_out, int *fd);
 
-int	exec_pipe(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
+int	exec_pipe(t_tree *tree, t_fds *fds)
 {
 	int	ret;
 	int	pid;
@@ -40,36 +42,36 @@ int	exec_pipe(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 		return (1);
 	}
 	if (pid == 0)
-		exec_left(tree, fd_in, fd_out, fd);
+		exec_left(tree, fds, fd);
 	else
 	{
 		if (close(fd[1]) == -1)
 			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-		ret = exec_right(tree, fd_in, fd_out, fd);
+		ret = exec_right(tree, fds, fd);
 	}
 	while (wait(0) != -1)
 		;
 	return (ret);
 }
 
-static void	exec_left(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd)
+static void	exec_left(t_tree *tree, t_fds *fds, int *fd)
 {
 	if (close(fd[0]) == -1)
 	{
 		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-		clean_exit(tree->root, fd_in, fd_out, 1);
+		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
-	ft_vector_add(fd_out, &fd[1]);
-	exec_args(tree->left, fd_in, fd_out, tree->root);
+	ft_vector_add(&fds->fd_out, &fd[1]);
+	exec_args(tree->left, fds, tree->root);
 	if (close(fd[1]) == -1)
 	{
 		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-		clean_exit(tree->root, fd_in, fd_out, 1);
+		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
-	clean_exit(tree->root, fd_in, fd_out, 0);
+	clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 }
 
-static int	exec_right(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd)
+static int	exec_right(t_tree *tree, t_fds *fds, int *fd)
 {
 	int	ret;
 	int	pid;
@@ -82,14 +84,14 @@ static int	exec_right(t_tree *tree, t_vector *fd_in, t_vector *fd_out, int *fd)
 	}
 	if (pid == 0)
 	{
-		ft_vector_add(fd_in, &fd[0]);
-		ret = exec_args(tree->right, fd_in, fd_out, tree->root);
+		ft_vector_add(&fds->fd_in, &fd[0]);
+		ret = exec_args(tree->right, fds, tree->root);
 		if (close(fd[0]) == -1)
 		{
 			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-			clean_exit(tree->root, fd_in, fd_out, 1);
+			clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 		}
-		clean_exit(tree->root, fd_in, fd_out, ret);
+		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
 	else if (close(fd[0]) == -1)
 	{

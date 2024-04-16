@@ -17,7 +17,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int	exec_input(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
+int	exec_input(t_tree *tree, t_fds *fds)
 {
 	int	fd;
 	int	ret;
@@ -29,9 +29,9 @@ int	exec_input(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 			(char *)tree->structur, strerror(errno));
 		return (1);
 	}
-	ft_vector_add(fd_in, &fd);
-	ret = exec_args(tree->left, fd_in, fd_out, tree->root);
-	ft_vector_delete_elem(fd_in, fd_in->nbr_elem);
+	ft_vector_add(&fds->fd_in, &fd);
+	ret = exec_args(tree->left, fds, tree->root);
+	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem);
 	if (close(fd))
 	{
 		ft_dprintf(2, "Minichel: %s: %s\n",
