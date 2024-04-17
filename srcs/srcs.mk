@@ -15,9 +15,9 @@ PRINTTREE_DIR = $(TREE_DIR)print_tree/
 MAKETREE_DIR = $(PARSING_DIR)make_tree/
 ENV_DIR = $(SRC_DIR)env/
 EXPANDER_DIR = $(SRC_DIR)expander/
-MAKETREEUTILS_DIR = $(MAKETREE_DIR)utils/
-EXPANDERUTILS_DIR = $(EXPANDER_DIR)utils/
-EXPANDEREXPAND_DIR = $(EXPANDER_DIR)expand/
+MAKETREE_UTILS_DIR = $(MAKETREE_DIR)utils/
+EXPANDER_UTILS_DIR = $(EXPANDER_DIR)utils/
+EXPANDER_EXPAND_DIR = $(EXPANDER_DIR)expand/
 SIGNAL_DIR = $(SRC_DIR)signal/
 
 #-------------------------------------------------------------------------#
@@ -76,13 +76,13 @@ SRC_MAKE_NODE = command \
 			    operator \
 			    redirection \
 
-SRC_PRINTTREE = print \
+SRC_PRINT_TREE = print \
 
 SRC_MAKE_TREE = is_type \
 			    make_tree \
 			    add_subtree \
 
-SRC_MAKETREEUTILS = add_down \
+SRC_MAKETREE_UTILS = add_down \
 					add_up_right \
 					add_down_left \
 					add_down_right \
@@ -95,14 +95,14 @@ SRC_EXPANDER = expand_cmd \
 		   	   expand_file \
 		  	   expand_here_doc_delimiter \
 
-SRC_EXPANDERUTILS = add_var \
+SRC_EXPANDER_UTILS = add_var \
 				    expand_str \
 				    var_charset \
 				    free_expand \
 				    get_env_line \
 				    set_negative \
 
-SRC_EXPANDEREXPAND = expand_var \
+SRC_EXPANDER_EXPAND = expand_var \
 			  		 expand_ret \
 			  		 expand_quote \
 
@@ -126,9 +126,9 @@ SRCS = $(SRC_DIR)main.c \
 	   $(addprefix $(MAKETREE_DIR), $(addsuffix .c, $(SRC_MAKE_TREE))) \
 	   $(addprefix $(LEXSYNTAX_DIR), $(addsuffix .c, $(SRC_LEXSYNTAX))) \
 	   $(addprefix $(MAKE_NODE_DIR), $(addsuffix .c, $(SRC_MAKE_NODE))) \
-	   $(addprefix $(PRINTTREE_DIR), $(addsuffix .c, $(SRC_PRINTTREE))) \
-	   $(addprefix $(MAKETREEUTILS_DIR), $(addsuffix .c, $(SRC_MAKETREEUTILS))) \
-	   $(addprefix $(EXPANDERUTILS_DIR), $(addsuffix .c, $(SRC_EXPANDERUTILS))) \
-	   $(addprefix $(EXPANDEREXPAND_DIR), $(addsuffix .c, $(SRC_EXPANDEREXPAND))) \
+	   $(addprefix $(PRINTTREE_DIR), $(addsuffix .c, $(SRC_PRINT_TREE))) \
+	   $(addprefix $(MAKETREE_UTILS_DIR), $(addsuffix .c, $(SRC_MAKETREE_UTILS))) \
+	   $(addprefix $(EXPANDER_UTILS_DIR), $(addsuffix .c, $(SRC_EXPANDER_UTILS))) \
+	   $(addprefix $(EXPANDER_EXPAND_DIR), $(addsuffix .c, $(SRC_EXPANDER_EXPAND))) \
 
 #--------------------------------------------------------------------------#
