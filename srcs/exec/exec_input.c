@@ -16,31 +16,29 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
-
-int	exec_input(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
+#include "expand.h"
+int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int	fd;
 	int	ret;
 
+	if (-1 == expand_file((char *)tree->structur, env))
+		return (1);
 	fd = open((char *)tree->structur, O_RDONLY);
-//	ft_printf("OPEN FD %d\n", fd);
 	if (fd == -1)
 	{
 		ft_dprintf(2, "Minichell: %s: %s\n",
 			(char *)tree->structur, strerror(errno));
 		return (1);
 	}
-	ft_vector_add(fd_in, &fd);
-//	ft_printf("ADD FD %d IN VECTOR FD_IN\n", fd);
-	ret = exec_args(tree->left, fd_in, fd_out, tree->root);
-	ft_vector_delete_elem(fd_in, fd_in->nbr_elem);
-//	ft_printf("DELETE FD %d IN VECTOR FD_IN\n", fd);
+	ft_vector_add(&fds->fd_in, &fd);
+	ret = exec_args(tree->left, fds, tree->root, env);
+	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem);
 	if (close(fd))
 	{
 		ft_dprintf(2, "Minichel: %s: %s\n",
 			(char *)tree->structur, strerror(errno));
 		return (1);
 	}
-//	ft_printf("CLOSE FD %d\n", fd);
 	return (ret);
 }

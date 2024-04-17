@@ -28,6 +28,8 @@ void	close_vector_fd(t_vector *fd)
 
 int	is_build_in(char *str)
 {
+	if (NULL == str)
+		return (0);
 	if (!ft_strcmp(str, "cd"))
 		return (1);
 	if (!ft_strcmp(str, "echo"))
@@ -41,6 +43,8 @@ int	is_build_in(char *str)
 	if (!ft_strcmp(str, "pwd"))
 		return (1);
 	if (!ft_strcmp(str, "unset"))
+		return (1);
+	if (!ft_strcmp(str, "return"))
 		return (1);
 	if (!ft_strcmp(str, "ptree"))
 		return (1);

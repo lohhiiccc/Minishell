@@ -1,5 +1,5 @@
 
-#include "expand.h"
+#include "expand_utils.h"
 
 static int	searchvar(const char *s1, char *s2);
 

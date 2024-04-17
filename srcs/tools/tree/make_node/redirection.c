@@ -14,6 +14,7 @@
 #include "token.h"
 #include "libft.h"
 
+
 static t_node	get_redirect_type(t_token *token);
 
 t_tree	*make_redirection(t_token *tokens, t_tree *root)
@@ -23,8 +24,8 @@ t_tree	*make_redirection(t_token *tokens, t_tree *root)
 
 static t_node	get_redirect_type(t_token *token)
 {
-	static const t_node	node_tab[] = {HERE_DOC, APPEND, OUTPUT};
-	static const char	*str_tab[] = {"<<", ">>", ">"};
+	static const t_node	node_tab[] = {INPUT, APPEND, OUTPUT};
+	static const char	*str_tab[] = {"<", ">>", ">"};
 	int					i;
 
 	i = 0;
@@ -34,5 +35,5 @@ static t_node	get_redirect_type(t_token *token)
 			return (node_tab[i]);
 		i++;
 	}
-	return (INPUT);
+	return (HERE_DOC);
 }

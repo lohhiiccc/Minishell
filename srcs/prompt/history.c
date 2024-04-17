@@ -16,9 +16,9 @@ void	manage_history(char *str)
 
 static long long	get_id(const char *str)
 {
-	size_t			i;
-	char			j;
-	long long		id;
+	size_t		i;
+	char		j;
+	long long	id;
 
 	id = 5381;
 	i = 0;

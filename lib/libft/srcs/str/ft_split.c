@@ -13,59 +13,97 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static void	ft_skip(size_t *a, const char *s, char c, int include)
+static int	ischarset(char *charset, char c)
 {
-	size_t	i;
-
-	i = *a;
-	if (include == 1)
-		while (s[i] && s[i] == c)
-			i++;
-	else
-		while (s[i] && s[i] != c)
-			i++;
-	*a = i;
-}
-
-static void	*ft_free_split(char **tab)
-{
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (charset[i])
+	{
+		if (c == charset[i])
+			return (1);
+		i++;
+	}
+	if (c == '\0')
+		return (1);
+	return (0);
+}
+
+static char	*split_strdup(char *str, char *charset)
+{
+	size_t	i;
+	size_t	width;
+	char	*cpy;
+
+	i = 0;
+	width = 0;
+	while (str[width] != '\0')
+		width++;
+	cpy = malloc(sizeof(char) * (width + 1));
+	if (!cpy)
+		return (NULL);
+	while (str[i] != '\0' && !ischarset(charset, str[i]))
+	{
+		cpy[i] = str[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
+}
+
+static size_t	count_world(char *str, char *charset)
+{
+	size_t	i;
+	size_t	c;
+
+	c = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (ischarset(charset, str[i]) == 0 && \
+			ischarset(charset, str[i + 1]))
+			c++;
+		i++;
+	}
+	return (c);
+}
+
+static void	*free_split(char **tab, size_t i)
+{
+	while (i)
 	{
 		free(tab[i]);
-		i++;
+		i--;
 	}
 	free(tab);
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *str, char *charset)
 {
-	char	**tab;
-	size_t	start;
-	size_t	end;
+	size_t	nb_world;
 	size_t	i;
-	size_t	count_word;
+	size_t	start;
+	char	**res;
 
-	i = 0;
-	count_word = ft_count_word(s, c);
-	tab = ft_calloc(count_word + 1, sizeof(char *));
-	if (!tab)
+	nb_world = count_world(str, charset);
+	res = malloc(sizeof(char *) * (nb_world + 1));
+	if (NULL == res)
 		return (NULL);
+	i = 0;
 	start = 0;
-	ft_skip(&start, s, c, 1);
-	while (count_word-- != 0)
+	while (nb_world != 0)
 	{
-		end = start;
-		ft_skip(&end, s, c, 0);
-		tab[i] = ft_substr(s, start, end - start);
-		if (!tab[i])
-			return (ft_free_split(tab));
+		while (ischarset(charset, str[start]))
+			start++;
+		res[i] = split_strdup(&str[start], charset);
+		if (NULL == res[i])
+			free_split(res, i);
+		while (!ischarset(charset, str[start]) && str[start] != '\0')
+			start++;
+		nb_world--;
 		i++;
-		start = end;
-		ft_skip(&start, s, c, 1);
 	}
-	return (tab);
+	res[i] = NULL;
+	return (res);
 }

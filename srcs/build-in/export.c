@@ -32,7 +32,7 @@ int	ft_export(char **cmd, t_vector *env)
 			while (j < env->nbr_elem)
 			{
 				if (!ft_strncmp(cmd[i],
-						*(char **)ft_vector_get(env, j), n - 1))
+						*(char **)ft_vector_get(env, j), n + 1))
 					ft_vector_delete_elem(env, j);
 				j++;
 			}
@@ -51,7 +51,6 @@ static void	ft_vector_add_and_null(char *cmd, t_vector *env)
 	ft_vector_delete_elem(env, env->nbr_elem);
 	ft_vector_add_ptr(env, temp);
 	ft_vector_add_ptr(env, NULL);
-
 }
 
 static int	found_sep(char *str, char sep)

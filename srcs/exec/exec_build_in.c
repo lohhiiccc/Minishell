@@ -14,25 +14,28 @@
 #include "build_in.h"
 #include "env.h"
 
-int	exec_build_in(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
+int	exec_build_in(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int	ret;
+	(void)env;
 
 	ret = 0;
 	if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "echo"))
-		ret = ft_echo(((t_cmd *)tree->structur), fd_out);
+		ret = ft_echo(((t_cmd *)tree->structur), &fds->fd_out);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "cd"))
 		ret = ft_cd(((t_cmd *)tree->structur));
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "pwd"))
-		ret = ft_pwd(fd_out);
+		ret = ft_pwd(&fds->fd_out);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "export"))
 		ret = ft_export(((t_cmd *)tree->structur)->arg, &((t_cmd *)tree->structur)->env->env);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "unset"))
 		ret = ft_unset(((t_cmd *)tree->structur));
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "env"))
-		ret = ft_env(((t_cmd *)tree->structur), fd_out);
+		ret = ft_env(((t_cmd *)tree->structur), &fds->fd_out);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "exit"))
-		ft_exit(tree, fd_in, fd_out);
+		ft_exit(tree, &fds->fd_in, &fds->fd_out);
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "return"))
+		ret = ft_atoi(((t_cmd *)tree->structur)->arg[1]);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "ptree"))
 		*tree->ptree *= -1;
 	return (ret);

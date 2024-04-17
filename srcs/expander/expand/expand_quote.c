@@ -1,19 +1,23 @@
 
 #include "libft.h"
+#include "ft_printf.h"
 
 void	remove_quote(char *s)
 {
 	size_t	i;
 
 	i = 0;
+	ft_printf("test:%s\n",s);
 	while (s[i])
 	{
+		if (s[i] == 127)
+			s[i] = '\0';
 		if (s[i] == '\'' || s[i] == '"')
 		{
 			ft_memmove(s + i, s + i + 1, ft_strlen(s + i + 1) + 1);
 			continue;
 		}
-		else if (s[i] < 0)
+		if (s[i] < 0)
 			s[i] = -s[i];
 		i++;
 	}

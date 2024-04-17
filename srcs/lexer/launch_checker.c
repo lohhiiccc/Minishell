@@ -34,7 +34,7 @@ uint8_t	syntax_check(t_vector *tokens)
 		i++;
 	}
 	type = ((t_token *)tokens->addr)[tokens->nbr_elem - 2].type;
-	if (lex_last(parent, type))
+	if (lex_last(parent, type) && i != 0)
 		return (1);
 	return (0);
 }

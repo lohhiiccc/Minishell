@@ -64,7 +64,8 @@ SRCWHO = ft_isalnum \
 		 ft_isalpha \
 		 ft_isascii \
 		 ft_isdigit \
-		 ft_isprint
+		 ft_isprint \
+		 ft_isspace
 
 SRCVECTOR = ft_vector_add \
 			ft_vector_init \

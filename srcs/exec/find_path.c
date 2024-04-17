@@ -24,6 +24,8 @@ char	*find_path(char *cmd, t_vector *env)
 	char	*ret;
 	char	**path_list;
 
+	if (!cmd)
+		return (NULL);
 	if (ft_strchr(cmd, '/') && !access(cmd, F_OK))
 		ret = ft_strdup(cmd);
 	else
@@ -46,7 +48,7 @@ static char	**list_path(t_vector *env)
 	{
 		if (!ft_strncmp(*temp, "PATH=", 5))
 		{
-			ret = ft_split(*temp + 5, ':');
+			ret = ft_split(*temp + 5, ":");
 			return (ret);
 		}
 		temp = ft_vector_get(env, ++i);

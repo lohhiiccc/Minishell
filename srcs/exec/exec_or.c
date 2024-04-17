@@ -12,12 +12,12 @@
 
 #include "exec.h"
 
-int	exec_or(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
+int	exec_or(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int	ret;
 
-	ret = exec_args(tree->left, fd_in, fd_out, tree->root);
+	ret = exec_args(tree->left, fds, tree->root, env);
 	if (ret != 0)
-		ret = exec_args(tree->right, fd_in, fd_out, tree->root);
+		ret = exec_args(tree->right, fds, tree->root, env);
 	return (ret);
 }
