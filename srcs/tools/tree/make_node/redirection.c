@@ -13,7 +13,6 @@
 #include "tree.h"
 #include "token.h"
 #include "libft.h"
-#include "ft_printf.h"
 #include "expand.h"
 
 static t_node	get_redirect_type(t_token *token);
@@ -27,9 +26,14 @@ t_tree	*make_redirection(t_token *tokens, t_tree *root)
 	if (HERE_DOC == type)
 	{
 		new = ft_new_tree(ft_strdup(tokens[1].str), type, root);
+		if (NULL == new)
+			return (NULL);
 		expand_delimiter(new->structur);
 		if (1 == create_file_here_doc(new))
+		{
+			ft_clean_tree(new);
 			return (NULL);
+		}
 		return (new);
 	}
 	else
