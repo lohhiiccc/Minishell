@@ -13,13 +13,26 @@
 #include "tree.h"
 #include "token.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 
 static t_node	get_redirect_type(t_token *token);
 
 t_tree	*make_redirection(t_token *tokens, t_tree *root)
 {
-	return (ft_new_tree(ft_strdup(tokens[1].str), get_redirect_type(tokens), root));
+	t_node type;
+	t_tree *new;
+
+	type = get_redirect_type(tokens);
+	if (HERE_DOC == type)
+	{
+		new = ft_new_tree(ft_strdup(tokens[1].str), type, root);
+		if (1 == create_file_here_doc(new))
+			return (NULL);
+		return (new);
+	}
+	else
+		return (ft_new_tree(ft_strdup(tokens[1].str), type, root));
 }
 
 static t_node	get_redirect_type(t_token *token)
