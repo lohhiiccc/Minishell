@@ -59,16 +59,16 @@ int	create_file_here_doc(t_tree *tree)
 	if (read(fd, file_name, 6) == -1)
 		return (1);
 	file_name[6] = 0;
-	while (access(file_name, F_OK))
-	{
-		free(file_name);
-		file_name = malloc(sizeof(char) * 7);
-		if (!file_name)
-			return (1);
-		if (read(fd, file_name, 6) == -1)
-			return (1);
-		file_name[6] = 0;
-	}
+//	while (access(file_name, F_OK))
+//	{
+//		free(file_name);
+//		file_name = malloc(sizeof(char) * 7);
+//		if (!file_name)
+//			return (1);
+//		if (read(fd, file_name, 6) == -1)
+//			return (1);
+//		file_name[6] = 0;
+//	}
 	close(fd);
 	fd = open(file_name, O_RDWR | O_CREAT, 0777);
 	if (fd == -1)

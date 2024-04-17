@@ -93,6 +93,7 @@ SRCENV = init_env \
 
 SRCEXPANDER = expand_cmd \
 			  expand_file \
+			  expand_here_doc_delimiter \
 
 SRCEXPANDERUTILS = add_var \
 				   expand_str \
