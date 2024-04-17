@@ -6,13 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/07 20:00:32 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 15:28:53 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+
 #include "ms_signal.h"
 #include "minishell.h"
 #include "ft_printf.h"
+#include <unistd.h>
 
 int	main(int argc, char **argv, char **env)
 {
@@ -21,6 +22,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	new_env.ret = 0;
+	new_env.ptree = -1;
 	ms_signal();
 	if (!isatty(0) || !isatty(1))
 	{
