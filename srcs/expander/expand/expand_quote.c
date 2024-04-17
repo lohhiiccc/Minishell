@@ -7,7 +7,6 @@ void	remove_quote(char *s)
 	size_t	i;
 
 	i = 0;
-	ft_printf("test:%s\n",s);
 	while (s[i])
 	{
 		if (s[i] == 127)

@@ -55,7 +55,7 @@ static void	keep_quote(char *value)
 	while (value[i])
 	{
 		if (value[i] == '\'' || value[i] == '"')
-{
+		{
 			value[i] = -value[i];
 		}
 		i++;
