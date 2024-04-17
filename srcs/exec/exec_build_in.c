@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:39:06 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 23:04:56 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 15:33:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	exec_build_in(t_tree *tree, t_fds *fds, t_env *env)
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "return"))
 		ret = ft_atoi(((t_cmd *)tree->structur)->arg[1]);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "ptree"))
-		*tree->ptree *= -1;
+		env->ptree *= -1;
 	return (ret);
 }
