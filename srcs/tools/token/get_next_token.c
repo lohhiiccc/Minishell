@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:43:04 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 22:18:06 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 static uint8_t	is_sep(char c);
 static int8_t	set_cmd(const char *str, t_token *tkn);
 static int8_t	fill_token(char *str, t_token *token,
-						 t_token_type type, char *s);
+					t_token_type type, char *s);
 
 //todo : securiser strndup
-int8_t get_next_token(char *str, t_token *tkn)
+int8_t	get_next_token(char *str, t_token *tkn)
 {
 	size_t					i;
 	static const t_token	type[] = {{"(", T_PARENTHESE_OP},
@@ -62,7 +62,7 @@ static int8_t	set_cmd(const char *str, t_token *tkn)
 }
 
 static int8_t	fill_token(char *str, t_token *token,
-						 t_token_type type, char *s)
+					t_token_type type, char *s)
 {
 	token->type = type;
 	token->str = ft_strndup(str, ft_strlen(s));

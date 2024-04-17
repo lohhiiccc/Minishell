@@ -7,6 +7,7 @@ STRDIR = str/
 WHODIR = who/
 VECTORDIR = vector/
 PRINTFDIR = printf/
+TABDIR = tab/
 
 
 SRCATOI = ft_atoi \
@@ -95,6 +96,8 @@ SRCPRINTF = ft_dprintf \
 			ft_sprintf \
 			put_str_free
 
+SRCTAB = tablen
+
 SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(CHAINEDDIR), $(addsuffix .c, $(SRCCHAINED))) \
 	   $(addprefix $(SRCDIR)$(MEMDIR), $(addsuffix .c, $(SRCMEM))) \
@@ -102,4 +105,5 @@ SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(STRDIR), $(addsuffix .c, $(SRCSTR))) \
 	   $(addprefix $(SRCDIR)$(WHODIR), $(addsuffix .c, $(SRCWHO))) \
 	   $(addprefix $(SRCDIR)$(VECTORDIR), $(addsuffix .c, $(SRCVECTOR))) \
-	   $(addprefix $(SRCDIR)$(PRINTFDIR), $(addsuffix .c, $(SRCPRINTF))) 
+	   $(addprefix $(SRCDIR)$(PRINTFDIR), $(addsuffix .c, $(SRCPRINTF))) \
+	   $(addprefix $(SRCDIR)$(TABDIR), $(addsuffix .c, $(SRCTAB)))

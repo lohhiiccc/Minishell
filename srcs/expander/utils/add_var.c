@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_var.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 20:10:56 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 20:11:19 by mjuffard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdlib.h>
 #include "expand_utils.h"
@@ -51,7 +61,6 @@ static void	keep_quote(char *value)
 	size_t	i;
 
 	i = 0;
-
 	while (value[i])
 	{
 		if (value[i] == '\'' || value[i] == '"')

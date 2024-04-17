@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:38:53 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/18 04:44:20 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 22:18:55 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	clean_cmd(t_tree *tree)
 
 void	ft_clean_tree(t_tree *tree)
 {
-
 	if (!tree)
 		return ;
 	ft_clean_tree(tree->left);

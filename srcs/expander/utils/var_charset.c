@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   var_charset.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 20:10:22 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 20:10:27 by mjuffard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdint.h>
 #include "libft.h"
 
-uint8_t is_charset(char c)
+uint8_t	is_charset(char c)
 {
 	return (ft_isalnum(c) || c == '_');
 }

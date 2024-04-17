@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:33:24 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/29 03:32:33 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 19:45:44 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "expand.h"
+
 int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int	fd;

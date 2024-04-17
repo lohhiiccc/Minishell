@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 22:37:08 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/18 01:06:33 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 20:14:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static uint8_t	lex_last(const size_t *parent, t_token_type type);
 static uint8_t	lex_global(t_vector *vector, size_t i, size_t *parent,
-							t_token_type type);
+					t_token_type type);
 
 uint8_t	syntax_check(t_vector *tokens)
 {

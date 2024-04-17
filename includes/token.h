@@ -6,14 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:47:51 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:40:41 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 22:23:27 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
-#include <bits/stdint-intn.h>
+# include <bits/stdint-intn.h>
 # include "vector.h"
 
 typedef enum e_token_type

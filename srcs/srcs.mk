@@ -71,6 +71,7 @@ SRCEXEC = exec \
 		  exec_output \
 		  exec_here_doc \
 		  exec_build_in \
+		  exec_exe
 
 SRCMAKE_NODE = command \
 			   operator \
@@ -90,6 +91,7 @@ SRCMAKETREEUTILS = add_down \
 
 SRCENV = init_env \
 		 clear_env \
+		 found_value_of_variable
 
 SRCEXPANDER = expand_cmd \
 			  expand_file \

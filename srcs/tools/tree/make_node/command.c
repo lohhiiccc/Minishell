@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/05 14:19:28 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 22:20:14 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_tree	*make_command(t_token *tokens, t_env *env, t_tree *root)
 	return (ft_new_tree(content, CMD, root));
 }
 
-static char **get_cmd(t_token *tokens)
+static char	**get_cmd(t_token *tokens)
 {
 	size_t	i;
 	size_t	len;

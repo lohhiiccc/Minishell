@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_syntax_error.c                               :+:      :+:    :+:   */
+/*   tablen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 20:14:02 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 20:14:07 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/04/17 17:46:42 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 17:47:01 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "vector.h"
-#include "token.h"
+#include "libft.h"
 
-int8_t	print_syntax_error(t_vector *tokens)
+size_t	ft_tab_len(char **tab)
 {
-	free_token(tokens);
-	write(2, "error\n", 6);
-	return (-1);
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
 }

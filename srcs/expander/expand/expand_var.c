@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_var.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 20:13:28 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 20:13:42 by mjuffard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "expand_utils.h"
 #include "libft.h"
 #include "ft_printf.h"
 
-static int8_t free_and_return(t_vector *v);
+static int8_t	free_and_return(t_vector *v);
 
-int8_t expand_var(char **str, t_vector *env)
+int8_t	expand_var(char **str, t_vector *env)
 {
 	char		*s;
 	t_vector	new;
@@ -21,7 +32,7 @@ int8_t expand_var(char **str, t_vector *env)
 		{
 			if (-1 == add_var(s, &i, env, &new))
 				return (free_and_return(&new));
-			continue;
+			continue ;
 		}
 		if (-1 == ft_vector_add(&new, &s[i]))
 			return (free_and_return(&new));
@@ -34,7 +45,7 @@ int8_t expand_var(char **str, t_vector *env)
 	return (0);
 }
 
-static int8_t free_and_return(t_vector *v)
+static int8_t	free_and_return(t_vector *v)
 {
 	ft_vector_free(v, NULL);
 	return (-1);
