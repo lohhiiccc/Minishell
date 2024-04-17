@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/07 22:51:20 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 15:29:07 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static uint8_t free_fd(t_fds *fd, uint8_t ret);
 int prompt(t_env *env)
 {
 	char		*str;
-	static int	ptree = -1;
 	t_vector	tokens;
 	t_tree		*tree;
 	t_fds		fd;
@@ -43,8 +42,7 @@ int prompt(t_env *env)
 		tree = parsing(env, &tokens);
 		if (NULL == tree)
 			return (free_fd(&fd, 1));
-		tree->ptree = &ptree;
-		if (ptree == 1)
+		if (env->ptree == 1)
 			print_tree(tree);
 		env->ret = exec_args(tree, &fd, NULL, env);
 		ft_clean_tree(tree);
