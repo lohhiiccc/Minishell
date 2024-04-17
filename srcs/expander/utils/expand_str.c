@@ -1,5 +1,4 @@
 
-#include <stdlib.h>
 #include "expand_utils.h"
 
 int8_t expand_str(char **str, size_t i, t_env *env, char *error)
@@ -11,6 +10,6 @@ int8_t expand_str(char **str, size_t i, t_env *env, char *error)
 		free_expand(str, i , error);
 		return (-1);
 	}
-	set_negative(str[i], '"');
+	set_negative(str[i]);
 	return (0);
 }

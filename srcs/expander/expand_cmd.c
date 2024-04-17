@@ -3,13 +3,15 @@
 #include "expand_utils.h"
 #include "libft.h"
 
-char **expand_cmd(char **cmd, t_env *env) {
-	size_t i;
-	char *str;
+char **expand_cmd(char **cmd, t_env *env)
+{
+	size_t	i;
+	char	*str;
 
 	i = 0;
 	str = NULL;
-	while (cmd[i]) {
+	while (cmd[i])
+	{
 		if (0 != expand_str(cmd, i, env, str))
 			return (NULL);
 		str = ft_sprintf("%S%s ", str, cmd[i]);

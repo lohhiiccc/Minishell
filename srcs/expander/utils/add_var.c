@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "expand_utils.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 static int8_t	get_value(char *s, size_t i, char **env, t_vector *vector);
 static void		keep_quote(char *value);
@@ -50,10 +51,13 @@ static void	keep_quote(char *value)
 	size_t	i;
 
 	i = 0;
+
 	while (value[i])
 	{
 		if (value[i] == '\'' || value[i] == '"')
+{
 			value[i] = -value[i];
+		}
 		i++;
 	}
 }

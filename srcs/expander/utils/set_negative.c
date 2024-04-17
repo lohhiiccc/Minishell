@@ -4,20 +4,20 @@
 void	set_snegative(char *str)
 {
 	size_t		i;
-	const char	c = '\'';
 
 	i = 0;
-	while (str[i]) {
+	while (str[i])
+	{
 		if (str[i] == '"')
 		{
 			i++;
 			while (str[i] != '"')
 				i++;
 		}
-		if (str[i] == c)
+		if (str[i] == '\'')
 		{
 			i++;
-			while (str[i] != c && str[i])
+			while (str[i] != '\'' && str[i])
 			{
 				str[i] = -str[i];
 				i++;
@@ -28,23 +28,27 @@ void	set_snegative(char *str)
 	}
 }
 
-void	set_negative(char *str, char c)
+void set_negative(char *str)
 {
 	size_t	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == c)
+		if (str[i] == '"')
 		{
 			i++;
-			while (str[i] != c && str[i])
+			str[i] = -str[i];
+			while (str[i] != '"' && str[i])
 			{
 				str[i] = -str[i];
 				i++;
 			}
+			if (str[i] == '\'')
+				str[i] = -str[i];
 		}
 		if (str[i])
 			i++;
 	}
 }
+//
