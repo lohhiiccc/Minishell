@@ -19,9 +19,9 @@ t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 		return (new);
 	if (CMD == root->type)
 		return (add_up_right(root, new));
-	if (is_operator(root->type) || O_PIPE == root->type)
+	if (is_l_operator(root->type) || O_PIPE == root->type)
 	{
-		if (is_operator(new->type) || O_PIPE == new->type)
+		if (is_l_operator(new->type))
 			return (add_up_right(root, new));
 		return (down_right(root, root, new));
 	}
