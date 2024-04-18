@@ -15,7 +15,7 @@
 
 # include "vector.h"
 # include "env.h"
-# define PTREE_INDENT 4
+# define PTREE_INDENT 6
 
 typedef enum e_node
 {
