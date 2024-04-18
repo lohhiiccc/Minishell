@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 22:13:51 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/19 01:35:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 #include "exec.h"
 #include "ft_printf.h"
 #include "prompt.h"
+#include "ms_signal.h"
 #include <unistd.h>
+
+extern int	g_sig_value;
 
 static uint8_t	init_fd(t_fds *fd);
 static uint8_t	free_fd(t_fds *fd, uint8_t ret);
@@ -26,6 +29,7 @@ int	prompt(t_env *env)
 	t_vector	tokens;
 	t_fds		fd;
 
+	ms_signal_main();
 	if (init_fd(&fd))
 		return (1); //todo print erreur malloc
 	tokens.nbr_elem = 0;
@@ -35,6 +39,11 @@ int	prompt(t_env *env)
 		ft_printf("Exit\n");
 		clear_env(&env->env);
 		clean_exit(NULL, &fd.fd_in, &fd.fd_out, env->ret);
+	}
+	if (g_sig_value != 0)
+	{
+		env->ret = 128 + g_sig_value;
+		return (128 + g_sig_value);
 	}
 	if (-1 != lexer(str, &tokens)
 		&& 1 == create_and_exec_tree(env, &fd, &tokens))

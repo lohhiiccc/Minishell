@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 19:53:37 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 23:28:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "ms_signal.h"
 
 static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env);
 static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env);

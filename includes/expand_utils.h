@@ -15,6 +15,7 @@
 # include <stdint.h>
 # include "stddef.h"
 # include "env.h"
+#include "dirent.h"
 
 size_t	get_envline(char **env, char *var);
 uint8_t	is_charset(char c);
@@ -26,5 +27,7 @@ int8_t	add_var(char *s, size_t *i, t_vector *env, t_vector *vector);
 int8_t	expand_str(char **str, size_t i, t_env *env, char *error);
 void	*free_expand(char **str, size_t i, char *error);
 void	remove_quote(char *s);
+int8_t wildcard(char *patern);
+char	**get_folder(DIR *directory, struct dirent **dir_data);
 
 #endif

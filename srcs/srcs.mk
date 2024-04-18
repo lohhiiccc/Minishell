@@ -1,136 +1,138 @@
 #------------------------------------dir----------------------------------#
 
-SRCDIR = srcs/
-PROMPTDIR = $(SRCDIR)prompt/
-LEXERDIR = $(SRCDIR)lexer/
-LEXSYNTAXDIR = $(LEXERDIR)syntax_checker/
-PARSINGDIR = $(SRCDIR)parsing/
-TOOLSDIR = $(SRCDIR)tools/
-TREEDIR = $(TOOLSDIR)tree/
-TOKENDIR = $(TOOLSDIR)token/
-BUILD_INDIR= $(SRCDIR)build-in/
-EXECDIR= $(SRCDIR)exec/
-MAKE_NODEDIR = $(TREEDIR)make_node/
-PRINTTREEDIR = $(TREEDIR)print_tree/
-MAKETREEDIR = $(PARSINGDIR)make_tree/
-ENVDIR = $(SRCDIR)env/
-EXPANDERDIR = $(SRCDIR)expander/
-MAKETREEUTILSDIR= $(MAKETREEDIR)utils/
-EXPANDERUTILSDIR = $(EXPANDERDIR)utils/
-EXPANDEREXPANDDIR = $(EXPANDERDIR)expand/
-SIGNALDIR = $(SRCDIR)signal/
+SRC_DIR = srcs/
+PROMPT_DIR = $(SRC_DIR)prompt/
+LEXER_DIR = $(SRC_DIR)lexer/
+LEXSYNTAX_DIR = $(LEXER_DIR)syntax_checker/
+PARSING_DIR = $(SRC_DIR)parsing/
+TOOLS_DIR = $(SRC_DIR)tools/
+TREE_DIR = $(TOOLS_DIR)tree/
+TOKEN_DIR = $(TOOLS_DIR)token/
+BUILD_IN_DIR = $(SRC_DIR)build-in/
+EXEC_DIR = $(SRC_DIR)exec/
+MAKE_NODE_DIR = $(TREE_DIR)make_node/
+PRINTTREE_DIR = $(TREE_DIR)print_tree/
+MAKETREE_DIR = $(PARSING_DIR)make_tree/
+ENV_DIR = $(SRC_DIR)env/
+EXPANDER_DIR = $(SRC_DIR)expander/
+MAKETREE_UTILS_DIR = $(MAKETREE_DIR)utils/
+EXPANDER_UTILS_DIR = $(EXPANDER_DIR)utils/
+EXPANDER_EXPAND_DIR = $(EXPANDER_DIR)expand/
+SIGNAL_DIR = $(SRC_DIR)signal/
+WILDCARD_DIR = $(EXPANDER_DIR)wildcard/
 
 #-------------------------------------------------------------------------#
 #----------------------------------files-----------------------------------#
 
-SRCPROMT = prompt \
-		   history \
-		   prompt_skin \
+SRC_PROMT = prompt \
+		    history \
+		    prompt_skin \
 
-SRCLEXER = lexer \
-		   launch_checker \
-		   print_syntax_error \
+SRC_LEXER = lexer \
+		    launch_checker \
+		    print_syntax_error \
 
-SRCLEXSYNTAX = lex_pipe \
-			   lex_string \
-			   lex_operator \
-			   lex_parenthese \
-		   	   lex_redirection \
+SRC_LEXSYNTAX = lex_pipe \
+			    lex_string \
+			    lex_operator \
+			    lex_parenthese \
+		   	    lex_redirection \
 
-SRCPARSING = parsing \
+SRC_PARSING = parsing \
 
-SRCTREE =  ft_new_tree \
+SRC_TREE = ft_new_tree \
 		   ft_join_tree \
 		   ft_clean_tree \
 
-SRCTOKEN = quote \
-		   tag_args \
-		   tag_files \
-		   get_tokens \
-		   get_next_token \
-		   free_token_lst \
+SRC_TOKEN = quote \
+		    tag_args \
+		    tag_files \
+		    get_tokens \
+		    get_next_token \
+		    free_token_lst \
 
-SRCBUILD_IN = cd \
-			  env \
-			  pwd \
-			  echo \
-			  exit \
-			  unset \
-			  export \
+SRC_BUILD_IN = cd \
+			   env \
+			   pwd \
+			   echo \
+			   exit \
+			   unset \
+			   export \
 
-SRCEXEC = exec \
-		  exec_or \
-		  exec_cmd \
-		  exec_and \
-		  find_path \
-		  exec_pipe \
-		  exec_utils \
-		  clean_exit \
-		  exec_apend \
-		  exec_input \
-		  exec_output \
-		  exec_here_doc \
-		  exec_build_in \
-		  exec_exe
+SRC_EXEC = exec \
+		   exec_or \
+		   exec_cmd \
+		   exec_and \
+		   find_path \
+		   exec_pipe \
+		   exec_utils \
+		   clean_exit \
+		   exec_apend \
+		   exec_input \
+		   exec_output \
+		   exec_here_doc \
+		   exec_build_in \
 
-SRCMAKE_NODE = command \
-			   operator \
-			   redirection \
+SRC_MAKE_NODE = command \
+			    operator \
+			    redirection \
 
-SRCPRINTTREE = print \
+SRC_PRINT_TREE = print \
 
-SRCMAKE_TREE = is_type \
-			   make_tree \
-			   add_subtree \
+SRC_MAKE_TREE = is_type \
+			    make_tree \
+			    add_subtree \
 
-SRCMAKETREEUTILS = add_down \
-				   add_up_right \
-				   add_down_left \
-				   add_down_right \
-				   add_redirection \
+SRC_MAKETREE_UTILS = add_down \
+					add_up_right \
+					add_down_left \
+					add_down_right \
+					add_redirection \
 
-SRCENV = init_env \
-		 clear_env \
-		 found_value_of_variable
+SRC_ENV = init_env \
+		  clear_env \
 
-SRCEXPANDER = expand_cmd \
-			  expand_file \
-			  expand_here_doc_delimiter \
+SRC_EXPANDER = expand_cmd \
+		   	   expand_file \
+		  	   expand_here_doc_delimiter \
 
-SRCEXPANDERUTILS = add_var \
-				   expand_str \
-				   var_charset \
-				   free_expand \
-				   get_env_line \
-				   set_negative \
+SRC_EXPANDER_UTILS = add_var \
+				    expand_str \
+				    var_charset \
+				    free_expand \
+				    get_env_line \
+				    set_negative \
 
-SRCEXPANDEREXPAND = expand_var \
-			  		expand_ret \
-			  		expand_quote \
+SRC_EXPANDER_EXPAND = expand_var \
+			  		 expand_ret \
+			  		 expand_quote \
 
-SRCSIGNAL = signal \
+SRC_SIGNAL = signal \
 
+SRC_WILDCARD = wildcard \
+			   get_folder
 
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
 
-SRCS = $(SRCDIR)main.c \
-	   $(addprefix $(ENVDIR), $(addsuffix .c, $(SRCENV))) \
-	   $(addprefix $(TREEDIR), $(addsuffix .c, $(SRCTREE))) \
-	   $(addprefix $(EXECDIR), $(addsuffix .c, $(SRCEXEC))) \
-	   $(addprefix $(TOKENDIR), $(addsuffix .c, $(SRCTOKEN))) \
-	   $(addprefix $(LEXERDIR), $(addsuffix .c, $(SRCLEXER))) \
-	   $(addprefix $(PROMPTDIR), $(addsuffix .c, $(SRCPROMT))) \
-	   $(addprefix $(SIGNALDIR), $(addsuffix .c, $(SRCSIGNAL))) \
-	   $(addprefix $(PARSINGDIR), $(addsuffix .c, $(SRCPARSING))) \
-	   $(addprefix $(EXPANDERDIR), $(addsuffix .c, $(SRCEXPANDER))) \
-	   $(addprefix $(BUILD_INDIR), $(addsuffix .c, $(SRCBUILD_IN))) \
-	   $(addprefix $(MAKETREEDIR), $(addsuffix .c, $(SRCMAKE_TREE))) \
-	   $(addprefix $(LEXSYNTAXDIR), $(addsuffix .c, $(SRCLEXSYNTAX))) \
-	   $(addprefix $(MAKE_NODEDIR), $(addsuffix .c, $(SRCMAKE_NODE))) \
-	   $(addprefix $(PRINTTREEDIR), $(addsuffix .c, $(SRCPRINTTREE))) \
-	   $(addprefix $(MAKETREEUTILSDIR), $(addsuffix .c, $(SRCMAKETREEUTILS))) \
-	   $(addprefix $(EXPANDERUTILSDIR), $(addsuffix .c, $(SRCEXPANDERUTILS))) \
-	   $(addprefix $(EXPANDEREXPANDDIR), $(addsuffix .c, $(SRCEXPANDEREXPAND))) \
+SRCS = $(SRC_DIR)main.c \
+	   $(addprefix $(ENV_DIR), $(addsuffix .c, $(SRC_ENV))) \
+	   $(addprefix $(TREE_DIR), $(addsuffix .c, $(SRC_TREE))) \
+	   $(addprefix $(EXEC_DIR), $(addsuffix .c, $(SRC_EXEC))) \
+	   $(addprefix $(TOKEN_DIR), $(addsuffix .c, $(SRC_TOKEN))) \
+	   $(addprefix $(LEXER_DIR), $(addsuffix .c, $(SRC_LEXER))) \
+	   $(addprefix $(PROMPT_DIR), $(addsuffix .c, $(SRC_PROMT))) \
+	   $(addprefix $(SIGNAL_DIR), $(addsuffix .c, $(SRC_SIGNAL))) \
+	   $(addprefix $(PARSING_DIR), $(addsuffix .c, $(SRC_PARSING))) \
+	   $(addprefix $(WILDCARD_DIR), $(addsuffix .c, $(SRC_WILDCARD))) \
+	   $(addprefix $(EXPANDER_DIR), $(addsuffix .c, $(SRC_EXPANDER))) \
+	   $(addprefix $(BUILD_IN_DIR), $(addsuffix .c, $(SRC_BUILD_IN))) \
+	   $(addprefix $(MAKETREE_DIR), $(addsuffix .c, $(SRC_MAKE_TREE))) \
+	   $(addprefix $(LEXSYNTAX_DIR), $(addsuffix .c, $(SRC_LEXSYNTAX))) \
+	   $(addprefix $(MAKE_NODE_DIR), $(addsuffix .c, $(SRC_MAKE_NODE))) \
+	   $(addprefix $(PRINTTREE_DIR), $(addsuffix .c, $(SRC_PRINT_TREE))) \
+	   $(addprefix $(MAKETREE_UTILS_DIR), $(addsuffix .c, $(SRC_MAKETREE_UTILS))) \
+	   $(addprefix $(EXPANDER_UTILS_DIR), $(addsuffix .c, $(SRC_EXPANDER_UTILS))) \
+	   $(addprefix $(EXPANDER_EXPAND_DIR), $(addsuffix .c, $(SRC_EXPANDER_EXPAND))) \
 
 #--------------------------------------------------------------------------#

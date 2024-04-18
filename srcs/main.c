@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 17:16:08 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/19 01:44:53 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "ft_printf.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include "expand_utils.h"
 
 int	main(int argc, char **argv, char **env)
 {
@@ -26,6 +27,7 @@ int	main(int argc, char **argv, char **env)
 	new_env.ret = 0;
 	new_env.ptree = -1;
 	ms_signal();
+	wildcard("??it");
 	if (!isatty(0) || !isatty(1))
 	{
 		ft_dprintf(2, "minichel: please use a tty\n");

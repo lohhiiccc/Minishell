@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 18:39:46 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/18 01:52:27 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static char	*create_path(t_cmd *cmd, size_t len_tab)
 			ret = found_value_of_variable("OLDPWD", cmd->env->env);
 			if (!ret)
 				ft_dprintf(2, "Minichel: cd: OLDPWD not set\n");
+			else
+				ft_printf("%s\n", ret);
 		}
 		else if (ft_strchr(cmd->arg[1], '/'))
 			ret = ft_strdup(cmd->arg[1]);

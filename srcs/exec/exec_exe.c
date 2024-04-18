@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 19:41:00 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/19 01:18:13 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include "env.h"
 #include "exec.h"
 #include "ft_printf.h"
+#include "ms_signal.h"
+#include <signal.h>
+
+extern int	g_sig_value;
 
 static int	exec_child_cmd(t_tree *tree, t_fds *fds);
 static void	print_error(t_tree *tree, char *error);
@@ -59,6 +63,7 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds)
 	int	pid;
 	int	ret;
 
+	ms_signal_main_wait();
 	pid = fork();
 	if (pid == -1)
 	{
@@ -67,6 +72,7 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds)
 	}
 	if (pid == 0)
 	{
+		ms_signal_child();
 		dup_fd(tree, &fds->fd_in, &fds->fd_out, STDIN_FILENO);
 		dup_fd(tree, &fds->fd_out, &fds->fd_in, STDOUT_FILENO);
 		close_vector_fd(&fds->fd_in);
@@ -79,6 +85,11 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds)
 	waitpid(pid, &ret, 0);
 	if (WIFEXITED(ret))
 		return (WEXITSTATUS(ret));
+	else if (__WIFSIGNALED(ret))
+	{
+		g_sig_value = WTERMSIG(ret);
+		return (128 + g_sig_value);
+	}
 	return (1);
 }
 
