@@ -19,6 +19,7 @@ MAKETREE_UTILS_DIR = $(MAKETREE_DIR)utils/
 EXPANDER_UTILS_DIR = $(EXPANDER_DIR)utils/
 EXPANDER_EXPAND_DIR = $(EXPANDER_DIR)expand/
 SIGNAL_DIR = $(SRC_DIR)signal/
+WILDCARD_DIR = $(EXPANDER_DIR)wildcard/
 
 #-------------------------------------------------------------------------#
 #----------------------------------files-----------------------------------#
@@ -108,6 +109,8 @@ SRC_EXPANDER_EXPAND = expand_var \
 
 SRC_SIGNAL = signal \
 
+SRC_WILDCARD = wildcard \
+			   get_folder
 
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
@@ -121,6 +124,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(addprefix $(PROMPT_DIR), $(addsuffix .c, $(SRC_PROMT))) \
 	   $(addprefix $(SIGNAL_DIR), $(addsuffix .c, $(SRC_SIGNAL))) \
 	   $(addprefix $(PARSING_DIR), $(addsuffix .c, $(SRC_PARSING))) \
+	   $(addprefix $(WILDCARD_DIR), $(addsuffix .c, $(SRC_WILDCARD))) \
 	   $(addprefix $(EXPANDER_DIR), $(addsuffix .c, $(SRC_EXPANDER))) \
 	   $(addprefix $(BUILD_IN_DIR), $(addsuffix .c, $(SRC_BUILD_IN))) \
 	   $(addprefix $(MAKETREE_DIR), $(addsuffix .c, $(SRC_MAKE_TREE))) \

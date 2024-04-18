@@ -11,7 +11,8 @@ void	remove_quote(char *s)
 	{
 		if (s[i] == 127)
 			s[i] = '\0';
-		if (s[i] == '\'' || s[i] == '"')
+		if ((s[i] == '\'' || s[i] == '"') || (s[i] == '$'
+			&& (s[i + 1] == '\'' || s[i + 1] == '"')))
 		{
 			ft_memmove(s + i, s + i + 1, ft_strlen(s + i + 1) + 1);
 			continue;
