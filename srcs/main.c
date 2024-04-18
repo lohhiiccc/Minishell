@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/19 01:45:36 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/19 01:55:14 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include "minishell.h"
 #include "libft.h"
 #include "ft_printf.h"
+#include "expand_utils.h"
+#include <readline/readline.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "expand_utils.h"
 
 int	main(int argc, char **argv, char **env)
 {
@@ -24,6 +25,7 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	rl_event_hook = &do_nothing;
 	new_env.ret = 0;
 	new_env.ptree = -1;
 	wildcard("??it");
