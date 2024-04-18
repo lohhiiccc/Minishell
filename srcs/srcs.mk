@@ -72,6 +72,7 @@ SRC_EXEC = exec \
 		   exec_output \
 		   exec_here_doc \
 		   exec_build_in \
+		   exec_exe \
 
 SRC_MAKE_NODE = command \
 			    operator \
@@ -91,6 +92,7 @@ SRC_MAKETREE_UTILS = add_down \
 
 SRC_ENV = init_env \
 		  clear_env \
+		  found_value_of_variable \
 
 SRC_EXPANDER = expand_cmd \
 		   	   expand_file \
@@ -107,10 +109,13 @@ SRC_EXPANDER_EXPAND = expand_var \
 			  		 expand_ret \
 			  		 expand_quote \
 
-SRC_SIGNAL = signal \
+SRC_SIGNAL = signal_main \
+			 signal_main_wait \
+			 signal_child \
+			 do_nothing \
 
 SRC_WILDCARD = wildcard \
-			   get_folder
+			   get_folder \
 
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#

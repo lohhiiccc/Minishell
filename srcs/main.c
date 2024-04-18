@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/19 01:44:53 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/19 01:45:36 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	new_env.ret = 0;
 	new_env.ptree = -1;
-	ms_signal();
 	wildcard("??it");
 	if (!isatty(0) || !isatty(1))
 	{
