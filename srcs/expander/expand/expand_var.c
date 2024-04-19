@@ -4,7 +4,7 @@
 #include "ft_printf.h"
 
 static int8_t free_and_return(t_vector *v);
-
+//todo: add wildcard
 int8_t expand_var(char **str, t_vector *env)
 {
 	char		*s;

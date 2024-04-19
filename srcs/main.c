@@ -27,7 +27,6 @@ int	main(int argc, char **argv, char **env)
 	new_env.ret = 0;
 	new_env.ptree = -1;
 	ms_signal();
-	wildcard("M*");
 	if (!isatty(0) || !isatty(1))
 	{
 		ft_dprintf(2, "minichel: please use a tty\n");

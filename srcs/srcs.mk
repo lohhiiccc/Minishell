@@ -104,13 +104,15 @@ SRC_EXPANDER_UTILS = add_var \
 				    set_negative \
 
 SRC_EXPANDER_EXPAND = expand_var \
-			  		 expand_ret \
-			  		 expand_quote \
+			  	      expand_ret \
+			  	      expand_quote \
 
 SRC_SIGNAL = signal \
 
-SRC_WILDCARD = wildcard \
-			   get_folder
+SRC_WILDCARD = is_match \
+			   wildcard \
+			   get_folder \
+			   expand_wildcard \
 
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
