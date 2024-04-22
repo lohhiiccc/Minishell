@@ -2,7 +2,7 @@
 #include "expand_utils.h"
 #include "libft.h"
 
-int8_t wildcard(char *patern, char **wildcard)
+int8_t wildcard(char *patern, char **wildcard)//todo : wildcard not working with quotes
 {
 	DIR				*directory;
 	struct dirent	*dir_data;
