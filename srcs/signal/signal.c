@@ -13,7 +13,6 @@
 #include <signal.h>
 #include <unistd.h>
 #include <readline/readline.h>
-#include <unistd.h>
 
 static void	handle_sigint(int sig);
 

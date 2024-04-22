@@ -1,6 +1,5 @@
 
 #include "libft.h"
-#include "ft_printf.h"
 
 void	remove_quote(char *s)
 {

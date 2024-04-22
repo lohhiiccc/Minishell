@@ -12,11 +12,8 @@
 
 #include "ms_signal.h"
 #include "minishell.h"
-#include "libft.h"
 #include "ft_printf.h"
 #include <unistd.h>
-#include <stdlib.h>
-#include "expand_utils.h"
 
 int	main(int argc, char **argv, char **env)
 {

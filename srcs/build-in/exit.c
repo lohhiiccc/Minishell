@@ -13,7 +13,6 @@
 #include "exec.h"
 #include "env.h"
 #include "vector.h"
-#include <stdlib.h>
 
 void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out)
 {

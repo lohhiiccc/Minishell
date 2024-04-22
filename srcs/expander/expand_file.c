@@ -5,7 +5,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static uint8_t ambiguous_redirect(char *s);
+static int8_t ambiguous_redirect(char *s);
 int8_t	expand_file(char *s, t_env *env)
 {
 	size_t	i;
@@ -28,7 +28,7 @@ int8_t	expand_file(char *s, t_env *env)
 	return (0);
 }
 
-static uint8_t ambiguous_redirect(char *s)
+static int8_t ambiguous_redirect(char *s)
 {
 	ft_dprintf(2, "minichell: %s: ambiguous redirect\n", s);
 	s = NULL;

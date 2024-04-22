@@ -20,6 +20,7 @@ EXPANDER_UTILS_DIR = $(EXPANDER_DIR)utils/
 EXPANDER_EXPAND_DIR = $(EXPANDER_DIR)expand/
 SIGNAL_DIR = $(SRC_DIR)signal/
 WILDCARD_DIR = $(EXPANDER_DIR)wildcard/
+TILDE_EXPAND_DIR = $(EXPANDER_DIR)tilde/
 
 #-------------------------------------------------------------------------#
 #----------------------------------files-----------------------------------#
@@ -114,6 +115,8 @@ SRC_WILDCARD = is_match \
 			   get_folder \
 			   expand_wildcard \
 
+SRC_TILDE_EXPAND = tilde
+
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
 
@@ -133,6 +136,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(addprefix $(LEXSYNTAX_DIR), $(addsuffix .c, $(SRC_LEXSYNTAX))) \
 	   $(addprefix $(MAKE_NODE_DIR), $(addsuffix .c, $(SRC_MAKE_NODE))) \
 	   $(addprefix $(PRINTTREE_DIR), $(addsuffix .c, $(SRC_PRINT_TREE))) \
+	   $(addprefix $(TILDE_EXPAND_DIR), $(addsuffix .c, $(SRC_TILDE_EXPAND))) \
 	   $(addprefix $(MAKETREE_UTILS_DIR), $(addsuffix .c, $(SRC_MAKETREE_UTILS))) \
 	   $(addprefix $(EXPANDER_UTILS_DIR), $(addsuffix .c, $(SRC_EXPANDER_UTILS))) \
 	   $(addprefix $(EXPANDER_EXPAND_DIR), $(addsuffix .c, $(SRC_EXPANDER_EXPAND))) \

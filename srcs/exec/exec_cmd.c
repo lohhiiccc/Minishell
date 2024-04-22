@@ -19,7 +19,6 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd);

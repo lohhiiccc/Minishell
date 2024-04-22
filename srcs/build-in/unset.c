@@ -12,7 +12,6 @@
 
 #include "tree.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 static int	found_sep(char *str, char sep);
 static int	is_variable_name(t_cmd *cmd, char *str);
