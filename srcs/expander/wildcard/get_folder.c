@@ -7,7 +7,7 @@ static int		ft_sort(const char *s1, char *s2);
 static void		ft_advanced_sort_string_tab(char **tab, int (*cmp)(const char *, char *));
 static uint8_t	get_next(DIR *directory, struct dirent **dir_data);
 
-char **get_folder(DIR *directory, struct dirent **dir_data)
+char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden)
 {
 	t_vector	res;
 
@@ -15,6 +15,8 @@ char **get_folder(DIR *directory, struct dirent **dir_data)
 		return (NULL);
 	while (get_next(directory, dir_data))
 	{
+		if ((*dir_data)->d_name[0] == '.' && !include_hidden)
+			continue;
 		if (-1 == ft_vector_add_ptr(&res, ft_strdup((*dir_data)->d_name)))
 		{
 			ft_vector_free(&res, free);
