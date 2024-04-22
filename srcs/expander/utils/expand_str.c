@@ -1,5 +1,6 @@
 
 #include "expand_utils.h"
+#include "ft_printf.h"
 
 static uint8_t have_wildcard(char *str);
 int8_t expand_str(char **str, size_t i, t_env *env, char *error)
@@ -13,7 +14,10 @@ int8_t expand_str(char **str, size_t i, t_env *env, char *error)
 	}
 	set_negative(str[i]);
 	if (have_wildcard(str[i]))
-		return (wildcard(str[i], &str[i]));
+	{
+		if (-1 == wildcard(str[i], &str[i]))
+			return (-1);
+	}
 	return (0);
 }
 
