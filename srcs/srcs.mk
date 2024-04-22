@@ -95,6 +95,7 @@ SRC_ENV = init_env \
 
 SRC_EXPANDER = expand_cmd \
 		   	   expand_file \
+			   expand_wildcard \
 		  	   expand_here_doc_delimiter \
 
 SRC_EXPANDER_UTILS = add_var \
@@ -103,6 +104,7 @@ SRC_EXPANDER_UTILS = add_var \
 				    free_expand \
 				    get_env_line \
 				    set_negative \
+				    have_wildecard \
 
 SRC_EXPANDER_EXPAND = expand_var \
 			  	      expand_ret \
@@ -113,7 +115,7 @@ SRC_SIGNAL = signal \
 SRC_WILDCARD = is_match \
 			   wildcard \
 			   get_folder \
-			   expand_wildcard \
+			   expand_one_wildcard \
 
 SRC_TILDE_EXPAND = tilde
 

@@ -9,7 +9,7 @@ static int8_t	add_wildcard_in_vector(t_vector *res, char **folder, char *patern,
 static int8_t	free_folder(char **folder, size_t i);
 static char		*get_patern(uint8_t is_folder);
 
-int8_t  expand_wild(char *patern, char **folder, char **str, uint8_t is_folder)
+int8_t  expand_one_wilde(char *patern, char **folder, char **str, uint8_t is_folder)
 {
 	t_vector	res;
 	char		c;
@@ -36,7 +36,6 @@ int8_t  expand_wild(char *patern, char **folder, char **str, uint8_t is_folder)
 	*str = ft_vector_get(&res, 0);
 	return (ret);
 }
-
 
 static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern, uint8_t is_folder)
 {
@@ -70,7 +69,6 @@ static char *get_patern(uint8_t is_folder)
 	if (is_folder)
 		return (IS_FOLDER);
 	return (IS_NOT_FOLDER);
-
 }
 
 static int8_t	free_folder(char **folder, size_t i)

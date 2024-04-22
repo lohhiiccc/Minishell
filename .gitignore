@@ -8,7 +8,7 @@
 *.elf
 build
 .idea
-expand_wild
+expand_one_wilde
 
 # Linker output
 *.ilk
