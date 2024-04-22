@@ -5,15 +5,16 @@
 
 static int		ft_sort(const char *s1, char *s2);
 static void		ft_advanced_sort_string_tab(char **tab, int (*cmp)(const char *, char *));
-static uint8_t	get_next(DIR *directory, struct dirent **dir_data);
+//static uint8_t	get_next(DIR *directory, struct dirent **dir_data);
+static uint8_t get_next(DIR *directory, struct dirent **dir_data, uint8_t dir);
 
-char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden)
+char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden, uint8_t dir)
 {
 	t_vector	res;
 
 	if (-1 == ft_vector_init(&res, sizeof(char *)))
 		return (NULL);
-	while (get_next(directory, dir_data))
+	while (get_next(directory, dir_data, dir))
 	{
 		if ((*dir_data)->d_name[0] == '.' && !include_hidden)
 			continue;
@@ -82,10 +83,12 @@ static int	ft_sort(const char *s1, char *s2)
 	return (c1 - c2);
 }
 
-static uint8_t get_next(DIR *directory, struct dirent **dir_data)
+static uint8_t get_next(DIR *directory, struct dirent **dir_data, uint8_t dir)
 {
 	*dir_data = readdir(directory);
-	if (NULL != *dir_data)
-		return (1);
-	return (0);
+	if (NULL == *dir_data)
+		return (0);
+	if ((*dir_data)->d_type != DT_DIR && dir)
+		return (get_next(directory, dir_data, dir));
+	return (1);
 }

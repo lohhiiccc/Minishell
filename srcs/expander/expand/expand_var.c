@@ -1,6 +1,8 @@
 
+#include <stdlib.h>
 #include "expand_utils.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 static int8_t free_and_return(t_vector *v);
 //todo: add wildcard

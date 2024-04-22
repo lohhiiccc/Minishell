@@ -5,10 +5,11 @@
 #include "expand_utils.h"
 #include "libft.h"
 
-static int8_t	add_wildcard_in_vector(t_vector *res, char **folder, char *patern);
+static int8_t	add_wildcard_in_vector(t_vector *res, char **folder, char *patern, uint8_t is_folder);
 static int8_t	free_folder(char **folder, size_t i);
+static char		*get_patern(uint8_t is_folder);
 
-int8_t  expand_wild(char *patern, char **folder, char **str)
+int8_t  expand_wild(char *patern, char **folder, char **str, uint8_t is_folder)
 {
 	t_vector	res;
 	char		c;
@@ -16,7 +17,7 @@ int8_t  expand_wild(char *patern, char **folder, char **str)
 
 	if (-1 == ft_vector_init(&res, sizeof(char)))
 		return (-1);
-	ret = add_wildcard_in_vector(&res, folder, patern);
+	ret = add_wildcard_in_vector(&res, folder, patern, is_folder);
 	if (ret == -1)
 	{
 		ft_vector_free(&res, NULL);
@@ -36,7 +37,8 @@ int8_t  expand_wild(char *patern, char **folder, char **str)
 	return (ret);
 }
 
-static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern)
+
+static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern, uint8_t is_folder)
 {
 	size_t	i;
 	char	*buffer;
@@ -48,7 +50,7 @@ static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern)
 	{
 		if (is_match(folder[i], patern, 0, 0))
 		{
-			buffer = ft_sprintf("%S%s ", buffer, folder[i]);
+			buffer = ft_sprintf(get_patern(is_folder), buffer, folder[i]);
 			if (NULL == buffer)
 				return (free_folder(folder, i));
 		}
@@ -61,6 +63,14 @@ static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern)
 	save = ft_vector_add_n(res, buffer, ft_strlen(buffer));
 	free(buffer);
 	return (save);
+}
+
+static char *get_patern(uint8_t is_folder)
+{
+	if (is_folder)
+		return (IS_FOLDER);
+	return (IS_NOT_FOLDER);
+
 }
 
 static int8_t	free_folder(char **folder, size_t i)

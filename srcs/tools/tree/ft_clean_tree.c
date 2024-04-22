@@ -24,6 +24,7 @@ static void	clean_cmd(t_tree *tree)
 		i++;
 	}
 //	if (((t_cmd *)tree->structur)->arg)
+	free(((t_cmd *)tree->structur)->arg[i]);
 	free(((t_cmd *)tree->structur)->arg);
 	free(tree->structur);
 }

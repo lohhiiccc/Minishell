@@ -1,4 +1,5 @@
 
+#include <stdlib.h>
 #include "expand_utils.h"
 
 static uint8_t have_wildcard(char *str);
