@@ -1,7 +1,6 @@
 
 #include "expand_utils.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 void	fix_patern(char *patern);
 
@@ -18,10 +17,7 @@ int8_t wildcard(char *patern, char **wildcard)//todo : wildcard not working with
 		return (-1);
 	fix_patern(patern);
 	is_folder = patern[ft_strlen(patern) - 1] == '/';
-	if (patern[0] == '.')
-		folder = get_folder(directory, &dir_data, 1, is_folder);
-	else
-		folder = get_folder(directory, &dir_data, 0, is_folder);
+	folder = get_folder(directory, &dir_data, (patern[0] == '.'), is_folder);
 	closedir(directory);
 	if (NULL == folder)
 		return (-1);

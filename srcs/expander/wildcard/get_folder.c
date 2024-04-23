@@ -105,7 +105,7 @@ char *get_str(char *str)
 	while (str[i])
 	{
 		res[i] = str[i];
-		if (res[i] == ' ' || res[i] == '\t' || res[i] == '\n')
+		if (res[i] == ' ' || res[i] == '\t' || res[i] == '\n' || res[i] == '\'' || res[i] == '"' || res[i] == '*' || res[i] == '?')
 			res[i] = -res[i];
 		i++;
 	}

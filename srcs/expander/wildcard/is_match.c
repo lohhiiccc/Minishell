@@ -25,7 +25,7 @@ static char	abs(char c)
 	if (c < 0)
 	{
 		c = -c;
-		if (c == '*' || c == '?')
+		if (c == '*' || c == '?' || c == '\'' || c == '"')
 			c = -c;
 		return (c);
 	}

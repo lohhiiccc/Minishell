@@ -13,7 +13,7 @@ int	put_str_expand(t_vector *v, va_list arg)
 		return (-1);
 	while (str[i])
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+		if (str[i] < 0)
 			str[i] = -str[i];
 		i++;
 	}
