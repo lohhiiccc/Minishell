@@ -6,12 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:44 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/07 23:10:32 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/23 18:13:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include "libft.h"
+#include <stdlib.h>
 
 static void	ft_vector_add_and_null(char *cmd, t_vector *env);
 static int	found_sep(char *str, char sep);
@@ -21,6 +22,7 @@ int	ft_export(char **cmd, t_vector *env)
 	size_t	i;
 	size_t	j;
 	int		n;
+	char	**clean;
 
 	i = 1;
 	j = 0;
@@ -33,7 +35,11 @@ int	ft_export(char **cmd, t_vector *env)
 			{
 				if (!ft_strncmp(cmd[i],
 						*(char **)ft_vector_get(env, j), n + 1))
-					ft_vector_delete_elem(env, j);
+					{
+						clean = ft_vector_get(env, j);
+						free(*clean);
+						ft_vector_delete_elem(env, j);
+					}
 				j++;
 			}
 			ft_vector_add_and_null(cmd[i], env);

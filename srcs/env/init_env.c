@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:30:31 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/18 23:07:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/23 18:21:00 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ int	init_env(char **env, t_vector *new_env)
 int	inc_shlvl(t_vector *new_env)
 {
 	char	*shlvl;
-	char	**tab;
+	char	*tab[3];
 
-	tab = malloc(sizeof(char *) * 3);
-	if (!tab)
-		return (-1);
 	tab[0] = NULL;
 	tab[2] = NULL;
 	shlvl = found_value_of_variable("SHLVL", *new_env);
@@ -61,17 +58,13 @@ int	inc_shlvl(t_vector *new_env)
 	{
 		tab[1] = ft_strdup("SHLVL=1");
 		ft_export(tab, new_env);
-		ft_free_tab(tab);
 		return (0);
 	}
 	tab[1] = update_shlvl(shlvl);
 	if (!tab[1])
-	{
-		ft_free_tab(tab);
 		return (-1);
-	}
 	ft_export(tab, new_env);
-	ft_free_tab(tab);
+	free(tab[1]);
 	return (0);
 }
 
@@ -95,6 +88,8 @@ resetting to 1\n", temp);
 	if (!shlvl)
 		return (NULL);
 	ret = ft_strjoin("SHLVL=", shlvl);
+	if (!ret)
+		return (NULL);
 	free(shlvl);
 	return (ret);
 }
