@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   lex_operator.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:29:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 00:45:51 by lrio             ###   ########.fr       */
+/*   Updated: 2024/04/17 21:39:40 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "token.h"
 #include <stdint.h>
 
@@ -20,8 +21,8 @@ uint8_t	lex_operator(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (T_LOGICAL_OP == type|| T_RED_OUT == type|| T_RED_IN == type
-		|| T_PIPE == type|| T_NONE == type|| T_PARENTHESE_OP == type)
+	if (T_LOGICAL_OP == type || T_RED_OUT == type || T_RED_IN == type
+		|| T_PIPE == type || T_NONE == type || T_PARENTHESE_OP == type)
 		return (1);
 	return (0);
 }

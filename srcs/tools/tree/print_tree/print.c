@@ -6,30 +6,30 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 00:47:02 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/07 22:30:57 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 22:21:08 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include "ft_printf.h"
 
-static void _print_tree(t_tree *root, size_t space);
+static void	_print_tree(t_tree *root, size_t space);
 static void	format(t_tree *root);
 
-void print_tree(t_tree *root)
+void	print_tree(t_tree *root)
 {
 	ft_printf("<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
 	_print_tree(root, 0);
 	ft_printf("\n\n<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->-<->\n");
 }
 
-static void _print_tree(t_tree *root, size_t space)
+static void	_print_tree(t_tree *root, size_t space)
 {
-	size_t i;
+	size_t	i;
 
 	i = PTREE_INDENT;
 	if (root == NULL)
-		return;
+		return ;
 	space += PTREE_INDENT;
 	_print_tree(root->right, space);
 	ft_printf("\n");
@@ -41,7 +41,7 @@ static void _print_tree(t_tree *root, size_t space)
 
 static void	format(t_tree *root)
 {
-	size_t i;
+	size_t	i;
 
 	if (root->type == CMD)
 	{

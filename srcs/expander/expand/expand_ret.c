@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_ret.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 20:12:52 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 20:13:12 by mjuffard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdint.h>
 #include <stdlib.h>
 #include "vector.h"
 
-static int8_t new_str(t_vector *vector, char *str, uint8_t ret);
-static int8_t vector_put_ret(char *num, uint8_t ret, t_vector *vector);
+static int8_t	new_str(t_vector *vector, char *str, uint8_t ret);
+static int8_t	vector_put_ret(char *num, uint8_t ret, t_vector *vector);
 
-int8_t expand_ret(char **str, uint8_t ret)
+int8_t	expand_ret(char **str, uint8_t ret)
 {
 	size_t		i;
 	char		*s;
@@ -34,7 +45,7 @@ int8_t expand_ret(char **str, uint8_t ret)
 	return (0);
 }
 
-static int8_t new_str(t_vector *vector, char *str, uint8_t ret)
+static int8_t	new_str(t_vector *vector, char *str, uint8_t ret)
 {
 	static char	num[] = "0123456789";
 	size_t		i;
@@ -56,7 +67,7 @@ static int8_t new_str(t_vector *vector, char *str, uint8_t ret)
 	return (ft_vector_add(vector, &num[10]));
 }
 
-static int8_t vector_put_ret(char *num, uint8_t ret, t_vector *vector)
+static int8_t	vector_put_ret(char *num, uint8_t ret, t_vector *vector)
 {
 	if (ret < 10)
 		return (ft_vector_add(vector, &num[ret]));

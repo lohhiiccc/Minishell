@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 15:29:07 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/19 01:35:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 #include "exec.h"
 #include "ft_printf.h"
 #include "prompt.h"
+#include "ms_signal.h"
 #include <unistd.h>
 
-static uint8_t init_fd(t_fds *fd);
-static uint8_t free_fd(t_fds *fd, uint8_t ret);
+extern int	g_sig_value;
 
-int prompt(t_env *env)
+static uint8_t	init_fd(t_fds *fd);
+static uint8_t	free_fd(t_fds *fd, uint8_t ret);
+static int		create_and_exec_tree(t_env *env, t_fds *fd, t_vector *tokens);
+
+int	prompt(t_env *env)
 {
 	char		*str;
 	t_vector	tokens;
-	t_tree		*tree;
 	t_fds		fd;
 
-	tree = NULL;
+	ms_signal_main();
 	if (init_fd(&fd))
 		return (1); //todo print erreur malloc
 	tokens.nbr_elem = 0;
@@ -35,32 +38,44 @@ int prompt(t_env *env)
 	{
 		ft_printf("Exit\n");
 		clear_env(&env->env);
-		clean_exit(tree, &fd.fd_in, &fd.fd_out, env->ret);
+		clean_exit(NULL, &fd.fd_in, &fd.fd_out, env->ret);
 	}
-	if (-1 != lexer(str, &tokens))
+	if (g_sig_value != 0)
 	{
-		tree = parsing(env, &tokens);
-		if (NULL == tree)
-			return (free_fd(&fd, 1));
-		if (env->ptree == 1)
-			print_tree(tree);
-		env->ret = exec_args(tree, &fd, NULL, env);
-		ft_clean_tree(tree);
+		env->ret = 128 + g_sig_value;
+		return (128 + g_sig_value);
 	}
+	if (-1 != lexer(str, &tokens)
+		&& 1 == create_and_exec_tree(env, &fd, &tokens))
+		return (1);
 	if (str && str[0])
 		manage_history(str);
 	free(str);
 	return (free_fd(&fd, 1));
 }
 
-static uint8_t free_fd(t_fds *fd, uint8_t ret)
+static int	create_and_exec_tree(t_env *env, t_fds *fd, t_vector *tokens)
+{
+	t_tree	*tree;
+
+	tree = parsing(env, tokens);
+	if (NULL == tree)
+		return (free_fd(fd, 1));
+	if (env->ptree == 1)
+		print_tree(tree);
+	env->ret = exec_args(tree, fd, NULL, env);
+	ft_clean_tree(tree);
+	return (0);
+}
+
+static uint8_t	free_fd(t_fds *fd, uint8_t ret)
 {
 	ft_vector_free(&fd->fd_in, NULL);
 	ft_vector_free(&fd->fd_out, NULL);
 	return (ret);
 }
 
-static uint8_t init_fd(t_fds *fd)
+static uint8_t	init_fd(t_fds *fd)
 {
 	if (-1 == ft_vector_init(&fd->fd_in, sizeof(int)))
 		return (1);

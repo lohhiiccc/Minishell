@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_env_line.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 20:02:31 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 20:02:47 by mjuffard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "expand_utils.h"
 
@@ -5,16 +16,16 @@ static int	searchvar(const char *s1, char *s2);
 
 size_t	get_envline(char **env, char *var)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (env[i])
 	{
 		if (searchvar(var, env[i]))
-			return i;
+			return (i);
 		i++;
 	}
-	return i;
+	return (i);
 }
 
 static int	searchvar(const char *s1, char *s2)

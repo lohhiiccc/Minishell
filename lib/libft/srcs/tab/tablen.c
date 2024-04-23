@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_signal.h                                        :+:      :+:    :+:   */
+/*   tablen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 19:22:26 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/19 00:10:37 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/04/17 17:46:42 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 17:47:01 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MS_SIGNAL_H
-# define MS_SIGNAL_H
+#include "libft.h"
 
-void	ms_signal_main(void);
-void	ms_signal_child(void);
-void	ms_signal_main_wait(void);
-int		do_nothing(void);
+size_t	ft_tab_len(char **tab)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tag_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 22:31:47 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 16:27:34 by lrio             ###   ########.fr       */
+/*   Updated: 2024/04/17 22:18:33 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	tag_arg(t_vector *tokens)
 	}
 }
 
-static uint8_t is_sep(t_token_type type)
+static uint8_t	is_sep(t_token_type type)
 {
 	return (type == T_LOGICAL_OP || type == T_PIPE);
 }

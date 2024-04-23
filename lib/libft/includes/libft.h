@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:49:35 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/19 17:36:49 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 17:49:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ char	*ft_itoa(long n);
 char	*ft_itoa_base(size_t n, char *base);
 char	*ft_strndup(const char *src, size_t n);
 void	ft_free_tab(char **tab);
+size_t	ft_tab_len(char **tab);
 
 #endif

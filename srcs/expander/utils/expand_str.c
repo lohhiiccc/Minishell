@@ -9,7 +9,7 @@ int8_t expand_str(char **str, size_t i, t_env *env, char *error)
 	if (-1 == expand_ret(&str[i], env->ret)
 		|| -1 == expand_var(&str[i], &env->env))
 	{
-		free_expand(str, i , error);
+		free_expand(str, i, error);
 		return (-1);
 	}
 	set_negative(str[i]);

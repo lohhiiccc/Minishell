@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   lex_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:06:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/04 00:46:12 by lrio             ###   ########.fr       */
+/*   Updated: 2024/04/17 21:54:45 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-#include "token.h"
+
 #include <stdint.h>
+#include "token.h"
 
 uint8_t	lex_pipe(t_vector *vector, size_t i)
 {
@@ -20,7 +21,7 @@ uint8_t	lex_pipe(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (T_CMD == type || T_FILES == type|| T_PARENTHESE_CL == type)
+	if (T_CMD == type || T_FILES == type || T_PARENTHESE_CL == type)
 		return (0);
 	return (1);
 }

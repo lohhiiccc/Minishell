@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:25:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 16:23:35 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 21:38:18 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*find_path(char *cmd, t_vector *env)
 
 	if (!cmd)
 		return (NULL);
-	if (ft_strchr(cmd, '/') && !access(cmd, F_OK))
+	if (ft_strchr(cmd, '/'))
 		ret = ft_strdup(cmd);
 	else
 	{

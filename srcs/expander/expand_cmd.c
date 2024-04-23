@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_cmd.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 19:58:25 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 19:58:39 by mjuffard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include <stdlib.h>
 #include "expand_utils.h"
 #include "libft.h"
 
-char **expand_cmd(char **cmd, t_env *env)
+char	**expand_cmd(char **cmd, t_env *env)
 {
 	size_t	i;
 	char	*str;

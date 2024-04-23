@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_signal.h                                        :+:      :+:    :+:   */
+/*   signal_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 19:22:26 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/19 00:10:37 by mjuffard         ###   ########lyon.fr   */
+/*   Created: 2024/04/03 19:22:09 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/23 18:37:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MS_SIGNAL_H
-# define MS_SIGNAL_H
+#include <signal.h>
+#include <readline/readline.h>
 
-void	ms_signal_main(void);
-void	ms_signal_child(void);
-void	ms_signal_main_wait(void);
-int		do_nothing(void);
+int	g_sig_value;
 
-#endif
+static void	handle_sigint(int sig);
+
+void	ms_signal_main(void)
+{
+	struct sigaction	sa;
+
+	g_sig_value = 0;
+	sa = (struct sigaction){0};
+	sa.sa_handler = &handle_sigint;
+	sigaction(SIGINT, &sa, NULL);
+	sa.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sa, NULL);
+}
+
+static void	handle_sigint(int sig)
+{
+	rl_done = 1;
+	g_sig_value = sig;
+}

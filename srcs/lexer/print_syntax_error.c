@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_syntax_error.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 20:14:02 by mjuffard          #+#    #+#             */
+/*   Updated: 2024/04/17 20:14:07 by mjuffard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <unistd.h>
 #include "vector.h"
 #include "token.h"
 
-int8_t print_syntax_error(t_vector *tokens)
+int8_t	print_syntax_error(t_vector *tokens)
 {
 	free_token(tokens);
 	write(2, "error\n", 6);

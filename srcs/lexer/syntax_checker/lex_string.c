@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string.c                                           :+:      :+:    :+:   */
+/*   lex_string.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lrio <lrio@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 03:46:57 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/06 17:45:33 by lrio             ###   ########.fr       */
+/*   Updated: 2024/04/17 21:55:18 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "token.h"
 #include <stdint.h>
 
 static size_t	get_quote_len(char *str, unsigned char *error);
 static uint8_t	search_cmd(t_vector *vector, size_t i);
 static uint8_t	check_str(t_vector *vector, size_t i);
+
 uint8_t	lex_string(t_vector *vector, size_t i)
 {
 	t_token_type	last;
