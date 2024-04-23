@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:59:12 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 20:00:02 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/23 18:35:55 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static uint8_t	ambiguous_redirect(char *s);
-
+static int8_t	ambiguous_redirect(char *s);
+static int8_t	convert_wildcard(char **str);
 int8_t	expand_file(char *s, t_env *env)
 {
 	size_t	i;
@@ -35,14 +35,41 @@ int8_t	expand_file(char *s, t_env *env)
 			return (ambiguous_redirect(s2));
 		i++;
 	}
+	if (-1 == convert_wildcard(&s))
+		return (-1);
 	free(s2);
 	remove_quote(s);
 	return (0);
 }
 
-static uint8_t	ambiguous_redirect(char *s)
+static int8_t	convert_wildcard(char **str)
 {
-	ft_dprintf(2, "minichell: %s: ambiguous redirect\n", s);
+	char	**tab;
+
+	tab = ft_null_alloc(2, sizeof(char *));
+	if (NULL == tab)
+		return (-1);
+	tab[0] = *str;
+	tab = expand_wildcard(tab);
+	if (NULL == tab)
+	{
+		free(*str);
+		return (-1);
+	}
+	if (tab[1])
+	{
+		ft_free_tab(tab);
+		return (ambiguous_redirect(*str));
+	}
+	*str = tab[0];
+	free(tab[1]);
+	free((tab));
+	return (0);
+}
+
+static int8_t ambiguous_redirect(char *s)
+{
+	ft_dprintf(2, "minichell: %e: ambiguous redirect\n", s);
 	s = NULL;
 	free(s);
 	return (-1);

@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include "vector.h"
 #include "env.h"
-#include "ft_printf.h"
 
 void	clear_env(t_vector *env)
 {

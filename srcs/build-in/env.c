@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "tree.h"
-#include <stdio.h>
 
 int	ft_env(t_cmd *cmd, t_vector *fd_out)
 {
