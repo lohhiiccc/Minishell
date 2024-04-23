@@ -15,7 +15,6 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/wait.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env);

@@ -8,7 +8,7 @@
 *.elf
 build
 .idea
-test
+fill_wildecard
 
 # Linker output
 *.ilk
@@ -54,3 +54,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+test/*

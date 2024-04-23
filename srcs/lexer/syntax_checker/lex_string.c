@@ -12,7 +12,7 @@
 #include "token.h"
 #include <stdint.h>
 
-static size_t			get_quote_len(char *str, unsigned char *error);
+static size_t	get_quote_len(char *str, unsigned char *error);
 static uint8_t	search_cmd(t_vector *vector, size_t i);
 static uint8_t	check_str(t_vector *vector, size_t i);
 uint8_t	lex_string(t_vector *vector, size_t i)

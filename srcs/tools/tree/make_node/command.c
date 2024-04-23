@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "tree.h"
-#include "expand.h"
 #include "token.h"
 #include <stdlib.h>
 #include "libft.h"

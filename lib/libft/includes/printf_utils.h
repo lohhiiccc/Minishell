@@ -26,12 +26,14 @@ typedef enum e_type
 	UP_HEX,
 	LOW_HEX,
 	STRF,
+	STRE,
 	OTHER
 }	t_type;
 
 typedef int(*	t_put)(t_vector *v, va_list arg);
 
 int	put_strfree(t_vector *v, va_list arg);
+int	put_str_expand(t_vector *v, va_list arg);
 int	put_char(t_vector *v, va_list arg);
 int	put_str(t_vector *v, va_list arg);
 int	put_add(t_vector *v, va_list arg);

@@ -19,7 +19,7 @@ uint8_t	is_redirection(t_node root_type)
 		|| root_type == OUTPUT);
 }
 
-uint8_t	is_operator(t_node root_type)
+uint8_t	is_l_operator(t_node root_type)
 {
 	return ((root_type == O_OR || root_type == O_AND));
 }

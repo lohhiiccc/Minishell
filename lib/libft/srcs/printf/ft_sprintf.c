@@ -33,6 +33,8 @@ static int	find_type(char c)
 		return (LOW_HEX);
 	else if (c == 'S')
 		return (STRF);
+	else if (c == 'e')
+		return (STRE);
 	else
 		return (OTHER);
 }
@@ -47,7 +49,8 @@ static int	put_in_vector(t_vector *v, va_list arg, char c)
 		&put_unsigned,
 		&put_up_hex,
 		&put_low_hex,
-		&put_strfree
+		&put_strfree,
+		&put_str_expand
 	};
 	int			i;
 

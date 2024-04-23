@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/29 03:01:08 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 16:56:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	create_file_here_doc(t_tree *tree)
 		return (1);
 	file_name = malloc(sizeof(char) * 7);
 	if (!file_name)
-		return (1);
+		return (2);
 	if (read(fd, file_name, 6) == -1)
-		return (1);
+		return (3);
 	file_name[6] = 0;
 //	while (access(file_name, F_OK))
 //	{
@@ -70,16 +70,16 @@ int	create_file_here_doc(t_tree *tree)
 //		file_name[6] = 0;
 //	}
 	close(fd);
-	fd = open(file_name, O_RDWR | O_CREAT, 0777);
+	fd = open(file_name, O_RDWR | O_CREAT, 0333);
 	if (fd == -1)
-		return (1);
+		return (6);
 	str = readline("Le croquant > ");
 	while (ft_strcmp(str, (char *)tree->structur))
 	{
 		if (write(fd, str, ft_strlen(str)) == -1)
-			return (1);
+			return (7);
 		if (write(fd, "\n", 1) == -1)
-			return (1);
+			return (8);
 		free(str);
 		str = readline("Le croquant > ");
 	}

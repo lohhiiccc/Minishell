@@ -31,6 +31,10 @@ static int	find_type(char c)
 		return (UP_HEX);
 	else if (c == 'x')
 		return (LOW_HEX);
+	else if (c == 'S')
+		return (STRF);
+	else if (c == 'e')
+		return (STRE);
 	else
 		return (OTHER);
 }
@@ -38,25 +42,26 @@ static int	find_type(char c)
 static int	put_in_vector(t_vector *v, va_list arg, char c)
 {
 	const t_put	tab[] = {
-		&put_char,
-		&put_str,
-		&put_add,
-		&put_int,
-		&put_unsigned,
-		&put_up_hex,
-		&put_low_hex
+			&put_char,
+			&put_str,
+			&put_add,
+			&put_int,
+			&put_unsigned,
+			&put_up_hex,
+			&put_low_hex,
+			&put_strfree,
+			&put_str_expand
 	};
 	int			i;
-	int			ret;
 
-	ret = 0;
 	i = find_type(c);
 	if (i != OTHER)
-		ret = tab[i](v, arg);
+		tab[i](v, arg);
 	else if (ft_vector_add(v, &c) == -1)
 		return (-1);
-	return (ret);
+	return (0);
 }
+
 
 int	ft_dprintf(int fd, char *str, ...)
 {

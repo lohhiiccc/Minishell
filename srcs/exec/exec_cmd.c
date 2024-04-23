@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 22:35:40 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/17 16:50:34 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd);
 static int	exec_child_cmd(t_tree *tree, t_fds *fds);
 
 int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
 {
-	int		ret;
+	int			ret;
+	struct stat	file;
 
 	((t_cmd *)tree->structur)->arg = expand_cmd(((t_cmd *) tree->structur)->arg,
-			   ((t_cmd *) tree->structur)->env); //todo: securiser ca
+			((t_cmd *) tree->structur)->env); //todo: securiser ca
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
 		ret = exec_build_in(tree, fds, env);
 	else
@@ -43,8 +45,18 @@ int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
 		}
 		else
 		{
-			ret = exec_child_cmd(tree, fds);
-			free(((t_cmd *)tree->structur)->path);
+			stat(((t_cmd *)tree->structur)->path, &file);
+			if (S_ISDIR(file.st_mode))
+			{
+				ft_dprintf(2, "Minichell: %s: Is a directory\n",
+					((t_cmd *)tree->structur)->arg[0]);
+				ret = 126;
+			}
+			else
+			{
+				ret = exec_child_cmd(tree, fds);
+				free(((t_cmd *)tree->structur)->path);
+			}
 		}
 	}
 	return (ret);
