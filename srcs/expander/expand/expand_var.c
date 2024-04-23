@@ -5,7 +5,6 @@
 #include "ft_printf.h"
 
 static int8_t free_and_return(t_vector *v);
-//todo: add wildcard
 int8_t expand_var(char **str, t_vector *env)
 {
 	char		*s;
@@ -31,6 +30,7 @@ int8_t expand_var(char **str, t_vector *env)
 	}
 	if (-1 == ft_vector_add(&new, &s[i]))
 		return (free_and_return(&new));
+	free(s);
 	*str = ft_vector_get(&new, 0);
 	return (0);
 }
