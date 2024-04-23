@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 17:28:50 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/20 01:46:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	create_file_here_doc(t_tree *tree)
 //		file_name[6] = 0;
 //	}
 	close(fd);
-	fd = open(file_name, O_RDWR | O_CREAT, 0333);
+	fd = open(file_name, O_RDWR | O_CREAT, 0644);
 	if (fd == -1)
 		return (6);
 	str = readline("Le croquant > ");
