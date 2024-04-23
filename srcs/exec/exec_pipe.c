@@ -6,18 +6,21 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 23:28:09 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/22 22:27:43 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "ft_printf.h"
+#include "ms_signal.h"
 #include <errno.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "ms_signal.h"
+#include <signal.h>
+
+extern int	g_sig_value;
 
 static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env);
 static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env);
@@ -29,6 +32,9 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 	int	pid;
 	int	fd[2];
 
+	env->is_main = 1;
+	
+	ms_signal_main_wait();
 	if (pipe(fd) == -1)
 		return (print_error(strerror(errno), 1));
 	pid = fork();
@@ -44,6 +50,11 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 	}
 	while (wait(0) != -1)
 		;
+	if (g_sig_value == SIGINT)
+		ft_printf("\n");
+	if (g_sig_value == SIGQUIT)
+		ft_printf("Quit (core dumped)\n");
+	env->is_main = 0;
 	return (ret);
 }
 
@@ -92,5 +103,7 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env)
 	else if (close(fd[0]) == -1)
 		return (print_error(strerror(errno), 1));
 	waitpid(pid, &ret, 0);
-	return (WEXITSTATUS(ret));
+	if (WIFEXITED(ret))
+		return (WEXITSTATUS(ret));
+	return (1);
 }

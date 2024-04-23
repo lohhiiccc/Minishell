@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/19 01:55:14 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/22 19:21:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv, char **env)
 	rl_event_hook = &do_nothing;
 	new_env.ret = 0;
 	new_env.ptree = -1;
+	new_env.is_main = 0;
 	wildcard("??it");
 	if (!isatty(0) || !isatty(1))
 	{

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/19 01:18:13 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/22 22:14:45 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <signal.h>
 #include "env.h"
 #include "exec.h"
 #include "ft_printf.h"
 #include "ms_signal.h"
-#include <signal.h>
 
 extern int	g_sig_value;
 
@@ -29,7 +29,7 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds);
 static void	print_error(t_tree *tree, char *error);
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd);
 
-int	exec_exe(t_tree *tree, t_fds *fds)
+int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 {
 	int			ret;
 	struct stat	file;
@@ -54,6 +54,13 @@ int	exec_exe(t_tree *tree, t_fds *fds)
 		else
 			ret = exec_child_cmd(tree, fds);
 		free(((t_cmd *)tree->structur)->path);
+		if (env->is_main == 0)
+		{
+			if (g_sig_value == SIGINT)
+				ft_printf("\n");
+			if (g_sig_value == SIGQUIT)
+				ft_printf("Quit (core dumped)\n");
+		}
 	}
 	return (ret);
 }
@@ -63,8 +70,8 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds)
 	int	pid;
 	int	ret;
 
-	ms_signal_main_wait();
 	pid = fork();
+	ms_signal_main_wait();
 	if (pid == -1)
 	{
 		print_error(tree, strerror(errno));
@@ -82,14 +89,12 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds)
 		print_error(tree, strerror(errno));
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
-	waitpid(pid, &ret, 0);
+	if (waitpid(pid, &ret, 0) == -1)
+		ft_printf("%s\n", strerror(errno));
 	if (WIFEXITED(ret))
 		return (WEXITSTATUS(ret));
 	else if (__WIFSIGNALED(ret))
-	{
-		g_sig_value = WTERMSIG(ret);
 		return (128 + g_sig_value);
-	}
 	return (1);
 }
 

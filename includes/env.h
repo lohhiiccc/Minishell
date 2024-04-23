@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:26:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 22:21:50 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/22 17:45:07 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_env
 	t_vector	env;
 	uint8_t		ret;
 	int			ptree;
+	int			is_main;
 }	t_env;
 
 int		init_env(char **env, t_vector *new_env);
