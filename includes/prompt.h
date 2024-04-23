@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 22:22:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 22:23:12 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/19 18:29:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
-# define E_EGG "\001\xF0\x9F\xA5\002\x9A"
-# define E_EGG2 "\001\xF0\x9F\x90\002\xA5"
+# define E_EGG "\001\xF0\x9F\002\xA5\x9A"
+# define E_EGG2 "\001\xF0\x9F\002\x90\xA5"
 # define RED "\001\e[31m\002"
 # define UNDERLINE "\001\e[4m\002"
 # define CYAN "\001\e[0;96m\002"
