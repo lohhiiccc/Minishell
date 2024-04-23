@@ -25,8 +25,12 @@ char **expand_cmd(char **cmd, t_env *env)
 	free(str);
 	if (NULL == cmd)
 		return (NULL);
-	if (-1 == expand_wildcard(cmd))
+	cmd = expand_wildcard(cmd);
+	if (NULL == cmd)
 		return (NULL);
+	i = 0;
+	while (cmd[i])
+		remove_quote(cmd[i++]);
 	return (cmd);
 }
 

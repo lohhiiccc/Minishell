@@ -5,8 +5,8 @@
 
 static int		ft_sort(const char *s1, char *s2);
 static void		ft_advanced_sort_string_tab(char **tab, int (*cmp)(const char *, char *));
-//static uint8_t	get_next(DIR *directory, struct dirent **dir_data);
-static uint8_t get_next(DIR *directory, struct dirent **dir_data, uint8_t dir);
+static uint8_t	get_next(DIR *directory, struct dirent **dir_data, uint8_t dir);
+char			*get_str(char *str);
 
 char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden, uint8_t dir)
 {
@@ -18,7 +18,7 @@ char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidd
 	{
 		if ((*dir_data)->d_name[0] == '.' && !include_hidden)
 			continue;
-		if (-1 == ft_vector_add_ptr(&res, ft_strdup((*dir_data)->d_name)))
+		if (-1 == ft_vector_add_ptr(&res, get_str((*dir_data)->d_name)))
 		{
 			ft_vector_free(&res, free);
 			return (NULL);
@@ -91,4 +91,23 @@ static uint8_t get_next(DIR *directory, struct dirent **dir_data, uint8_t dir)
 	if ((*dir_data)->d_type != DT_DIR && dir)
 		return (get_next(directory, dir_data, dir));
 	return (1);
+}
+
+char *get_str(char *str)
+{
+	size_t i;
+	char *res;
+
+	i = 0;
+	res = ft_null_alloc(ft_strlen(str) + 1, sizeof(char));
+	if (NULL == res)
+		return (NULL);
+	while (str[i])
+	{
+		res[i] = str[i];
+		if (res[i] == ' ' || res[i] == '\t' || res[i] == '\n')
+			res[i] = -res[i];
+		i++;
+	}
+	return (res);
 }

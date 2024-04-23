@@ -24,11 +24,11 @@ void	remove_quote(char *s);
 void	set_negative(char *str);
 void	set_snegative(char *str);
 
-//int8_t	expand_one_wilde(char *patern, char **folder, char **str);
-int8_t  expand_one_wilde(char *patern, char **folder, char **str, uint8_t is_folder);
+//int8_t	fill_wildecard(char *patern, char **folder, char **str);
+int8_t  fill_wildecard(char *patern, char **folder, char **str, uint8_t is_folder);
 int8_t	expand_str(char **str, size_t i, t_env *env, char *error);
 int8_t	expand_ret(char **str, uint8_t ret);
 int8_t	expand_var(char **str, t_vector *env);
-int8_t	expand_wildcard(char **cmd);
+char ** expand_wildcard(char **cmd);
 
 #endif

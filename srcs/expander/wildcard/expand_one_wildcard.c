@@ -9,7 +9,7 @@ static int8_t	add_wildcard_in_vector(t_vector *res, char **folder, char *patern,
 static int8_t	free_folder(char **folder, size_t i);
 static char		*get_patern(uint8_t is_folder);
 
-int8_t  expand_one_wilde(char *patern, char **folder, char **str, uint8_t is_folder)
+int8_t  fill_wildecard(char *patern, char **folder, char **str, uint8_t is_folder)
 {
 	t_vector	res;
 	char		c;

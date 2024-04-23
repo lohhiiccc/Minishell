@@ -25,7 +25,7 @@ int8_t wildcard(char *patern, char **wildcard)//todo : wildcard not working with
 	closedir(directory);
 	if (NULL == folder)
 		return (-1);
-	return (expand_one_wilde(patern, folder, wildcard, is_folder));
+	return (fill_wildecard(patern, folder, wildcard, is_folder));
 }
 
 void	fix_patern(char *patern)

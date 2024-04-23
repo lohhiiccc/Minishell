@@ -93,7 +93,8 @@ SRCPRINTF = ft_dprintf \
 			put_unsigned \
 			ft_printf \
 			ft_sprintf \
-			put_str_free
+			put_str_free \
+			put_str_expand
 
 SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(CHAINEDDIR), $(addsuffix .c, $(SRCCHAINED))) \

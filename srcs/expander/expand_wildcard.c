@@ -1,12 +1,15 @@
 
 #include "expand_utils.h"
 #include "libft.h"
+#include "ft_printf.h"
 
-int8_t	expand_wildcard(char **cmd)
+char **expand_wildcard(char **cmd)
 {
 	size_t	i;
+	char 	*str;
 
 	i = 0;
+	str = NULL;
 	while (cmd[i])
 	{
 		if (have_wildcard(cmd[i]))
@@ -14,12 +17,17 @@ int8_t	expand_wildcard(char **cmd)
 			if (-1 == wildcard(cmd[i], &cmd[i]))
 			{
 				ft_free_tab(cmd + i);
-				return (-1);
+				return (NULL);
 			}
 		}
-		remove_quote(cmd[i]);
+		str = ft_sprintf("%S%s ", str, cmd[i]);
+		if (NULL == str)
+		{
+			ft_free_tab(cmd + i);
+			return (NULL);
+		}
 		i++;
 	}
-	return (0);
+	return (ft_split(str, " \t\n"));
 }
 
