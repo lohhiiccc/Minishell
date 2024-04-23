@@ -1,61 +1,37 @@
 
-#include "prompt.h"
-#include <unistd.h>
-#include <stdlib.h>
 #include "expand_utils.h"
-#include "ft_printf.h"
 #include "libft.h"
 
-static uint8_t is_match(char *patern, char *str, size_t i, size_t j);
-int8_t wildcard(char *patern)
+void	fix_patern(char *patern);
+
+int8_t wildcard(char *patern, char **wildcard)//todo : wildcard not working with quotes
 {
 	DIR				*directory;
 	struct dirent	*dir_data;
 	char 			**folder;
+	uint8_t			is_folder;
 
 	dir_data = NULL;
 	directory = opendir(".");
 	if (NULL == directory)
 		return (-1);
-	folder = get_folder(directory, &dir_data);
+	fix_patern(patern);
+	is_folder = patern[ft_strlen(patern) - 1] == '/';
+	folder = get_folder(directory, &dir_data, (patern[0] == '.'), is_folder);
 	closedir(directory);
 	if (NULL == folder)
 		return (-1);
-
-	for (int i = 0; folder[i]; i++) {
-		is_match(patern, folder[i], 0 , 0);
-		ft_printf("%s%s ", folder[i], END);
-		free(folder[i]);
-	}
-	ft_printf("\n");
-	free(folder);
-	return (0);
+	return (fill_wildecard(patern, folder, wildcard, is_folder));
 }
 
-static uint8_t is_match(char *patern, char *str, size_t i, size_t j)
+void	fix_patern(char *patern)
 {
-	if (!patern[j] && !str[i])
-		return (ft_printf("%s", GREEN), 0);
-	while (patern[j])
+	size_t	len;
+
+	len = ft_strlen(patern) - 1;
+	while (patern[len] == '/' && patern[len - 1] == '/')
 	{
-		if (patern[j] == str[i])
-		{
-			i++;
-			j++;
-			return (is_match(patern, str, i ,j));
-		}
-		else if (patern[j] == '*')
-		{
-			return (is_match(patern, str, i ,j + 1));
-		}
-		else if (patern[j] == '?')
-		{
-			j++;
-			i++;
-			return (is_match(patern, str, i ,j));
-		}
-		else
-			return (ft_printf("%s", YELLOW), 1);
+		patern[len] = '\0';
+		len--;
 	}
-	return (ft_printf("%s", RED), 1);
 }

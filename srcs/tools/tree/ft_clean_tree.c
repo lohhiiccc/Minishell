@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "tree.h"
 #include "stdlib.h"
 
@@ -24,8 +23,9 @@ static void	clean_cmd(t_tree *tree)
 		free(((t_cmd *)tree->structur)->arg[i]);
 		i++;
 	}
-	if (((t_cmd *)tree->structur)->arg)
-		free(((t_cmd *)tree->structur)->arg);
+//	if (((t_cmd *)tree->structur)->arg)
+	free(((t_cmd *)tree->structur)->arg[i]);
+	free(((t_cmd *)tree->structur)->arg);
 	free(tree->structur);
 }
 

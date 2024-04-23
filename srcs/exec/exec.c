@@ -15,7 +15,6 @@ Executer commande de l'arbre de bas gauche vers droite.
 */
 
 #include "exec.h"
-#include "ft_printf.h"
 
 int	exec_args(t_tree *tree, t_fds *fds, t_tree *root, t_env *env)
 {

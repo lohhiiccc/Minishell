@@ -17,7 +17,6 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h>
 
 int	exec_output(t_tree *tree, t_fds *fds, t_env *env)
 {

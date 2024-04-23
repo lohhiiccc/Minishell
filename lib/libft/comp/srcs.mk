@@ -94,7 +94,8 @@ SRCPRINTF = ft_dprintf \
 			put_unsigned \
 			ft_printf \
 			ft_sprintf \
-			put_str_free
+			put_str_free \
+			put_str_expand
 
 SRCTAB = tablen
 

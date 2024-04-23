@@ -1,22 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   expand_var.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 20:13:28 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 20:13:42 by mjuffard         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
 
+#include <stdlib.h>
 #include "expand_utils.h"
 #include "libft.h"
 #include "ft_printf.h"
 
-static int8_t	free_and_return(t_vector *v);
-
-int8_t	expand_var(char **str, t_vector *env)
+static int8_t free_and_return(t_vector *v);
+//todo: add wildcard
+int8_t expand_var(char **str, t_vector *env)
 {
 	char		*s;
 	t_vector	new;

@@ -48,7 +48,8 @@ static uint8_t	lex_global(t_vector *vector, size_t i, size_t *parent, \
 		|| (type == T_RED_OUT && lex_redirect_out(vector, i))
 		|| (type == T_RED_IN && lex_redirect_in(vector, i))
 		|| (type == T_PIPE && lex_pipe(vector, i))
-		|| (type == T_CMD && lex_string(vector, i)));
+		|| (type == T_CMD && lex_string(vector, i))
+		|| (type == T_FILES && lex_string(vector, i)));
 }
 
 static uint8_t	lex_last(const size_t *parent, t_token_type type)
