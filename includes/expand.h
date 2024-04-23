@@ -16,7 +16,9 @@
 # include "env.h"
 
 char	**expand_cmd(char **cmd, t_env *env);
-int8_t	expand_file(char *s, t_env *env);
+//int8_t	expand_file(char *s, t_env *env);
+//int8_t	expand_file(char *s, t_env *env, char **st);
+char *expand_file(char *s, t_env *env);
 //int8_t	expand_file(char **s, t_env *env);
 void	expand_delimiter(char *str);
 
