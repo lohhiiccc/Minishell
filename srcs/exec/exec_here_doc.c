@@ -85,7 +85,7 @@ int	create_file_here_doc(t_tree *tree)
 	}
 	if (!str)
 		ft_dprintf(2, "Minichell: warning: here-document\
-delimited by end-of-file (wanted '%s')\n", (char *)tree->structur);
+delimited by end-of-file (wanted `%s')\n", ((char *)tree->structur));
 	free(str);
 	free(tree->structur);
 	close(fd);

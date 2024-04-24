@@ -6,7 +6,7 @@
 static int		ft_sort(const char *s1, char *s2);
 static void		ft_advanced_sort_string_tab(char **tab, int (*cmp)(const char *, char *));
 static uint8_t	get_next(DIR *directory, struct dirent **dir_data, uint8_t dir);
-char			*get_str(char *str);
+static char		*get_str(char *str);
 
 char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden, uint8_t dir)
 {
@@ -93,7 +93,7 @@ static uint8_t get_next(DIR *directory, struct dirent **dir_data, uint8_t dir)
 	return (1);
 }
 
-char *get_str(char *str)
+static char *get_str(char *str)
 {
 	size_t i;
 	char *res;
@@ -105,7 +105,10 @@ char *get_str(char *str)
 	while (str[i])
 	{
 		res[i] = str[i];
-		if (res[i] == ' ' || res[i] == '\t' || res[i] == '\n' || res[i] == '\'' || res[i] == '"' || res[i] == '*' || res[i] == '?')
+		if (res[i] == ' ' || res[i] == '\t'
+			|| res[i] == '\n' || res[i] == '\''
+			|| res[i] == '"' || res[i] == '*'
+			|| res[i] == '?')
 			res[i] = -res[i];
 		i++;
 	}

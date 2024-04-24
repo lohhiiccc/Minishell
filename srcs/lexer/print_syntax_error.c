@@ -13,9 +13,11 @@
 #include <unistd.h>
 #include "vector.h"
 #include "token.h"
+#include "env.h"
 
-int8_t	print_syntax_error(t_vector *tokens)
+int8_t print_syntax_error(t_vector *tokens, t_env *env)
 {
+	env->ret = 2;
 	free_token(tokens);
 	write(2, "error\n", 6);
 	return (-1);

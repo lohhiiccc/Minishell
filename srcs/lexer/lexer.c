@@ -12,15 +12,16 @@
 
 #include "token.h"
 #include "lexer.h"
+#include "env.h"
 
-int	lexer(char *str, t_vector *tokens)
+int lexer(char *str, t_vector *tokens, t_env *env)
 {
 	if (!str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
 		return (-1);
 	if (-1 == get_tokens(str, tokens))
-		return (print_syntax_error(tokens));
+		return (print_syntax_error(tokens, env));
 	if (0 != syntax_check(tokens))
-		return (print_syntax_error(tokens));
+		return (print_syntax_error(tokens, env));
 	tag_arg(tokens);
 	return (0);
 }
