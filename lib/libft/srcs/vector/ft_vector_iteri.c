@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:17:14 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 21:10:07 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 17:14:11 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int	ft_vector_iteri(t_vector *vector, void (*f)(void *))
 		f(ft_vector_get(vector, i));
 		i++;
 	}
-	printf("\n");
 	return (0);
 }
