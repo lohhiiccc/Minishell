@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/18 01:52:27 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 22:05:24 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 #include <stdlib.h>
 
 static void	change_env(char *old_pwd, t_vector *env);
-static char	*create_path(t_cmd *cmd, size_t len_tab);
+static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env);
 
-int	ft_cd(t_cmd *cmd)
+int	ft_cd(t_cmd *cmd, t_env *env)
 {
 	char	*str;
 	char	*old_pwd;
@@ -36,7 +36,7 @@ int	ft_cd(t_cmd *cmd)
 		ft_dprintf(2, "Minichel: cd: too many argument\n");
 		return (1);
 	}
-	str = create_path(cmd, len_tab);
+	str = create_path(cmd, len_tab, env);
 	if (!str)
 		return (1);
 	if (chdir(str) == -1)
@@ -45,12 +45,12 @@ int	ft_cd(t_cmd *cmd)
 		ft_dprintf(2, "Minichel: cd: %s: %s\n", cmd->arg[1], strerror(errno));
 		return (1);
 	}
-	change_env(old_pwd, &cmd->env->env);
+	change_env(old_pwd, &env->env);
 	free(str);
 	return (0);
 }
 
-static char	*create_path(t_cmd *cmd, size_t len_tab)
+static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env)
 {
 	char	*ret;
 
@@ -58,7 +58,7 @@ static char	*create_path(t_cmd *cmd, size_t len_tab)
 	{
 		if (!strcmp(cmd->arg[1], "-"))
 		{
-			ret = found_value_of_variable("OLDPWD", cmd->env->env);
+			ret = found_value_of_variable("OLDPWD", env->env);
 			if (!ret)
 				ft_dprintf(2, "Minichel: cd: OLDPWD not set\n");
 			else
@@ -71,7 +71,7 @@ static char	*create_path(t_cmd *cmd, size_t len_tab)
 	}
 	else
 	{
-		ret = found_value_of_variable("HOME", cmd->env->env);
+		ret = found_value_of_variable("HOME", env->env);
 		if (!ret)
 			ft_dprintf(2, "Minichel: cd: HOME not set\n");
 	}

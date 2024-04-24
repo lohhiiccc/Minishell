@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:15:50 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/05 14:14:01 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 22:09:49 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdint.h>
 
 t_tree	*make_tree(t_token *tokens, t_env *env);
-t_tree	*make_command(t_token *tokens, t_env *env, t_tree *root);
+t_tree	*make_command(t_token *tokens, t_tree *root);
 t_tree	*make_operator(t_token *tokens, t_tree *root);
 t_tree	*make_redirection(t_token *tokens, t_tree *root);
 t_tree	*add_in_subtree(t_tree *root, t_tree *new);

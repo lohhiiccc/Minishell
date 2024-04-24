@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 22:20:14 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 22:09:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char		**get_cmd(t_token *tokens);
 static size_t	get_cmd_len(t_token *tokens);
 static void		*free_range(char **tab);
 
-t_tree	*make_command(t_token *tokens, t_env *env, t_tree *root)
+t_tree	*make_command(t_token *tokens, t_tree *root)
 {
 	t_cmd	*content;
 
@@ -31,7 +31,6 @@ t_tree	*make_command(t_token *tokens, t_env *env, t_tree *root)
 	if (NULL == content->arg)
 		return (free_and_return_null(content));
 	content->path = NULL;
-	content->env = env;
 	return (ft_new_tree(content, CMD, root));
 }
 
