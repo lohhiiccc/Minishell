@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/22 22:14:45 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 23:21:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 extern int	g_sig_value;
 
-static int	exec_child_cmd(t_tree *tree, t_fds *fds);
+static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env);
 static void	print_error(t_tree *tree, char *error);
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd);
 
@@ -35,7 +35,7 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 	struct stat	file;
 
 	((t_cmd *)tree->structur)->path = find_path(((t_cmd *)tree->structur)
-			->arg[0], &((t_cmd *)tree->structur)->env->env);
+			->arg[0], &env->env);
 	if (!((t_cmd *)tree->structur)->path)
 	{
 		ft_dprintf(2, "Minichell: %s: Command not found\n",
@@ -52,7 +52,7 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 			ret = 126;
 		}
 		else
-			ret = exec_child_cmd(tree, fds);
+			ret = exec_child_cmd(tree, fds, env);
 		free(((t_cmd *)tree->structur)->path);
 		if (env->is_main == 0)
 		{
@@ -65,10 +65,11 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 	return (ret);
 }
 
-static int	exec_child_cmd(t_tree *tree, t_fds *fds)
+static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env)
 {
-	int	pid;
-	int	ret;
+	int		pid;
+	int		ret;
+	t_cmd	temp;
 
 	pid = fork();
 	ms_signal_main_wait();
@@ -84,15 +85,21 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds)
 		dup_fd(tree, &fds->fd_out, &fds->fd_in, STDOUT_FILENO);
 		close_vector_fd(&fds->fd_in);
 		close_vector_fd(&fds->fd_out);
-		execve(((t_cmd *)tree->structur)->path, ((t_cmd *)tree->structur)->arg,
-			ft_vector_get(&((t_cmd *)tree->structur)->env->env, 0));
+		temp.path = ft_strdup(((t_cmd *)tree->structur)->path);
+		temp.arg = ft_tabdup(((t_cmd *)tree->structur)->arg);
+		ft_clean_tree(tree->root);
+		execve(temp.path, temp.arg,
+			ft_vector_get(&env->env, 0));
 		print_error(tree, strerror(errno));
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
 	if (waitpid(pid, &ret, 0) == -1)
 		ft_printf("%s\n", strerror(errno));
 	if (WIFEXITED(ret))
+	{
+		g_sig_value = 0;
 		return (WEXITSTATUS(ret));
+	}
 	else if (__WIFSIGNALED(ret))
 		return (128 + g_sig_value);
 	return (1);

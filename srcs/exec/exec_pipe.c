@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/22 22:27:43 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 22:27:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,12 @@ static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env)
 	if (close(fd[0]) == -1)
 	{
 		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		clear_env(&env->env);
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
 	ft_vector_add(&fds->fd_out, &fd[1]);
 	exec_args(tree->left, fds, tree->root, env);
+	clear_env(&env->env);
 	if (close(fd[1]) == -1)
 	{
 		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
@@ -92,6 +94,7 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env)
 	{
 		ft_vector_add(&fds->fd_in, &fd[0]);
 		ret = exec_args(tree->right, fds, tree->root, env);
+		clear_env(&env->env);
 		if (close(fd[0]) == -1)
 		{
 			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));

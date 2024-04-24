@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:00:13 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 21:58:50 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 22:10:10 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_tree	*make_tree(t_token *tokens, t_env *env)
 	while (tokens[i].type != T_NEWLINE)
 	{
 		if (T_CMD == tokens[i].type)
-			root = add_in_subtree(root, make_command(tokens + i, env, root));
+			root = add_in_subtree(root, make_command(tokens + i, root));
 		else if (T_LOGICAL_OP == tokens[i].type || T_PIPE == tokens[i].type)
 			root = add_in_subtree(root, make_operator(tokens + i, root));
 		else if (T_RED_OUT == tokens[i].type || T_RED_IN == tokens[i].type)
@@ -56,7 +56,7 @@ static t_tree	*make_subtree(t_token *tokens,
 	{
 		if (T_CMD == tokens[*i].type)
 			subroot = add_in_subtree(subroot,
-					make_command(tokens + *i, env, root));
+					make_command(tokens + *i, root));
 		else if (T_LOGICAL_OP == tokens[*i].type || T_PIPE == tokens[*i].type)
 			subroot = add_in_subtree(subroot, make_operator(tokens + *i, root));
 		else if (T_RED_OUT == tokens[*i].type || T_RED_IN == tokens[*i].type)

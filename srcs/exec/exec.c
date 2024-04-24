@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 00:16:15 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/19 01:21:59 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 01:38:12 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	exec_args(t_tree *tree, t_fds *fds, t_tree *root, t_env *env)
 	if (!tree)
 		return (0);
 	if (!root)
-		root = tree;
+		tree->root = tree;
 	else
 		tree->root = root;
 	ret = tab[tree->type](tree, fds, env);

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:43:43 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 15:20:45 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 22:01:20 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_cmd
 {
 	char	*path;
 	char	**arg;
-	t_env	*env;
 }	t_cmd;
 
 void	print_tree(t_tree *root);
