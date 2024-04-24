@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/24 22:05:24 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 23:20:39 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_cd(t_cmd *cmd, t_env *env)
 	char	*old_pwd;
 	size_t	len_tab;
 
-	len_tab = ft_tab_len(cmd->arg);
+	len_tab = ft_tablen(cmd->arg);
 	old_pwd = getcwd(NULL, 0);
 	if (len_tab > 2)
 	{
