@@ -97,7 +97,8 @@ SRCPRINTF = ft_dprintf \
 			put_str_free \
 			put_str_expand
 
-SRCTAB = tablen
+SRCTAB = ft_tablen \
+		 ft_tabdup
 
 SRCS = $(addprefix $(SRCDIR)$(ATOIDIR), $(addsuffix .c, $(SRCATOI))) \
 	   $(addprefix $(SRCDIR)$(CHAINEDDIR), $(addsuffix .c, $(SRCCHAINED))) \
