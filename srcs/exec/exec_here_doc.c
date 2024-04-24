@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/20 01:46:16 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 02:52:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	create_file_here_doc(t_tree *tree)
 	if (fd == -1)
 		return (6);
 	str = readline("Le croquant > ");
-	while (ft_strcmp(str, (char *)tree->structur))
+	while (str && ft_strcmp(str, (char *)tree->structur))
 	{
 		if (write(fd, str, ft_strlen(str)) == -1)
 			return (7);
@@ -83,6 +83,9 @@ int	create_file_here_doc(t_tree *tree)
 		free(str);
 		str = readline("Le croquant > ");
 	}
+	if (!str)
+		ft_dprintf(2, "Minichell: warning: here-document\
+delimited by end-of-file (wanted '%s')\n", (char *)tree->structur);
 	free(str);
 	free(tree->structur);
 	close(fd);
