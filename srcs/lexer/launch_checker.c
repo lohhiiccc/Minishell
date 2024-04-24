@@ -18,7 +18,7 @@ static uint8_t	lex_last(const size_t *parent, t_token_type type);
 static uint8_t	lex_global(t_vector *vector, size_t i, size_t *parent,
 					t_token_type type);
 
-uint8_t	syntax_check(t_vector *tokens)
+ssize_t syntax_check(t_vector *tokens)
 {
 	size_t			i;
 	t_token_type	type;
@@ -30,13 +30,13 @@ uint8_t	syntax_check(t_vector *tokens)
 	{
 		type = ((t_token *)tokens->addr)[i].type;
 		if (lex_global(tokens, i, parent, type))
-			return (1);
+			return (i);
 		i++;
 	}
 	type = ((t_token *)tokens->addr)[tokens->nbr_elem - 2].type;
 	if (lex_last(parent, type) && i != 0)
-		return (1);
-	return (0);
+		return (i);
+	return (-1);
 }
 
 static uint8_t	lex_global(t_vector *vector, size_t i, size_t *parent, \

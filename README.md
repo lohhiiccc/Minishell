@@ -4,7 +4,7 @@
 * ### **echo**
   * ``echo`` ``[option]`` - display all arg(s)
     * ``-n`` do not output the trailing newline
- 
+
      ```bash
      $ echo salut
      salut
