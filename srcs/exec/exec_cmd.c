@@ -6,13 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/24 22:02:05 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 22:45:39 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "env.h"
 #include "expand.h"
+#include <stdlib.h>
 
 int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
 {

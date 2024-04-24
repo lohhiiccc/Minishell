@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/24 22:03:32 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 23:21:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,9 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 
 static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env)
 {
-	int	pid;
-	int	ret;
+	int		pid;
+	int		ret;
+	t_cmd	temp;
 
 	pid = fork();
 	ms_signal_main_wait();
@@ -84,7 +85,10 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env)
 		dup_fd(tree, &fds->fd_out, &fds->fd_in, STDOUT_FILENO);
 		close_vector_fd(&fds->fd_in);
 		close_vector_fd(&fds->fd_out);
-		execve(((t_cmd *)tree->structur)->path, ((t_cmd *)tree->structur)->arg,
+		temp.path = ft_strdup(((t_cmd *)tree->structur)->path);
+		temp.arg = ft_tabdup(((t_cmd *)tree->structur)->arg);
+		ft_clean_tree(tree->root);
+		execve(temp.path, temp.arg,
 			ft_vector_get(&env->env, 0));
 		print_error(tree, strerror(errno));
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
