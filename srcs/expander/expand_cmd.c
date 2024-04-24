@@ -20,6 +20,7 @@ char	**expand_cmd(char **cmd, t_env *env)
 	size_t	i;
 	char	*str;
 
+	(void)env;
 	i = 0;
 	str = NULL;
 	while (cmd[i])
