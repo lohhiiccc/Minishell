@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/22 22:14:45 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/24 17:06:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds)
 	if (waitpid(pid, &ret, 0) == -1)
 		ft_printf("%s\n", strerror(errno));
 	if (WIFEXITED(ret))
+	{
+		g_sig_value = 0;
 		return (WEXITSTATUS(ret));
+	}
 	else if (__WIFSIGNALED(ret))
 		return (128 + g_sig_value);
 	return (1);
