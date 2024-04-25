@@ -6,41 +6,11 @@
 #include "tree.h"
 #include "ft_printf.h"
 #include "libft.h"
+#include "expand_utils.h"
 
-static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
-{
-	size_t	i;
-
-	(void)env;
-//	tree->structur = expand_cmd((char **)tree->structur, env);
-	if (NULL == tree->structur)
-		return (-1);
-	i = 0;
-	while (((char **)tree->structur)[i])
-	{
-		ft_dprintf(fd, "%s\n", ((char **)tree->structur)[i]);
-		i++;
-	}
-	return (0);
-}
-
-char *get_file_name(void)
-{
-	int fd;
-	char	*file_name;
-
-	fd = open("/dev/urandom", O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	file_name = malloc(sizeof(char) * 7);
-	if (!file_name)
-		return (NULL);
-	if (read(fd, file_name, 6) == -1)
-		return (NULL);
-	file_name[6] = 0;
-	close(fd);
-	return (file_name);
-}
+static char *get_file_name(void);
+static int	fill_heredoc(t_tree *tree, int fd, t_env *env);
+static int8_t expand_heredoc(char **s, t_env *env, size_t i);
 
 int	create_file_here_doc(t_tree *tree, t_env *env)
 {
@@ -57,6 +27,8 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	{
 		ft_free_tab(tree->structur);
 		free(tree->structur);
+		free(file_name);
+		close(fd);
 		return (-1);
 	}
 	ft_free_tab(tree->structur);
@@ -66,4 +38,65 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	unlink(file_name);
 	free(file_name);
 	return (fd);
+}
+
+static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
+{
+	size_t	i;
+
+	(void )env;
+	i = 0;
+	while (((char **)tree->structur)[i])
+	{
+		if (-1 == expand_heredoc(((char **) tree->structur), env, i))
+			return (-1);
+		i++;
+	}
+	if (NULL == tree->structur)
+		return (-1);
+	i = 0;
+	while (((char **)tree->structur)[i])
+	{
+		ft_dprintf(fd, "%s\n", ((char **)tree->structur)[i]);
+		i++;
+	}
+	return (0);
+}
+
+static char *get_file_name(void)
+{
+	int		fd;
+	char	*file_name;
+
+	fd = open("/dev/urandom", O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	file_name = malloc(sizeof(char) * 7);
+	if (!file_name)
+		return (NULL);
+	if (read(fd, file_name, 6) == -1)
+		return (NULL);
+	file_name[6] = 0;
+	close(fd);
+	return (file_name);
+}
+
+static int8_t expand_heredoc(char **s, t_env *env, size_t i)
+{
+	size_t	j;
+
+	j = 0;
+	if (expand_str(s, i, env, NULL))
+	{
+		ft_free_tab(s);
+		s = NULL;
+		return (-1);
+	}
+	while (s[i][j])
+	{
+		if (s[i][j] < 0)
+			s[i][j] = -s[i][j];
+		j++;
+	}
+	return (0);
 }

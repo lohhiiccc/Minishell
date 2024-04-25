@@ -2,9 +2,9 @@
 #include "libft.h"
 #include "tree.h"
 #include "ft_printf.h"
+#include "heredoc.h"
 #include <readline/readline.h>
 #include <stdlib.h>
-
 extern int g_sig_value;
 
 static int8_t error(char *str, t_vector *v);
@@ -26,7 +26,7 @@ int read_here_doc(t_tree *tree)
 	if (g_sig_value)
 		free(buffer);
 	else if (!buffer)
-		ft_dprintf(2, "Minichell: warning: here-document delimited by end-of-file (wanted `%s')\n", ((char *)tree->structur));
+		ft_dprintf(2, HERE_DOC_EOF, ((char *)tree->structur));
 	if (-1 == ft_vector_add_ptr(&content, NULL))
 		return (error(buffer, &content));
 	free(tree->structur);
