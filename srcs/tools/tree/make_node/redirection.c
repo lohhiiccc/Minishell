@@ -15,6 +15,7 @@
 #include "token.h"
 #include "libft.h"
 #include "expand.h"
+#include "ft_printf.h"
 
 static t_node	get_redirect_type(t_token *token);
 
@@ -35,11 +36,9 @@ t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
 		tmp = read_here_doc(new);
 		if (tmp != 0)
 		{
-			free(new->structur);
-			free(new);
 			if (2 == g_sig_value)
 				env->ret = 130;
-			return (NULL);
+			return (new);
 		}
 		return (new);
 	}

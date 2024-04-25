@@ -12,6 +12,7 @@
 
 #include "add_tree.h"
 
+extern int g_sig_value;
 //todo: si new == NULL free root et return NULL
 t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 {
