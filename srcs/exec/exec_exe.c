@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:39:07 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 17:27:39 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env)
 
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd)
 {
-	if (0 < fd1->nbr_elem)
+	if (fd1->nbr_elem > 0)
 	{
 		if (dup2(*(int *)ft_vector_get(fd1, fd1->nbr_elem - 1), new_fd)
 			== -1)

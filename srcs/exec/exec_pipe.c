@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:39:07 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 17:29:32 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 			ft_dprintf(2, "Minichel: pipe: %s\n", strerror(errno));
 		ret = exec_right(tree, fds, fd, env);
 	}
-	while (-1 != wait(0))
+	while (wait(0) != -1)
 		;
 	if (SIGINT == g_sig_value)
 		ft_printf("\n");

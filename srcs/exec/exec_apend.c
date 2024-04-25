@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:32 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:39:07 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 17:28:03 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	exec_apend(t_tree *tree, t_fds *fds, t_env *env)
 	if (NULL == (char *)tree->structur)
 		return (1);
 	fd = open((char *)tree->structur, O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (-1 == fd || -1 ==ft_vector_add(&fds->fd_out, &fd))
+	if (-1 == fd || -1 == ft_vector_add(&fds->fd_out, &fd))
 	{
 		ft_dprintf(2, "Minichel: %s: %s\n",
 			(char *)tree->structur, strerror(errno));
