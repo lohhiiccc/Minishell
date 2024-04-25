@@ -41,6 +41,5 @@ void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out,
 char	*find_path(char *cmd, t_vector *env);
 int		is_build_in(char *str);
 int		exec_exe(t_tree *tree, t_fds *fds, t_env *env);
-int		read_here_doc(t_tree *tree);
 
 #endif

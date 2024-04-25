@@ -14,10 +14,8 @@
 #include "ft_printf.h"
 #include <errno.h>
 #include <string.h>
-#include <fcntl.h>
-#include <readline/readline.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include "heredoc.h"
 
 int	exec_here_doc(t_tree *tree, t_fds *fds, t_env *env)
 {

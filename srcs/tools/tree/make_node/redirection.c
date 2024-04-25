@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <malloc.h>
 #include "tree.h"
 #include "token.h"
 #include "libft.h"
 #include "expand.h"
-#include "ft_printf.h"
+#include "heredoc.h"
 
 static t_node	get_redirect_type(t_token *token);
 

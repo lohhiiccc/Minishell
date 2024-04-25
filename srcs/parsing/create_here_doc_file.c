@@ -7,40 +7,8 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
-{
-	size_t	i;
-
-	(void)env;
-//	tree->structur = expand_cmd((char **)tree->structur, env);
-	if (NULL == tree->structur)
-		return (-1);
-	i = 0;
-	while (((char **)tree->structur)[i])
-	{
-		ft_dprintf(fd, "%s\n", ((char **)tree->structur)[i]);
-		i++;
-	}
-	return (0);
-}
-
-char *get_file_name(void)
-{
-	int fd;
-	char	*file_name;
-
-	fd = open("/dev/urandom", O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	file_name = malloc(sizeof(char) * 7);
-	if (!file_name)
-		return (NULL);
-	if (read(fd, file_name, 6) == -1)
-		return (NULL);
-	file_name[6] = 0;
-	close(fd);
-	return (file_name);
-}
+static char *get_file_name(void);
+static int	fill_heredoc(t_tree *tree, int fd, t_env *env);
 
 int	create_file_here_doc(t_tree *tree, t_env *env)
 {
@@ -66,4 +34,39 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	unlink(file_name);
 	free(file_name);
 	return (fd);
+}
+
+static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
+{
+	size_t	i;
+
+	(void)env;
+//	tree->structur = expand_cmd((char **)tree->structur, env);
+	if (NULL == tree->structur)
+		return (-1);
+	i = 0;
+	while (((char **)tree->structur)[i])
+	{
+		ft_dprintf(fd, "%s\n", ((char **)tree->structur)[i]);
+		i++;
+	}
+	return (0);
+}
+
+static char *get_file_name(void)
+{
+	int fd;
+	char	*file_name;
+
+	fd = open("/dev/urandom", O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	file_name = malloc(sizeof(char) * 7);
+	if (!file_name)
+		return (NULL);
+	if (read(fd, file_name, 6) == -1)
+		return (NULL);
+	file_name[6] = 0;
+	close(fd);
+	return (file_name);
 }
