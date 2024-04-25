@@ -126,7 +126,9 @@ SRC_WILDCARD = is_match \
 SRC_TILDE_EXPAND = tilde
 
 SRC_HERE_DOC = pars_heredoc \
+			   here_doc_prompt \
 			   create_here_doc_file \
+
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
 
