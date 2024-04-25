@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 22:22:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/23 18:33:40 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 04:40:52 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define END "\001\e[0m\002"
 # define YELLOW "\001\e[33m\002"
 # define LIGHTGREEN "\001\e[32m\002"
-# define PROMPTSKIN "%s[%s]%s[%s] %s%sMinichell%s%s$%s "
+# define PROMPTSKIN "%s[%s]%s[%s] %s%sMinichel%s%s$%s "
 
 void	manage_history(char *str);
 char	*prompt_value(int last_ret);

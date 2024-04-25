@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:09:32 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 04:39:07 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 			->arg[0], &env->env);
 	if (!((t_cmd *)tree->structur)->path)
 	{
-		ft_dprintf(2, "Minichell: %s: Command not found\n",
+		ft_dprintf(2, "Minichel: %s: Command not found\n",
 			((t_cmd *)tree->structur)->arg[0]);
 		ret = 127;
 	}
@@ -48,7 +48,7 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 		stat(((t_cmd *)tree->structur)->path, &file);
 		if (S_ISDIR(file.st_mode))
 		{
-			ft_dprintf(2, "Minichell: %s: Is a directory\n",
+			ft_dprintf(2, "Minichel: %s: Is a directory\n",
 				((t_cmd *)tree->structur)->arg[0]);
 			ret = 126;
 		}
@@ -126,7 +126,7 @@ static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd)
 		if (dup2(*(int *)ft_vector_get(fd1, fd1->nbr_elem - 1), new_fd)
 			== -1)
 		{
-			ft_dprintf(2, "Minichell: %s: %s\n",
+			ft_dprintf(2, "Minichel: %s: %s\n",
 				((t_cmd *)tree->structur)->arg[0], strerror(errno));
 			clean_exit(tree->root, fd1, fd2, 1);
 		}
@@ -135,6 +135,6 @@ static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd)
 
 static void	print_error(t_tree *tree, char *error)
 {
-	ft_dprintf(2, "Minichell: %s: %s\n",
+	ft_dprintf(2, "Minichel: %s: %s\n",
 		((t_cmd *)tree->structur)->arg[0], error);
 }

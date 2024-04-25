@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:11:28 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 04:39:07 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	exec_here_doc(t_tree *tree, t_fds *fds, t_env *env)
 	fd = create_file_here_doc(tree, env);
 	if (-1 == fd)
 	{
-		ft_dprintf(2, "Minichell: %s: %s\n",
+		ft_dprintf(2, "Minichel: %s: %s\n",
 			(char *)tree->structur, strerror(errno));
 		return (1);
 	}
 	if (-1 == ft_vector_add(&fds->fd_in, &fd))
 	{
-		ft_dprintf(2, "Minichell: %s: %s\n",
+		ft_dprintf(2, "Minichel: %s: %s\n",
 			(char *)tree->structur, strerror(errno));
 		return (1);
 	}
@@ -42,7 +42,7 @@ int	exec_here_doc(t_tree *tree, t_fds *fds, t_env *env)
 	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem);
 	if (-1 == close(fd))
 	{
-		ft_dprintf(2, "Minichell: %s: %s\n",
+		ft_dprintf(2, "Minichel: %s: %s\n",
 			(char *)tree->structur, strerror(errno));
 		return (1);
 	}

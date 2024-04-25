@@ -1,4 +1,4 @@
-# Minichell
+# Minichel
 
 ## build-in:
 * ### **echo**

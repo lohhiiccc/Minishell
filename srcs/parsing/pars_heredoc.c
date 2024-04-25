@@ -26,7 +26,7 @@ int read_here_doc(t_tree *tree)
 	if (g_sig_value)
 		free(buffer);
 	else if (!buffer)
-		ft_dprintf(2, "Minichell: warning: here-document delimited by end-of-file (wanted `%s')\n", ((char *)tree->structur));
+		ft_dprintf(2, "Minichel: warning: here-document delimited by end-of-file (wanted `%s')\n", ((char *)tree->structur));
 	if (-1 == ft_vector_add_ptr(&content, NULL))
 		return (error(buffer, &content));
 	free(tree->structur);

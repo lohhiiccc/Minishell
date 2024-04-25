@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:17:59 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 04:39:07 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 	else
 	{
 		if (-1 == close(fd[1]))
-			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+			ft_dprintf(2, "Minichel: pipe: %s\n", strerror(errno));
 		ret = exec_right(tree, fds, fd, env);
 	}
 	while (-1 != wait(0))
@@ -60,7 +60,7 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 
 static int	print_error(char *error, int status)
 {
-	ft_dprintf(2, "Minichell: pipe: %s\n", error);
+	ft_dprintf(2, "Minichel: pipe: %s\n", error);
 	return (status);
 }
 
@@ -68,17 +68,12 @@ static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env)
 {
 	if (-1 == close(fd[0]) || -1 == ft_vector_add(&fds->fd_out, &fd[1]))
 	{
-		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+		ft_dprintf(2, "Minichel: pipe: %s\n", strerror(errno));
 		clear_env(&env->env);
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
 	exec_args(tree->left, fds, tree->root, env);
 	clear_env(&env->env);
-	if (-1 == close(fd[1]))
-	{
-		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
-	}
 	clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 0);
 }
 
@@ -94,16 +89,11 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env)
 	{
 		if (-1 == ft_vector_add(&fds->fd_in, &fd[0]))
 		{
-			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
+			ft_dprintf(2, "Minichel: pipe: %s\n", strerror(errno));
 			clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 		}
 		ret = exec_args(tree->right, fds, tree->root, env);
 		clear_env(&env->env);
-		if (close(fd[0]) == -1)
-		{
-			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-			clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
-		}
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, ret);
 	}
 	else if (-1 == close(fd[0]))
