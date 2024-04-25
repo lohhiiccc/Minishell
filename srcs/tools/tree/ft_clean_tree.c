@@ -12,6 +12,7 @@
 
 #include "tree.h"
 #include "stdlib.h"
+#include "libft.h"
 
 static void	clean_cmd(t_tree *tree)
 {
@@ -37,8 +38,10 @@ void	ft_clean_tree(t_tree *tree)
 	ft_clean_tree(tree->right);
 	if (tree->type == CMD)
 		clean_cmd(tree);
-	if (tree->type == HERE_DOC || tree->type == APPEND
+	if (tree->type == APPEND
 		|| tree->type == OUTPUT || tree->type == INPUT)
 		free(tree->structur);
+	if (tree->type == HERE_DOC && tree->structur != NULL)
+			ft_free_tab(tree->structur);
 	free(tree);
 }

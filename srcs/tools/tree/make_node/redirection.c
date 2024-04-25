@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <malloc.h>
 #include "tree.h"
 #include "token.h"
 #include "libft.h"
@@ -17,10 +18,12 @@
 
 static t_node	get_redirect_type(t_token *token);
 
-t_tree	*make_redirection(t_token *tokens, t_tree *root)
+extern int g_sig_value;
+t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
 {
 	t_node	type;
 	t_tree	*new;
+	int8_t	tmp;
 
 	type = get_redirect_type(tokens);
 	if (HERE_DOC == type)
@@ -29,9 +32,13 @@ t_tree	*make_redirection(t_token *tokens, t_tree *root)
 		if (NULL == new)
 			return (NULL);
 		expand_delimiter(new->structur);
-		if (1 == create_file_here_doc(new))
+		tmp = read_here_doc(new);
+		if (tmp != 0)
 		{
-			ft_clean_tree(new);
+			free(new->structur);
+			free(new);
+			if (2 == g_sig_value)
+				env->ret = 130;
 			return (NULL);
 		}
 		return (new);
