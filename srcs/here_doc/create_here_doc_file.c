@@ -86,7 +86,8 @@ static int8_t expand_heredoc(char **s, t_env *env, size_t i)
 	size_t	j;
 
 	j = 0;
-	if (expand_str(s, i, env, NULL))
+	if (-1 == expand_ret(&s[i], env->ret)
+		|| -1 == expand_var(&s[i], &env->env))
 	{
 		ft_free_tab(s);
 		s = NULL;
