@@ -10,7 +10,7 @@
 
 static char *get_file_name(void);
 static int	fill_heredoc(t_tree *tree, int fd, t_env *env);
-static char	**exand_heredoc(char **tab, t_env *env);
+static char	**expand_heredoc(char **tab, t_env *env);
 
 int	create_file_here_doc(t_tree *tree, t_env *env)
 {
@@ -44,8 +44,7 @@ static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 {
 	size_t	i;
 
-	(void)env;
-	tree->structur = exand_heredoc(((char **)tree->structur), env);
+	tree->structur = expand_heredoc(((char **) tree->structur), env);
 	if (NULL == tree->structur)
 		return (-1);
 	i = 0;
@@ -75,7 +74,7 @@ static char *get_file_name(void)
 	return (file_name);
 }
 
-static char	**exand_heredoc(char **tab, t_env *env)
+static char	**expand_heredoc(char **tab, t_env *env)
 {
 	size_t	i;
 	size_t	j;

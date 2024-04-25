@@ -2,9 +2,9 @@
 #include "libft.h"
 #include "tree.h"
 #include "ft_printf.h"
+#include "heredoc.h"
 #include <readline/readline.h>
 #include <stdlib.h>
-#define HERE_DOC_EOF "Minichell: warning: here-document delimited by end-of-file (wanted `%s')\n"
 extern int g_sig_value;
 
 static int8_t error(char *str, t_vector *v);
