@@ -8,9 +8,9 @@
 #include "libft.h"
 #include "expand_utils.h"
 
-static char *get_file_name(void);
-static int	fill_heredoc(t_tree *tree, int fd, t_env *env);
-static int8_t expand_heredoc(char **s, t_env *env, size_t i);
+static char		*get_file_name(void);
+static int		fill_heredoc(t_tree *tree, int fd, t_env *env);
+static int8_t	expand_heredoc(char **s, t_env *env, size_t i);
 
 int	create_file_here_doc(t_tree *tree, t_env *env)
 {
