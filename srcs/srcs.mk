@@ -41,6 +41,9 @@ SRC_LEXSYNTAX = lex_pipe \
 		   	    lex_redirection \
 
 SRC_PARSING = parsing \
+			  pars_heredoc \
+			  create_here_doc_file \
+			  back_slash
 
 SRC_TREE = ft_new_tree \
 		   ft_join_tree \

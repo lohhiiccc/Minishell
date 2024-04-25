@@ -11,13 +11,15 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "vector.h"
 #include "token.h"
 #include "env.h"
 #include "ft_printf.h"
 
-int8_t print_syntax_error(t_vector *tokens, t_env *env, ssize_t i)
+int8_t print_syntax_error(t_vector *tokens, t_env *env, ssize_t i, char *error)
 {
+	free(error);
 	env->ret = 2;
 	if (i < 0)
 		ft_dprintf(2, "syntax error'\n");

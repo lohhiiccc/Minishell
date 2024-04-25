@@ -13,18 +13,29 @@
 #include "token.h"
 #include "lexer.h"
 #include "env.h"
+#include "prompt.h"
+#include "libft.h"
 
 int lexer(char *str, t_vector *tokens, t_env *env)
 {
 	ssize_t	syntax;
+	char	*s;
 
-	if (!str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
+	s = ft_strdup(str);
+	if (NULL == s)
+	{
+		free_token(tokens);
 		return (-1);
-	if (-1 == get_tokens(str, tokens))
-		return (print_syntax_error(tokens, env, -1));
+	}
+	prompt_back_slash(s);
+	if (!str || !str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
+		return (-1);
+	if (-1 == get_tokens(s, tokens))
+		return (print_syntax_error(tokens, env, -1, s));
 	syntax = syntax_check(tokens);
 	if (-1 != syntax)
-		return (print_syntax_error(tokens, env, syntax));
+		return (print_syntax_error(tokens, env, syntax, s));
 	tag_arg(tokens);
+	free(s);
 	return (0);
 }
