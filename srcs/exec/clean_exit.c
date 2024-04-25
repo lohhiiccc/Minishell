@@ -6,13 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 03:01:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/24 22:19:34 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 03:48:54 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
 #include <stdlib.h>
 #include <readline/readline.h>
+
+#include "exec.h"
 
 void	clean_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out,
 	uint8_t status)

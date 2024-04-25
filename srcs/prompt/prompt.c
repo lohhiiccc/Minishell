@@ -6,16 +6,17 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/24 03:09:04 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 03:58:37 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 #include "minishell.h"
 #include "exec.h"
 #include "ft_printf.h"
 #include "prompt.h"
 #include "ms_signal.h"
-#include <unistd.h>
 
 extern int	g_sig_value;
 

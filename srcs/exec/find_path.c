@@ -6,15 +6,16 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:25:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 21:38:18 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 04:19:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
+#include <stdlib.h>
 
 #include "vector.h"
 #include "exec.h"
 #include "ft_printf.h"
-#include <unistd.h>
-#include <stdlib.h>
 
 static char	**list_path(t_vector *env);
 static char	*path_exist(char **path_list, char *cmd);
