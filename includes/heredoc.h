@@ -5,6 +5,7 @@
 # define HERE_DOC_EOF "Minichell: warning: here-document delimited by end-of-file (wanted `%s')\n"
 
 int	create_file_here_doc(t_tree *tree, t_env *env);
+char	*here_doc_rl(char *del);
 int	read_here_doc(t_tree *tree);
 
 #endif

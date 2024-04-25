@@ -16,12 +16,12 @@ int read_here_doc(t_tree *tree)
 	if (-1 == ft_vector_init(&content, sizeof(char *)))
 		return (-1);
 	g_sig_value = 0;
-	buffer = readline("le croquant > ");
+	buffer = here_doc_rl((char *)tree->structur);
 	while (!g_sig_value && buffer && ft_strcmp(buffer, (char *)tree->structur))
 	{
 		if (-1 == ft_vector_add_ptr(&content, buffer))
 			return (error(buffer, &content));
-		buffer = readline("le croquant > ");
+		buffer = here_doc_rl((char *)tree->structur);
 	}
 	if (g_sig_value)
 		free(buffer);
