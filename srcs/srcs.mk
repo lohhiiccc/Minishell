@@ -21,6 +21,7 @@ EXPANDER_EXPAND_DIR = $(EXPANDER_DIR)expand/
 SIGNAL_DIR = $(SRC_DIR)signal/
 WILDCARD_DIR = $(EXPANDER_DIR)wildcard/
 TILDE_EXPAND_DIR = $(EXPANDER_DIR)tilde/
+HEREDOC_DIR = $(SRC_DIR)here_doc/
 
 #-------------------------------------------------------------------------#
 #----------------------------------files-----------------------------------#
@@ -40,8 +41,6 @@ SRC_LEXSYNTAX = lex_pipe \
 		   	    lex_redirection \
 
 SRC_PARSING = parsing \
-			  pars_heredoc \
-			  create_here_doc_file \
 
 SRC_TREE = ft_new_tree \
 		   ft_join_tree \
@@ -126,6 +125,8 @@ SRC_WILDCARD = is_match \
 
 SRC_TILDE_EXPAND = tilde
 
+SRC_HERE_DOC = pars_heredoc \
+			   create_here_doc_file \
 #--------------------------------------------------------------------------#
 #----------------------------------srcs------------------------------------#
 
@@ -138,6 +139,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(addprefix $(PROMPT_DIR), $(addsuffix .c, $(SRC_PROMT))) \
 	   $(addprefix $(SIGNAL_DIR), $(addsuffix .c, $(SRC_SIGNAL))) \
 	   $(addprefix $(PARSING_DIR), $(addsuffix .c, $(SRC_PARSING))) \
+	   $(addprefix $(HEREDOC_DIR), $(addsuffix .c, $(SRC_HERE_DOC))) \
 	   $(addprefix $(WILDCARD_DIR), $(addsuffix .c, $(SRC_WILDCARD))) \
 	   $(addprefix $(EXPANDER_DIR), $(addsuffix .c, $(SRC_EXPANDER))) \
 	   $(addprefix $(BUILD_IN_DIR), $(addsuffix .c, $(SRC_BUILD_IN))) \
