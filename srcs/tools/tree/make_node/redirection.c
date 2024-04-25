@@ -26,6 +26,7 @@ t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
 	t_tree	*new;
 	int8_t	tmp;
 
+	(void )env;
 	type = get_redirect_type(tokens);
 	if (HERE_DOC == type)
 	{
@@ -34,10 +35,10 @@ t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
 			return (NULL);
 		expand_delimiter(new->structur);
 		tmp = read_here_doc(new);
-		if (tmp != 0)
+		if (tmp != 0 && tmp != -1)
 		{
-			if (2 == g_sig_value)
-				env->ret = 130;
+			ft_free_tab(((char **)new->structur));
+			new->structur = NULL;
 			return (new);
 		}
 		return (new);
