@@ -10,7 +10,7 @@
 
 static char *get_file_name(void);
 static int	fill_heredoc(t_tree *tree, int fd, t_env *env);
-static char	**expand_heredoc(char **tab, t_env *env);
+static int8_t expand_heredoc(char **s, t_env *env, size_t i);
 
 int	create_file_here_doc(t_tree *tree, t_env *env)
 {
@@ -44,7 +44,14 @@ static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 {
 	size_t	i;
 
-	tree->structur = expand_heredoc(((char **) tree->structur), env);
+	(void )env;
+	i = 0;
+	while (((char **)tree->structur)[i])
+	{
+		if (-1 == expand_heredoc(((char **) tree->structur), env, i))
+			return (-1);
+		i++;
+	}
 	if (NULL == tree->structur)
 		return (-1);
 	i = 0;
@@ -74,27 +81,22 @@ static char *get_file_name(void)
 	return (file_name);
 }
 
-static char	**expand_heredoc(char **tab, t_env *env)
+static int8_t expand_heredoc(char **s, t_env *env, size_t i)
 {
-	size_t	i;
 	size_t	j;
 
-	i = 0;
-	while (tab[i])
+	j = 0;
+	if (expand_str(s, i, env, NULL))
 	{
-		if (tab[i] && tab[i][0] && 0 != expand_str(tab, i, env, NULL))
-		{
-			ft_free_tab(tab);
-			return (NULL);
-		}
-		j = 0;
-		while (tab[i][j])
-		{
-			if (tab[i][j] < 0)
-				tab[i][j] = -tab[i][j];
-			j++;
-		}
-		i++;
+		ft_free_tab(s);
+		s = NULL;
+		return (-1);
 	}
-	return (tab);
+	while (s[i][j])
+	{
+		if (s[i][j] < 0)
+			s[i][j] = -s[i][j];
+		j++;
+	}
+	return (0);
 }
