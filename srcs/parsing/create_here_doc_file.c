@@ -27,6 +27,8 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	{
 		ft_free_tab(tree->structur);
 		free(tree->structur);
+		free(file_name);
+		close(fd);
 		return (-1);
 	}
 	ft_free_tab(tree->structur);
