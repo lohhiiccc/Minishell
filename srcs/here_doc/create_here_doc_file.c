@@ -43,12 +43,13 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 {
 	size_t	i;
+	size_t	len;
 
 	(void )env;
 	i = 0;
 	while (((char **)tree->structur)[i])
 	{
-		if (-1 == expand_heredoc(((char **) tree->structur), env, i))
+		if (-1 == expand_heredoc(((char **)tree->structur), env, i))
 			return (-1);
 		i++;
 	}
@@ -57,7 +58,11 @@ static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 	i = 0;
 	while (((char **)tree->structur)[i])
 	{
-		ft_dprintf(fd, "%s\n", ((char **)tree->structur)[i]);
+		len = ft_strlen(((char **)tree->structur)[i]) - 1;
+		if (((char **)tree->structur)[i][len] == 127)
+			ft_dprintf(fd, "%e", ((char **)tree->structur)[i]);
+		else
+			ft_dprintf(fd, "%s\n", ((char **)tree->structur)[i]);
 		i++;
 	}
 	return (0);
