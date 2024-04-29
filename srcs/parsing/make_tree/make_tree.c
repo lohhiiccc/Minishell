@@ -20,8 +20,9 @@ static t_tree	*make_subtree(t_token *tokens, t_env *env, t_tree *root,
 static t_tree	*add_subredirection(size_t *i, t_tree *root, t_tree *subroot,
 					t_token *tokens);
 
-extern int g_sig_value;
+extern int	g_sig_value;
 //todo: check makecommand makeoperator ou makeredirection
+
 t_tree	*make_tree(t_token *tokens, t_env *env)
 {
 	size_t	i;
@@ -60,9 +61,9 @@ static t_tree	*make_subtree(t_token *tokens,
 					make_command(tokens + *i, root));
 		else if (tokens[*i].type == T_LOGICAL_OP || tokens[*i].type == T_PIPE)
 			subroot = add_in_subtree(subroot, make_operator(tokens + *i, root));
-		else if (tokens[*i].type == T_RED_OUT|| tokens[*i].type == T_RED_IN)
+		else if (tokens[*i].type == T_RED_OUT || tokens[*i].type == T_RED_IN)
 			subroot = add_in_subtree(subroot,
-									 make_redirection(tokens + *i, root));
+					make_redirection(tokens + *i, root));
 		else if (tokens[*i].type == T_PARENTHESE_OP)
 		{
 			++*i;

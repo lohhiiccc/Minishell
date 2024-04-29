@@ -6,9 +6,9 @@
 #include "heredoc.h"
 #include "libft.h"
 
-void escape_str(char *str);
+void	escape_str(char *str);
 
-char *here_doc_rl(char *del, size_t need_expand)
+char	*here_doc_rl(char *del, size_t need_expand)
 {
 	char	*str;
 	char	*buffer;
@@ -29,8 +29,9 @@ char *here_doc_rl(char *del, size_t need_expand)
 	return (str);
 }
 
-void escape_str(char *str) {
-	size_t i;
+void	escape_str(char *str)
+{
+	size_t	i;
 
 	i = 0;
 	while (str[i])

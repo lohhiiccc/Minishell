@@ -16,12 +16,12 @@
 #include "expand.h"
 #include "heredoc.h"
 
-static t_node	get_redirect_type(t_token *token);
-static	t_tree *make_heredoc(t_token *tokens, t_tree *root);
+extern int	g_sig_value;
 
-extern int g_sig_value;
-//t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
-t_tree *make_redirection(t_token *tokens, t_tree *root)
+static t_node	get_redirect_type(t_token *token);
+static t_tree	*make_heredoc(t_token *tokens, t_tree *root);
+
+t_tree	*make_redirection(t_token *tokens, t_tree *root)
 {
 	t_node	type;
 
@@ -32,11 +32,11 @@ t_tree *make_redirection(t_token *tokens, t_tree *root)
 		return (ft_new_tree(ft_strdup(tokens[1].str), type, root));
 }
 
-static	t_tree *make_heredoc(t_token *tokens, t_tree *root)
+static t_tree	*make_heredoc(t_token *tokens, t_tree *root)
 {
 	int8_t	tmp;
 	t_tree	*new;
-	size_t need_expand;
+	size_t	need_expand;
 
 	new = ft_new_tree(ft_strdup(tokens[1].str), HERE_DOC, root);
 	if (NULL == new)

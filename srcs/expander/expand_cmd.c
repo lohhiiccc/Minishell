@@ -46,4 +46,3 @@ char	**expand_cmd(char **cmd, t_env *env)
 		remove_quote(cmd[i++]);
 	return (cmd);
 }
-

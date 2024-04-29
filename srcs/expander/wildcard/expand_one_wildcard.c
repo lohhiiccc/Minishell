@@ -6,12 +6,14 @@
 #include "expand_utils.h"
 #include "libft.h"
 
-static int8_t	add_wildcard_in_vector(t_vector *res, char **folder, char *patern, uint8_t is_folder);
+static int8_t	add_wildcard_in_vector(t_vector *res,
+					char **folder, char *patern, uint8_t is_folder);
 static int8_t	free_folder(char **folder, size_t i);
 static char		*get_patern(uint8_t is_folder);
 static int8_t	free_and_ret(t_vector *v);
 
-int8_t  fill_wildecard(char *patern, char **folder, char **str, uint8_t is_folder)
+int8_t	fill_wildecard(char *patern,
+			char **folder, char **str, uint8_t is_folder)
 {
 	t_vector	res;
 	char		c;
@@ -34,7 +36,8 @@ int8_t  fill_wildecard(char *patern, char **folder, char **str, uint8_t is_folde
 	return (ret);
 }
 
-static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern, uint8_t is_folder)
+static int8_t	add_wildcard_in_vector(t_vector *res,
+					char **folder, char *patern, uint8_t is_folder)
 {
 	size_t	i;
 	char	*buffer;
@@ -61,7 +64,7 @@ static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern,
 	return (save);
 }
 
-static char *get_patern(uint8_t is_folder)
+static char	*get_patern(uint8_t is_folder)
 {
 	if (is_folder)
 		return (IS_FOLDER);

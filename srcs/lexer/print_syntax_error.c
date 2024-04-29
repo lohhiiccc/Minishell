@@ -18,7 +18,7 @@
 #include "env.h"
 #include "ft_printf.h"
 
-int8_t print_syntax_error(t_vector *tokens, t_env *env, ssize_t i, char *error)
+int8_t	print_syntax_error(t_vector *tokens, t_env *env, ssize_t i, char *error)
 {
 	free(error);
 	env->ret = 2;
@@ -30,11 +30,10 @@ int8_t print_syntax_error(t_vector *tokens, t_env *env, ssize_t i, char *error)
 		|| ((t_token *)tokens->addr)[i].type == T_ARG)
 		&& ((((t_token *)tokens->addr)[i].str[0] == '\'')
 		|| ((t_token *)tokens->addr)[i].str[0] == '"'))
-		ft_dprintf(2, LEXER_ER_QUOTE,
-				   ((t_token*)tokens->addr)[i].str[0]);
+		ft_dprintf(2, LEXER_ER_QUOTE, ((t_token *)tokens->addr)[i].str[0]);
 	else
 		ft_dprintf(2, LEXER_ER_STR,
-				   ((t_token*)tokens->addr)[i].str);
+			((t_token *)tokens->addr)[i].str);
 	free_token(tokens);
 	return (-1);
 }

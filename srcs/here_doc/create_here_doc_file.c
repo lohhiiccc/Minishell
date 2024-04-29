@@ -35,7 +35,7 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	ft_free_tab(tree->structur);
 	tree->structur = NULL;
 	close(fd);
-	fd = open(file_name, O_RDWR , 0644);
+	fd = open(file_name, O_RDWR, 0644);
 	unlink(file_name);
 	free(file_name);
 	return (fd);
@@ -69,7 +69,7 @@ static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 	return (0);
 }
 
-static char *get_file_name(void)
+static char	*get_file_name(void)
 {
 	int		fd;
 	char	*file_name;
@@ -87,7 +87,7 @@ static char *get_file_name(void)
 	return (file_name);
 }
 
-static int8_t expand_heredoc(char **s, t_env *env, size_t i)
+static int8_t	expand_heredoc(char **s, t_env *env, size_t i)
 {
 	size_t	j;
 

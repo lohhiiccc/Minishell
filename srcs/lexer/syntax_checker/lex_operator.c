@@ -22,8 +22,8 @@ uint8_t	lex_operator(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (type == T_LOGICAL_OP  || type == T_RED_OUT  || type == T_RED_IN
-		|| type == T_PIPE  || type == T_NONE  || type == T_PARENTHESE_OP )
+	if (type == T_LOGICAL_OP || type == T_RED_OUT || type == T_RED_IN
+		|| type == T_PIPE || type == T_NONE || type == T_PARENTHESE_OP)
 		return (1);
 	return (0);
 }

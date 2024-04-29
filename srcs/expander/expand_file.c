@@ -16,9 +16,9 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static void *ambiguous_redirect(char *s, char **tab);
+static void	*ambiguous_redirect(char *s, char **tab);
 
-char *expand_file(char *s, t_env *env)
+char	*expand_file(char *s, t_env *env)
 {
 	char	**tab;
 	char	*res;

@@ -49,7 +49,7 @@ static char	**get_cmd(t_token *tokens)
 	if (NULL == arg[0])
 		return (free_and_return_null(arg));
 	len = 1;
-	while (tokens[i].type  != T_CMD && tokens[i].type != T_NEWLINE)
+	while (tokens[i].type != T_CMD && tokens[i].type != T_NEWLINE)
 	{
 		if (T_ARG == tokens[i].type)
 		{

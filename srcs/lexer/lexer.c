@@ -16,7 +16,7 @@
 #include "prompt.h"
 #include "libft.h"
 
-int lexer(char *str, t_vector *tokens, t_env *env)
+int	lexer(char *str, t_vector *tokens, t_env *env)
 {
 	ssize_t	syntax;
 	char	*s;

@@ -18,7 +18,7 @@ static uint8_t	lex_last(const size_t *parent, t_token_type type);
 static uint8_t	lex_global(t_vector *vector, size_t i, size_t *parent,
 					t_token_type type);
 
-ssize_t syntax_check(t_vector *tokens)
+ssize_t	syntax_check(t_vector *tokens)
 {
 	size_t			i;
 	t_token_type	type;

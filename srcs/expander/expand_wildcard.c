@@ -7,10 +7,10 @@
 
 static void	*free_tab(char **tab, size_t start);
 
-char **expand_wildcard(char **cmd)
+char	**expand_wildcard(char **cmd)
 {
 	size_t	i;
-	char 	*str;
+	char	*str;
 
 	i = 0;
 	str = NULL;

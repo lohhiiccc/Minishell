@@ -41,6 +41,6 @@ void	ft_clean_tree(t_tree *tree)
 		|| tree->type == OUTPUT || tree->type == INPUT)
 		free(tree->structur);
 	if (tree->type == HERE_DOC && tree->structur != NULL)
-			ft_free_tab(tree->structur);
+		ft_free_tab(tree->structur);
 	free(tree);
 }

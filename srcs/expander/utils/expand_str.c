@@ -1,7 +1,7 @@
 
 #include "expand_utils.h"
 
-int8_t expand_str(char **str, size_t i, t_env *env, char *error)
+int8_t	expand_str(char **str, size_t i, t_env *env, char *error)
 {
 	set_snegative(str[i]);
 	if (expand_ret(&str[i], env->ret) == -1

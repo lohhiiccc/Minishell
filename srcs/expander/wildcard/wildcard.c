@@ -4,11 +4,11 @@
 
 void	fix_patern(char *patern);
 
-int8_t wildcard(char *patern, char **wildcard)//todo : wildcard not working with quotes
+int8_t	wildcard(char *patern, char **wildcard)
 {
 	DIR				*directory;
 	struct dirent	*dir_data;
-	char 			**folder;
+	char			**folder;
 	uint8_t			is_folder;
 
 	dir_data = NULL;

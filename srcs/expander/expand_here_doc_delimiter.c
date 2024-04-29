@@ -13,7 +13,7 @@
 #include "expand_utils.h"
 #include "libft.h"
 
-size_t expand_delimiter(char *str)
+size_t	expand_delimiter(char *str)
 {
 	set_snegative(str);
 	set_negative(str);

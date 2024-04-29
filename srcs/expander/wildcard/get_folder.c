@@ -5,11 +5,13 @@
 #include "libft.h"
 
 static int		ft_sort(const char *s1, char *s2);
-static void		ft_advanced_sort_string_tab(char **tab, int (*cmp)(const char *, char *));
+static void		ft_advanced_sort_string_tab(char **tab,
+					int (*cmp)(const char *, char *));
 static uint8_t	get_next(DIR *directory, struct dirent **dir_data, uint8_t dir);
 static char		*get_str(char *str);
 
-char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden, uint8_t dir)
+char	**get_folder(DIR *directory,
+			struct dirent **dir_data, uint8_t include_hidden, uint8_t dir)
 {
 	t_vector	res;
 
@@ -18,7 +20,7 @@ char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidd
 	while (get_next(directory, dir_data, dir))
 	{
 		if ((*dir_data)->d_name[0] == '.' && !include_hidden)
-			continue;
+			continue ;
 		if (ft_vector_add_ptr(&res, get_str((*dir_data)->d_name)) == -1)
 		{
 			ft_vector_free(&res, free);
@@ -34,19 +36,12 @@ char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidd
 	return (ft_vector_get(&res, 0));
 }
 
-static void	ft_swap(char **a, char **b)
-{
-	char	*tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-static void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(const char *, char *))
+static void	ft_advanced_sort_string_tab(char **tab,
+					int (*cmp)(const char *, char *))
 {
 	size_t	i;
 	size_t	j;
+	char	*temp;
 
 	if (tab == NULL)
 		return ;
@@ -57,7 +52,11 @@ static void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(const char *, cha
 		while (tab[j] != NULL)
 		{
 			if (cmp(tab[j], tab[i]) > 0)
-				ft_swap(&tab[i], &tab[j]);
+			{
+				temp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = temp;
+			}
 			j++;
 		}
 		i++;
@@ -84,7 +83,7 @@ static int	ft_sort(const char *s1, char *s2)
 	return (c1 - c2);
 }
 
-static uint8_t get_next(DIR *directory, struct dirent **dir_data, uint8_t dir)
+static uint8_t	get_next(DIR *directory, struct dirent **dir_data, uint8_t dir)
 {
 	*dir_data = readdir(directory);
 	if (*dir_data == NULL)
@@ -94,10 +93,10 @@ static uint8_t get_next(DIR *directory, struct dirent **dir_data, uint8_t dir)
 	return (1);
 }
 
-static char *get_str(char *str)
+static char	*get_str(char *str)
 {
-	size_t i;
-	char *res;
+	size_t	i;
+	char	*res;
 
 	i = 0;
 	res = ft_null_alloc(ft_strlen(str) + 1, sizeof(char));

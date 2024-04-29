@@ -6,11 +6,11 @@
 #include "ft_printf.h"
 #include "heredoc.h"
 
-extern int g_sig_value;
+extern int	g_sig_value;
 
-static int8_t error(char *str, t_vector *v);
+static int8_t	error(char *str, t_vector *v);
 
-int read_here_doc(t_tree *tree, size_t need_expand)
+int	read_here_doc(t_tree *tree, size_t need_expand)
 {
 	t_vector	content;
 	char		*buffer;
@@ -36,7 +36,7 @@ int read_here_doc(t_tree *tree, size_t need_expand)
 	return (g_sig_value);
 }
 
-static int8_t error(char *str, t_vector *v)
+static int8_t	error(char *str, t_vector *v)
 {
 	ft_vector_free(v, free);
 	free(str);
