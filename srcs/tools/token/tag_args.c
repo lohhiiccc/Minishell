@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include <stdint.h>
+
+#include "token.h"
 
 static uint8_t	is_sep(t_token_type type);
 

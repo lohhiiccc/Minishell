@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include <stdint.h>
+
+#include "token.h"
 
 static size_t	get_quote_len(char *str, unsigned char *error);
 static uint8_t	search_cmd(t_vector *vector, size_t i);

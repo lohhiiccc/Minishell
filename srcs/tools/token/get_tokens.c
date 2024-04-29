@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 #include "token.h"
 #include "libft.h"
-#include <stdlib.h>
 
 int8_t	get_tokens(char *str, t_vector *vector)
 {

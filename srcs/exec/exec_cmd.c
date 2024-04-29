@@ -13,7 +13,6 @@
 #include "exec.h"
 #include "env.h"
 #include "expand.h"
-#include <stdlib.h>
 
 int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
 {

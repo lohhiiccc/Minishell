@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 #include "tree.h"
 #include "token.h"
-#include <stdlib.h>
 #include "libft.h"
 
 static void		*free_and_return_null(void *content);

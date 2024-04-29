@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdint.h>
+
 #include "token.h"
 
 uint8_t	lex_pipe(t_vector *vector, size_t i)

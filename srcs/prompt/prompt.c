@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+
 #include "minishell.h"
 #include "exec.h"
 #include "ft_printf.h"
 #include "prompt.h"
 #include "ms_signal.h"
-#include <unistd.h>
 
 extern int	g_sig_value;
 

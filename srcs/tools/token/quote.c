@@ -9,7 +9,8 @@
 /*   Updated: 2024/03/04 00:58:50 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <bits/stdint-intn.h>
+
+#include <stdint.h>
 
 int8_t	quote_started(unsigned char reset, char c)
 {

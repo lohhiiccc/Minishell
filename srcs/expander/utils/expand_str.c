@@ -1,8 +1,6 @@
 
-#include <stdlib.h>
 #include "expand_utils.h"
 
-//static uint8_t have_wildcard(char *str);
 int8_t expand_str(char **str, size_t i, t_env *env, char *error)
 {
 	set_snegative(str[i]);

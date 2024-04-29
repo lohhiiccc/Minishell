@@ -12,6 +12,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+
 #include "vector.h"
 
 static int8_t	new_str(t_vector *vector, char *str, uint8_t ret);

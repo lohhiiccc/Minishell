@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include <stdint.h>
+
+#include "token.h"
 
 uint8_t	lex_operator(t_vector *vector, size_t i)
 {

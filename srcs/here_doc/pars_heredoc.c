@@ -1,13 +1,15 @@
 
+#include <stdlib.h>
+
 #include "libft.h"
 #include "tree.h"
 #include "ft_printf.h"
 #include "heredoc.h"
-#include <stdlib.h>
+
 extern int g_sig_value;
 
-
 static int8_t error(char *str, t_vector *v);
+
 int read_here_doc(t_tree *tree, size_t need_expand)
 {
 	t_vector	content;

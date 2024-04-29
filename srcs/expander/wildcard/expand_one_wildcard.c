@@ -1,5 +1,6 @@
 
 #include <stdlib.h>
+
 #include "vector.h"
 #include "ft_printf.h"
 #include "expand_utils.h"

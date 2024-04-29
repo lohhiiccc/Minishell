@@ -9,9 +9,11 @@
 /*   Updated: 2024/03/04 00:46:39 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "token.h"
+
 #include <stdint.h>
-//<< and <
+
+#include "token.h"
+
 uint8_t	lex_redirect_in(t_vector *vector, size_t i)
 {
 	t_token_type	type;

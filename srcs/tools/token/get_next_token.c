@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
+
 #include "token.h"
-#include <bits/stdint-uintn.h>
 #include "libft.h"
 
 static uint8_t	is_sep(char c);
