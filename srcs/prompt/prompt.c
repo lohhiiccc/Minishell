@@ -22,7 +22,8 @@ extern int	g_sig_value;
 
 static uint8_t	init_fd(t_fds *fd);
 static uint8_t	free_fd(t_fds *fd, uint8_t ret);
-static int		create_and_exec_tree(t_param *param, t_fds *fd, t_vector *tokens);
+static int		create_and_exec_tree(t_param *param,
+					t_fds *fd, t_vector *tokens);
 
 int	prompt(t_param *param)
 {

@@ -32,7 +32,6 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_param *param)
 	int	fd[2];
 
 	param->is_main = 1;
-	
 	ms_signal_main_wait();
 	if (pipe(fd) == -1)
 		return (print_error(strerror(errno), 1));

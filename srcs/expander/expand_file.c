@@ -45,7 +45,7 @@ char	*expand_file(char *s, t_param *param)
 	return (res);
 }
 
-static void *ambiguous_redirect(char *s, char **tab)
+static void	*ambiguous_redirect(char *s, char **tab)
 {
 	ft_dprintf(2, "minichell: %S: ambiguous redirect\n", s);
 	ft_free_tab(tab);

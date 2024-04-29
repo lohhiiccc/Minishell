@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-uint8_t have_wildcard(char *str)
+uint8_t	have_wildcard(char *str)
 {
 	size_t	i;
 

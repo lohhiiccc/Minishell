@@ -40,5 +40,3 @@ int	exec_here_doc(t_tree *tree, t_fds *fds, t_param *param)
 	}
 	return (ret);
 }
-
-

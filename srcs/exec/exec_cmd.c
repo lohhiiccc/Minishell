@@ -18,8 +18,8 @@ int	exec_cmd(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int			ret;
 
-	((t_cmd *)tree->structur)->arg = expand_cmd(((t_cmd *) tree->structur)->arg,
-												param);
+	((t_cmd *)tree->structur)->arg = expand_cmd(((t_cmd *)tree->structur)->arg,
+			param);
 	if ((((t_cmd *)tree->structur)->arg) == NULL)
 		return (1);
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))

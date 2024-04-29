@@ -18,7 +18,8 @@
 #include "env.h"
 #include "ft_printf.h"
 
-int8_t	print_syntax_error(t_vector *tokens, t_param *param, ssize_t i, char *error)
+int8_t	print_syntax_error(t_vector *tokens,
+			t_param *param, ssize_t i, char *error)
 {
 	free(error);
 	param->ret = 2;

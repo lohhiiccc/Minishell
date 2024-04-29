@@ -20,7 +20,7 @@ char	**expand_wildcard(char **cmd)
 		if (have_wildcard(cmd[i]))
 		{
 			if (wildcard(cmd[i], &cmd[i]) == -1)
-				return wildecard_fail(cmd, i, str);
+				return (wildecard_fail(cmd, i, str));
 		}
 		str = ft_sprintf("%S%s ", str, cmd[i]);
 		if (str == NULL)
@@ -36,7 +36,7 @@ char	**expand_wildcard(char **cmd)
 	return (cmd);
 }
 
-static char **wildecard_fail(char **cmd, size_t i, char *str)
+static char	**wildecard_fail(char **cmd, size_t i, char *str)
 {
 	free(str);
 	return (free_tab(cmd, i));

@@ -16,7 +16,7 @@
 #include "expand_utils.h"
 #include "libft.h"
 
-char **word_split(char **cmd, size_t i, char *str);
+char	**word_split(char **cmd, size_t i, char *str);
 
 char	**expand_cmd(char **cmd, t_param *param)
 {
@@ -39,7 +39,7 @@ char	**expand_cmd(char **cmd, t_param *param)
 	return (word_split(cmd, i, str));
 }
 
-char **word_split(char **cmd, size_t i, char *str)
+char	**word_split(char **cmd, size_t i, char *str)
 {
 	cmd = ft_split(str, " \t\n");
 	free(str);
