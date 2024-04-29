@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <readline/readline.h>
+#include <unistd.h>
+
 #include "ms_signal.h"
 #include "minishell.h"
 #include "ft_printf.h"
-#include "expand_utils.h"
-#include <readline/readline.h>
-#include <unistd.h>
-#include <stdlib.h>
 
 int	main(int argc, char **argv, char **env)
 {

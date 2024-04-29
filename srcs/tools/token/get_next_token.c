@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
+
 #include "token.h"
-#include <bits/stdint-uintn.h>
 #include "libft.h"
 
 static uint8_t	is_sep(char c);
@@ -34,7 +35,7 @@ int8_t	get_next_token(char *str, t_token *tkn)
 	{
 		if (0 == ft_strncmp(type[i].str, str, ft_strlen(type[i].str)))
 		{
-			if (-1 == fill_token(str, tkn, type[i].type, type[i].str))
+			if (fill_token(str, tkn, type[i].type, type[i].str) == -1)
 				return (-1);
 			return (0);
 		}

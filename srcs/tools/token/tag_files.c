@@ -17,12 +17,12 @@ void	tag_files(t_vector *tokens)
 	size_t	i;
 
 	i = 0;
-	while (i < tokens->nbr_elem)
+	while (tokens->nbr_elem > i)
 	{
 		if (i + 1 < tokens->nbr_elem
-			&& (T_RED_OUT == ((t_token *)tokens->addr)[i].type
-			|| T_RED_IN == ((t_token *)tokens->addr)[i].type)
-			&& T_CMD == ((t_token *)tokens->addr)[i + 1].type)
+			&& (((t_token *)tokens->addr)[i].type == T_RED_OUT
+			|| ((t_token *)tokens->addr)[i].type == T_RED_IN)
+			&& ((t_token *)tokens->addr)[i + 1].type == T_CMD)
 			((t_token *)tokens->addr)[i + 1].type = T_FILES;
 		i++;
 	}

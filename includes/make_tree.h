@@ -12,14 +12,15 @@
 
 #ifndef MAKE_TREE_H
 # define MAKE_TREE_H
+
+# include <stdint.h>
 # include "tree.h"
 # include "token.h"
-# include <stdint.h>
 
 t_tree	*make_tree(t_token *tokens, t_env *env);
 t_tree	*make_command(t_token *tokens, t_tree *root);
 t_tree	*make_operator(t_token *tokens, t_tree *root);
-t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env);
+t_tree	*make_redirection(t_token *tokens, t_tree *root);
 t_tree	*add_in_subtree(t_tree *root, t_tree *new);
 uint8_t	is_redirection(t_node root_type);
 uint8_t	is_l_operator(t_node root_type);

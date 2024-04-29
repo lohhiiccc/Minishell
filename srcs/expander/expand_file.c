@@ -6,37 +6,36 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:59:12 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 18:11:43 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 19:04:13 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 
 #include "expand.h"
 #include "ft_printf.h"
 #include "libft.h"
 
-static void *ambiguous_redirect(char *s, char **tab);
+static void	*ambiguous_redirect(char *s, char **tab);
 
-char *expand_file(char *s, t_env *env)
+char	*expand_file(char *s, t_env *env)
 {
 	char	**tab;
 	char	*res;
 	char	*dup;
 
-	tab = ft_null_alloc(STDERR_FILENO, sizeof(char *));
-	if (NULL == tab)
+	tab = ft_null_alloc(2, sizeof(char *));
+	if (tab == NULL)
 		return (NULL);
 	tab[0] = s;
-	dup= ft_strdup(s);
-	if (NULL == dup)
+	dup = ft_strdup(s);
+	if (dup == NULL)
 	{
 		free(tab);
 		return (NULL);
 	}
 	tab = expand_cmd(tab, env);
-	if (NULL == tab)
+	if (tab == NULL)
 		return (NULL);
 	if (tab[1])
 		return (ambiguous_redirect(dup, tab));

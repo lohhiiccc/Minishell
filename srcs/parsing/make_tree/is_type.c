@@ -9,6 +9,7 @@
 /*   Updated: 2024/03/11 13:16:19 by lrio             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "make_tree.h"
 
 uint8_t	is_redirection(t_node root_type)

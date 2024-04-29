@@ -12,7 +12,6 @@
 
 #include <signal.h>
 #include <unistd.h>
-#include "ft_printf.h"
 
 void	ms_signal_child(void)
 {

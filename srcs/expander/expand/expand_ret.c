@@ -12,6 +12,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+
 #include "vector.h"
 
 static int8_t	new_str(t_vector *vector, char *str, uint8_t ret);
@@ -29,9 +30,9 @@ int8_t	expand_ret(char **str, uint8_t ret)
 	{
 		if (s[i] == '$' && s[i + 1] == '?')
 		{
-			if (-1 == ft_vector_init(&new, sizeof(char)))
+			if (ft_vector_init(&new, sizeof(char)) == -1)
 				return (-1);
-			if (-1 == new_str(&new, s, ret))
+			if (new_str(&new, s, ret) == -1)
 			{
 				ft_vector_free(&new, NULL);
 				return (-1);
@@ -55,12 +56,12 @@ static int8_t	new_str(t_vector *vector, char *str, uint8_t ret)
 	{
 		if ((str[i] == '$' && str[i + 1] == '?'))
 		{
-			if (-1 == vector_put_ret(num, ret, vector))
+			if (vector_put_ret(num, ret, vector) == -1)
 				return (-1);
 			i++;
 		}
 		else
-			if (-1 == ft_vector_add(vector, &str[i]))
+			if (ft_vector_add(vector, &str[i]) == -1)
 				return (-1);
 		i++;
 	}
@@ -73,15 +74,15 @@ static int8_t	vector_put_ret(char *num, uint8_t ret, t_vector *vector)
 		return (ft_vector_add(vector, &num[ret]));
 	else if (ret < 100)
 	{
-		if (-1 == ft_vector_add(vector, &num[ret / 10]))
+		if (ft_vector_add(vector, &num[ret / 10]) == -1)
 			return (-1);
 		return (ft_vector_add(vector, &num[ret % 10]));
 	}
 	else
 	{
-		if (-1 == ft_vector_add(vector, &num[(ret / 100)]))
+		if (ft_vector_add(vector, &num[(ret / 100)]) == -1)
 			return (-1);
-		if (-1 == ft_vector_add(vector, &num[(ret / 10) % 10]))
+		if (ft_vector_add(vector, &num[(ret / 10) % 10]) == -1)
 			return (-1);
 		return (ft_vector_add(vector, &num[ret % 10]));
 	}

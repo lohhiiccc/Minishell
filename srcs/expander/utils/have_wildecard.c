@@ -4,7 +4,7 @@
 
 uint8_t have_wildcard(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])

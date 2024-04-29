@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <bits/stdint-uintn.h>
+#include <stdint.h>
+
 #include "libft.h"
 
 uint8_t remove_quote(char *s)

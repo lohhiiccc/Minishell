@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include <stdint.h>
+
+#include "token.h"
 
 static uint8_t	is_sep(t_token_type type);
 
@@ -22,7 +23,7 @@ void	tag_arg(t_vector *tokens)
 
 	i = 0;
 	have_cmd = 0;
-	while (i < tokens->nbr_elem)
+	while (tokens->nbr_elem > i)
 	{
 		if (is_sep(((t_token *)tokens->addr)[i].type))
 			have_cmd = 0;

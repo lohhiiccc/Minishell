@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <malloc.h>
 #include <unistd.h>
+
 #include "expand.h"
 #include "tree.h"
 #include "ft_printf.h"
@@ -34,7 +35,7 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	ft_free_tab(tree->structur);
 	tree->structur = NULL;
 	close(fd);
-	fd = open(file_name, O_RDWR , 0644);
+	fd = open(file_name, O_RDWR, 0644);
 	unlink(file_name);
 	free(file_name);
 	return (fd);
@@ -49,11 +50,11 @@ static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 	i = 0;
 	while (((char **)tree->structur)[i])
 	{
-		if (-1 == expand_heredoc(((char **)tree->structur), env, i))
+		if (expand_heredoc(((char **)tree->structur), env, i) == -1)
 			return (-1);
 		i++;
 	}
-	if (NULL == tree->structur)
+	if (tree->structur == NULL)
 		return (-1);
 	i = 0;
 	while (((char **)tree->structur)[i])
@@ -68,7 +69,7 @@ static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 	return (0);
 }
 
-static char *get_file_name(void)
+static char	*get_file_name(void)
 {
 	int		fd;
 	char	*file_name;
@@ -86,7 +87,7 @@ static char *get_file_name(void)
 	return (file_name);
 }
 
-static int8_t expand_heredoc(char **s, t_env *env, size_t i)
+static int8_t	expand_heredoc(char **s, t_env *env, size_t i)
 {
 	size_t	j;
 

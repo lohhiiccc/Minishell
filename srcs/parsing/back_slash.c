@@ -1,7 +1,7 @@
 
 #include "libft.h"
 
-void prompt_back_slash(char *s)
+void	prompt_back_slash(char *s)
 {
 	size_t	i;
 
@@ -17,7 +17,7 @@ void prompt_back_slash(char *s)
 	}
 }
 
-void heredoc_back_slash(char *s)
+void	heredoc_back_slash(char *s)
 {
 	size_t	i;
 
@@ -29,7 +29,8 @@ void heredoc_back_slash(char *s)
 			ft_memmove(s + i, s + i + 1, ft_strlen(s + i + 1) + 1);
 			s[i] = 127;
 		}
-		else if (s[i] == '\\' && (s[i + 1] == '$' || s[i + 1] == '\\' || s[i] == '\n'))
+		else if (s[i] == '\\' && (s[i + 1] == '$'
+				|| s[i + 1] == '\\' || s[i] == '\n'))
 		{
 			ft_memmove(s + i, s + i + 1, ft_strlen(s + i + 1) + 1);
 			s[i] = -s[i];

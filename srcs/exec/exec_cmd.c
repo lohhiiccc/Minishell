@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 18:19:24 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 21:40:41 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
 		ret = exec_build_in(tree, fds, env);
 	else
 		ret = exec_exe(tree, fds, env);
+	env->ret = ret;
 	return (ret);
 }

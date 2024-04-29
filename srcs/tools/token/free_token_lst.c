@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
 #include <stdlib.h>
+
+#include "token.h"
 
 void	free_token(t_vector *vector)
 {

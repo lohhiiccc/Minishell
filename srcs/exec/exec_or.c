@@ -6,14 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:32:18 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:04:14 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 19:03:40 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 
 #include "exec.h"
-#include "ft_printf.h"
+#include <signal.h>
 
 extern int	g_sig_value;
 
