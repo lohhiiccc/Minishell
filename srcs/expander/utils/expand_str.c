@@ -1,13 +1,11 @@
 
-#include <stdlib.h>
 #include "expand_utils.h"
 
-//static uint8_t have_wildcard(char *str);
-int8_t expand_str(char **str, size_t i, t_env *env, char *error)
+int8_t	expand_str(char **str, size_t i, t_env *env, char *error)
 {
 	set_snegative(str[i]);
-	if (-1 == expand_ret(&str[i], env->ret)
-		|| -1 == expand_var(&str[i], &env->env))
+	if (expand_ret(&str[i], env->ret) == -1
+		|| expand_var(&str[i], &env->env) == -1)
 	{
 		free_expand(str, i, error);
 		return (-1);

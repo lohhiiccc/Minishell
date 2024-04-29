@@ -12,15 +12,17 @@
 
 #include "add_tree.h"
 
-extern int g_sig_value;
+extern int	g_sig_value;
+
 //todo: si new == NULL free root et return NULL
+
 t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 {
-	if (NULL == root)
+	if (root == NULL)
 		return (new);
-	if (CMD == root->type)
+	if (root->type == CMD)
 		return (add_up_right(root, new));
-	if (is_l_operator(root->type) || O_PIPE == root->type)
+	if (is_l_operator(root->type) || root->type == O_PIPE)
 	{
 		if (is_l_operator(new->type))
 			return (add_up_right(root, new));
@@ -28,7 +30,7 @@ t_tree	*add_in_subtree(t_tree *root, t_tree *new)
 	}
 	if (is_redirection(root->type))
 	{
-		if (CMD == new->type)
+		if (new->type == CMD)
 			return (down_left(root, root, new));
 		if (is_redirection(new->type))
 			return (add_redirection(root, new));

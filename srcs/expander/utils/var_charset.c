@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdint.h>
+
 #include "libft.h"
 
 uint8_t	is_charset(char c)

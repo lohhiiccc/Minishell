@@ -3,17 +3,18 @@
 #include <stddef.h>
 
 static char	value(char c);
-uint8_t is_match(char *str, char *patern, size_t i, size_t j)
+
+uint8_t	is_match(char *str, char *patern, size_t i, size_t j)
 {
 	while ((patern[j] && patern[j] == '*' && patern[j + 1] == '*')
-			|| (patern[j] =='\'' || patern[j] == '"'))
+		|| (patern[j] == '\'' || patern[j] == '"'))
 		j++;
 	if (value(patern[j]) && value(patern[j]) == '/' && !value(patern[j + 1]))
 		return (1);
 	if (!str[i] && !value(patern[j]))
 		return (1);
 	if (value(patern[j]) == '*')
-		return (is_match(str, patern, i , j + 1)
+		return (is_match(str, patern, i, j + 1)
 			|| (str[i] && is_match(str, patern, i + 1, j)));
 	if ((value(patern[j]) == '?' && str[i]) || value(patern[j]) == str[i])
 		return (is_match(str, patern, i + 1, j + 1));

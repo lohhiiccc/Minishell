@@ -10,17 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdlib.h>
+
+#include "ft_printf.h"
 #include "expand_utils.h"
 #include "libft.h"
+
+char **word_split(char **cmd, size_t i, char *str);
 
 char	**expand_cmd(char **cmd, t_env *env)
 {
 	size_t	i;
 	char	*str;
 
-	(void)env;
 	i = 0;
 	str = NULL;
 	while (cmd[i])
@@ -34,16 +36,19 @@ char	**expand_cmd(char **cmd, t_env *env)
 		i++;
 	}
 	free(cmd);
+	return (word_split(cmd, i, str));
+}
+
+char **word_split(char **cmd, size_t i, char *str) {
 	cmd = ft_split(str, " \t\n");
 	free(str);
-	if (NULL == cmd)
+	if (cmd == NULL)
 		return (NULL);
 	cmd = expand_wildcard(cmd);
-	if (NULL == cmd)
+	if (cmd == NULL)
 		return (NULL);
 	i = 0;
 	while (cmd[i])
 		remove_quote(cmd[i++]);
 	return (cmd);
 }
-

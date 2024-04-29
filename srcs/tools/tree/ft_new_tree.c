@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <malloc.h>
+
 #include "tree.h"
 
 t_tree	*ft_new_tree(void *content, t_node node, t_tree *root)

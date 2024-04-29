@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "exec.h"
-#include "ft_printf.h"
 #include <signal.h>
 
 extern int	g_sig_value;

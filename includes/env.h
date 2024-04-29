@@ -14,6 +14,7 @@
 # define ENV_H
 
 # include <stdint.h>
+
 # include "vector.h"
 
 typedef struct s_env
