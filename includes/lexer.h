@@ -12,10 +12,12 @@
 
 #ifndef LEXER_H
 # define LEXER_H
+
+# include <stdint.h>
+#include <stdio.h>
+
 # include "stddef.h"
 #include "env.h"
-# include <stdint.h>
-#include <monetary.h>
 
 uint8_t	lex_string(t_vector *vector, size_t i);
 uint8_t	lex_pipe(t_vector *vector, size_t i);

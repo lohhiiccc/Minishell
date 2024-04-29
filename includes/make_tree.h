@@ -12,9 +12,10 @@
 
 #ifndef MAKE_TREE_H
 # define MAKE_TREE_H
+
+# include <stdint.h>
 # include "tree.h"
 # include "token.h"
-# include <stdint.h>
 
 t_tree	*make_tree(t_token *tokens, t_env *env);
 t_tree	*make_command(t_token *tokens, t_tree *root);

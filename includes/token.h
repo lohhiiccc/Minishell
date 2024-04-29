@@ -13,8 +13,14 @@
 #ifndef TOKEN_H
 # define TOKEN_H
 
-# include <bits/stdint-intn.h>
+# include <stdint.h>
+
 # include "vector.h"
+
+#define LEXER_ER_QUOTE "syntax error near unexpected token `%c'\n"
+#define LEXER_ER_STR "syntax error near unexpected token `%e'\n"
+#define LEXER_ER_NEWLINE "syntax error near unexpected token `NewLine'\n"
+
 
 typedef enum e_token_type
 {

@@ -12,7 +12,9 @@
 
 #ifndef EXPAND_UTILS_H
 # define EXPAND_UTILS_H
+
 # include <stdint.h>
+
 # include "stddef.h"
 # include "env.h"
 # include "dirent.h"
