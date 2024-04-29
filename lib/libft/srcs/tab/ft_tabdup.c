@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:18:09 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/24 23:20:30 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 03:52:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ char	**ft_tabdup(char **tab)
 	while (i < len)
 	{
 		ret[i] = ft_strdup(tab[i]);
+		if (!ret[i])
+		{
+			while (i > 0)
+			{
+				free(ret[i]);
+				i--;
+			}
+			free(ret[i]);
+			free(ret);
+			return (NULL);
+		}
 		i++;
 	}
 	ret[i] = NULL;

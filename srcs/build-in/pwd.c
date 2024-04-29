@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:26 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/19 23:38:47 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 18:10:31 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_pwd(t_vector *fd_out, t_vector *env)
 		ret = found_value_of_variable("PWD", *env);
 		if (!ret)
 		{
-			ft_dprintf(2, "Minichel: pwd: %s\n", strerror(errno));
+			ft_dprintf(STDERR_FILENO, "Minichel: pwd: %s\n", strerror(errno));
 			return (1);
 		}
 	}

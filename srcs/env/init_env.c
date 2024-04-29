@@ -6,16 +6,18 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:30:31 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/23 18:21:00 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 18:11:03 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
+#include <unistd.h>
 
 #include "env.h"
 #include "libft.h"
 #include "vector.h"
 #include "build_in.h"
 #include "ft_printf.h"
-#include <stdlib.h>
 
 int		inc_shlvl(t_vector *new_env);
 char	*update_shlvl(char *shlvl);
@@ -79,7 +81,7 @@ char	*update_shlvl(char *shlvl)
 		temp = 0;
 	if (temp >= 1000)
 	{
-		ft_dprintf(2, "Minichel: warning: shell level (%d) too high,\
+		ft_dprintf(STDERR_FILENO, "Minichel: warning: shell level (%d) too high,\
 resetting to 1\n", temp);
 		temp = 1;
 	}

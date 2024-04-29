@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 22:16:29 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 22:17:26 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 04:40:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*prompt_value(int last_ret)
 	free(pwd);
 	if (!prompt)
 	{
-		line = readline("[x] [error] Minishell$ ");
+		line = readline("[x] [error] Minichel$ ");
 		return (line);
 	}
 	line = readline(prompt);

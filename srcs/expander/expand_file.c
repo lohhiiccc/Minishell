@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:59:12 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/23 18:35:55 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 19:04:13 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*expand_file(char *s, t_env *env)
 
 static void *ambiguous_redirect(char *s, char **tab)
 {
-	ft_dprintf(2, "minichell: %S: ambiguous redirect\n", s);
+	ft_dprintf(STDERR_FILENO, "minichell: %S: ambiguous redirect\n", s);
 	ft_free_tab(tab);
 	return (NULL);
 }

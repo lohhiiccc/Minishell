@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:31:25 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 18:40:39 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 18:07:23 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	exec_and(t_tree *tree, t_fds *fds, t_env *env)
 	int	ret;
 
 	ret = exec_args(tree->left, fds, tree->root, env);
-	if (ret == 0)
+	if (0 == ret)
 		ret = exec_args(tree->right, fds, tree->root, env);
 	return (ret);
 }

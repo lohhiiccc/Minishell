@@ -6,9 +6,11 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:32:18 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/22 22:27:46 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 19:03:40 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <signal.h>
 
 #include "exec.h"
 #include <signal.h>

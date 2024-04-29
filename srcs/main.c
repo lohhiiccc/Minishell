@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 01:46:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/24 16:43:30 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 18:10:31 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **env)
 	new_env.is_main = 0;
 	if (!isatty(0) || !isatty(1))
 	{
-		ft_dprintf(2, "minichel: please use a tty\n");
+		ft_dprintf(STDERR_FILENO, "minichel: please use a tty\n");
 		return (1);
 	}
 	if (-1 == init_env(env, &new_env.env))

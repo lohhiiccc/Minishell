@@ -6,13 +6,17 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 21:52:02 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 04:32:08 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+
 #include "vector.h"
 #include "libft.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
 void	close_vector_fd(t_vector *fd)
 {
@@ -21,7 +25,8 @@ void	close_vector_fd(t_vector *fd)
 	i = 0;
 	while (i < fd->nbr_elem)
 	{
-		close(*(int *)ft_vector_get(fd, i));
+		if (-1 == close(*(int *)ft_vector_get(fd, i)))
+			ft_dprintf(STDERR_FILENO, "Minichel: %s\n", strerror(errno));
 		i++;
 	}
 }
