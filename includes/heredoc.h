@@ -6,6 +6,7 @@
 
 int	create_file_here_doc(t_tree *tree, t_env *env);
 char	*here_doc_rl(char *del);
+void heredoc_back_slash(char *s);
 int	read_here_doc(t_tree *tree);
 
 #endif

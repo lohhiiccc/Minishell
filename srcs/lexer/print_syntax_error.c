@@ -32,7 +32,7 @@ int8_t print_syntax_error(t_vector *tokens, t_env *env, ssize_t i, char *error)
 		ft_dprintf(2, "syntax error near unexpected token `%c'\n",
 				   ((t_token*)tokens->addr)[i].str[0]);
 	else
-		ft_dprintf(2, "syntax error near unexpected token `%s'\n",
+		ft_dprintf(2, "syntax error near unexpected token `%e'\n",
 				   ((t_token*)tokens->addr)[i].str);
 	free_token(tokens);
 	return (-1);

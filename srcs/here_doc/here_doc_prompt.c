@@ -2,6 +2,7 @@
 #include <readline/readline.h>
 #include <stdlib.h>
 #include "ft_printf.h"
+#include "heredoc.h"
 
 char	*here_doc_rl(char *del)
 {
@@ -16,5 +17,6 @@ char	*here_doc_rl(char *del)
 	}
 	else
 		str = readline("le croquant > ");
+	heredoc_back_slash(str);
 	return (str);
 }
