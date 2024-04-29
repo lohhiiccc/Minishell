@@ -17,6 +17,6 @@
 # include "env.h"
 
 int		prompt(t_env *env);
-int lexer(char *str, t_vector *tokens, t_env *env);
+int		lexer(char *str, t_vector *tokens, t_env *env);
 t_tree	*parsing(t_env *env, t_vector *tokens);
 #endif
