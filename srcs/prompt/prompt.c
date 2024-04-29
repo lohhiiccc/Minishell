@@ -46,7 +46,7 @@ int	prompt(t_env *env)
 		return (128 + g_sig_value);
 	}
 	if (init_fd(&fd))
-		return (1); //todo print erreur malloc
+		return (1);
 	if (-1 != lexer(str, &tokens, env)
 		&& 1 == create_and_exec_tree(env, &fd, &tokens))
 		return (1);

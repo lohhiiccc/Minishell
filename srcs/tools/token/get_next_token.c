@@ -20,7 +20,6 @@ static int8_t	set_cmd(const char *str, t_token *tkn);
 static int8_t	fill_token(char *str, t_token *token,
 					t_token_type type, char *s);
 
-//todo : securiser strndup
 int8_t	get_next_token(char *str, t_token *tkn)
 {
 	size_t					i;
