@@ -21,7 +21,7 @@ uint8_t	lex_pipe(t_vector *vector, size_t i)
 		type = ((t_token *)vector->addr)[i - 1].type;
 	else
 		type = T_NONE;
-	if (T_CMD == type || T_FILES == type || T_PARENTHESE_CL == type)
+	if (type == T_CMD || type == T_FILES || type == T_PARENTHESE_CL)
 		return (0);
 	return (1);
 }

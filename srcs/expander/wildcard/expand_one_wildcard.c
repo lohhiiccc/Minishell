@@ -16,7 +16,7 @@ int8_t  fill_wildecard(char *patern, char **folder, char **str, uint8_t is_folde
 	char		c;
 	int8_t		ret;
 
-	if (-1 == ft_vector_init(&res, sizeof(char)))
+	if (ft_vector_init(&res, sizeof(char)) == -1)
 	{
 		ft_free_tab(folder);
 		return (-1);
@@ -24,7 +24,7 @@ int8_t  fill_wildecard(char *patern, char **folder, char **str, uint8_t is_folde
 	ret = add_wildcard_in_vector(&res, folder, patern, is_folder);
 	if (ret == -1)
 		return (free_and_ret(&res));
-	else if (ret == 3 && -1 == ft_vector_add_n(&res, patern, ft_strlen(patern)))
+	else if (ret == 3 && ft_vector_add_n(&res, patern, ft_strlen(patern)) == -1)
 		return (free_and_ret(&res));
 	c = '\0';
 	ret = ft_vector_add(&res, &c);
@@ -46,7 +46,7 @@ static int8_t add_wildcard_in_vector(t_vector *res, char **folder, char *patern,
 		if (is_match(folder[i], patern, 0, 0))
 		{
 			buffer = ft_sprintf(get_patern(is_folder), buffer, folder[i]);
-			if (NULL == buffer)
+			if (buffer == NULL)
 				return (free_folder(folder, i));
 		}
 		free(folder[i]);

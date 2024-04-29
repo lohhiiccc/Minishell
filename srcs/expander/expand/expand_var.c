@@ -11,7 +11,7 @@ int8_t expand_var(char **str, t_vector *env)
 	t_vector	new;
 	size_t		i;
 
-	if (-1 == ft_vector_init(&new, sizeof(char)))
+	if (ft_vector_init(&new, sizeof(char)) == -1)
 		return (-1);
 	s = *str;
 	i = 0;
@@ -19,16 +19,16 @@ int8_t expand_var(char **str, t_vector *env)
 	{
 		if (s[i] == '$' && (ft_isalpha(s[i + 1]) || s[i + 1] == '_'))
 		{
-			if (-1 == add_var(s, &i, env, &new))
+			if (add_var(s, &i, env, &new) == -1)
 				return (free_and_return(&new));
 			continue ;
 		}
-		if (-1 == ft_vector_add(&new, &s[i]))
+		if (ft_vector_add(&new, &s[i]) == -1)
 			return (free_and_return(&new));
 		if (s[i])
 			i++;
 	}
-	if (-1 == ft_vector_add(&new, &s[i]))
+	if (ft_vector_add(&new, &s[i]) == -1)
 		return (free_and_return(&new));
 	free(s);
 	*str = ft_vector_get(&new, 0);

@@ -49,11 +49,11 @@ static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
 	i = 0;
 	while (((char **)tree->structur)[i])
 	{
-		if (-1 == expand_heredoc(((char **)tree->structur), env, i))
+		if (expand_heredoc(((char **)tree->structur), env, i) == -1)
 			return (-1);
 		i++;
 	}
-	if (NULL == tree->structur)
+	if (tree->structur == NULL)
 		return (-1);
 	i = 0;
 	while (((char **)tree->structur)[i])

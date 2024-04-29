@@ -17,14 +17,14 @@ char **expand_wildcard(char **cmd)
 	{
 		if (have_wildcard(cmd[i]))
 		{
-			if (-1 == wildcard(cmd[i], &cmd[i]))
+			if (wildcard(cmd[i], &cmd[i]) == -1)
 			{
 				free(str);
 				return (free_tab(cmd, i));
 			}
 		}
 		str = ft_sprintf("%S%s ", str, cmd[i]);
-		if (NULL == str)
+		if (str == NULL)
 		{
 			return (free_tab(cmd, i));
 		}

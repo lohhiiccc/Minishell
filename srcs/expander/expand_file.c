@@ -24,17 +24,17 @@ char *expand_file(char *s, t_env *env)
 	char	*dup;
 
 	tab = ft_null_alloc(2, sizeof(char *));
-	if (NULL == tab)
+	if (tab == NULL)
 		return (NULL);
 	tab[0] = s;
-	dup= ft_strdup(s);
-	if (NULL == dup)
+	dup = ft_strdup(s);
+	if (dup == NULL)
 	{
 		free(tab);
 		return (NULL);
 	}
 	tab = expand_cmd(tab, env);
-	if (NULL == tab)
+	if (tab == NULL)
 		return (NULL);
 	if (tab[1])
 		return (ambiguous_redirect(dup, tab));

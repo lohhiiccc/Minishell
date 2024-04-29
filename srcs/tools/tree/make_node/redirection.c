@@ -20,13 +20,13 @@ static t_node	get_redirect_type(t_token *token);
 static	t_tree *make_heredoc(t_token *tokens, t_tree *root);
 
 extern int g_sig_value;
-t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
+//t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
+t_tree *make_redirection(t_token *tokens, t_tree *root)
 {
 	t_node	type;
 
-	(void )env;
 	type = get_redirect_type(tokens);
-	if (HERE_DOC == type)
+	if (type == HERE_DOC)
 		return (make_heredoc(tokens, root));
 	else
 		return (ft_new_tree(ft_strdup(tokens[1].str), type, root));
@@ -61,7 +61,7 @@ static t_node	get_redirect_type(t_token *token)
 	i = 0;
 	while (i < 3)
 	{
-		if (0 == ft_strcmp(str_tab[i], token[0].str))
+		if (ft_strcmp(str_tab[i], token[0].str) == 0)
 			return (node_tab[i]);
 		i++;
 	}

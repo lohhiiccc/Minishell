@@ -25,10 +25,10 @@ t_tree	*make_command(t_token *tokens, t_tree *root)
 	t_cmd	*content;
 
 	content = malloc(sizeof(t_cmd));
-	if (NULL == content)
+	if (content == NULL)
 		return (NULL);
 	content->arg = get_cmd(tokens);
-	if (NULL == content->arg)
+	if (content->arg == NULL)
 		return (free_and_return_null(content));
 	content->path = NULL;
 	return (ft_new_tree(content, CMD, root));
@@ -41,19 +41,19 @@ static char	**get_cmd(t_token *tokens)
 	char	**arg;
 
 	arg = ft_null_alloc((get_cmd_len(tokens) + 1), sizeof(char *));
-	if (NULL == arg)
+	if (arg == NULL)
 		return (NULL);
 	i = 1;
 	arg[0] = ft_strdup(tokens[0].str);
 	if (NULL == arg[0])
 		return (free_and_return_null(arg));
 	len = 1;
-	while (T_CMD != tokens[i].type && T_NEWLINE != tokens[i].type)
+	while (tokens[i].type  != T_CMD && tokens[i].type != T_NEWLINE)
 	{
 		if (T_ARG == tokens[i].type)
 		{
 			arg[len] = ft_strdup(tokens[i].str);
-			if (NULL == arg[len])
+			if (arg[len] == NULL)
 				return (free_range(arg));
 			len++;
 		}
@@ -69,9 +69,9 @@ static size_t	get_cmd_len(t_token *tokens)
 
 	i = 1;
 	len = 1;
-	while (T_CMD != tokens[i].type && T_NEWLINE != tokens[i].type)
+	while (tokens[i].type != T_CMD && tokens[i].type != T_NEWLINE)
 	{
-		if (T_ARG == tokens[i].type)
+		if (tokens[i].type == T_ARG)
 			len++;
 		i++;
 	}
@@ -83,7 +83,7 @@ static void	*free_range(char **tab)
 	size_t	i;
 
 	i = 0;
-	while (NULL != tab[i])
+	while (tab[i] != NULL)
 	{
 		free(tab[i]);
 		i++;

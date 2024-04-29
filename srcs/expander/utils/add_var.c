@@ -19,7 +19,7 @@ static void		keep_quote(char *value);
 
 int8_t	add_var(char *s, size_t *i, t_vector *env, t_vector *vector)
 {
-	if (-1 == get_value(s, *i + 1, ft_vector_get(env, 0), vector))
+	if (get_value(s, *i + 1, ft_vector_get(env, 0), vector) == -1)
 		return (-1);
 	++*i;
 	while (s[*i] && is_charset(s[*i]))

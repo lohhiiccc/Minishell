@@ -20,7 +20,6 @@ char	**expand_cmd(char **cmd, t_env *env)
 	size_t	i;
 	char	*str;
 
-	(void)env;
 	i = 0;
 	str = NULL;
 	while (cmd[i])
@@ -36,10 +35,10 @@ char	**expand_cmd(char **cmd, t_env *env)
 	free(cmd);
 	cmd = ft_split(str, " \t\n");
 	free(str);
-	if (NULL == cmd)
+	if (cmd == NULL)
 		return (NULL);
 	cmd = expand_wildcard(cmd);
-	if (NULL == cmd)
+	if (cmd == NULL)
 		return (NULL);
 	i = 0;
 	while (cmd[i])

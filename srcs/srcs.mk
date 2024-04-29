@@ -44,7 +44,6 @@ SRC_PARSING = parsing \
 			  back_slash
 
 SRC_TREE = ft_new_tree \
-		   ft_join_tree \
 		   ft_clean_tree \
 
 SRC_TOKEN = quote \

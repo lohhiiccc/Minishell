@@ -13,7 +13,7 @@ int8_t wildcard(char *patern, char **wildcard)//todo : wildcard not working with
 
 	dir_data = NULL;
 	directory = opendir(".");
-	if (NULL == directory)
+	if (directory == NULL)
 		return (-1);
 	fix_patern(patern);
 	is_folder = patern[ft_strlen(patern) - 1] == '/';

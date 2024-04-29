@@ -32,7 +32,7 @@ int	prompt(t_env *env)
 	ms_signal_main();
 	tokens.nbr_elem = 0;
 	str = prompt_value(env->ret);
-	if (!str)
+	if (str == NULL)
 	{
 		ft_printf("Exit\n");
 		clear_env(&env->env);
@@ -60,7 +60,7 @@ static int	create_and_exec_tree(t_env *env, t_fds *fd, t_vector *tokens)
 	t_tree	*tree;
 
 	tree = parsing(env, tokens);
-	if (NULL == tree)
+	if (tree == NULL)
 		return (free_fd(fd, 1));
 	if (env->ptree == 1)
 		print_tree(tree);

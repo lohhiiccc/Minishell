@@ -31,13 +31,13 @@ t_tree	*make_tree(t_token *tokens, t_env *env)
 	i = 0;
 	while (tokens[i].type != T_NEWLINE && !g_sig_value)
 	{
-		if (T_CMD == tokens[i].type)
+		if (tokens[i].type == T_CMD)
 			root = add_in_subtree(root, make_command(tokens + i, root));
-		else if (T_LOGICAL_OP == tokens[i].type || T_PIPE == tokens[i].type)
+		else if (tokens[i].type == T_LOGICAL_OP || tokens[i].type == T_PIPE)
 			root = add_in_subtree(root, make_operator(tokens + i, root));
-		else if (T_RED_OUT == tokens[i].type || T_RED_IN == tokens[i].type)
-			root = add_in_subtree(root, make_redirection(tokens + i, root, env));
-		else if (T_PARENTHESE_OP == tokens[i].type)
+		else if (tokens[i].type == T_RED_OUT || tokens[i].type == T_RED_IN)
+			root = add_in_subtree(root, make_redirection(tokens + i, root));
+		else if (tokens[i].type == T_PARENTHESE_OP)
 		{
 			i++;
 			root = make_subtree(tokens, env, root, &i);
@@ -53,17 +53,17 @@ static t_tree	*make_subtree(t_token *tokens,
 	t_tree	*subroot;
 
 	subroot = NULL;
-	while (T_NEWLINE != tokens[*i].type && T_PARENTHESE_CL != tokens[*i].type)
+	while (tokens[*i].type != T_NEWLINE && tokens[*i].type != T_PARENTHESE_CL)
 	{
-		if (T_CMD == tokens[*i].type)
+		if (tokens[*i].type == T_CMD)
 			subroot = add_in_subtree(subroot,
 					make_command(tokens + *i, root));
-		else if (T_LOGICAL_OP == tokens[*i].type || T_PIPE == tokens[*i].type)
+		else if (tokens[*i].type == T_LOGICAL_OP || tokens[*i].type == T_PIPE)
 			subroot = add_in_subtree(subroot, make_operator(tokens + *i, root));
-		else if (T_RED_OUT == tokens[*i].type || T_RED_IN == tokens[*i].type)
+		else if (tokens[*i].type == T_RED_OUT|| tokens[*i].type == T_RED_IN)
 			subroot = add_in_subtree(subroot,
-									 make_redirection(tokens + *i, root, NULL));
-		else if (T_PARENTHESE_OP == tokens[*i].type)
+									 make_redirection(tokens + *i, root));
+		else if (tokens[*i].type == T_PARENTHESE_OP)
 		{
 			++*i;
 			subroot = make_subtree(tokens, env, subroot, i);
@@ -94,7 +94,7 @@ static t_tree	*add_subredirection(size_t *i,
 	t_tree	*new;
 
 	++*i;
-	new = make_redirection(tokens + *i, root, NULL);
+	new = make_redirection(tokens + *i, root);
 	new->left = subroot;
 	return (down(root, new));
 }
