@@ -17,33 +17,39 @@
 #include "heredoc.h"
 
 static t_node	get_redirect_type(t_token *token);
+static	t_tree *make_heredoc(t_token *tokens, t_tree *root);
 
 extern int g_sig_value;
 t_tree *make_redirection(t_token *tokens, t_tree *root, t_env *env)
 {
 	t_node	type;
-	t_tree	*new;
-	int8_t	tmp;
 
 	(void )env;
 	type = get_redirect_type(tokens);
 	if (HERE_DOC == type)
-	{
-		new = ft_new_tree(ft_strdup(tokens[1].str), type, root);
-		if (NULL == new)
-			return (NULL);
-		expand_delimiter(new->structur);
-		tmp = read_here_doc(new);
-		if (tmp != 0 && tmp != -1)
-		{
-			ft_free_tab(((char **)new->structur));
-			new->structur = NULL;
-			return (new);
-		}
-		return (new);
-	}
+		return (make_heredoc(tokens, root));
 	else
 		return (ft_new_tree(ft_strdup(tokens[1].str), type, root));
+}
+
+static	t_tree *make_heredoc(t_token *tokens, t_tree *root)
+{
+	int8_t	tmp;
+	t_tree	*new;
+	size_t need_expand;
+
+	new = ft_new_tree(ft_strdup(tokens[1].str), HERE_DOC, root);
+	if (NULL == new)
+		return (NULL);
+	need_expand = expand_delimiter(new->structur);
+	tmp = read_here_doc(new, need_expand);
+	if (tmp != 0 && tmp != -1)
+	{
+		ft_free_tab(((char **)new->structur));
+		new->structur = NULL;
+		return (new);
+	}
+	return (new);
 }
 
 static t_node	get_redirect_type(t_token *token)

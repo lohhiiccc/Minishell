@@ -31,7 +31,7 @@ int8_t	wildcard(char *patern, char **wildcard);
 uint8_t	is_match(char *str, char *patern, size_t i, size_t j);
 char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden, uint8_t dir);
 
-void	remove_quote(char *s);
+uint8_t remove_quote(char *s);
 void	set_negative(char *str);
 void	set_snegative(char *str);
 

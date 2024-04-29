@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expand.h"
+#include "libft.h"
 
 void	set_snegative(char *str)
 {

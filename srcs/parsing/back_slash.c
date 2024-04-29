@@ -1,6 +1,4 @@
 
-#include <readline/readline.h>
-#include <stdint.h>
 #include "libft.h"
 
 void prompt_back_slash(char *s)
