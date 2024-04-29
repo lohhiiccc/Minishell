@@ -35,23 +35,14 @@ int	is_build_in(char *str)
 {
 	if (NULL == str)
 		return (0);
-	if (!ft_strcmp(str, "cd"))
-		return (1);
-	if (!ft_strcmp(str, "echo"))
-		return (1);
-	if (!ft_strcmp(str, "param"))
-		return (1);
-	if (!ft_strcmp(str, "exit"))
-		return (1);
-	if (!ft_strcmp(str, "export"))
-		return (1);
-	if (!ft_strcmp(str, "pwd"))
-		return (1);
-	if (!ft_strcmp(str, "unset"))
-		return (1);
-	if (!ft_strcmp(str, "return"))
-		return (1);
-	if (!ft_strcmp(str, "ptree"))
-		return (1);
-	return (0);
+	return (!ft_strcmp(str, "cd")
+		|| !ft_strcmp(str, "echo")
+		|| !ft_strcmp(str, "param")
+		|| !ft_strcmp(str, "exit")
+		|| !ft_strcmp(str, "export")
+		|| !ft_strcmp(str, "pwd")
+		|| !ft_strcmp(str, "unset")
+		|| !ft_strcmp(str, "return")
+		|| !ft_strcmp(str, "ptree")
+		|| !ft_strcmp(str, "env"));
 }

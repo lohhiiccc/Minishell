@@ -37,5 +37,7 @@ int	exec_build_in(t_tree *tree, t_fds *fds, t_param *param)
 		ret = ft_atoi(((t_cmd *)tree->structur)->arg[1]);
 	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "ptree"))
 		param->ptree *= -1;
+	else if (!ft_strcmp(((t_cmd *)tree->structur)->arg[0], "env"))
+		ret = ft_env(param, &fds->fd_out);
 	return (ret);
 }
