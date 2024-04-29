@@ -19,22 +19,22 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	t_env		new_env;
+	t_param		param;
 
 	(void)argc;
 	(void)argv;
 	rl_event_hook = &do_nothing;
-	new_env.ret = 0;
-	new_env.ptree = -1;
-	new_env.is_main = 0;
+	param.ret = 0;
+	param.ptree = -1;
+	param.is_main = 0;
 	if (!isatty(0) || !isatty(1))
 	{
 		ft_dprintf(STDERR_FILENO, "minichel: please use a tty\n");
 		return (1);
 	}
-	if (-1 == init_env(env, &new_env.env))
+	if (-1 == init_env(env, &param.env))
 		return (1);
-	while (prompt(&new_env))
+	while (prompt(&param))
 		;
 	return (127);
 }

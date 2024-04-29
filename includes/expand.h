@@ -15,8 +15,8 @@
 
 # include "env.h"
 
-char	**expand_cmd(char **cmd, t_env *env);
-char	*expand_file(char *s, t_env *env);
+char	**expand_cmd(char **cmd, t_param *param);
+char	*expand_file(char *s, t_param *param);
 size_t	expand_delimiter(char *str);
 
 #endif

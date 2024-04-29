@@ -12,11 +12,11 @@
 
 #include "make_tree.h"
 
-t_tree	*parsing(t_env *env, t_vector *tokens)
+t_tree	*parsing(t_param *param, t_vector *tokens)
 {
 	t_tree	*tree;
 
-	tree = make_tree(ft_vector_get(tokens, 0), env);
+	tree = make_tree(ft_vector_get(tokens, 0), param);
 	free_token(tokens);
 	return (tree);
 }

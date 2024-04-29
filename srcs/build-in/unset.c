@@ -14,9 +14,9 @@
 #include "libft.h"
 
 static int	found_sep(char *str, char sep);
-static int	is_variable_name(t_env *env, char *str);
+static int	is_variable_name(t_param *param, char *str);
 
-int	ft_unset(t_cmd *cmd, t_env *env)
+int	ft_unset(t_cmd *cmd, t_param *param)
 {
 	size_t	i;
 	int		n;
@@ -24,9 +24,9 @@ int	ft_unset(t_cmd *cmd, t_env *env)
 	i = 1;
 	while (cmd->arg[i])
 	{
-		n = is_variable_name(env, cmd->arg[i]);
+		n = is_variable_name(param, cmd->arg[i]);
 		if (n != -1)
-			ft_vector_delete_elem(&env->env, n);
+			ft_vector_delete_elem(&param->env, n);
 		i++;
 	}
 	return (0);
@@ -44,21 +44,21 @@ static int	found_sep(char *str, char sep)
 	return (-1);
 }
 
-static int	is_variable_name(t_env *env, char *str)
+static int	is_variable_name(t_param *param, char *str)
 {
 	size_t	i;
 	int		n;
 	char	**env_i;
 
 	i = 0;
-	env_i = ft_vector_get(&env->env, i);
-	while (i < env->env.nbr_elem)
+	env_i = ft_vector_get(&param->env, i);
+	while (i < param->env.nbr_elem)
 	{
 		n = found_sep(*env_i, '=');
 		if (!ft_strncmp(*env_i, str, n - 1))
 			return (i);
 		i++;
-		env_i = ft_vector_get(&env->env, i);
+		env_i = ft_vector_get(&param->env, i);
 	}
 	return (-1);
 }

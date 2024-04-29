@@ -25,17 +25,17 @@
 
 extern int	g_sig_value;
 
-static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env);
+static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_param *param);
 static void	print_error(t_tree *tree, char *error);
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd);
 
-int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_exe(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int			ret;
 	struct stat	file;
 
 	((t_cmd *)tree->structur)->path = find_path(((t_cmd *)tree->structur)
-			->arg[0], &env->env);
+			->arg[0], &param->env);
 	if (!((t_cmd *)tree->structur)->path)
 	{
 		ft_dprintf(STDERR_FILENO, CMD_NOT_FOUND, ((t_cmd *)tree->structur)->arg[0]);
@@ -50,9 +50,9 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 			ret = 126;
 		}
 		else
-			ret = exec_child_cmd(tree, fds, env);
+			ret = exec_child_cmd(tree, fds, param);
 		free(((t_cmd *)tree->structur)->path);
-		if (0 == env->is_main)
+		if (0 == param->is_main)
 		{
 			if (g_sig_value == SIGINT)
 				ft_printf("\n");
@@ -63,7 +63,7 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_env *env)
 	return (ret);
 }
 
-static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env)
+static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int		pid;
 	int		ret;
@@ -98,7 +98,7 @@ static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_env *env)
 		}
 		ft_clean_tree(tree->root);
 		execve(temp.path, temp.arg,
-			ft_vector_get(&env->env, 0));
+			ft_vector_get(&param->env, 0));
 		print_error(tree, strerror(errno));
 		free(temp.path);
 		ft_free_tab(temp.arg);

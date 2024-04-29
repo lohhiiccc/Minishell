@@ -14,12 +14,12 @@
 #include "env.h"
 #include "vector.h"
 
-void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, t_env *env)
+void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, t_param *param)
 {
-	clear_env(&env->env);
+	clear_env(&param->env);
 	if (((t_cmd *)tree->structur)->arg[1])
 		clean_exit(tree->root, fd_in, fd_out,
 			ft_atoi(((t_cmd *)tree->structur)->arg[1]));
 	else
-		clean_exit(tree->root, fd_in, fd_out, env->ret);
+		clean_exit(tree->root, fd_in, fd_out, param->ret);
 }

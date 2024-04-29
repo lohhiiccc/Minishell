@@ -16,7 +16,7 @@
 #include "prompt.h"
 #include "libft.h"
 
-int	lexer(char *str, t_vector *tokens, t_env *env)
+int	lexer(char *str, t_vector *tokens, t_param *param)
 {
 	ssize_t	syntax;
 	char	*s;
@@ -31,10 +31,10 @@ int	lexer(char *str, t_vector *tokens, t_env *env)
 	if (!str || !str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
 		return (-1);
 	if (get_tokens(s, tokens) == -1)
-		return (print_syntax_error(tokens, env, -1, s));
+		return (print_syntax_error(tokens, param, -1, s));
 	syntax = syntax_check(tokens);
 	if (syntax != -1)
-		return (print_syntax_error(tokens, env, syntax, s));
+		return (print_syntax_error(tokens, param, syntax, s));
 	tag_arg(tokens);
 	free(s);
 	return (0);

@@ -7,7 +7,7 @@
 static int8_t	free_and_return(t_vector *v);
 static int8_t	do_expand(char *s, t_vector *env, t_vector *new);
 
-int8_t expand_var(char **str, t_vector *env)
+int8_t	expand_var(char **str, t_vector *env)
 {
 	char		*s;
 	t_vector	new;
