@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   param.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "tree.h"
 
-int	ft_env(t_env *env, t_vector *fd_out)
+int	ft_env(t_param *param, t_vector *fd_out)
 {
 	int	fd;
 
@@ -20,6 +20,6 @@ int	ft_env(t_env *env, t_vector *fd_out)
 		fd = *(int *)ft_vector_get(fd_out, fd_out->nbr_elem - 1);
 	else
 		fd = 1;
-	ft_vector_iteri_fd(&env->env, ft_vector_print_str_fd, fd);
+	ft_vector_iteri_fd(&param->env, ft_vector_print_str_fd, fd);
 	return (0);
 }

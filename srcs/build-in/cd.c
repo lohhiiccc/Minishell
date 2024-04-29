@@ -22,9 +22,9 @@
 #include "env.h"
 
 static void	change_env(char *old_pwd, t_vector *env);
-static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env);
+static char	*create_path(t_cmd *cmd, size_t len_tab, t_param *param);
 
-int	ft_cd(t_cmd *cmd, t_env *env)
+int	ft_cd(t_cmd *cmd, t_param *param)
 {
 	char	*str;
 	char	*old_pwd;
@@ -42,7 +42,7 @@ int	ft_cd(t_cmd *cmd, t_env *env)
 		ft_dprintf(STDERR_FILENO, "Minichel: cd: too many argument\n");
 		return (1);
 	}
-	str = create_path(cmd, len_tab, env);
+	str = create_path(cmd, len_tab, param);
 	if (NULL == str)
 		return (1);
 	if (chdir(str) == -1)
@@ -51,12 +51,12 @@ int	ft_cd(t_cmd *cmd, t_env *env)
 		ft_dprintf(STDERR_FILENO, "Minichel: cd: %s: %s\n", cmd->arg[1], strerror(errno));
 		return (1);
 	}
-	change_env(old_pwd, &env->env);
+	change_env(old_pwd, &param->env);
 	free(str);
 	return (0);
 }
 
-static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env)
+static char	*create_path(t_cmd *cmd, size_t len_tab, t_param *param)
 {
 	char	*ret;
 
@@ -64,7 +64,7 @@ static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env)
 	{
 		if (!strcmp(cmd->arg[1], "-"))
 		{
-			ret = found_value_of_variable("OLDPWD", env->env);
+			ret = found_value_of_variable("OLDPWD", param->env);
 			if (!ret)
 				ft_dprintf(STDERR_FILENO, "Minichel: cd: OLDPWD not set\n");
 			else
@@ -85,7 +85,7 @@ static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env)
 	}
 	else
 	{
-		ret = found_value_of_variable("HOME", env->env);
+		ret = found_value_of_variable("HOME", param->env);
 		if (!ret)
 			ft_dprintf(STDERR_FILENO, "Minichel: cd: HOME not set\n");
 	}
@@ -99,19 +99,19 @@ static void	change_env(char *old_pwd, t_vector *env)
 	tab = malloc(sizeof(char *) * 3);
 	if (NULL == tab)
 	{
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change OLDPWD in env\n");
+		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change OLDPWD in param\n");
 	}
 	tab[0] = NULL;
 	tab[2] = NULL;
 	tab[1] = ft_sprintf("OLDPWD=%s", old_pwd);
 	if (NULL == tab[1])
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change OLDPWD in env\n");
+		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change OLDPWD in param\n");
 	else
 		ft_export(tab, env);
 	free(tab[1]);
 	tab[1] = ft_sprintf("PWD=%s", getcwd(NULL, 0));
 	if (NULL == tab[1])
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change PWD in env\n");
+		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change PWD in param\n");
 	else
 		ft_export(tab, env);
 	ft_free_tab(tab);

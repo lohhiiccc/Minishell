@@ -16,7 +16,7 @@ Executer commande de l'arbre de bas gauche vers droite.
 
 #include "exec.h"
 
-int	exec_args(t_tree *tree, t_fds *fds, t_tree *root, t_env *env)
+int	exec_args(t_tree *tree, t_fds *fds, t_tree *root, t_param *param)
 {
 	int				ret;
 	const t_exec	tab[] = {&exec_or, &exec_and, &exec_pipe, &exec_here_doc,
@@ -28,6 +28,6 @@ int	exec_args(t_tree *tree, t_fds *fds, t_tree *root, t_env *env)
 		tree->root = tree;
 	else
 		tree->root = root;
-	ret = tab[tree->type](tree, fds, env);
+	ret = tab[tree->type](tree, fds, param);
 	return (ret);
 }

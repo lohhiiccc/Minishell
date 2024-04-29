@@ -22,17 +22,17 @@
 
 extern int	g_sig_value;
 
-static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env);
-static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env);
+static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_param *param);
+static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *param);
 static int	print_error(char *error, int status);
 
-int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_pipe(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int	ret;
 	int	pid;
 	int	fd[2];
 
-	env->is_main = 1;
+	param->is_main = 1;
 	
 	ms_signal_main_wait();
 	if (-1 == pipe(fd))
@@ -41,12 +41,12 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 	if (-1 == pid)
 		return (print_error(strerror(errno), 1));
 	if (pid == 0)
-		exec_left(tree, fds, fd, env);
+		exec_left(tree, fds, fd, param);
 	else
 	{
 		if (-1 == close(fd[1]))
 			ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
-		ret = exec_right(tree, fds, fd, env);
+		ret = exec_right(tree, fds, fd, param);
 	}
 	while (wait(0) != -1)
 		;
@@ -54,7 +54,7 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 		ft_printf("\n");
 	if (SIGQUIT == g_sig_value)
 		ft_printf("Quit (core dumped)\n");
-	env->is_main = 0;
+	param->is_main = 0;
 	return (ret);
 }
 
@@ -64,20 +64,20 @@ static int	print_error(char *error, int status)
 	return (status);
 }
 
-static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env)
+static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 {
 	if (-1 == close(fd[0]) || -1 == ft_vector_add(&fds->fd_out, &fd[1]))
 	{
 		ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
-		clear_env(&env->env);
+		clear_env(&param->env);
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
-	exec_args(tree->left, fds, tree->root, env);
-	clear_env(&env->env);
+	exec_args(tree->left, fds, tree->root, param);
+	clear_env(&param->env);
 	clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 0);
 }
 
-static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env)
+static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 {
 	int	ret;
 	int	pid;
@@ -92,8 +92,8 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env)
 			ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
 			clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 		}
-		ret = exec_args(tree->right, fds, tree->root, env);
-		clear_env(&env->env);
+		ret = exec_args(tree->right, fds, tree->root, param);
+		clear_env(&param->env);
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, ret);
 	}
 	else if (-1 == close(fd[0]))

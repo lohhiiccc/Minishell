@@ -19,12 +19,12 @@
 #include "ft_printf.h"
 #include "expand.h"
 
-int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_input(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int	fd;
 	int	ret;
 
-	tree->structur = expand_file((char *)tree->structur, env);
+	tree->structur = expand_file((char *)tree->structur, param);
 	if (NULL == (char *)tree->structur)
 	{
 		ft_dprintf(STDERR_FILENO, "Minichel: %s: %s\n",
@@ -38,7 +38,7 @@ int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
 			(char *)tree->structur, strerror(errno));
 		return (1);
 	}
-	ret = exec_args(tree->left, fds, tree->root, env);
+	ret = exec_args(tree->left, fds, tree->root, param);
 	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem);
 	if (-1 == close(fd))
 	{

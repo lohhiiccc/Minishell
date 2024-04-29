@@ -18,10 +18,11 @@
 #include "env.h"
 #include "ft_printf.h"
 
-int8_t	print_syntax_error(t_vector *tokens, t_env *env, ssize_t i, char *error)
+int8_t	print_syntax_error(t_vector *tokens, t_param *param,
+			ssize_t i, char *error)
 {
 	free(error);
-	env->ret = 2;
+	param->ret = 2;
 	if (i < 0)
 		ft_dprintf(2, "syntax error'\n");
 	else if (((t_token *)tokens->addr)[i].type == T_NEWLINE)
