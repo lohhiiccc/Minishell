@@ -3,8 +3,11 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 #include "heredoc.h"
+#include "libft.h"
 
-char	*here_doc_rl(char *del)
+void escape_str(char *str);
+
+char *here_doc_rl(char *del, size_t need_expand)
 {
 	char	*str;
 	char	*buffer;
@@ -18,5 +21,21 @@ char	*here_doc_rl(char *del)
 	else
 		str = readline("le croquant > ");
 	heredoc_back_slash(str);
+	if (0 == ft_strcmp(str, del))
+		return (del);
+	if (need_expand)
+		escape_str(str);
 	return (str);
+}
+
+void escape_str(char *str) {
+	size_t i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] > 0)
+			str[i] = -str[i];
+		i++;
+	}
 }
