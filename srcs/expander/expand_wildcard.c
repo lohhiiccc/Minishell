@@ -6,6 +6,7 @@
 #include "ft_printf.h"
 
 static void	*free_tab(char **tab, size_t start);
+static char	**wildecard_fail(char **cmd, size_t i, char *str);
 
 char	**expand_wildcard(char **cmd)
 {
@@ -19,10 +20,7 @@ char	**expand_wildcard(char **cmd)
 		if (have_wildcard(cmd[i]))
 		{
 			if (wildcard(cmd[i], &cmd[i]) == -1)
-			{
-				free(str);
-				return (free_tab(cmd, i));
-			}
+				return wildecard_fail(cmd, i, str);
 		}
 		str = ft_sprintf("%S%s ", str, cmd[i]);
 		if (str == NULL)
@@ -36,6 +34,12 @@ char	**expand_wildcard(char **cmd)
 	cmd = ft_split(str, " \t\n");
 	free(str);
 	return (cmd);
+}
+
+static char **wildecard_fail(char **cmd, size_t i, char *str)
+{
+	free(str);
+	return (free_tab(cmd, i));
 }
 
 static void	*free_tab(char **tab, size_t start)
