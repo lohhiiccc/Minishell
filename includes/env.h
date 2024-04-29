@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   param.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,13 +17,13 @@
 
 # include "vector.h"
 
-typedef struct s_env
+typedef struct s_param
 {
 	t_vector	env;
 	uint8_t		ret;
 	int			ptree;
 	int			is_main;
-}	t_env;
+}	t_param;
 
 int		init_env(char **env, t_vector *new_env);
 void	clear_env(t_vector *env);

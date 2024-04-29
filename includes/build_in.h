@@ -16,11 +16,11 @@
 # include "tree.h"
 
 int		ft_echo(t_cmd *cmd, t_vector *fd_out);
-int		ft_unset(t_cmd *cmd, t_env *env);
+int		ft_unset(t_cmd *cmd, t_param *param);
 int		ft_pwd(t_vector *fd_out, t_vector *env);
 int		ft_export(char **cmd, t_vector *env);
-int		ft_cd(t_cmd *cmd, t_env *env);
-int		ft_env(t_env *env, t_vector *fd_out);
-void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, t_env *env);
+int		ft_cd(t_cmd *cmd, t_param *param);
+int		ft_env(t_param *env, t_vector *fd_out);
+void	ft_exit(t_tree *tree, t_vector *fd_in, t_vector *fd_out, t_param *param);
 
 #endif

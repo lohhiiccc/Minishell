@@ -10,10 +10,10 @@
 #include "expand_utils.h"
 
 static char		*get_file_name(void);
-static int		fill_heredoc(t_tree *tree, int fd, t_env *env);
-static int8_t	expand_heredoc(char **s, t_env *env, size_t i);
+static int		fill_heredoc(t_tree *tree, int fd, t_param *param);
+static int8_t	expand_heredoc(char **s, t_param *param, size_t i);
 
-int	create_file_here_doc(t_tree *tree, t_env *env)
+int	create_file_here_doc(t_tree *tree, t_param *param)
 {
 	char	*file_name;
 	int		fd;
@@ -24,7 +24,7 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	fd = open(file_name, O_RDWR | O_CREAT, 0644);
 	if (fd == -1)
 		return (-1);
-	if (-1 == fill_heredoc(tree, fd, env))
+	if (-1 == fill_heredoc(tree, fd, param))
 	{
 		ft_free_tab(tree->structur);
 		free(tree->structur);
@@ -41,16 +41,15 @@ int	create_file_here_doc(t_tree *tree, t_env *env)
 	return (fd);
 }
 
-static int	fill_heredoc(t_tree *tree, int fd, t_env *env)
+static int	fill_heredoc(t_tree *tree, int fd, t_param *param)
 {
 	size_t	i;
 	size_t	len;
 
-	(void )env;
 	i = 0;
 	while (((char **)tree->structur)[i])
 	{
-		if (expand_heredoc(((char **)tree->structur), env, i) == -1)
+		if (expand_heredoc(((char **)tree->structur), param, i) == -1)
 			return (-1);
 		i++;
 	}
@@ -87,13 +86,13 @@ static char	*get_file_name(void)
 	return (file_name);
 }
 
-static int8_t	expand_heredoc(char **s, t_env *env, size_t i)
+static int8_t	expand_heredoc(char **s, t_param *param, size_t i)
 {
 	size_t	j;
 
 	j = 0;
-	if (-1 == expand_ret(&s[i], env->ret)
-		|| -1 == expand_var(&s[i], &env->env))
+	if (-1 == expand_ret(&s[i], param->ret)
+		|| -1 == expand_var(&s[i], &param->env))
 	{
 		ft_free_tab(s);
 		s = NULL;

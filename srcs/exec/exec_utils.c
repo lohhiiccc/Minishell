@@ -34,7 +34,7 @@ int	is_build_in(char *str)
 		return (1);
 	if (!ft_strcmp(str, "echo"))
 		return (1);
-	if (!ft_strcmp(str, "env"))
+	if (!ft_strcmp(str, "param"))
 		return (1);
 	if (!ft_strcmp(str, "exit"))
 		return (1);

@@ -18,7 +18,7 @@
 
 static void	*ambiguous_redirect(char *s, char **tab);
 
-char	*expand_file(char *s, t_env *env)
+char	*expand_file(char *s, t_param *param)
 {
 	char	**tab;
 	char	*res;
@@ -34,7 +34,7 @@ char	*expand_file(char *s, t_env *env)
 		free(tab);
 		return (NULL);
 	}
-	tab = expand_cmd(tab, env);
+	tab = expand_cmd(tab, param);
 	if (tab == NULL)
 		return (NULL);
 	if (tab[1])

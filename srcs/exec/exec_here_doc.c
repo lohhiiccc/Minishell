@@ -17,12 +17,12 @@
 #include <unistd.h>
 #include "heredoc.h"
 
-int	exec_here_doc(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_here_doc(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int	fd;
 	int	ret;
 
-	fd = create_file_here_doc(tree, env);
+	fd = create_file_here_doc(tree, param);
 	if (fd == -1)
 	{
 		ft_dprintf(2, "Minichell: %s: %s\n",
@@ -30,7 +30,7 @@ int	exec_here_doc(t_tree *tree, t_fds *fds, t_env *env)
 		return (1);
 	}
 	ft_vector_add(&fds->fd_in, &fd);
-	ret = exec_args(tree->left, fds, tree->root, env);
+	ret = exec_args(tree->left, fds, tree->root, param);
 	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem);
 	if (close(fd) == -1)
 	{

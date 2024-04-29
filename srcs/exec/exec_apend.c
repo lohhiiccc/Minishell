@@ -18,12 +18,12 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int	exec_apend(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_apend(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int	fd;
 	int	ret;
 
-	tree->structur = expand_file((char *)tree->structur, env);
+	tree->structur = expand_file((char *)tree->structur, param);
 	if (NULL == (char *)tree->structur)
 		return (1);
 	fd = open((char *)tree->structur, O_WRONLY | O_CREAT | O_APPEND, 0644);
@@ -34,7 +34,7 @@ int	exec_apend(t_tree *tree, t_fds *fds, t_env *env)
 		return (1);
 	}
 	ft_vector_add(&fds->fd_out, &fd);
-	ret = exec_args(tree->left, fds, tree->root, env);
+	ret = exec_args(tree->left, fds, tree->root, param);
 	ft_vector_delete_elem(&fds->fd_out, fds->fd_out.nbr_elem);
 	if (close(fd) == -1)
 	{

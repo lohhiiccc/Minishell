@@ -18,7 +18,7 @@
 
 char **word_split(char **cmd, size_t i, char *str);
 
-char	**expand_cmd(char **cmd, t_env *env)
+char	**expand_cmd(char **cmd, t_param *param)
 {
 	size_t	i;
 	char	*str;
@@ -27,7 +27,7 @@ char	**expand_cmd(char **cmd, t_env *env)
 	str = NULL;
 	while (cmd[i])
 	{
-		if (0 != expand_str(cmd, i, env, str))
+		if (0 != expand_str(cmd, i, param, str))
 			return (NULL);
 		str = ft_sprintf("%S%s ", str, cmd[i]);
 		if (NULL == str)
@@ -39,7 +39,8 @@ char	**expand_cmd(char **cmd, t_env *env)
 	return (word_split(cmd, i, str));
 }
 
-char **word_split(char **cmd, size_t i, char *str) {
+char **word_split(char **cmd, size_t i, char *str)
+{
 	cmd = ft_split(str, " \t\n");
 	free(str);
 	if (cmd == NULL)

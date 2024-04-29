@@ -22,9 +22,9 @@ extern int	g_sig_value;
 
 static uint8_t	init_fd(t_fds *fd);
 static uint8_t	free_fd(t_fds *fd, uint8_t ret);
-static int		create_and_exec_tree(t_env *env, t_fds *fd, t_vector *tokens);
+static int		create_and_exec_tree(t_param *param, t_fds *fd, t_vector *tokens);
 
-int	prompt(t_env *env)
+int	prompt(t_param *param)
 {
 	char		*str;
 	t_vector	tokens;
@@ -32,23 +32,23 @@ int	prompt(t_env *env)
 
 	ms_signal_main();
 	tokens.nbr_elem = 0;
-	str = prompt_value(env->ret);
+	str = prompt_value(param->ret);
 	if (str == NULL)
 	{
 		ft_printf("Exit\n");
-		clear_env(&env->env);
-		exit(env->ret);
+		clear_env(&param->env);
+		exit(param->ret);
 	}
 	if (g_sig_value != 0)
 	{
 		free(str);
-		env->ret = 128 + g_sig_value;
+		param->ret = 128 + g_sig_value;
 		return (128 + g_sig_value);
 	}
 	if (init_fd(&fd))
 		return (1);
-	if (-1 != lexer(str, &tokens, env)
-		&& 1 == create_and_exec_tree(env, &fd, &tokens))
+	if (-1 != lexer(str, &tokens, param)
+		&& 1 == create_and_exec_tree(param, &fd, &tokens))
 		return (1);
 	if (str && str[0])
 		manage_history(str);
@@ -56,22 +56,22 @@ int	prompt(t_env *env)
 	return (free_fd(&fd, 1));
 }
 
-static int	create_and_exec_tree(t_env *env, t_fds *fd, t_vector *tokens)
+static int	create_and_exec_tree(t_param *param, t_fds *fd, t_vector *tokens)
 {
 	t_tree	*tree;
 
-	tree = parsing(env, tokens);
+	tree = parsing(param, tokens);
 	if (tree == NULL)
 		return (free_fd(fd, 1));
-	if (env->ptree == 1)
+	if (param->ptree == 1)
 		print_tree(tree);
 	if (g_sig_value)
 	{
 		ft_clean_tree(tree);
-		env->ret = g_sig_value + 128;
+		param->ret = g_sig_value + 128;
 		return (128 + g_sig_value);
 	}
-	env->ret = exec_args(tree, fd, NULL, env);
+	param->ret = exec_args(tree, fd, NULL, param);
 	ft_clean_tree(tree);
 	return (0);
 }

@@ -18,14 +18,14 @@
 #include <unistd.h>
 #include "expand.h"
 
-int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_input(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int	fd;
 	int	ret;
 
-//	if (-1 == expand_file((char *)tree->structur, env))
+//	if (-1 == expand_file((char *)tree->structur, param))
 //		return (1);
-	tree->structur = expand_file((char *)tree->structur, env);
+	tree->structur = expand_file((char *)tree->structur, param);
 	if (NULL == (char *)tree->structur)
 		return (1);
 	fd = open((char *)tree->structur, O_RDONLY);
@@ -36,7 +36,7 @@ int	exec_input(t_tree *tree, t_fds *fds, t_env *env)
 		return (1);
 	}
 	ft_vector_add(&fds->fd_in, &fd);
-	ret = exec_args(tree->left, fds, tree->root, env);
+	ret = exec_args(tree->left, fds, tree->root, param);
 	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem);
 	if (close(fd))
 	{

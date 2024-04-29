@@ -21,9 +21,9 @@
 #include <stdlib.h>
 
 static void	change_env(char *old_pwd, t_vector *env);
-static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env);
+static char	*create_path(t_cmd *cmd, size_t len_tab, t_param *env);
 
-int	ft_cd(t_cmd *cmd, t_env *env)
+int	ft_cd(t_cmd *cmd, t_param *param)
 {
 	char	*str;
 	char	*old_pwd;
@@ -36,7 +36,7 @@ int	ft_cd(t_cmd *cmd, t_env *env)
 		ft_dprintf(2, "Minichel: cd: too many argument\n");
 		return (1);
 	}
-	str = create_path(cmd, len_tab, env);
+	str = create_path(cmd, len_tab, param);
 	if (!str)
 		return (1);
 	if (chdir(str) == -1)
@@ -45,12 +45,12 @@ int	ft_cd(t_cmd *cmd, t_env *env)
 		ft_dprintf(2, "Minichel: cd: %s: %s\n", cmd->arg[1], strerror(errno));
 		return (1);
 	}
-	change_env(old_pwd, &env->env);
+	change_env(old_pwd, &param->env);
 	free(str);
 	return (0);
 }
 
-static char	*create_path(t_cmd *cmd, size_t len_tab, t_env *env)
+static char	*create_path(t_cmd *cmd, size_t len_tab, t_param *env)
 {
 	char	*ret;
 
@@ -87,13 +87,13 @@ static void	change_env(char *old_pwd, t_vector *env)
 	tab[2] = NULL;
 	tab[1] = ft_sprintf("OLDPWD=%s", old_pwd);
 	if (!tab[1])
-		ft_dprintf(2, "Minichel: cd: problem for change OLDPWD in env\n");
+		ft_dprintf(2, "Minichel: cd: problem for change OLDPWD in param\n");
 	else
 		ft_export(tab, env);
 	free(tab[1]);
 	tab[1] = ft_sprintf("PWD=%s", getcwd(NULL, 0));
 	if (!tab[1])
-		ft_dprintf(2, "Minichel: cd: problem for change PWD in env\n");
+		ft_dprintf(2, "Minichel: cd: problem for change PWD in param\n");
 	else
 		ft_export(tab, env);
 	ft_free_tab(tab);

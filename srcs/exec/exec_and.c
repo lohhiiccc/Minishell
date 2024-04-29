@@ -12,12 +12,12 @@
 
 #include "exec.h"
 
-int	exec_and(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_and(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int	ret;
 
-	ret = exec_args(tree->left, fds, tree->root, env);
+	ret = exec_args(tree->left, fds, tree->root, param);
 	if (ret == 0)
-		ret = exec_args(tree->right, fds, tree->root, env);
+		ret = exec_args(tree->right, fds, tree->root, param);
 	return (ret);
 }

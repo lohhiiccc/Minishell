@@ -14,17 +14,17 @@
 #include "env.h"
 #include "expand.h"
 
-int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_cmd(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int			ret;
 
 	((t_cmd *)tree->structur)->arg = expand_cmd(((t_cmd *) tree->structur)->arg,
-			env);
+												param);
 	if ((((t_cmd *)tree->structur)->arg) == NULL)
 		return (1);
 	if (is_build_in(((t_cmd *)tree->structur)->arg[0]))
-		ret = exec_build_in(tree, fds, env);
+		ret = exec_build_in(tree, fds, param);
 	else
-		ret = exec_exe(tree, fds, env);
+		ret = exec_exe(tree, fds, param);
 	return (ret);
 }

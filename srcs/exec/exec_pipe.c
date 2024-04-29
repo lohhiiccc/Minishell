@@ -21,17 +21,17 @@
 
 extern int	g_sig_value;
 
-static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env);
-static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env);
+static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_param *param);
+static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *env);
 static int	print_error(char *error, int status);
 
-int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
+int	exec_pipe(t_tree *tree, t_fds *fds, t_param *param)
 {
 	int	ret;
 	int	pid;
 	int	fd[2];
 
-	env->is_main = 1;
+	param->is_main = 1;
 	
 	ms_signal_main_wait();
 	if (pipe(fd) == -1)
@@ -40,12 +40,12 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 	if (pid == -1)
 		return (print_error(strerror(errno), 1));
 	if (pid == 0)
-		exec_left(tree, fds, fd, env);
+		exec_left(tree, fds, fd, param);
 	else
 	{
 		if (close(fd[1]) == -1)
 			ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-		ret = exec_right(tree, fds, fd, env);
+		ret = exec_right(tree, fds, fd, param);
 	}
 	while (wait(0) != -1)
 		;
@@ -53,7 +53,7 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_env *env)
 		ft_printf("\n");
 	if (g_sig_value == SIGQUIT)
 		ft_printf("Quit (core dumped)\n");
-	env->is_main = 0;
+	param->is_main = 0;
 	return (ret);
 }
 
@@ -63,17 +63,17 @@ static int	print_error(char *error, int status)
 	return (status);
 }
 
-static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env)
+static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 {
 	if (close(fd[0]) == -1)
 	{
 		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
-		clear_env(&env->env);
+		clear_env(&param->env);
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
 	}
 	ft_vector_add(&fds->fd_out, &fd[1]);
-	exec_args(tree->left, fds, tree->root, env);
-	clear_env(&env->env);
+	exec_args(tree->left, fds, tree->root, param);
+	clear_env(&param->env);
 	if (close(fd[1]) == -1)
 	{
 		ft_dprintf(2, "Minichell: pipe: %s\n", strerror(errno));
@@ -82,7 +82,7 @@ static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_env *env)
 	clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 0);
 }
 
-static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_env *env)
+static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *env)
 {
 	int	ret;
 	int	pid;
