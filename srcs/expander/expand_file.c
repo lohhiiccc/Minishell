@@ -6,11 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:59:12 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/23 18:35:55 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 18:11:43 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
+
 #include "expand.h"
 #include "ft_printf.h"
 #include "libft.h"
@@ -23,7 +25,7 @@ char *expand_file(char *s, t_env *env)
 	char	*res;
 	char	*dup;
 
-	tab = ft_null_alloc(2, sizeof(char *));
+	tab = ft_null_alloc(STDERR_FILENO, sizeof(char *));
 	if (NULL == tab)
 		return (NULL);
 	tab[0] = s;
@@ -46,7 +48,7 @@ char *expand_file(char *s, t_env *env)
 
 static void *ambiguous_redirect(char *s, char **tab)
 {
-	ft_dprintf(2, "minichell: %S: ambiguous redirect\n", s);
+	ft_dprintf(STDERR_FILENO, "minichell: %S: ambiguous redirect\n", s);
 	ft_free_tab(tab);
 	return (NULL);
 }

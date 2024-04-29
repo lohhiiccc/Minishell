@@ -30,5 +30,6 @@
 
 void	manage_history(char *str);
 char	*prompt_value(int last_ret);
+void	prompt_back_slash(char *s);
 
 #endif

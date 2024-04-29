@@ -6,13 +6,15 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 22:22:32 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/23 18:33:03 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 18:14:08 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPAND_UTILS_H
 # define EXPAND_UTILS_H
+
 # include <stdint.h>
+
 # include "stddef.h"
 # include "env.h"
 # include "dirent.h"
@@ -31,7 +33,7 @@ int8_t	wildcard(char *patern, char **wildcard);
 uint8_t	is_match(char *str, char *patern, size_t i, size_t j);
 char **get_folder(DIR *directory, struct dirent **dir_data, uint8_t include_hidden, uint8_t dir);
 
-void	remove_quote(char *s);
+uint8_t remove_quote(char *s);
 void	set_negative(char *str);
 void	set_snegative(char *str);
 

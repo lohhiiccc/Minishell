@@ -66,7 +66,11 @@ static int	create_and_exec_tree(t_env *env, t_fds *fd, t_vector *tokens)
 	if (env->ptree == 1)
 		print_tree(tree);
 	if (g_sig_value)
+	{
+		ft_clean_tree(tree);
+		env->ret = g_sig_value + 128;
 		return (128 + g_sig_value);
+	}
 	env->ret = exec_args(tree, fd, NULL, env);
 	ft_clean_tree(tree);
 	return (0);

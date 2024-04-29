@@ -25,6 +25,6 @@ uint8_t	lex_operator(t_vector *vector, size_t i);
 uint8_t	lex_parenthese_op(t_vector *vector, size_t *parent, size_t i);
 uint8_t	lex_parenthese_cl(t_vector *vector, size_t *parent, size_t i);
 ssize_t syntax_check(t_vector *tokens);
-int8_t print_syntax_error(t_vector *tokens, t_env *env, long i);
+int8_t print_syntax_error(t_vector *tokens, t_env *env, ssize_t i, char *error);
 
 #endif

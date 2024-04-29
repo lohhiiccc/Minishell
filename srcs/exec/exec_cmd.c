@@ -6,13 +6,14 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:29:12 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/25 18:19:24 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "exec.h"
 #include "env.h"
@@ -27,7 +28,7 @@ int	exec_cmd(t_tree *tree, t_fds *fds, t_env *env)
 			env);
 	if (!((t_cmd *)tree->structur)->arg)
 	{
-		ft_dprintf(2, "Minichel: %s: %s\n", ((t_cmd *)tree->structur)->arg[0],
+		ft_dprintf(STDERR_FILENO, ERROR_MSG, ((t_cmd *)tree->structur)->arg[0],
 			strerror(errno));
 		return (1);
 	}

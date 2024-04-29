@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "expand_utils.h"
+#include "libft.h"
 
-void	expand_delimiter(char *str)
+size_t expand_delimiter(char *str)
 {
 	set_snegative(str);
 	set_negative(str);
-	remove_quote(str);
+	return (remove_quote(str));
 }
