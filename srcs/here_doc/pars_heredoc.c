@@ -3,7 +3,6 @@
 #include "tree.h"
 #include "ft_printf.h"
 #include "heredoc.h"
-#include <readline/readline.h>
 #include <stdlib.h>
 extern int g_sig_value;
 
