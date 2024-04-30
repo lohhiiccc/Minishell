@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/29 23:39:23 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 01:51:52 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,13 @@ static void	change_env(char *old_pwd, t_vector *env)
 	tab[1] = ft_sprintf("OLDPWD=%s", old_pwd);
 	if (!old_pwd || !tab[1])
 		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_OLDPWD);
-	else
-		ft_export(tab, env);
+	else if (ft_export(tab, env))
+		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_OLDPWD);
 	free(tab[1]);
 	tab[1] = ft_sprintf("PWD=%s", getcwd(NULL, 0));
 	if (!tab[1])
 		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_PWD);
-	else
-		ft_export(tab, env);
+	else if (ft_export(tab, env))
+		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_PWD);
 	ft_free_tab(tab);
 }

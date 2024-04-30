@@ -6,18 +6,22 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/29 18:51:50 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 02:29:52 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
 
 #include "vector.h"
 #include "libft.h"
 #include "ft_printf.h"
 #include "tree.h"
+#include "build_in.h"
 
-static int	ft_free(void *addr, int status);
+static int	free_and_exit(void *addr, int status);
 static int	print_result(t_vector *v, int option, t_vector *fd_out);
 static int	is_option(char *str);
 
@@ -38,11 +42,11 @@ int	ft_echo(t_cmd *cmd, t_vector *fd_out)
 	while (cmd->arg[i])
 	{
 		if (ft_vector_add_n(&v, cmd->arg[i], ft_strlen(cmd->arg[i])) == -1)
-			return (ft_free(v.addr, 1));
+			return (free_and_exit(v.addr, 1));
 		if (cmd->arg[i + 1])
 		{
 			if (ft_vector_add(&v, " ") == -1)
-				return (ft_free(v.addr, 1));
+				return (free_and_exit(v.addr, 1));
 		}
 		i++;
 	}
@@ -50,9 +54,11 @@ int	ft_echo(t_cmd *cmd, t_vector *fd_out)
 	return (print_result(&v, option, fd_out));
 }
 
-static int	ft_free(void *addr, int status)
+static int	free_and_exit(void *addr, int status)
 {
 	free(addr);
+	if (status)
+		ft_dprintf(STDERR_FILENO, ERR_ECHO, strerror(errno));
 	return (status);
 }
 
@@ -85,12 +91,12 @@ static int	print_result(t_vector *v, int option, t_vector *fd_out)
 	if (option)
 	{
 		if (ft_dprintf(fd, "%s", v->addr) == -1)
-			return (ft_free(v->addr, 1));
+			return (free_and_exit(v->addr, 1));
 	}
 	else
 	{
 		if (ft_dprintf(fd, "%s\n", v->addr) == -1)
-			return (ft_free(v->addr, 1));
+			return (free_and_exit(v->addr, 1));
 	}
-	return (ft_free(v->addr, 0));
+	return (free_and_exit(v->addr, 0));
 }

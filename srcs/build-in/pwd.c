@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:26 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/29 19:39:06 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 02:57:00 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	ft_pwd(t_vector *fd_out, t_vector *env)
 		}
 	}
 	if (ft_dprintf(fd, "%s\n", ret) == -1)
+	{
+		ft_dprintf(STDERR_FILENO, ERR_PWD, strerror(errno));
 		return (1);
+	}
 	free(ret);
 	return (0);
 }
