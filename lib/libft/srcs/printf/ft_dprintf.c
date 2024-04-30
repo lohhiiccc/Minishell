@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 15:13:14 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/03/21 13:50:47 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 00:53:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static int	put_in_vector(t_vector *v, va_list arg, char c)
 		return (-1);
 	return (0);
 }
-
 
 int	ft_dprintf(int fd, char *str, ...)
 {
