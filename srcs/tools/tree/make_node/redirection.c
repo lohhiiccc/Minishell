@@ -16,8 +16,6 @@
 #include "expand.h"
 #include "heredoc.h"
 
-extern int	g_sig_value;
-
 static t_node	get_redirect_type(t_token *token);
 static t_tree	*make_heredoc(t_token *tokens, t_tree *root);
 

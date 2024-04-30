@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "make_tree.h"
+#include "ms_signal.h"
 
 static t_tree	*down(t_tree *root, t_tree *new);
 static t_tree	*add_subpipe(size_t *i, t_tree *root, t_tree *subroot,
@@ -19,9 +20,6 @@ static t_tree	*make_subtree(t_token *tokens, t_param *param, t_tree *root,
 						size_t *i);
 static t_tree	*add_subredirection(size_t *i, t_tree *root, t_tree *subroot,
 					t_token *tokens);
-
-extern int	g_sig_value;
-//todo: check makecommand makeoperator ou makeredirection
 
 t_tree	*make_tree(t_token *tokens, t_param *param)
 {
