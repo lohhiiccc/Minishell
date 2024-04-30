@@ -26,7 +26,8 @@ char	*here_doc_rl(char *del, size_t need_expand)
 	char	*buffer;
 
 	buffer = ft_sprintf(HEREDOCSKIN,
-		GREEN, E_TACOS, END, GREEN, LIGHTGREEN, UNDERLINE, del, END, GREEN, END);
+			GREEN, E_TACOS, END, GREEN,
+			LIGHTGREEN, UNDERLINE, del, END, GREEN, END);
 	if (buffer != NULL)
 	{
 		str = readline(buffer);
