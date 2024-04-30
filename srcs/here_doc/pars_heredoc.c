@@ -6,8 +6,7 @@
 #include "tree.h"
 #include "ft_printf.h"
 #include "heredoc.h"
-
-extern int	g_sig_value;
+#include "ms_signal.h"
 
 static int8_t	error(char *str, t_vector *v);
 
