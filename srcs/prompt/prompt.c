@@ -20,6 +20,7 @@
 
 static uint8_t	init_fd(t_fds *fd);
 static uint8_t	free_fd(t_fds *fd, uint8_t ret);
+static void		end_of_file(t_param *param);
 static int		create_and_exec_tree(t_param *param,
 					t_fds *fd, t_vector *tokens);
 
@@ -33,11 +34,7 @@ int	prompt(t_param *param)
 	tokens.nbr_elem = 0;
 	str = prompt_value(param->ret);
 	if (str == NULL)
-	{
-		ft_printf("Exit\n");
-		clear_env(&param->env);
-		exit(param->ret);
-	}
+		end_of_file(param);
 	if (g_sig_value != 0)
 	{
 		free(str);
@@ -45,7 +42,7 @@ int	prompt(t_param *param)
 		return (128 + g_sig_value);
 	}
 	if (init_fd(&fd))
-		return (1); //todo print erreur malloc
+		return (1);
 	if (-1 != lexer(str, &tokens, param)
 		&& 1 == create_and_exec_tree(param, &fd, &tokens))
 		return (1);
@@ -53,6 +50,13 @@ int	prompt(t_param *param)
 		manage_history(str);
 	free(str);
 	return (free_fd(&fd, 1));
+}
+
+static void end_of_file(t_param *param)
+{
+	ft_printf("Exit\n");
+	clear_env(&param->env);
+	exit(param->ret);
 }
 
 static int	create_and_exec_tree(t_param *param, t_fds *fd, t_vector *tokens)
@@ -85,9 +89,13 @@ static uint8_t	free_fd(t_fds *fd, uint8_t ret)
 static uint8_t	init_fd(t_fds *fd)
 {
 	if (-1 == ft_vector_init(&fd->fd_in, sizeof(int)))
+	{
+		write(2, "Minichell: malloc error\n", 25);
 		return (1);
+	}
 	if (-1 == ft_vector_init(&fd->fd_out, sizeof(int)))
 	{
+		write(2, "Minichell: malloc error\n", 25);
 		free(fd->fd_in.addr);
 		return (1);
 	}
