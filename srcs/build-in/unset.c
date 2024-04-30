@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "tree.h"
 #include "libft.h"
 
@@ -26,7 +27,10 @@ int	ft_unset(t_cmd *cmd, t_param *param)
 	{
 		n = is_variable_name(param, cmd->arg[i]);
 		if (n != -1)
+		{
+			free(((char **)param->env.addr)[n]);
 			ft_vector_delete_elem(&param->env, n);
+		}
 		i++;
 	}
 	return (0);
