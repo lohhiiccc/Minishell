@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:39:06 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/30 18:59:13 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 21:39:19 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	print_error_export(t_tree *tree, t_param *param)
 	int	ret;
 
 	ret = ft_export(((t_cmd *)tree->structur)->arg, &param->env);
-	if (ret)
+	if (ret && errno)
 		ft_dprintf(STDERR_FILENO, ERR_EXP, strerror(errno));
 	return (ret);
 }
