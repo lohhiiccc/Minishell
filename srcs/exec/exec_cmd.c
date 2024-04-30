@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:37:51 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/29 21:40:41 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 22:21:27 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int	exec_cmd(t_tree *tree, t_fds *fds, t_param *param)
 {
-	int			ret;
+	int	ret;
 
 	((t_cmd *)tree->structur)->arg = expand_cmd(((t_cmd *) tree->structur)->arg,
 												param);

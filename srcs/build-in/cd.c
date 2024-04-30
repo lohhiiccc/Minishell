@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/25 18:02:23 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 23:39:23 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 static void	change_env(char *old_pwd, t_vector *env);
 static char	*create_path(t_cmd *cmd, size_t len_tab, t_param *param);
+static char	*arg_path(t_cmd *cmd, t_param *param);
 
 int	ft_cd(t_cmd *cmd, t_param *param)
 {
@@ -32,23 +33,18 @@ int	ft_cd(t_cmd *cmd, t_param *param)
 
 	len_tab = ft_tablen(cmd->arg);
 	old_pwd = getcwd(NULL, 0);
-	if (NULL == old_pwd)
-	{
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: %s\n", strerror(errno));
-		return (1);
-	}
 	if (len_tab > 2)
 	{
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: too many argument\n");
+		ft_dprintf(STDERR_FILENO, ERR_CD_TOO_MANY_ARGS);
 		return (1);
 	}
 	str = create_path(cmd, len_tab, param);
-	if (NULL == str)
+	if (!str)
 		return (1);
 	if (chdir(str) == -1)
 	{
 		free(str);
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: %s: %s\n", cmd->arg[1], strerror(errno));
+		ft_dprintf(STDERR_FILENO, ERR_CD_FAIL, cmd->arg[1], strerror(errno));
 		return (1);
 	}
 	change_env(old_pwd, &param->env);
@@ -60,58 +56,59 @@ static char	*create_path(t_cmd *cmd, size_t len_tab, t_param *param)
 {
 	char	*ret;
 
-	if (2 == len_tab)
-	{
-		if (!strcmp(cmd->arg[1], "-"))
-		{
-			ret = found_value_of_variable("OLDPWD", param->env);
-			if (!ret)
-				ft_dprintf(STDERR_FILENO, "Minichel: cd: OLDPWD not set\n");
-			else
-				ft_printf("%s\n", ret);
-		}
-		else if (ft_strchr(cmd->arg[1], '/'))
-		{
-			ret = ft_strdup(cmd->arg[1]);
-			if (NULL == ret)
-				ft_dprintf(STDERR_FILENO, "Minichel: cd: %s\n", strerror(errno));
-		}
-		else
-		{
-			ret = ft_sprintf("./%s", cmd->arg[1]);
-			if (NULL == ret)
-				ft_dprintf(STDERR_FILENO, "Minichel: cd: %s\n", strerror(errno));
-		}
-	}
+	if (len_tab == 2)
+		ret = arg_path(cmd, param);
 	else
 	{
 		ret = found_value_of_variable("HOME", param->env);
 		if (!ret)
-			ft_dprintf(STDERR_FILENO, "Minichel: cd: HOME not set\n");
+			ft_dprintf(STDERR_FILENO, ERR_CD_NO_HOME);
+	}
+	return (ret);
+}
+
+static char	*arg_path(t_cmd *cmd, t_param *param)
+{
+	char	*ret;
+
+	if (!strcmp(cmd->arg[1], "-"))
+	{
+		ret = found_value_of_variable("OLDPWD", param->env);
+		if (!ret)
+			ft_dprintf(STDERR_FILENO, ERR_CD_NO_OLDPWD);
+		else
+			ft_printf("%s\n", ret);
+	}
+	else if (ft_strchr(cmd->arg[1], '/'))
+	{
+		ret = ft_strdup(cmd->arg[1]);
+		if (!ret)
+			ft_dprintf(STDERR_FILENO, ERR_CD, strerror(errno));
+	}
+	else
+	{
+		ret = ft_sprintf("./%s", cmd->arg[1]);
+		if (!ret)
+			ft_dprintf(STDERR_FILENO, ERR_CD, strerror(errno));
 	}
 	return (ret);
 }
 
 static void	change_env(char *old_pwd, t_vector *env)
 {
-	char	**tab;
+	char	*tab[3];
 
-	tab = malloc(sizeof(char *) * 3);
-	if (NULL == tab)
-	{
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change OLDPWD in param\n");
-	}
 	tab[0] = NULL;
 	tab[2] = NULL;
 	tab[1] = ft_sprintf("OLDPWD=%s", old_pwd);
-	if (NULL == tab[1])
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change OLDPWD in param\n");
+	if (!old_pwd || !tab[1])
+		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_OLDPWD);
 	else
 		ft_export(tab, env);
 	free(tab[1]);
 	tab[1] = ft_sprintf("PWD=%s", getcwd(NULL, 0));
-	if (NULL == tab[1])
-		ft_dprintf(STDERR_FILENO, "Minichel: cd: problem for change PWD in param\n");
+	if (!tab[1])
+		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_PWD);
 	else
 		ft_export(tab, env);
 	ft_free_tab(tab);

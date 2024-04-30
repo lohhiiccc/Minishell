@@ -6,15 +6,16 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:19 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/07 20:58:28 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 18:51:50 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
 
 #include "vector.h"
 #include "libft.h"
 #include "ft_printf.h"
 #include "tree.h"
-#include <stdlib.h>
 
 static int	ft_free(void *addr, int status);
 static int	print_result(t_vector *v, int option, t_vector *fd_out);

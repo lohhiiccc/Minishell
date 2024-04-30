@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:30:31 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 18:11:03 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/29 23:21:24 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	inc_shlvl(t_vector *new_env)
 	{
 		tab[1] = ft_strdup("SHLVL=1");
 		ft_export(tab, new_env);
+		free(tab[1]);
 		return (0);
 	}
 	tab[1] = update_shlvl(shlvl);
