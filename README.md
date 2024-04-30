@@ -46,7 +46,7 @@
     arg=export test
      ```
 * ### **return**
-  * ``return`` ``[integer](optional)`` - do nothing and return integer
+  * ``return`` ``[integer](optional)`` - do nothing and return the first argument
     ```bash
     $ return
     $ echo -n $?
