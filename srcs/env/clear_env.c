@@ -6,13 +6,15 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:40:30 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/23 18:20:43 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 23:31:54 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
 #include "vector.h"
 #include "env.h"
+#include "ft_printf.h"
 
 void	clear_env(t_vector *env)
 {
