@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/05/01 00:05:17 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 01:29:13 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 static void	change_env(char *old_pwd, t_vector *env);
 static char	*create_path(t_cmd *cmd, size_t len_tab,
-	t_param *param, t_vector *fd_out);
+				t_param *param, t_vector *fd_out);
 static char	*arg_path(t_cmd *cmd, t_param *param, t_vector *fd_out);
+static char	*cd_minus(t_param *param, t_vector *fd_out);
 
 int	ft_cd(t_cmd *cmd, t_param *param, t_vector *fd_out)
 {
@@ -56,7 +57,7 @@ int	ft_cd(t_cmd *cmd, t_param *param, t_vector *fd_out)
 	return (0);
 }
 
-static char	*create_path(t_cmd *cmd, size_t len_tab, 
+static char	*create_path(t_cmd *cmd, size_t len_tab,
 	t_param *param, t_vector *fd_out)
 {
 	char	*ret;
@@ -72,21 +73,27 @@ static char	*create_path(t_cmd *cmd, size_t len_tab,
 	return (ret);
 }
 
+static char	*cd_minus(t_param *param, t_vector *fd_out)
+{
+	char	*ret;
+
+	ret = found_value_of_variable("OLDPWD", param->env);
+	if (!ret)
+		ft_dprintf(STDERR_FILENO, ERR_CD_NO_OLDPWD);
+	else if (fd_out->nbr_elem)
+		ft_dprintf(*(int *)ft_vector_get(fd_out, fd_out->nbr_elem - 1),
+			"%s\n", ret);
+	else
+		ft_printf("%s\n", ret);
+	return (ret);
+}
+
 static char	*arg_path(t_cmd *cmd, t_param *param, t_vector *fd_out)
 {
 	char	*ret;
 
 	if (!strcmp(cmd->arg[1], "-"))
-	{
-		ret = found_value_of_variable("OLDPWD", param->env);
-		if (!ret)
-			ft_dprintf(STDERR_FILENO, ERR_CD_NO_OLDPWD);
-		else if (fd_out->nbr_elem)
-			ft_dprintf(*(int *)ft_vector_get(fd_out, fd_out->nbr_elem - 1),
-				"%s\n", ret);
-		else
-			ft_printf("%s\n", ret);
-	}
+		ret = cd_minus(param, fd_out);
 	else if (ft_strchr(cmd->arg[1], '/'))
 	{
 		ret = ft_strdup(cmd->arg[1]);
