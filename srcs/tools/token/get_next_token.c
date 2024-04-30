@@ -14,6 +14,7 @@
 
 #include "token.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 static uint8_t	is_sep(char c);
 static int8_t	set_cmd(const char *str, t_token *tkn);
@@ -41,7 +42,7 @@ int8_t	get_next_token(char *str, t_token *tkn)
 		}
 		i++;
 	}
-	if (-1 == set_cmd(str, tkn))
+	if (str[0] != 0 && set_cmd(str, tkn) == -1)
 		return (-1);
 	return (0);
 }
