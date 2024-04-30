@@ -23,13 +23,13 @@ int	lexer(char *str, t_vector *tokens, t_param *param)
 
 	s = ft_strdup(str);
 	if (s == NULL)
-	{
-		free_token(tokens);
 		return (-1);
-	}
 	prompt_back_slash(s);
 	if (!str || !str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
+	{
+		free(s);
 		return (-1);
+	}
 	if (get_tokens(s, tokens) == -1)
 		return (print_syntax_error(tokens, param, -1, s));
 	syntax = syntax_check(tokens);
