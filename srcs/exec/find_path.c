@@ -6,12 +6,13 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:25:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:19:30 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 18:32:02 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 #include "vector.h"
 #include "exec.h"
@@ -59,22 +60,25 @@ static char	**list_path(t_vector *env)
 
 static char	*path_exist(char **path_list, char *cmd)
 {
-	size_t	i;
-	char	*ret;
+	size_t		i;
+	char		*ret;
+	struct stat	file;
 
-	i = 0;
+	i = -1;
 	if (!path_list)
 		return (NULL);
-	while (path_list[i])
+	while (path_list[++i])
 	{
 		ret = ft_sprintf("%s/%s", path_list[i], cmd);
 		if (!access(ret, F_OK))
 		{
+			stat(ret, &file);
+			if (S_ISDIR(file.st_mode))
+				continue ;
 			ft_free_tab(path_list);
 			return (ret);
 		}
 		free(ret);
-		i++;
 	}
 	ft_free_tab(path_list);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:04:27 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/25 18:21:35 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 18:38:52 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define ERROR_MSG "Minichel: %s: %s\n"
 # define CMD_NOT_FOUND "Minichel: %s: Command not found\n"
 # define IS_DIR "Minichel: %s: Is a directory\n"
+# define IS_NOT_FILE "Minichel: %s: No such file or directory\n"
 
 typedef struct s_fds
 {

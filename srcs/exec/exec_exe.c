@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/29 22:40:59 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 18:39:00 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ int	exec_exe(t_tree *tree, t_fds *fds, t_param *param)
 			ft_dprintf(STDERR_FILENO, IS_DIR,
 				((t_cmd *)tree->structur)->arg[0]);
 			ret = 126;
+		}
+		else if (!S_ISREG(file.st_mode))
+		{
+			ft_dprintf(STDERR_FILENO, IS_NOT_FILE,
+				((t_cmd *)tree->structur)->arg[0]);
+			ret = 127;
 		}
 		else
 			ret = exec_child_cmd(tree, fds, param);
