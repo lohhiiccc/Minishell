@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:44 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/30 04:33:48 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 22:12:13 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <stdbool.h>
 
 #include "tree.h"
 #include "libft.h"
@@ -22,22 +23,36 @@
 
 static int	ft_vector_add_and_null(char *cmd, t_vector *env);
 static int	found_sep(char *str, char sep);
-static int	change_env(t_vector *env, char **cmd, int n, size_t i);
+static int	change_env(t_vector *env, char *cmd, int n);
+static int	check_variable_name(char *str, int n);
 
 int	ft_export(char **cmd, t_vector *env)
 {
 	size_t	i;
 	int		n;
+	int		ret;
+	bool	p_error;
 
-	i = 1;
-	while (cmd[i])
+	p_error = 0;
+	ret = 1;
+	i = 0;
+	if (!cmd[1])
+		return (0);
+	while (cmd[++i])
 	{
 		n = found_sep(cmd[i], '=');
-		if (n != -1 && change_env(env, cmd, n, i))
-			return (1);
-		i++;
+		if (n != -1)
+		{
+			if (!change_env(env, cmd[i], n))
+				ret = 0;
+		}
+		else if (p_error == 0)
+		{
+			ft_dprintf(STDERR_FILENO, USE_EQ);
+			p_error = 1;
+		}
 	}
-	return (0);
+	return (ret);
 }
 
 static int	ft_vector_add_and_null(char *cmd, t_vector *env)
@@ -52,23 +67,47 @@ static int	ft_vector_add_and_null(char *cmd, t_vector *env)
 	return (0);
 }
 
-static int	change_env(t_vector *env, char **cmd, int n, size_t i)
+static int	check_variable_name(char *str, int n)
 {
-	size_t	j;
+	size_t	i;
+
+	i = 0;
+	if (!(ft_isalpha(str[0]) || str[0] == '_'))
+	{
+		ft_dprintf(STDERR_FILENO, ERR_EXP_ID, str);
+		return (1);
+	}
+	while (i < (size_t)n)
+	{
+		if (!(ft_isalnum(str[i]) || str[i] == '_'))
+		{
+			ft_dprintf(STDERR_FILENO, ERR_EXP_ID, str);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+static int	change_env(t_vector *env, char *cmd, int n)
+{
+	size_t	i;
 	char	**clean;
 
-	j = 0;
-	while (j < env->nbr_elem)
+	i = 0;
+	if (check_variable_name(cmd, n))
+		return (1);
+	while (i < env->nbr_elem)
 	{
-		if (!ft_strncmp(cmd[i], *(char **)ft_vector_get(env, j), n + 1))
+		if (!ft_strncmp(cmd, *(char **)ft_vector_get(env, i), n + 1))
 		{
-			clean = ft_vector_get(env, j);
+			clean = ft_vector_get(env, i);
 			free(*clean);
-			ft_vector_delete_elem(env, j);
+			ft_vector_delete_elem(env, i);
 		}
-		j++;
+		i++;
 	}
-	if (ft_vector_add_and_null(cmd[i], env))
+	if (ft_vector_add_and_null(cmd, env))
 		return (1);
 	return (0);
 }
