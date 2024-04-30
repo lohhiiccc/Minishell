@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/30 04:33:16 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 18:55:54 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_cd(t_cmd *cmd, t_param *param)
 	size_t	len_tab;
 
 	len_tab = ft_tablen(cmd->arg);
-	old_pwd = getcwd(NULL, 0);
 	if (len_tab > 2)
 	{
 		ft_dprintf(STDERR_FILENO, ERR_CD_TOO_MANY_ARGS);
@@ -47,7 +46,9 @@ int	ft_cd(t_cmd *cmd, t_param *param)
 		ft_dprintf(STDERR_FILENO, ERR_CD_FAIL, cmd->arg[1], strerror(errno));
 		return (1);
 	}
+	old_pwd = getcwd(NULL, 0);
 	change_env(old_pwd, &param->env);
+	free(old_pwd);
 	free(str);
 	return (0);
 }
@@ -106,7 +107,7 @@ static void	change_env(char *old_pwd, t_vector *env)
 	else if (ft_export(tab, env))
 		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_OLDPWD);
 	free(tab[1]);
-	tab[1] = ft_sprintf("PWD=%s", getcwd(NULL, 0));
+	tab[1] = ft_sprintf("PWD=%S", getcwd(NULL, 0));
 	if (!tab[1])
 		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_PWD);
 	else if (ft_export(tab, env))
