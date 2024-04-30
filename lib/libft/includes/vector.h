@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 15:38:31 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/07 21:14:25 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 02:39:51 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int		ft_vector_add(t_vector *vector, void *elem);
 int		ft_vector_init(t_vector *vector, size_t size);
 int		ft_vector_resize(t_vector *vector, size_t new_size);
 int		ft_vector_add_ptr(t_vector *vector, void *elem);
-void	ft_vector_print_int(void *n);
-void	ft_vector_print_str(void *str);
-void	ft_vector_print_str_fd(void *str, int fd);
-int		ft_vector_iteri(t_vector *vector, void (*f)(void *));
-int		ft_vector_iteri_fd(t_vector *vector, void (*f)(void *, int), int fd);
+int		ft_vector_print_int(void *n);
+int		ft_vector_print_str(void *str);
+int		ft_vector_print_str_fd(void *str, int fd);
+int		ft_vector_iteri(t_vector *vector, int (*f)(void *));
+int		ft_vector_iteri_fd(t_vector *vector, int (*f)(void *, int), int fd);
 int		ft_vector_add_n(t_vector *vector, void *elem, size_t n);
 int		ft_vector_insert(t_vector *vector, void *elem, size_t index, size_t n);
 

@@ -1,5 +1,6 @@
 
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "libft.h"
 #include "tree.h"
@@ -25,10 +26,10 @@ int	read_here_doc(t_tree *tree, size_t need_expand)
 			return (error(buffer, &content));
 		buffer = here_doc_rl((char *) tree->structur, need_expand);
 	}
-	if (g_sig_value)
+	if (!buffer)
+		ft_dprintf(STDERR_FILENO, HERE_DOC_EOF, ((char *)tree->structur));
+	else if (g_sig_value)
 		free(buffer);
-	else if (!buffer)
-		ft_dprintf(2, HERE_DOC_EOF, ((char *)tree->structur));
 	if (ft_vector_add_ptr(&content, NULL) == -1)
 		return (error(buffer, &content));
 	free(tree->structur);

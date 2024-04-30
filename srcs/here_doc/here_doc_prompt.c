@@ -22,7 +22,7 @@ char	*here_doc_rl(char *del, size_t need_expand)
 	else
 		str = readline("le croquant > ");
 	heredoc_back_slash(str);
-	if (ft_strcmp(str, del) == 0)
+	if (str && ft_strcmp(str, del) == 0)
 		return (del);
 	if (need_expand != 0)
 		escape_str(str);

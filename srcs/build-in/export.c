@@ -6,57 +6,71 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:44 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/23 18:13:15 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 04:33:48 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+
 #include "tree.h"
 #include "libft.h"
-#include <stdlib.h>
+#include "ft_printf.h"
+#include "build_in.h"
 
-static void	ft_vector_add_and_null(char *cmd, t_vector *env);
+static int	ft_vector_add_and_null(char *cmd, t_vector *env);
 static int	found_sep(char *str, char sep);
+static int	change_env(t_vector *env, char **cmd, int n, size_t i);
 
 int	ft_export(char **cmd, t_vector *env)
 {
 	size_t	i;
-	size_t	j;
 	int		n;
-	char	**clean;
 
 	i = 1;
-	j = 0;
 	while (cmd[i])
 	{
 		n = found_sep(cmd[i], '=');
-		if (n != -1)
-		{
-			while (j < env->nbr_elem)
-			{
-				if (!ft_strncmp(cmd[i],
-						*(char **)ft_vector_get(env, j), n + 1))
-					{
-						clean = ft_vector_get(env, j);
-						free(*clean);
-						ft_vector_delete_elem(env, j);
-					}
-				j++;
-			}
-			ft_vector_add_and_null(cmd[i], env);
-		}
+		if (n != -1 && change_env(env, cmd, n, i))
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-static void	ft_vector_add_and_null(char *cmd, t_vector *env)
+static int	ft_vector_add_and_null(char *cmd, t_vector *env)
 {
 	char	*temp;
 
 	temp = ft_strdup(cmd);
 	ft_vector_delete_elem(env, env->nbr_elem);
-	ft_vector_add_ptr(env, temp);
-	ft_vector_add_ptr(env, NULL);
+	if (ft_vector_add_ptr(env, temp) == -1
+		|| ft_vector_add_ptr(env, NULL) == -1)
+		return (1);
+	return (0);
+}
+
+static int	change_env(t_vector *env, char **cmd, int n, size_t i)
+{
+	size_t	j;
+	char	**clean;
+
+	j = 0;
+	while (j < env->nbr_elem)
+	{
+		if (!ft_strncmp(cmd[i], *(char **)ft_vector_get(env, j), n + 1))
+		{
+			clean = ft_vector_get(env, j);
+			free(*clean);
+			ft_vector_delete_elem(env, j);
+		}
+		j++;
+	}
+	if (ft_vector_add_and_null(cmd[i], env))
+		return (1);
+	return (0);
 }
 
 static int	found_sep(char *str, char sep)

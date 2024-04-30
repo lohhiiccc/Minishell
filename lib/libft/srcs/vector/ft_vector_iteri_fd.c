@@ -6,21 +6,23 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:10:26 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/24 17:14:08 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 02:38:05 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
 #include <stdio.h>
 
-int	ft_vector_iteri_fd(t_vector *vector, void (*f)(void *, int), int fd)
+#include "vector.h"
+
+int	ft_vector_iteri_fd(t_vector *vector, int (*f)(void *, int), int fd)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < vector->nbr_elem)
 	{
-		f(ft_vector_get(vector, i), fd);
+		if (f(ft_vector_get(vector, i), fd))
+			return (1);
 		i++;
 	}
 	return (0);
