@@ -17,6 +17,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
+# define E_TACOS "\001\xF0\x9F\002\x8C\xAE"
 # define E_EGG "\001\xF0\x9F\002\xA5\x9A"
 # define E_EGG2 "\001\xF0\x9F\002\x90\xA5"
 # define RED "\001\e[31m\002"
@@ -26,6 +27,7 @@
 # define YELLOW "\001\e[33m\002"
 # define LIGHTGREEN "\001\e[32m\002"
 # define PROMPTSKIN "%s[%s]%s[%s] %s%sMinichel%s%s$%s "
+# define HEREDOCSKIN "%s[%s]%sle croquant: %s[%s%s%s%s%s]%s> "
 
 void	manage_history(char *str);
 char	*prompt_value(int last_ret);

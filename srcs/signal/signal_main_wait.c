@@ -12,8 +12,7 @@
 
 #include <signal.h>
 #include <unistd.h>
-
-extern int	g_sig_value;
+#include "ms_signal.h"
 
 static void	handle_sig(int sig);
 

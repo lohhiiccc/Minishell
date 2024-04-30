@@ -46,7 +46,6 @@ static int	fill_heredoc(t_tree *tree, int fd, t_param *param)
 	size_t	i;
 	size_t	len;
 
-	(void )param;
 	i = 0;
 	while (((char **)tree->structur)[i])
 	{
@@ -59,7 +58,9 @@ static int	fill_heredoc(t_tree *tree, int fd, t_param *param)
 	i = 0;
 	while (((char **)tree->structur)[i])
 	{
-		len = ft_strlen(((char **)tree->structur)[i]) - 1;
+		len = ft_strlen(((char **)tree->structur)[i]);
+		if (len != 0)
+			len -= 1;
 		if (((char **)tree->structur)[i][len] == 127)
 			ft_dprintf(fd, "%e", ((char **)tree->structur)[i]);
 		else

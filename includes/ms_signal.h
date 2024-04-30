@@ -13,6 +13,8 @@
 #ifndef MS_SIGNAL_H
 # define MS_SIGNAL_H
 
+extern int	g_sig_value;
+
 void	ms_signal_main(void);
 void	ms_signal_child(void);
 void	ms_signal_main_wait(void);

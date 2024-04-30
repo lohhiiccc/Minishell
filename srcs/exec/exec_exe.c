@@ -23,8 +23,6 @@
 #include "ft_printf.h"
 #include "ms_signal.h"
 
-extern int	g_sig_value;
-
 static int	exec_child_cmd(t_tree *tree, t_fds *fds, t_param *param);
 static void	dup_fd(t_tree *tree, t_vector *fd1, t_vector *fd2, int new_fd);
 

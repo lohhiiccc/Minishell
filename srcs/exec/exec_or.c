@@ -13,8 +13,7 @@
 #include <signal.h>
 
 #include "exec.h"
-
-extern int	g_sig_value;
+#include "ms_signal.h"
 
 int	exec_or(t_tree *tree, t_fds *fds, t_param *param)
 {

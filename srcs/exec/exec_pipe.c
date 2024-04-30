@@ -20,8 +20,6 @@
 #include "ft_printf.h"
 #include "ms_signal.h"
 
-extern int	g_sig_value;
-
 static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_param *param);
 static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *param);
 static int	print_error(char *error, int status);
