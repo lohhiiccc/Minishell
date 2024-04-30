@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:34 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/30 01:51:52 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 04:33:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ static void	change_env(char *old_pwd, t_vector *env)
 		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_PWD);
 	else if (ft_export(tab, env))
 		ft_dprintf(STDERR_FILENO, ERR_CD_CHG_PWD);
-	ft_free_tab(tab);
+	free(tab[1]);
 }
