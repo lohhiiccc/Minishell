@@ -60,8 +60,8 @@ static uint8_t	lex_last(const size_t *parent, t_token_type type)
 {
 	return (parent[0] != parent[1]
 		|| !(type == T_CMD
-			|| type == T_FILES
-			|| type == T_PARENTHESE_CL
-			|| type == T_IS_SPACE
-			|| type == T_NONE));
+		|| type == T_FILES
+		|| type == T_PARENTHESE_CL
+		|| type == T_IS_SPACE
+		|| type == T_NONE));
 }
