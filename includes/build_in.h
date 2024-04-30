@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:33:27 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/30 19:01:12 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/04/30 22:01:02 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # define ERR_CD_CHG_PWD "Minichel: cd: problem for change PWD in env\n"
 # define ERR_PWD "Minichel: pwd: %s\n"
 # define ERR_EXP "Minichel: export: %s\n"
+# define ERR_EXP_ID "Minichel: export: %s: not a valid identifier\n"
 # define ERR_ECHO "Minichel: echo: %s\n"
 # define ERR_EXIT_TOO_MANY_ARGS "Minichel: exit: too many argument\n"
+# define USE_EQ "Minichel: export: usage is [varname]=[value]\n"
 
 int	ft_echo(t_cmd *cmd, t_vector *fd_out);
 int	ft_unset(t_cmd *cmd, t_param *param);
