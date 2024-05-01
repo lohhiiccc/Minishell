@@ -6,15 +6,15 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/24 22:08:58 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 22:25:42 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
 #include "tree.h"
 #include "libft.h"
 
-static int	found_sep(char *str, char sep);
 static int	is_variable_name(t_param *param, char *str);
 
 int	ft_unset(t_cmd *cmd, t_param *param)
@@ -36,33 +36,22 @@ int	ft_unset(t_cmd *cmd, t_param *param)
 	return (0);
 }
 
-static int	found_sep(char *str, char sep)
-{
-	size_t	i;
-
-	i = 0;
-	while (str && str[i] && str[i] != sep)
-		i++;
-	if (str && str[i] && str[i] == sep)
-		return (i);
-	return (-1);
-}
-
 static int	is_variable_name(t_param *param, char *str)
 {
 	size_t	i;
-	int		n;
-	char	**env_i;
+	size_t	len;
+	char	**env;
 
 	i = 0;
-	env_i = ft_vector_get(&param->env, i);
-	while (i < param->env.nbr_elem)
+	env = ft_vector_get(&param->env, i);
+	while (env[i])
 	{
-		n = found_sep(*env_i, '=');
-		if (!ft_strncmp(*env_i, str, n - 1))
+		len = ft_strclen(str, '=');
+		if (str[len - 1] == '=')
+			return (-1);
+		if (!ft_strncmp(env[i], str, len))
 			return (i);
 		i++;
-		env_i = ft_vector_get(&param->env, i);
 	}
 	return (-1);
 }

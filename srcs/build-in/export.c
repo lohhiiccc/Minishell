@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:36:44 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/30 22:26:43 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 22:19:07 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	ft_vector_add_and_null(char *cmd, t_vector *env)
 	temp = ft_strdup(cmd);
 	if (!temp)
 		return (1);
-	ft_vector_delete_elem(env, env->nbr_elem);
+	ft_vector_delete_elem(env, env->nbr_elem - 1);
 	if (ft_vector_add_ptr(env, temp) == -1
 		|| ft_vector_add_ptr(env, NULL) == -1)
 		return (1);
