@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:32 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 18:18:47 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 23:30:54 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	exec_apend(t_tree *tree, t_fds *fds, t_param *param)
 		return (1);
 	}
 	ret = exec_args(tree->left, fds, tree->root, param);
-	ft_vector_delete_elem(&fds->fd_out, fds->fd_out.nbr_elem);
+	ft_vector_delete_elem(&fds->fd_out, fds->fd_out.nbr_elem - 1);
 	if (-1 == close(fd))
 	{
 		ft_dprintf(STDERR_FILENO, ERROR_MSG, (char *)tree->structur,
