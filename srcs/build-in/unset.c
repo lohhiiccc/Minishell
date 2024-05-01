@@ -14,7 +14,6 @@
 
 #include "tree.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 static int	is_variable_name(t_param *param, char *str);
 
