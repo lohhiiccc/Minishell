@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/25 03:58:37 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 02:28:06 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	prompt(t_param *param)
 	return (free_fd(&fd, 1));
 }
 
-static void end_of_file(t_param *param)
+static void	end_of_file(t_param *param)
 {
 	ft_printf("Exit\n");
 	clear_env(&param->env);
