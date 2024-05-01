@@ -6,11 +6,12 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/24 22:08:58 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 22:25:42 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
 #include "tree.h"
 #include "libft.h"
 
@@ -59,7 +60,7 @@ static int	is_variable_name(t_param *param, char *str)
 	while (i < param->env.nbr_elem)
 	{
 		n = found_sep(*env_i, '=');
-		if (!ft_strncmp(*env_i, str, n - 1))
+		if (!ft_strncmp(*env_i, str, n))
 			return (i);
 		i++;
 		env_i = ft_vector_get(&param->env, i);

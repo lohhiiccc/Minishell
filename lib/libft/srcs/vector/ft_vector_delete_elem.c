@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 00:45:01 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 17:43:29 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 22:16:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	ft_vector_delete_elem(t_vector *vector, size_t n)
 {
-	ft_memmove(vector->addr + (n * vector->size), \
-		vector->addr + ((n + 1) * vector->size), (vector->nbr_elem - n)
-		* vector->size);
+	ft_memmove(vector->addr + (n * vector->size),
+		vector->addr + ((n + 1) * vector->size),
+		(vector->nbr_elem - (n + 1)) * vector->size);
 	vector->nbr_elem--;
 }
