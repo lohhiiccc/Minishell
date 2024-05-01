@@ -100,11 +100,21 @@ static t_tree	*add_subredirection(size_t *i,
 
 static t_tree	*down(t_tree *root, t_tree *new)
 {
+	t_tree	*tmp;
+
 	if (NULL == root)
 		return (new);
 	if (root->left == NULL)
 	{
 		root->left = new;
+		return (root);
+	}
+	if (root->right)
+	{
+		tmp = root->right;
+		while (tmp->right)
+			tmp = tmp->right;
+		tmp->right = new;
 		return (root);
 	}
 	root->right = new;
