@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 18:10:31 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/01 02:20:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_param *param)
 	int	fd[2];
 
 	param->is_main = 1;
-	
 	ms_signal_main_wait();
 	if (-1 == pipe(fd))
 		return (print_error(strerror(errno), 1));
@@ -41,11 +40,7 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_param *param)
 	if (pid == 0)
 		exec_left(tree, fds, fd, param);
 	else
-	{
-		if (-1 == close(fd[1]))
-			ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
 		ret = exec_right(tree, fds, fd, param);
-	}
 	while (wait(0) != -1)
 		;
 	if (SIGINT == g_sig_value)
@@ -80,6 +75,8 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 	int	ret;
 	int	pid;
 
+	if (-1 == close(fd[1]))
+		ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
 	pid = fork();
 	if (-1 == pid)
 		return (print_error(strerror(errno), 1));

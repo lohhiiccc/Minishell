@@ -14,7 +14,7 @@
 
 #include "libft.h"
 
-uint8_t remove_quote(char *s)
+uint8_t	remove_quote(char *s)
 {
 	size_t	i;
 	uint8_t	quote;
@@ -24,7 +24,7 @@ uint8_t remove_quote(char *s)
 	while (s[i])
 	{
 		if ((s[i] == '\'' || s[i] == '"') || (s[i] == '$'
-			&& (s[i + 1] == '\'' || s[i + 1] == '"')))
+				&& (s[i + 1] == '\'' || s[i + 1] == '"')))
 		{
 			quote = 1;
 			ft_memmove(s + i, s + i + 1, ft_strlen(s + i + 1) + 1);
