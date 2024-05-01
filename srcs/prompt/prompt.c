@@ -52,7 +52,7 @@ int	prompt(t_param *param)
 	return (free_fd(&fd, 1));
 }
 
-static void end_of_file(t_param *param)
+static void	end_of_file(t_param *param)
 {
 	ft_printf("Exit\n");
 	clear_env(&param->env);
