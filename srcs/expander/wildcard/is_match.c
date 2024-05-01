@@ -14,12 +14,14 @@
 #include <stddef.h>
 
 static char	value(char c);
+static void	end_folder_mode(size_t *j, char *patern);
 
 uint8_t	is_match(char *str, char *patern, size_t i, size_t j)
 {
 	while ((patern[j] && patern[j] == '*' && patern[j + 1] == '*')
 		|| (patern[j] == '\'' || patern[j] == '"'))
 		j++;
+	end_folder_mode(&j, patern);
 	if (value(patern[j]) && value(patern[j]) == '/' && !value(patern[j + 1]))
 		return (1);
 	if (!str[i] && !value(patern[j]))
@@ -30,6 +32,17 @@ uint8_t	is_match(char *str, char *patern, size_t i, size_t j)
 	if ((value(patern[j]) == '?' && str[i]) || value(patern[j]) == str[i])
 		return (is_match(str, patern, i + 1, j + 1));
 	return (0);
+}
+
+static void	end_folder_mode(size_t *j, char *patern)
+{
+	size_t	i;
+
+	i = 0;
+	while (value(patern[i + *j]) == '/')
+		i++;
+	if (patern[i + *j] == '\0')
+		*j += i;
 }
 
 static char	value(char c)
