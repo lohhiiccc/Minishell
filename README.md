@@ -55,4 +55,8 @@
     ```
 * ### **exit**
   * ``exit`` ``[value](optional)`` - exit shell and return value
+ 
   
+## 🙇 Author
+#### [Rio Loic](https://github.com/lohhiiccc) [(Lrio)](https://profile.intra.42.fr/users/lrio)
+#### [Juffard Michel](https://github.com/MichJuffard) [(Mjuffard)](https://profile.intra.42.fr/users/mjuffard)
