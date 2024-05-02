@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 22:18:06 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:22:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int8_t	get_next_token(char *str, t_token *tkn)
 	quote_started(1, 0);
 	while (i < 11)
 	{
-		if (0 == ft_strncmp(type[i].str, str, ft_strlen(type[i].str)))
+		if (ft_strncmp(type[i].str, str, ft_strlen(type[i].str)) == 0)
 		{
 			if (fill_token(str, tkn, type[i].type, type[i].str) == -1)
 				return (-1);

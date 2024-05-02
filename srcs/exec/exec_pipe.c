@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/02 04:12:31 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:21:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 	pid = fork();
 	if (pid == -1)
 		return (print_error(strerror(errno), 1));
-	if (0 == pid)
+	if (pid == 0)
 	{
 		if (ft_vector_add(&fds->fd_in, &fd[0]) == -1)
 		{
