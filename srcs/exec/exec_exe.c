@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:03:23 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 02:08:56 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 01:02:05 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,14 @@ static void	exec_in_child(t_tree *tree, t_fds *fds, t_param *param)
 	close_vector_fd(&fds->fd_in);
 	close_vector_fd(&fds->fd_out);
 	dup_cmd(tree, &temp, fds);
+	free(((t_cmd *)tree->structur)->path);
 	ft_clean_tree(tree->root);
 	execve(temp.path, temp.arg, ft_vector_get(&param->env, 0));
 	ft_dprintf(STDERR_FILENO, ERROR_MSG,
 		temp.arg[0], strerror(errno));
 	free(temp.path);
 	ft_free_tab(temp.arg);
+	clear_env(&param->env);
 	clean_exit(NULL, &fds->fd_in, &fds->fd_out, 1);
 }
 
