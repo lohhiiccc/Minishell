@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:55:56 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 00:55:59 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:26:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	create_file_here_doc(t_tree *tree, t_param *param)
 	int		fd;
 
 	file_name = get_file_name();
-	if (NULL == file_name)
+	if (!file_name)
 		return (-1);
 	fd = open(file_name, O_RDWR | O_CREAT, 0644);
 	if (fd == -1)
 		return (-1);
-	if (-1 == fill_heredoc(tree, fd, param))
+	if (fill_heredoc(tree, fd, param) == -1)
 	{
 		ft_free_tab(tree->structur);
 		free(tree->structur);
@@ -104,8 +104,8 @@ static int8_t	expand_heredoc(char **s, t_param *param, size_t i)
 	size_t	j;
 
 	j = 0;
-	if (-1 == expand_ret(&s[i], param->ret)
-		|| -1 == expand_var(&s[i], &param->env))
+	if (expand_ret(&s[i], param->ret) == -1
+		|| expand_var(&s[i], &param->env) == -1)
 	{
 		ft_free_tab(s);
 		s = NULL;

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:00:13 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/24 22:10:10 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:26:52 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static t_tree	*down(t_tree *root, t_tree *new)
 {
 	t_tree	*tmp;
 
-	if (NULL == root)
+	if (!root)
 		return (new);
 	if (root->left == NULL)
 	{

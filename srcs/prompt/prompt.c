@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/05/02 01:42:36 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:13:51 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ static uint8_t	free_fd(t_fds *fd, uint8_t ret)
 
 static uint8_t	init_fd(t_fds *fd)
 {
-	if (-1 == ft_vector_init(&fd->fd_in, sizeof(int)))
+	if (ft_vector_init(&fd->fd_in, sizeof(int)) == -1)
 	{
 		write(2, "Minichell: malloc error\n", 25);
 		return (1);
 	}
-	if (-1 == ft_vector_init(&fd->fd_out, sizeof(int)))
+	if (ft_vector_init(&fd->fd_out, sizeof(int)) == -1)
 	{
 		write(2, "Minichell: malloc error\n", 25);
 		free(fd->fd_in.addr);

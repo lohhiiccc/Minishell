@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 00:12:38 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/24 22:09:17 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:27:09 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	**get_cmd(t_token *tokens)
 		return (NULL);
 	i = 1;
 	arg[0] = ft_strdup(tokens[0].str);
-	if (NULL == arg[0])
+	if (!arg[0])
 		return (free_and_return_null(arg));
 	len = 1;
 	while (tokens[i].type != T_CMD && tokens[i].type != T_NEWLINE)

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:48:00 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/29 17:01:25 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:27:15 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_tree	*make_heredoc(t_token *tokens, t_tree *root)
 	size_t	need_expand;
 
 	new = ft_new_tree(ft_strdup(tokens[1].str), HERE_DOC, root);
-	if (NULL == new)
+	if (!new)
 		return (NULL);
 	need_expand = expand_delimiter(new->structur);
 	tmp = read_here_doc(new, need_expand);

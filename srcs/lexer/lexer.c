@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 05:28:37 by lrio              #+#    #+#             */
-/*   Updated: 2024/04/17 20:13:51 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:13:38 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	lexer(char *str, t_vector *tokens, t_param *param)
 	if (s == NULL)
 		return (-1);
 	prompt_back_slash(s);
-	if (!str || !str[0] || -1 == ft_vector_init(tokens, sizeof(t_token)))
+	if (!str || !str[0] || ft_vector_init(tokens, sizeof(t_token)) == -1)
 	{
 		free(s);
 		return (-1);

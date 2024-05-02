@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:55:28 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 00:55:33 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:26:35 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static char	*get_str(char *str)
 
 	i = 0;
 	res = ft_null_alloc(ft_strlen(str) + 1, sizeof(char));
-	if (NULL == res)
+	if (!res)
 		return (NULL);
 	while (str[i])
 	{

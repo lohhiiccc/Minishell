@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:13:17 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:25:24 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:25:44 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**ft_split(char *str, char *charset)
 
 	nb_world = count_world(str, charset);
 	res = malloc(sizeof(char *) * (nb_world + 1));
-	if (NULL == res)
+	if (!res)
 		return (NULL);
 	i = 0;
 	start = 0;
@@ -97,7 +97,7 @@ char	**ft_split(char *str, char *charset)
 		while (ischarset(charset, str[start]))
 			start++;
 		res[i] = split_strdup(&str[start], charset);
-		if (NULL == res[i])
+		if (!res[i])
 			free_split(res, i);
 		while (!ischarset(charset, str[start]) && str[start] != '\0')
 			start++;
