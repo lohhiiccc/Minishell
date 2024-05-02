@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:56:01 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 00:56:03 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 01:30:35 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*here_doc_rl(char *del, size_t need_expand)
 	char	*buffer;
 
 	buffer = ft_sprintf(HEREDOCSKIN,
-			GREEN, E_TACOS, END, GREEN,
+			GREEN, E_CHICKEN, END, GREEN,
 			LIGHTGREEN, UNDERLINE, del, END, GREEN, END);
 	if (buffer != NULL)
 	{
