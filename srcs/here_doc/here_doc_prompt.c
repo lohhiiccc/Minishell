@@ -48,6 +48,8 @@ void	escape_str(char *str)
 	size_t	i;
 
 	i = 0;
+	if (!str)
+		return ;
 	while (str[i])
 	{
 		if (str[i] > 0)
