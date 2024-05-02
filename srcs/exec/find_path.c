@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:25:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 01:11:18 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 23:26:30 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static char	*path_exist(char **path_list, char *cmd)
 	while (path_list[++i])
 	{
 		ret = ft_sprintf("%s/%s", path_list[i], cmd);
-		if (!access(ret, F_OK))
+		if (!access(ret, X_OK))
 		{
 			stat(ret, &file);
 			if (S_ISREG(file.st_mode))

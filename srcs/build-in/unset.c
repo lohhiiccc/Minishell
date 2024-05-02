@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 15:37:31 by lrio              #+#    #+#             */
-/*   Updated: 2024/05/02 02:03:55 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 23:27:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 
 static int	is_variable_name(t_param *param, char *str);
-static int	ft_strcmp_to_c(char *str1, char *str2, char c)
+static int	ft_strcmp_to_c(char *str1, char *str2, char c);
 
 int	ft_unset(t_cmd *cmd, t_param *param)
 {
