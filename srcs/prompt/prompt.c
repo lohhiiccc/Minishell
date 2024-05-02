@@ -32,7 +32,7 @@ int	prompt(t_param *param)
 
 	ms_signal_main();
 	tokens.nbr_elem = 0;
-	str = prompt_value(param->ret);
+	str = prompt_value(param);
 	if (str == NULL)
 		end_of_file(param);
 	if (g_sig_value != 0)
