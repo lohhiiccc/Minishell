@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:56:05 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 00:56:07 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:13:21 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	read_here_doc(t_tree *tree, size_t need_expand)
 	t_vector	content;
 	char		*buffer;
 
-	if (-1 == ft_vector_init(&content, sizeof(char *)))
+	if (ft_vector_init(&content, sizeof(char *)) == -1)
 		return (-1);
 	g_sig_value = 0;
 	buffer = here_doc_rl((char *) tree->structur, need_expand);

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:59 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 23:31:04 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:10:42 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	exec_here_doc(t_tree *tree, t_fds *fds, t_param *param)
 	int	ret;
 
 	fd = create_file_here_doc(tree, param);
-	if (-1 == fd)
+	if (fd == -1)
 	{
 		ft_dprintf(STDERR_FILENO, ERROR_MSG, (char *)tree->structur,
 			strerror(errno));
 		return (1);
 	}
-	if (-1 == ft_vector_add(&fds->fd_in, &fd))
+	if (ft_vector_add(&fds->fd_in, &fd) == -1)
 	{
 		ft_dprintf(STDERR_FILENO, ERROR_MSG, (char *)tree->structur,
 			strerror(errno));
@@ -39,7 +39,7 @@ int	exec_here_doc(t_tree *tree, t_fds *fds, t_param *param)
 	}
 	ret = exec_args(tree->left, fds, tree->root, param);
 	ft_vector_delete_elem(&fds->fd_in, fds->fd_in.nbr_elem - 1);
-	if (-1 == close(fd))
+	if (close(fd) == -1)
 	{
 		ft_dprintf(STDERR_FILENO, ERROR_MSG, (char *)tree->structur,
 			strerror(errno));

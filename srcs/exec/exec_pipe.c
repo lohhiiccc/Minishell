@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:36:54 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 02:20:16 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:12:31 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_param *param)
 
 	param->is_main = 1;
 	ms_signal_main_wait();
-	if (-1 == pipe(fd))
+	if (pipe(fd) == -1)
 		return (print_error(strerror(errno), 1));
 	pid = fork();
-	if (-1 == pid)
+	if (pid == -1)
 		return (print_error(strerror(errno), 1));
 	if (pid == 0)
 		exec_left(tree, fds, fd, param);
@@ -43,7 +43,7 @@ int	exec_pipe(t_tree *tree, t_fds *fds, t_param *param)
 		ret = exec_right(tree, fds, fd, param);
 	while (wait(0) != -1)
 		;
-	if (SIGINT == g_sig_value)
+	if (g_sig_value == SIGINT)
 		ft_printf("\n");
 	if (SIGQUIT == g_sig_value)
 		ft_printf("Quit (core dumped)\n");
@@ -59,7 +59,7 @@ static int	print_error(char *error, int status)
 
 static void	exec_left(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 {
-	if (-1 == close(fd[0]) || -1 == ft_vector_add(&fds->fd_out, &fd[1]))
+	if (close(fd[0]) == -1 || ft_vector_add(&fds->fd_out, &fd[1]) == -1)
 	{
 		ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
 		clear_env(&param->env);
@@ -75,14 +75,14 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 	int	ret;
 	int	pid;
 
-	if (-1 == close(fd[1]))
+	if (close(fd[1]) == -1)
 		ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
 	pid = fork();
-	if (-1 == pid)
+	if (pid == -1)
 		return (print_error(strerror(errno), 1));
 	if (0 == pid)
 	{
-		if (-1 == ft_vector_add(&fds->fd_in, &fd[0]))
+		if (ft_vector_add(&fds->fd_in, &fd[0]) == -1)
 		{
 			ft_dprintf(STDERR_FILENO, "Minichel: pipe: %s\n", strerror(errno));
 			clean_exit(tree->root, &fds->fd_in, &fds->fd_out, 1);
@@ -91,7 +91,7 @@ static int	exec_right(t_tree *tree, t_fds *fds, int *fd, t_param *param)
 		clear_env(&param->env);
 		clean_exit(tree->root, &fds->fd_in, &fds->fd_out, ret);
 	}
-	else if (-1 == close(fd[0]))
+	else if (close(fd[0]) == -1)
 		return (print_error(strerror(errno), 1));
 	waitpid(pid, &ret, 0);
 	if (WIFEXITED(ret))

@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/17 16:42:21 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:14:04 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int8_t	get_tokens(char *str, t_vector *vector)
 	while (string[i])
 	{
 		if (i != 0)
-			if (-1 == get_next_token(string + i, &tmp_token))
+			if (get_next_token(string + i, &tmp_token) == -1)
 				return (-1);
 		if (tmp_token.type != T_IS_SPACE && \
 			ft_vector_add(vector, &tmp_token) == -1)
@@ -38,7 +38,7 @@ int8_t	get_tokens(char *str, t_vector *vector)
 			free(tmp_token.str);
 	}
 	tag_files(vector);
-	if (-1 == ft_vector_add(vector, &(t_token){"\n", T_NEWLINE}))
+	if (ft_vector_add(vector, &(t_token){"\n", T_NEWLINE}) == -1)
 		return (-1);
 	return (1);
 }

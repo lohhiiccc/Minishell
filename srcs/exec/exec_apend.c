@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:35:32 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 23:30:54 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:10:16 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	exec_apend(t_tree *tree, t_fds *fds, t_param *param)
 	if (NULL == (char *)tree->structur)
 		return (1);
 	fd = open((char *)tree->structur, O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (-1 == fd || -1 == ft_vector_add(&fds->fd_out, &fd))
+	if (fd == -1 || ft_vector_add(&fds->fd_out, &fd) == -1)
 	{
 		ft_dprintf(STDERR_FILENO, ERROR_MSG, (char *)tree->structur,
 			strerror(errno));
@@ -36,7 +36,7 @@ int	exec_apend(t_tree *tree, t_fds *fds, t_param *param)
 	}
 	ret = exec_args(tree->left, fds, tree->root, param);
 	ft_vector_delete_elem(&fds->fd_out, fds->fd_out.nbr_elem - 1);
-	if (-1 == close(fd))
+	if (close(fd) == -1)
 	{
 		ft_dprintf(STDERR_FILENO, ERROR_MSG, (char *)tree->structur,
 			strerror(errno));
