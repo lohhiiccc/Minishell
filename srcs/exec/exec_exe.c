@@ -97,7 +97,7 @@ static void	exec_in_child(t_tree *tree, t_fds *fds, t_param *param)
 	ft_clean_tree(tree->root);
 	execve(temp.path, temp.arg, ft_vector_get(&param->env, 0));
 	ft_dprintf(STDERR_FILENO, ERROR_MSG,
-		((t_cmd *)tree->structur)->arg[0], strerror(errno));
+		temp.arg[0], strerror(errno));
 	free(temp.path);
 	ft_free_tab(temp.arg);
 	clean_exit(NULL, &fds->fd_in, &fds->fd_out, 1);
