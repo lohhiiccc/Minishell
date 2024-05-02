@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:25:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/03 00:31:06 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 00:45:40 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ static char	*path_exist(char **path_list, char *cmd)
 		free(ret);
 		i++;
 	}
-	ft_free_tab(path_list);
-	return (temp);
+	return (free_and_return(NULL, path_list, temp));
 }
 
 static char	*free_and_return(char *temp, char **tab, char *ret)
