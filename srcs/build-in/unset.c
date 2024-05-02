@@ -16,7 +16,7 @@
 #include "libft.h"
 
 static int	is_variable_name(t_param *param, char *str);
-static int	ft_strcmp_to_c(char *str1, char *str2, char c)
+static int	ft_strcmp_to_c(char *str1, char *str2, char c);
 
 int	ft_unset(t_cmd *cmd, t_param *param)
 {

@@ -18,6 +18,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
+# include "env.h"
 	
 # define E_CHICKEN "\001\xF0\x9F\002\x90\x94"
 # define E_EGG "\001\xF0\x9F\002\xA5\x9A"
