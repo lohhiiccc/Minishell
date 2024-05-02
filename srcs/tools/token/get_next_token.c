@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:43:32 by lrio              #+#    #+#             */
-/*   Updated: 2024/05/02 04:22:46 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:26:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int8_t	set_cmd(const char *str, t_token *tkn)
 		i++;
 	tkn->type = T_CMD;
 	tkn->str = ft_strndup(str, i);
-	if (NULL == tkn->str)
+	if (!tkn->str)
 		return (-1);
 	return (0);
 }

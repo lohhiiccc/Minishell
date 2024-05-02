@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:42:13 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/02 04:12:42 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:26:17 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	close_vector_fd(t_vector *fd)
 
 int	is_build_in(char *str)
 {
-	if (NULL == str)
+	if (!str)
 		return (0);
 	return (!ft_strcmp(str, "cd")
 		|| !ft_strcmp(str, "echo")

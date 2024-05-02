@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:55:56 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/02 04:13:08 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:26:46 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	create_file_here_doc(t_tree *tree, t_param *param)
 	int		fd;
 
 	file_name = get_file_name();
-	if (NULL == file_name)
+	if (!file_name)
 		return (-1);
 	fd = open(file_name, O_RDWR | O_CREAT, 0644);
 	if (fd == -1)

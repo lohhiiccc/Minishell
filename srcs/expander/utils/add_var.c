@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 20:10:56 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/17 20:11:19 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:26:29 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int8_t	get_value(char *s, size_t i, char **env, t_vector *vector)
 		return (0);
 	}
 	str = value;
-	if (NULL == value)
+	if (!value)
 		return (-1);
 	value += (i - backup + 2);
 	keep_quote(value);

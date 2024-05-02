@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:41:16 by lrio              #+#    #+#             */
-/*   Updated: 2024/03/19 17:08:21 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 04:27:03 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_tree	*ft_new_tree(void *content, t_node node, t_tree *root)
 	new_tree->left = NULL;
 	new_tree->right = NULL;
 	new_tree->root = root;
-	if (NULL == root)
+	if (!root)
 		new_tree->root = new_tree;
 	return (new_tree);
 }
