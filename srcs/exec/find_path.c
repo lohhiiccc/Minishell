@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:25:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/05/01 01:11:18 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 00:45:40 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 static char	**list_path(t_vector *env);
 static char	*path_exist(char **path_list, char *cmd);
+static char	*free_and_return(char *temp, char **tab, char *ret);
 
 char	*find_path(char *cmd, t_vector *env)
 {
@@ -62,25 +63,32 @@ static char	*path_exist(char **path_list, char *cmd)
 {
 	size_t		i;
 	char		*ret;
+	char		*temp;
 	struct stat	file;
 
-	i = -1;
+	i = 0;
+	temp = NULL;
 	if (!path_list)
 		return (NULL);
-	while (path_list[++i])
+	while (path_list[i])
 	{
 		ret = ft_sprintf("%s/%s", path_list[i], cmd);
 		if (!access(ret, F_OK))
 		{
+			temp = ft_strdup(ret);
 			stat(ret, &file);
-			if (S_ISREG(file.st_mode))
-			{
-				ft_free_tab(path_list);
-				return (ret);
-			}
+			if (S_ISREG(file.st_mode) && !access(ret, X_OK))
+				return (free_and_return(temp, path_list, ret));
 		}
 		free(ret);
+		i++;
 	}
-	ft_free_tab(path_list);
-	return (NULL);
+	return (free_and_return(NULL, path_list, temp));
+}
+
+static char	*free_and_return(char *temp, char **tab, char *ret)
+{
+	free(temp);
+	ft_free_tab(tab);
+	return (ret);
 }
