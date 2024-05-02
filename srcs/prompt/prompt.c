@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 03:29:59 by lrio              #+#    #+#             */
-/*   Updated: 2024/05/01 02:28:06 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 01:42:36 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	prompt(t_param *param)
 
 	ms_signal_main();
 	tokens.nbr_elem = 0;
-	str = prompt_value(param->ret);
+	str = prompt_value(param);
 	if (str == NULL)
 		end_of_file(param);
 	if (g_sig_value != 0)

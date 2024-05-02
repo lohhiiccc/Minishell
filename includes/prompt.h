@@ -6,7 +6,7 @@
 /*   By: mjuffard <mjuffard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 22:22:55 by mjuffard          #+#    #+#             */
-/*   Updated: 2024/04/25 04:40:52 by mjuffard         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 01:47:57 by mjuffard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
+
+# include "env.h"
 
 # define E_TACOS "\001\xF0\x9F\002\x8C\xAE"
 # define E_EGG "\001\xF0\x9F\002\xA5\x9A"
@@ -30,7 +32,7 @@
 # define HEREDOCSKIN "%s[%s]%sle croquant: %s[%s%s%s%s%s]%s> "
 
 void	manage_history(char *str);
-char	*prompt_value(int last_ret);
+char	*prompt_value(t_param *param);
 void	prompt_back_slash(char *s);
 
 #endif
