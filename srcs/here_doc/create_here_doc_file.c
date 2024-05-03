@@ -23,6 +23,7 @@
 static char		*get_file_name(void);
 static int		fill_heredoc(t_tree *tree, int fd, t_param *param);
 static int8_t	expand_heredoc(char **s, t_param *param, size_t i);
+static void		heredoc_fail(t_tree *tree, char *file_name, int fd);
 
 int	create_file_here_doc(t_tree *tree, t_param *param)
 {
@@ -34,13 +35,13 @@ int	create_file_here_doc(t_tree *tree, t_param *param)
 		return (-1);
 	fd = open(file_name, O_RDWR | O_CREAT, 0644);
 	if (fd == -1)
+	{
+		free(file_name);
 		return (-1);
+	}
 	if (fill_heredoc(tree, fd, param) == -1)
 	{
-		ft_free_tab(tree->structur);
-		free(tree->structur);
-		free(file_name);
-		close(fd);
+		heredoc_fail(tree, file_name, fd);
 		return (-1);
 	}
 	ft_free_tab(tree->structur);
@@ -50,6 +51,14 @@ int	create_file_here_doc(t_tree *tree, t_param *param)
 	unlink(file_name);
 	free(file_name);
 	return (fd);
+}
+
+static void	heredoc_fail(t_tree *tree, char *file_name, int fd)
+{
+	ft_free_tab(tree->structur);
+	free(tree->structur);
+	free(file_name);
+	close(fd);
 }
 
 static int	fill_heredoc(t_tree *tree, int fd, t_param *param)
