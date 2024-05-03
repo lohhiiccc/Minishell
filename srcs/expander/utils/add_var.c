@@ -43,7 +43,7 @@ static int8_t	get_value(char *s, size_t i, char **env, t_vector *vector)
 	--i;
 	if (str == NULL)
 	{
-		free(str);
+		free(value);
 		return (0);
 	}
 	str = value;
