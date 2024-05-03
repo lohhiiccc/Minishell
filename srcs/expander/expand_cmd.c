@@ -41,10 +41,12 @@ char	**expand_cmd(char **cmd, t_param *param)
 
 char	**word_split(char **cmd, size_t i, char *str)
 {
+	if (cmd == NULL)
+		return (cmd);
 	cmd = ft_split(str, " \t\n");
 	free(str);
-	if (cmd == NULL)
-		return (NULL);
+	if (cmd == NULL || *cmd == NULL)
+		return (cmd);
 	cmd = expand_wildcard(cmd);
 	if (cmd == NULL)
 		return (NULL);
