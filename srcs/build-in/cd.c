@@ -92,7 +92,7 @@ static char	*arg_path(t_cmd *cmd, t_param *param, t_vector *fd_out)
 {
 	char	*ret;
 
-	if (!strcmp(cmd->arg[1], "-"))
+	if (!ft_strcmp(cmd->arg[1], "-"))
 		ret = cd_minus(param, fd_out);
 	else if (ft_strchr(cmd->arg[1], '/'))
 	{
